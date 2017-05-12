@@ -1,4 +1,4 @@
-package com.ray.utils;
+package com.rays.utils;
 
 /**
  * 自建的简化标准输出的辅助类

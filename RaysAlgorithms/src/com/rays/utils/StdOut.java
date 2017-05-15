@@ -1,5 +1,7 @@
 package com.rays.utils;
 
+import java.util.Arrays;
+
 /**
  * 自建的简化标准输出的辅助类
  * @author Ray
@@ -8,11 +10,19 @@ package com.rays.utils;
 public class StdOut {
 	
 	/**
-	 * 输入并换行
+	 * 打印并换行
 	 * @param t
 	 */
-	public static <T> void println(T t) {
+	public static <T> void pl(T t) {
 		System.out.println(t);
+	}
+	
+	/**
+	 * 打印数组并换行
+	 * @param t
+	 */
+	public static <T> void p(T[] t) {
+		pl(Arrays.toString(t));
 	}
 	
 	/**
@@ -28,7 +38,7 @@ public class StdOut {
 	 * 只打印不换行
 	 * @param t
 	 */
-	public static <T> void print(T t) {
+	public static <T> void p(T t) {
 		System.out.print(t);
 	}
 	

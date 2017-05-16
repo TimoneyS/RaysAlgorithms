@@ -13,7 +13,7 @@ public class StdOut {
 	 * 打印并换行
 	 * @param t
 	 */
-	public static <T> void pl(T t) {
+	public static <T> void p(T t) {
 		System.out.println(t);
 	}
 	
@@ -22,7 +22,7 @@ public class StdOut {
 	 * @param t
 	 */
 	public static <T> void p(T[] t) {
-		pl(Arrays.toString(t));
+		p(Arrays.toString(t));
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class StdOut {
 	 * 只打印不换行
 	 * @param t
 	 */
-	public static <T> void p(T t) {
+	public static <T> void print(T t) {
 		System.out.print(t);
 	}
 	
@@ -65,7 +65,7 @@ public class StdOut {
 	public static void sep(int size) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < size; i++) sb.append("=");
-		printf(sb.toString());
+		p(sb.toString());
 	}
 	
 }

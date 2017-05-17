@@ -36,6 +36,18 @@ public class MergeSort {
 		
 	}
 	
+	public static class DownToUp {
+		public static void sort(Comparable[] a){
+			Comparable[] temp = new Comparable[a.length];
+			
+			int N = a.length;
+			// size 表示子数组的长度，也就是每次合并的尺度
+			for(int size = 1; size < N; size = size * 2)
+				for(int l = 0; l < N-size; l = l + size * 2)
+					merge(a, l, l+size-1, Math.min(N-1, l+2*size-1), temp);
+		}
+	}
+	
 	/**
 	 * 归并的方法<br>
 	 * arr[lo] 		~ arr[mid] 是已经排序的数组1<br>
@@ -57,7 +69,7 @@ public class MergeSort {
 	}
 	
 	public static void main(String[] args) {
-		Integer[] arr = intArr(10000);
+		Integer[] arr = intArr(20000);
 		shuffle(arr);
 		
 		Timer.click();

@@ -27,7 +27,7 @@ public class InsertionSort {
 	}
 	
 	public static void main(String[] args) {
-		Integer[] arr = intArr(10000);
+		Integer[] arr = intArr(20000);
 		
 		shuffle(arr);
 		checkSorted(arr);

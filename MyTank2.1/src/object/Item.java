@@ -2,12 +2,12 @@ package object;
 
 import java.awt.Graphics2D;
 
-public abstract class Obj {
+public abstract class Item {
 	protected boolean alive;
 	protected double x;				// x×ø±ê
 	protected double y;				// y×ø±ê
 	
-	public Obj() {
+	public Item() {
 		alive = true;
 	}
 	

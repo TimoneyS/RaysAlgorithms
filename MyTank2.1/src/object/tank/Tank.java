@@ -10,10 +10,10 @@ import java.awt.geom.Rectangle2D;
 import global.Conf;
 import map.BattleField;
 import object.Bullet;
-import object.Collider;
+import object.CollideItem;
 import object.Explode;
 
-public abstract class Tank extends Collider {
+public abstract class Tank extends CollideItem {
 	
 	public Tank(double x, double y, double direction, Color color) {
 		super(x, y, direction, color);
@@ -34,8 +34,9 @@ public abstract class Tank extends Collider {
 	}
 
 	public void draw(Graphics2D g2){
+		
 		//绘制
-		double size = Conf.size;
+		double size = Conf.SIZE;
 		
 		AffineTransform odlTramsform = g2.getTransform();	//旋转参数备份
 		g2.rotate(direction, x, y);							//设置旋转的角度和中心点
@@ -77,13 +78,13 @@ public abstract class Tank extends Collider {
 		double speed = getMoveSpeed();
 		if(speed!=0) moveState+=(speed<0?0.5:-0.5);				//履带变化
 		moveState = (moveState+10)%10;
-		locationSave();									//备份坐标
-		x += Math.sin(direction)*speed;					//坐标变化
+		locationSave();											//备份坐标
+		x += Math.sin(direction)*speed;							//坐标变化
 		y -= Math.cos(direction)*speed;			
 	}
 	
 	// 坦克碰撞回调
-	public void onCollide(Collider target) {
+	public void onCollide(CollideItem target) {
 		locationLoad();
 	}
 	
@@ -113,6 +114,6 @@ public abstract class Tank extends Collider {
 	}
 	@Override
 	public double getRadius() {
-		return Conf.size * 5;
+		return Conf.SIZE * 5;
 	}
 }

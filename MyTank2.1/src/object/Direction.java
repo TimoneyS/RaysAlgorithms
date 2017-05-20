@@ -17,10 +17,12 @@ public class Direction {
 		this.y = y;
 	}
 	
-	public Direction plus(Direction tar){
-		int i = (x + tar.getX() == 0) ? 0 : x | tar.getX();
-		int j = (y + tar.getY() == 0) ? 0 : y | tar.getY();
-		return new Direction(i, j);
+	public void plus(Direction tar){
+		x = (x + tar.getX() == 0) ? 0 : x | tar.getX();
+		y = (y + tar.getY() == 0) ? 0 : y | tar.getY();
+		
+		degrees = ( Math.toDegrees(Math.atan2(x, y)) + 360 ) % 360;
+		radians = Math.toRadians(toDegrees());
 	}
 	
 	public double toDegrees(){
@@ -34,7 +36,7 @@ public class Direction {
 	}
 	
 	public void inspect_print() {
-		System.out.printf("( %2d, %2s) -> Deg : %3s, Rad : %3s \n", x, y, toDegrees(), toRadians());
+		System.out.printf("( %2d, %2s) -> ½Ç¶È : %3s, »¡¶È : %3s \n", x, y, toDegrees(), toRadians());
 	}
 	
 	public boolean isZero() {
@@ -43,25 +45,22 @@ public class Direction {
 	}
 	
 	public int getX() { return x; }
-	public void setX(int x) { this.x = x; }
 	public int getY() { return y; }
-	public void setY(int y) { this.y = y; }
-
-	public static void main(String[] args) {
-		Direction w = new Direction(0, 1);
-		Direction s = new Direction(0, -1);
-		Direction a = new Direction(-1, 0);
-		Direction d = new Direction(1, 0);
-		
-		Direction[] input = new Direction[]{ s, a, d, w};
-		
-		
-		Direction z = new Direction(0, 0);
-		for(Direction dir : input)
-			z = z.plus(dir);
-		z.inspect_print();
-	}
 	
+//	public static void main(String[] args) {
+//		Direction w = new Direction(0, 1);
+//		Direction s = new Direction(0, -1);
+//		Direction a = new Direction(-1, 0);
+//		Direction d = new Direction(1, 0);
+//		
+//		Direction[] input = new Direction[]{ s };
+//		
+//		
+//		Direction z = new Direction(0, 0);
+//		for(Direction dir : input)
+//			z.plus(dir);
+//		z.inspect_print();
+//	}
 
 }
 

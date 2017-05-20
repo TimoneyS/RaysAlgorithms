@@ -7,9 +7,9 @@ import java.util.*;
 
 import global.Conf;
 import object.Bullet;
-import object.Collider;
+import object.CollideItem;
 import object.Explode;
-import object.Obj;
+import object.Item;
 import object.tank.BotTank;
 import object.tank.PlayerTank;
 import object.tank.Tank;
@@ -66,10 +66,10 @@ public class BattleField {
 		draw(explodes, g2);
 	}
 	//ªÊ÷∆¡–±Ì
-	private synchronized void draw(List<? extends Obj> list,Graphics2D g2){
-		Iterator<? extends Obj> i = list.iterator();
+	private synchronized void draw(List<? extends Item> list,Graphics2D g2){
+		Iterator<? extends Item> i = list.iterator();
 		while(i.hasNext()) {
-			Obj o = i.next();
+			Item o = i.next();
 			if(o.isAlive()){
 				o.draw(g2);
 				o.upDate();
@@ -89,8 +89,8 @@ public class BattleField {
 	public synchronized void add(Bullet b){
 		bullets.add(b);
 	}
-	public List<? extends Collider> getTanks() { return tanks; }
-	public List<? extends Collider> getBullets() { return bullets; }
+	public List<? extends CollideItem> getTanks() { return tanks; }
+	public List<? extends CollideItem> getBullets() { return bullets; }
 
 	public PlayerTank getPlayerTank() {
 		return playerTank;

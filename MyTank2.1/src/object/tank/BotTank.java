@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import global.Conf;
 import map.BattleField;
-import object.Collider;
+import object.CollideItem;
 
 public class BotTank extends Tank {
 	
@@ -21,7 +21,7 @@ public class BotTank extends Tank {
 	}
 	
 	@Override
-	public void onCollide(Collider target) {
+	public void onCollide(CollideItem target) {
 		 chooseDirection();
 		 locationLoad();
 	}

@@ -5,7 +5,7 @@ import java.awt.geom.Ellipse2D;
 
 import global.Conf;
 
-public class Explode extends Obj{
+public class Explode extends Item{
 	private double state = 1;				//状态，描述动画进行到何种程度的标志
 	private	final double x,y;				//爆炸的中心位置
 
@@ -21,7 +21,7 @@ public class Explode extends Obj{
 			else if(state>(radius*2/5)) g2.setColor(Color.YELLOW);		//爆炸阶段3颜色
 			else if(state>(radius*1/5)) g2.setColor(Color.WHITE);		//爆炸阶段2颜色
 			else g2.setColor(Color.CYAN);								//爆炸阶段1颜色
-		double size = Conf.size;
+		double size = Conf.SIZE;
 		Ellipse2D s = new Ellipse2D.Double(								//建立形状
 				x-state*size/5, y-state*size/5, state*size/2.5, state*size/2.5);
 		

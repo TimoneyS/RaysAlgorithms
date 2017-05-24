@@ -30,7 +30,8 @@ public class Timer {
 		Date oldDate = RECORD_DATE;
 		RECORD_DATE = new Date();
 //		RECORD_MESSAGE.append(String.format("第%2d次耗时记录：%s ms. \n", RECORD_COUNT ++, RECORD_DATE.getTime() - oldDate.getTime()));
-		printf("第%2d次耗时记录：%s ms. \n", RECORD_COUNT ++, RECORD_DATE.getTime() - oldDate.getTime());
+		pf("第%2d次耗时记录：%s ms. \n", RECORD_COUNT ++, RECORD_DATE.getTime() - oldDate.getTime());
+		RECORD_DATE = new Date();
 	}
 	
 }

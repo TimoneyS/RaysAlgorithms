@@ -10,7 +10,7 @@ public class ArrayUtil {
 	 * @param arr
 	 */
 	public static void checkSorted(Comparable[] arr) {
-		StdOut.printf("经检查，数组%s排序。\n", isSorted(arr) ? "已" : "未");
+		StdOut.pf("经检查，数组%s排序。\n", isSorted(arr) ? "已" : "未");
 	}
 	
 	/**

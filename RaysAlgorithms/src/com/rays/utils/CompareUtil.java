@@ -1,10 +1,15 @@
 package com.rays.utils;
 
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class CompareUtil {
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+
 	public static boolean less(Comparable x, Comparable y){
 		return x.compareTo(y) < 0;
+	}
+	
+	public static boolean  greater(Comparable x, Comparable y) {
+		return x.compareTo(y) > 0;
 	}
 	
 }

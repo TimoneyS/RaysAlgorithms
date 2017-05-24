@@ -30,7 +30,7 @@ public class StdOut {
 	 * @param s
 	 * @param args
 	 */
-	public static <T> void printf(String s, Object...args){
+	public static <T> void pf(String s, Object...args){
 		System.out.printf(s, args);
 	}
 	
@@ -38,7 +38,7 @@ public class StdOut {
 	 * 只打印不换行
 	 * @param t
 	 */
-	public static <T> void print(T t) {
+	public static <T> void pt(T t) {
 		System.out.print(t);
 	}
 	

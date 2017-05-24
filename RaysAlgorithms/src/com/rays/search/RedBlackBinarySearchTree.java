@@ -1,10 +1,10 @@
 package com.rays.search;
 
-//import static com.rays.utils.ArrayUtil.*;
+import static com.rays.utils.ArrayUtil.*;
 import static com.rays.utils.StdOut.p;
 import static com.rays.utils.StdOut.pf;
 
-//import com.rays.utils.Timer;
+import com.rays.utils.Timer;
 
 /**
  * 红黑树 实现的 2-3 树结构的符号表查找插入算法
@@ -44,19 +44,31 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
 		return null;
 	}
 	
+	private Node getNode(Key key) {
+		Node n = root;
+		while ( n != null && key != null) {
+			if (n.key.equals(key)) 				return n;
+			else if ( n.key.compareTo(key) > 0) n = n.left;
+			else 								n = n.right;
+		}
+		return null;
+	}
+	
 	public void put(Key key, Value value) {
 		root = put(root, key, value);
 		root.color = BLACK;
 	}
 	
 	public Node put(Node node, Key key, Value value) {
-		if (node == null) return new Node(key, value, 1, RED);
+		
+		if (node == null) return new Node(key, value, 1, RED);	// 这个决定了新节点以红链接加入树中
 		
 		int cmp = key.compareTo(node.key);
 		
 		if      (cmp < 0) node.left  = put( node.left, key, value);
 		else if (cmp > 0) node.right = put(node.right, key, value);
-		else 			  node.value = value;
+		else			  node.value = value;
+//		else 			  { node.value = value; return node;}
 		
 		if (isRed(node.right) && !isRed(node.left)) 	node = rotateLeft(node);
 		if (isRed(node.left) && isRed(node.left.left)) 	node = rotateRight(node);
@@ -74,7 +86,6 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
 		n.right.color = BLACK;
 	}
 	
-
 	Node rotateLeft(Node h) {
 		// 左旋转
 		Node x = h.right;
@@ -116,19 +127,20 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
 	@SuppressWarnings("unchecked")
 	public void show() {
 		int count = root.N;
+		
 		Key[][] keys = (Key[][]) new Comparable[count][count];
 		
 		tree( root, keys, 0, (root.left == null ? 0 : root.left.N));
 		for(Key[] row : keys) {
 			boolean emptyRow = true;
 			for(Key k : row) {
-				pf( "%4s",  ( k == null ? " " : k) );
+				Node n = getNode(k);
+				pf( "%4s",  ( k == null ? " " : k + ( isRed(n) ? "*" : "") ) );
 				if(k != null) emptyRow = false;
 			}
 			p("");
 			if(emptyRow) break;
 		}
-		p("===================================");
 	}
 	
 	public void tree(Node n, Key[][] keys,int deep,  int seq) {
@@ -138,7 +150,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
 	}
 	
 	public static void main(String[] args) {
-//		int size = 10;
+//		int size = 500000;
 //		
 //		Integer[] arr = intArr(size);
 ////		shuffle(arr);
@@ -148,7 +160,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
 //		Timer.click();
 //		for(Integer i : arr) {
 //			st.put(i, i*10);
-//			st.show();
+////			st.show();
 //		}
 //		
 //		Timer.click();
@@ -162,7 +174,9 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
 		char[] arr = "SEARCHXMPL".toCharArray();
 		for(Character i : arr) {
 			st.put(i, 1);
+			p("=================================== " + i);
 			st.show();
+			
 		}
 
 		

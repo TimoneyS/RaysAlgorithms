@@ -9,7 +9,7 @@ import static com.rays.utils.ArrayUtil.*;
  * @author Ray
  *
  */
-public class SequentialSearch <Key extends Comparable<Key>,Value> {
+public class SequentialSearch <Key extends Comparable<Key>,Value> implements SymbolTable<Key, Value> {
 	private Node head;
 	
 	private class Node {

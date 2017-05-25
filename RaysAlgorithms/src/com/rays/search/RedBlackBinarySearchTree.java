@@ -4,6 +4,9 @@ import static com.rays.utils.ArrayUtil.*;
 import static com.rays.utils.StdOut.p;
 import static com.rays.utils.StdOut.pf;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.rays.utils.Timer;
 
 /**
@@ -13,7 +16,7 @@ import com.rays.utils.Timer;
  * @param <Key>
  * @param <Value>
  */
-public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
+public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
 	
 	private static final boolean RED   = true;
 	private static final boolean BLACK = false;
@@ -150,34 +153,48 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> {
 	}
 	
 	public static void main(String[] args) {
-//		int size = 500000;
-//		
-//		Integer[] arr = intArr(size);
-////		shuffle(arr);
-//		
-//		RedBlackBinarySearchTree<Integer, Integer> st = new RedBlackBinarySearchTree<>();
-//		
-//		Timer.click();
-//		for(Integer i : arr) {
-//			st.put(i, i*10);
-////			st.show();
-//		}
-//		
-//		Timer.click();
-//		for(Integer i = 0; i < size; i++) {
-////			StdOut.p(st.get(i+1));
-//			st.get(i+1);
-//		}
-//		Timer.click();
+		int size = 500000;
 		
-		RedBlackBinarySearchTree<Character, Integer> st = new RedBlackBinarySearchTree<>();
-		char[] arr = "SEARCHXMPL".toCharArray();
-		for(Character i : arr) {
-			st.put(i, 1);
-			p("=================================== " + i);
-			st.show();
-			
+		Integer[] arr = intArr(size);
+		shuffle(arr);
+		
+		RedBlackBinarySearchTree<Integer, Integer> st = new RedBlackBinarySearchTree<>();
+		
+		Timer.click();
+		for(Integer i : arr) {
+			st.put(i, i*10);
+//			st.show();
 		}
+		
+		Timer.click();
+		for(Integer i = 0; i < size; i++) {
+//			StdOut.p(st.get(i+1));
+			st.get(i+1);
+		}
+		Timer.click();
+		
+		
+		
+		Map<Integer, Integer> map = new HashMap<>();
+		Timer.click();
+		for(Integer i : arr) {
+			map.put(i, i*10);
+		}
+		
+		Timer.click();
+		for(Integer i = 0; i < size; i++) {
+			map.get(i+1);
+		}
+		Timer.click();
+		
+//		RedBlackBinarySearchTree<Character, Integer> st = new RedBlackBinarySearchTree<>();
+//		char[] arr = "SEARCHXMPL".toCharArray();
+//		for(Character i : arr) {
+//			st.put(i, 1);
+//			p("=================================== " + i);
+//			st.show();
+//			
+//		}
 
 		
 	}

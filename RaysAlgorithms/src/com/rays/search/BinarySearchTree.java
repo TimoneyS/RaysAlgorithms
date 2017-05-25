@@ -6,7 +6,7 @@ import static com.rays.utils.StdOut.*;
 import com.rays.utils.Timer;
 
 @SuppressWarnings("unchecked")
-public class BinarySearchTree<Key extends Comparable<Key>,Value> {
+public class BinarySearchTree<Key extends Comparable<Key>,Value> implements SymbolTable<Key, Value> {
 	
 	Node root;
 	int maxDeep = 1;

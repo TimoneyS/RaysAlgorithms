@@ -27,11 +27,14 @@ public class Timer {
 	}
 	
 	private static void record() {
-		Date oldDate = RECORD_DATE;
-		RECORD_DATE = new Date();
-//		RECORD_MESSAGE.append(String.format("第%2d次耗时记录：%s ms. \n", RECORD_COUNT ++, RECORD_DATE.getTime() - oldDate.getTime()));
-		pf("第%2d次耗时记录：%s ms. \n", RECORD_COUNT ++, RECORD_DATE.getTime() - oldDate.getTime());
-		RECORD_DATE = new Date();
+		pf("第%2d次耗时记录：%s ms. \n", RECORD_COUNT ++, new Date().getTime() - RECORD_DATE.getTime());
+		RECORD_DATE = new Date();	// 消除打印的时间差，因此在后
+	}
+	
+	public static final void stop() {
+		pf("第%2d次耗时记录：%s ms. \n", RECORD_COUNT ++, new Date().getTime() - RECORD_DATE.getTime());
+		RECORD_DATE  = null;
+		RECORD_COUNT = 1;
 	}
 	
 }

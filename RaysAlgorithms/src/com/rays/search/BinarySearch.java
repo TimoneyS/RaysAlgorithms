@@ -11,7 +11,7 @@ import com.rays.utils.Timer;
  * @param <Value>
  */
 @SuppressWarnings("unchecked")
-public class BinarySearch <Key extends Comparable<Key>, Value> {
+public class BinarySearch <Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
 	
 	private Key[] keys;
 	private Value[] values;

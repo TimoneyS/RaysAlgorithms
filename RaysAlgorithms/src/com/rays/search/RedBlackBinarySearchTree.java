@@ -1,13 +1,7 @@
 package com.rays.search;
 
-import static com.rays.utils.ArrayUtil.*;
 import static com.rays.utils.StdOut.p;
 import static com.rays.utils.StdOut.pf;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import com.rays.utils.Timer;
 
 /**
  * 红黑树 实现的 2-3 树结构的符号表查找插入算法
@@ -150,53 +144,6 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 		keys[deep][seq] = n.key;
 		if(n.left  != null) tree(  n.left, keys, deep+1, seq - (n.left.right == null ? 1 : n.left.right.N+1) );
 		if(n.right != null) tree( n.right, keys, deep+1, seq + (n.right.left == null ? 1 : n.right.left.N+1) );
-	}
-	
-	public static void main(String[] args) {
-		int size = 500000;
-		
-		Integer[] arr = intArr(size);
-		shuffle(arr);
-		
-		RedBlackBinarySearchTree<Integer, Integer> st = new RedBlackBinarySearchTree<>();
-		
-		Timer.click();
-		for(Integer i : arr) {
-			st.put(i, i*10);
-//			st.show();
-		}
-		
-		Timer.click();
-		for(Integer i = 0; i < size; i++) {
-//			StdOut.p(st.get(i+1));
-			st.get(i+1);
-		}
-		Timer.click();
-		
-		
-		
-		Map<Integer, Integer> map = new HashMap<>();
-		Timer.click();
-		for(Integer i : arr) {
-			map.put(i, i*10);
-		}
-		
-		Timer.click();
-		for(Integer i = 0; i < size; i++) {
-			map.get(i+1);
-		}
-		Timer.click();
-		
-//		RedBlackBinarySearchTree<Character, Integer> st = new RedBlackBinarySearchTree<>();
-//		char[] arr = "SEARCHXMPL".toCharArray();
-//		for(Character i : arr) {
-//			st.put(i, 1);
-//			p("=================================== " + i);
-//			st.show();
-//			
-//		}
-
-		
 	}
 	
 }

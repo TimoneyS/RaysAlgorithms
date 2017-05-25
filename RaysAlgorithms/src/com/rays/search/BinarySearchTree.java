@@ -1,9 +1,6 @@
 package com.rays.search;
 
-import static com.rays.utils.ArrayUtil.*;
-
 import static com.rays.utils.StdOut.*;
-import com.rays.utils.Timer;
 
 @SuppressWarnings("unchecked")
 public class BinarySearchTree<Key extends Comparable<Key>,Value> implements SymbolTable<Key, Value> {
@@ -81,29 +78,6 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Symb
 		if(n.right != null) {
 			tree(n.right, keys, deep+1, seq + (n.right.left == null ? 1 : n.right.left.num+1));
 		}
-	}
-	
-	public static void main(String[] args) {
-		int size = 40000;
-		
-		Integer[] arr = intArr(size);
-//		shuffle(arr);
-//		shuffle(arr);
-		
-		BinarySearchTree<Integer, Integer> st = new BinarySearchTree<>();
-		
-		Timer.click();
-		for(Integer i : arr) {
-			st.put(i, i*10);
-		}
-//		st.show();
-		
-		Timer.click();
-		for(Integer i = 0; i < size; i++) {
-//			StdOut.p(st.get(i+1));
-			st.get(i+1);
-		}
-		Timer.click();
 	}
 
 }

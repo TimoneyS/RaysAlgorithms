@@ -1,9 +1,5 @@
 package com.rays.search;
 
-import static com.rays.utils.ArrayUtil.*;
-
-import com.rays.utils.Timer;
-
 /**
  * 演示基于有序数组的二分搜索
  * @author Ray
@@ -55,27 +51,6 @@ public class BinarySearch <Key extends Comparable<Key>, Value> implements Symbol
 			else 										h = mid;
 		}
 		return null;
-	}
-	
-	public static void main(String[] args) {
-		
-		int size = 20000;
-		
-		Integer[] arr = intArr(size);
-		shuffle(arr);
-		
-		BinarySearch<Integer, Integer> st = new BinarySearch<>(size);
-		
-		Timer.click();
-		for(Integer i : arr) {
-			st.put(i, i*10);
-		}
-		Timer.click();
-		for(Integer i = 0; i < size; i++) {
-			st.get(i);
-		}
-		Timer.click();
-		
 	}
 
 }

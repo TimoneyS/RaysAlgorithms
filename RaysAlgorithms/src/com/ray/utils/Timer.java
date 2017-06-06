@@ -1,7 +1,8 @@
-package com.rays.utils;
+package com.ray.utils;
+
+import static com.ray.utils.StdOut.*;
 
 import java.util.Date;
-import static com.rays.utils.StdOut.*;
 
 /**
  * ¼ÆÊ±Æ÷Àà

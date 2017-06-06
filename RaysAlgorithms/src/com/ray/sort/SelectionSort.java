@@ -1,7 +1,8 @@
-package com.rays.sort;
+package com.ray.sort;
 
-import static com.rays.utils.ArrayUtil.*;
-import com.rays.utils.Timer;
+import static com.ray.utils.ArrayUtil.*;
+
+import com.ray.utils.Timer;
 
 /**
  * <b>—°‘Ò≈≈–Ú</b>

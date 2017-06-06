@@ -1,4 +1,4 @@
-package com.rays.utils;
+package com.ray.utils;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class CompareUtil {

@@ -1,8 +1,8 @@
-package com.rays.sort;
+package com.ray.sort;
 
-import static com.rays.utils.ArrayUtil.*;
+import static com.ray.utils.ArrayUtil.*;
 
-import com.rays.utils.Timer;
+import com.ray.utils.Timer;
 
 /**
  * <b>¿ìËÙÅÅĞò</b>

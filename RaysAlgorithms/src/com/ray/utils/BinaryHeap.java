@@ -1,6 +1,6 @@
-package com.rays.utils;
+package com.ray.utils;
 
-import static com.rays.utils.ArrayUtil.*;
+import static com.ray.utils.ArrayUtil.*;
 
 public class BinaryHeap <Key extends Comparable<Key>> {
 	private Key[] inner;

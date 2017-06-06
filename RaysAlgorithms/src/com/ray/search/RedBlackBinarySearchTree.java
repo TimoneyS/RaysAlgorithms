@@ -1,7 +1,7 @@
-package com.rays.search;
+package com.ray.search;
 
-import static com.rays.utils.StdOut.p;
-import static com.rays.utils.StdOut.pf;
+import static com.ray.utils.StdOut.p;
+import static com.ray.utils.StdOut.pf;
 
 /**
  * 红黑树 实现的 2-3 树结构的符号表查找插入算法

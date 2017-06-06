@@ -1,4 +1,4 @@
-package com.rays.search;
+package com.ray.search;
 
 public class HashSymbolTable<Key extends Comparable<Key>, Value> implements SymbolTable<Key, Value> {
 	

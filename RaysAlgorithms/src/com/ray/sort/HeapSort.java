@@ -1,9 +1,9 @@
-package com.rays.sort;
+package com.ray.sort;
 
-import com.rays.utils.BinaryHeap;
-import com.rays.utils.Timer;
+import static com.ray.utils.ArrayUtil.*;
 
-import static com.rays.utils.ArrayUtil.*;
+import com.ray.utils.BinaryHeap;
+import com.ray.utils.Timer;
 
 @SuppressWarnings({ "rawtypes", "unchecked"})
 public class HeapSort {

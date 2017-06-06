@@ -11,7 +11,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.rays.utils.StdOut;
+import com.ray.utils.StdOut;
 
 /**
  * A * 算法的过程演示

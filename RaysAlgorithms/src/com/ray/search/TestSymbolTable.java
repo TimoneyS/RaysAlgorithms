@@ -1,10 +1,10 @@
-package com.rays.search;
+package com.ray.search;
 
-import static com.rays.utils.ArrayUtil.intArr;
-import static com.rays.utils.ArrayUtil.shuffle;
+import static com.ray.utils.ArrayUtil.intArr;
+import static com.ray.utils.ArrayUtil.shuffle;
 
-import com.rays.utils.StdOut;
-import com.rays.utils.Timer;
+import com.ray.utils.StdOut;
+import com.ray.utils.Timer;
 
 public class TestSymbolTable {
 	

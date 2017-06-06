@@ -6,28 +6,28 @@ import java.util.*;
 import java.util.List;
 import java.util.concurrent.*;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.ray.utils.StdOut;
 
-import static com.ray.astar.Cell.cell;
 /**
  * A * 算法的过程演示
  * @author Ray
+ *
  */
 public class AStar {
-	
 	public static int SIZE = 0;
 
-	/**
-	 * 初始化地图
-	 * @return
-	 * @throws Exception
-	 */
+	// 快速创建单元格
+	public static Cell cell(int i, int j, int type) {
+		return new Cell(i, j, type);
+	}
+
+	// 初始化地图
 	public static Cell[][] initMap() throws Exception {
-		// 获取地图wen'jian所在的路径
 		String path = System.getProperty("user.dir");
 		Scanner sc = new Scanner(new File(path + "/src/com/ray/astar/" + "map.txt"));
 		
@@ -80,11 +80,11 @@ public class AStar {
 			}
 			List<Cell> chs = findChildren(map, cellMin);
 			for (Cell tmp : chs) {
-				if (tmp.state != CellState.CLOSED) {
+				if (tmp.stat != Cell.CLOSED) {
 					if (tmp.parent == null) {
 						tmp.past = cellMin.past + tmp.cost;
 						open.add(tmp);
-						tmp.state = CellState.OPENED;
+						tmp.stat = Cell.OPENED;
 						tmp.parent = cellMin;
 					} else {
 						if (tmp.sum() < cellMin.parent.sum()) {
@@ -94,7 +94,7 @@ public class AStar {
 					}
 				}
 			}
-			cellMin.state = CellState.CLOSED;
+			cellMin.stat = Cell.CLOSED;
 			open.remove(cellMin);
 		}
 	}
@@ -124,24 +124,12 @@ public class AStar {
 			}
 		}, 100, 50, TimeUnit.MILLISECONDS);
 	}
-	
-	/**
-	 * 搜索算法
-	 */
-	public void search() {
-		try {
-			Cell[][] map = initMap();
-			astarShow(map);
-			astar(map);
-			map[4][4].parse();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-	}
-	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws Exception {
+		Cell[][] map = initMap();
+		astarShow(map);
+		astar(map);
+		map[4][4].parse();
 	}
 
 }

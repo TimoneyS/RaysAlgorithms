@@ -69,7 +69,7 @@ public class MergeSort {
 	}
 	
 	public static void main(String[] args) {
-		Integer[] arr = intArr(20000);
+		Integer[] arr = intArr(20000000);
 		shuffle(arr);
 		
 		Timer.click();

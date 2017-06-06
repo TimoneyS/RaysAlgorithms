@@ -18,10 +18,24 @@ public class ArrayUtil {
 	 * @param size
 	 * @return
 	 */
-	public static Integer[] intArr(int size){
+	public static Integer[] intArr(int size) {
 		Integer[] arr = new Integer[size]; 
 		for(int i = 0; i < arr.length; i ++) {
 			arr[i] = i + 1;
+		}
+		return arr;
+	}
+	
+	/**
+	 * 获取整形旋转数组，可以指定旋转的位置
+	 * @param size			数组尺寸
+	 * @param deviation		偏移量
+	 * @return
+	 */
+	public static Integer[] intArrRotate(int size, int deviation) {
+		Integer[] arr = new Integer[size]; 
+		for(int i = 0; i < arr.length; i ++) {
+			arr[i] = ( i - deviation + size) % size;
 		}
 		return arr;
 	}
@@ -78,6 +92,18 @@ public class ArrayUtil {
 		T temp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = temp;
+	}
+	
+	/**
+	 * 交换数组的两个区域（要求两个区域必须没有交集，而且大小一致）
+	 * @param arr 	数组
+	 * @param l1	区域1开始边界
+	 * @param l2	区域2开始边界
+	 * @param size	区域大小
+	 */
+	public static <T> void swap(T[] arr,  int l1, int l2, int size) {
+		for (int i = 0; i < size; i ++)
+			swap(arr, l1 + i, l2 + i);
 	}
 	
 	

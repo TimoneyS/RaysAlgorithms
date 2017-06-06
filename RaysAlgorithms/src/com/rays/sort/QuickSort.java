@@ -23,13 +23,13 @@ public class QuickSort {
 	}
 	
 	public static void sort(Comparable[] arr, int lo, int hi) {
-		if(lo>=hi) return;
+		if (lo>=hi) return;
 		int l = lo + 1;
 		int r = hi;
 		while (true) {
-			while (less(arr, l++, lo)) if (l >= hi) break;
-			while (less(arr, lo, r--));
-			if(l >= r) break;
+			while (less(arr, l, lo)) { l++; if (l >= r) break; }
+			while (less(arr, lo, r)) r--;
+			if (l >= r) break;
 			swap(arr, l, r);
 		}
 		swap(arr, lo, r);
@@ -39,7 +39,7 @@ public class QuickSort {
 	}
 	
 	public static void main(String[] args) {
-		Integer[] arr = intArr(20000);
+		Integer[] arr = intArr(10000000);
 		
 		shuffle(arr);
 		
@@ -47,7 +47,7 @@ public class QuickSort {
 		sort(arr);
 		Timer.click();
 		
-		isSorted(arr);
+		checkSorted(arr);
 	}
 	
 }

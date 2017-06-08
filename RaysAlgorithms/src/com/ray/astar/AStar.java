@@ -1,24 +1,18 @@
 package com.ray.astar;
 
-import java.awt.*;
 import java.io.File;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.*;
-
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import com.ray.utils.StdOut;
 
 /**
  * A * 算法的过程演示
  * @author Ray
- *
+ * 
  */
 public class AStar {
+	
 	public static int SIZE = 0;
 
 	// 快速创建单元格
@@ -28,16 +22,16 @@ public class AStar {
 
 	// 初始化地图
 	public static Cell[][] initMap() throws Exception {
-		String path = System.getProperty("user.dir");
-		Scanner sc = new Scanner(new File(path + "/src/com/ray/astar/" + "map.txt"));
 		
-		SIZE = Integer.valueOf(sc.nextLine());
+		Scanner sc = new Scanner(
+				new File(String.format("%s%s", System.getProperty("user.dir"), "/src/com/ray/astar/map.txt"))
+				);
+		
+		SIZE = sc.nextInt();
 		Cell[][] map = new Cell[SIZE][SIZE];
 		for (int i = 0; i < SIZE; i++) {
-			String[] tmp = sc.nextLine().split("\\s+");
-			StdOut.p(tmp);
-			for (int j = 0; j < tmp.length; j++)
-				map[i][j] = cell(i, j, Integer.valueOf(tmp[j]));
+			for (int j = 0; j < SIZE; j++) map[i][j] = cell(i, j, sc.nextInt());
+			StdOut.p(Arrays.toString(map[i]));
 		}
 		sc.close();
 		return map;
@@ -80,11 +74,11 @@ public class AStar {
 			}
 			List<Cell> chs = findChildren(map, cellMin);
 			for (Cell tmp : chs) {
-				if (tmp.stat != Cell.CLOSED) {
+				if (tmp.stat != CellType.CLOSE && tmp.stat != CellType.BLOCK) {
 					if (tmp.parent == null) {
 						tmp.past = cellMin.past + tmp.cost;
 						open.add(tmp);
-						tmp.stat = Cell.OPENED;
+						tmp.stat = CellType.OPEN;
 						tmp.parent = cellMin;
 					} else {
 						if (tmp.sum() < cellMin.parent.sum()) {
@@ -94,111 +88,9 @@ public class AStar {
 					}
 				}
 			}
-			cellMin.stat = Cell.CLOSED;
+			cellMin.stat = CellType.CLOSE;
 			open.remove(cellMin);
 		}
 	}
-
-	public static void astarShow(Cell[][] map) {
-		JFrame frame = new JFrame("A star show");
-		JPanel panel = new JPanel();
-
-		int size = map.length;
-		panel.setLayout(new GridLayout(size, size));
-		panel.setPreferredSize(new Dimension(600, 600));
-		for (Cell[] rows : map) {
-			for (Cell cell : rows) {
-				panel.add(cell);
-			}
-		} // end for
-
-		frame.add(panel);
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-
-		// 预订刷新
-		Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(new Runnable() {
-			public void run() {
-				frame.repaint();
-			}
-		}, 100, 50, TimeUnit.MILLISECONDS);
-	}
-
-	public static void main(String[] args) throws Exception {
-		Cell[][] map = initMap();
-		astarShow(map);
-		astar(map);
-		map[4][4].parse();
-	}
-
-}
-
-@SuppressWarnings("serial")
-class Cell extends JComponent {
-	public static int UNCHECKED = 0, CLOSED = 1, OPENED = 2, CHOOSED = 3;
-	public int i, j;
-	public int past, fore;
-	public int cost;
-	public int stat = UNCHECKED;
-	public Cell parent = null;
-
-	public Cell(int i, int j, int type) {
-		this.i = i;
-		this.j = j;
-		cost = 1;
-		switch (type) {
-		case 1:
-			stat = CLOSED;break;
-		}
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
 	
-		super.paintComponent(g);
-		setBorder(BorderFactory.createEtchedBorder());	
-		int w = getSize().width;
-		int h = getSize().height;
-		
-		if (stat == UNCHECKED) {
-			g.setColor(Color.GRAY);
-		} else if (stat == OPENED) {
-			g.setColor(Color.GREEN);
-		} else if (stat == CLOSED) {
-			g.setColor(Color.DARK_GRAY);
-		} else if(stat == CHOOSED){
-			g.setColor(Color.PINK);
-		}
-		g.fillRect(0 , 0, w, h);
-		
-		g.setColor(Color.BLACK);
-		g.drawString(String.format("[ %d, %d ,%2d]",i,j,stat), w/3, h/2);
-	
-	}
-
-	public void initPath(int size) {
-		fore = Math.abs(size - i - 1) + Math.abs(size - j - 1);
-		if (past == 0 && parent != null)
-			past = cost + parent.past;
-	}
-
-	public int sum() {
-		return past + fore;
-	}
-
-	public void parse() {
-		System.out.printf("[%2d,%2d]", i, j);
-		if (parent != null) {
-			System.out.print(" <- ");
-			stat = CHOOSED;
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			parent.parse();
-		}
-	}
-
 }

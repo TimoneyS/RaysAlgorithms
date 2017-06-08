@@ -15,11 +15,6 @@ public class AStar {
 	
 	public static int SIZE = 0;
 
-	// 快速创建单元格
-	public static Cell cell(int i, int j, int type) {
-		return new Cell(i, j, type);
-	}
-
 	// 初始化地图
 	public static Cell[][] initMap() throws Exception {
 		
@@ -30,7 +25,7 @@ public class AStar {
 		SIZE = sc.nextInt();
 		Cell[][] map = new Cell[SIZE][SIZE];
 		for (int i = 0; i < SIZE; i++) {
-			for (int j = 0; j < SIZE; j++) map[i][j] = cell(i, j, sc.nextInt());
+			for (int j = 0; j < SIZE; j++) map[i][j] = new Cell(i, j, sc.nextInt());
 			StdOut.p(Arrays.toString(map[i]));
 		}
 		sc.close();

@@ -13,19 +13,19 @@ import com.ray.utils.StdOut;
  */
 public class AStar {
 	
-	public static int SIZE = 0;
+	public int size = 0;
 
 	// 初始化地图
-	public static Cell[][] initMap() throws Exception {
+	public Cell[][] initMap() throws Exception {
 		
 		Scanner sc = new Scanner(
 				new File(String.format("%s%s", System.getProperty("user.dir"), "/src/com/ray/astar/map.txt"))
 				);
 		
-		SIZE = sc.nextInt();
-		Cell[][] map = new Cell[SIZE][SIZE];
-		for (int i = 0; i < SIZE; i++) {
-			for (int j = 0; j < SIZE; j++) map[i][j] = new Cell(i, j, sc.nextInt());
+		size = sc.nextInt();
+		Cell[][] map = new Cell[size][size];
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) map[i][j] = new Cell(i, j, sc.nextInt());
 			StdOut.p(Arrays.toString(map[i]));
 		}
 		sc.close();
@@ -33,23 +33,23 @@ public class AStar {
 	}
 
 	// 寻找子孙
-	public static List<Cell> findChildren(Cell[][] map, Cell cu) {
+	public List<Cell> findChildren(Cell[][] map, Cell cu) {
 		List<Cell> chs = new LinkedList<Cell>();
 		int i = cu.i;
 		int j = cu.j;
 		if (i > 0)
 			chs.add(map[i - 1][j]); // 上
-		if (i < SIZE - 1)
+		if (i < size - 1)
 			chs.add(map[i + 1][j]); // 下
 		if (j > 0)
 			chs.add(map[i][j - 1]); // 左
-		if (j < SIZE - 1)
+		if (j < size - 1)
 			chs.add(map[i][j + 1]); // 右
 		return chs;
 	}
 
 	// 算法过程
-	public static void astar(Cell[][] map) throws Exception {
+	public void astar(Cell[][] map) throws Exception {
 		List<Cell> open = new LinkedList<Cell>();
 		Cell cellMin, cellTmp;
 		// 初始步骤
@@ -63,7 +63,7 @@ public class AStar {
 			cellMin = null;
 			while (ite.hasNext()) {
 				cellTmp = ite.next();
-				cellTmp.initPath(SIZE);
+				cellTmp.initPath(size);
 				if (cellMin == null || cellMin.sum() > cellTmp.sum())
 					cellMin = cellTmp;
 			}

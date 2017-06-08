@@ -47,9 +47,10 @@ public class Run {
 	
 	public static void run() {
 		try {
-			Cell[][] map = AStar.initMap();
+			AStar astar = new AStar(); 
+			Cell[][] map = astar.initMap();
 			astarShow(map);
-			AStar.astar(map);
+			astar.astar(map);
 			map[4][4].parse();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,10 +58,7 @@ public class Run {
 	}
 
 	public static void main(String[] args) throws Exception {
-		Cell[][] map = AStar.initMap();
-		astarShow(map);
-		AStar.astar(map);
-		map[4][4].parse();
+		run();
 	}
 
 	

@@ -35,6 +35,7 @@ public class AStartPanel extends JPanel  {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		for (Cell[] row : map) for (Cell cell : row) paintCell(cell, g);
+		
+		if (map!=null) for (Cell[] row : map) for (Cell cell : row) paintCell(cell, g);
 	}
 }

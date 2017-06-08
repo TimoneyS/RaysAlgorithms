@@ -32,7 +32,7 @@ public class Cell {
 		System.out.print(" <- ");
 		stat = CellType.CHOOSE;
 		try {
-			Thread.sleep(200);
+			Thread.sleep(20);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

@@ -36,7 +36,7 @@ public class Run {
 			Cell[][] map = astar.initMap();
 			regiterMap(map);
 			astar.search(map);
-			map[4][4].parse();
+			map[map.length-1][map.length-1].parse();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -45,6 +45,5 @@ public class Run {
 	public static void main(String[] args) throws Exception {
 		new Run().run();
 	}
-
 	
 }

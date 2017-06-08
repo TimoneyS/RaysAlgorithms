@@ -22,7 +22,7 @@ public class AStar {
 		open.add(map[0][0]);
 
 		while (open.size() != 0) {
-			Thread.sleep(200);
+			Thread.sleep(20);
 			
 			// ±éÀú open ÁĞ±í
 			Iterator<Cell> ite = open.iterator();

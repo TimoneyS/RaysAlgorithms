@@ -22,17 +22,12 @@ public class RotateSort {
 		int l = 0,
 			r = arr.length-1;
 		int num = 0;
+		// 这段代码 效率低的地方在于 同样的判断进行了两次，但是看起来简洁
 		while (c > l && c <= r) {
-			if (c<(l+r+2)/2) {
-				num = c-l;
-				swap(arr, l, c, num);
-				l = c;
-				c = c+num;
-			} else {
-				num = r+1-c;
-				swap(arr, l, c, num);
-				l   = l+num; 
-			}
+			num = (c<(l+r+2)/2) ? c-l : r+1-c; 
+			swap(arr, l, c, num);
+			l 	= l+num;
+			if (c<(l+r+2)/2) c 	= c+num;
 		}
 	}
 	
@@ -46,13 +41,6 @@ public class RotateSort {
 		Timer.click();
 		
 		checkSorted(arr);
-		
-//		for (int i = 0; i<size; i++) {
-//			Integer[] arr = intArrRotate(size, i);
-//			sort(arr);
-//			checkSorted(arr);
-//		}
-		
 	}
 	
 }

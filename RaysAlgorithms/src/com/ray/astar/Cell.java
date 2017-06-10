@@ -32,7 +32,7 @@ public class Cell {
 		System.out.print(" <- ");
 		stat = CellType.CHOOSE;
 		try {
-			Thread.sleep(20);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -41,6 +41,11 @@ public class Cell {
 	
 	public String inspect() {
 		return String.format("[%2d,%2d]\n[ %2d, %2d ,%2s]", i, j, past, fore, stat);
+	}
+	
+	@Override
+	public String toString() {
+		return ( stat == CellType.BLOCK ) ? "1" : "0";
 	}
 
 }

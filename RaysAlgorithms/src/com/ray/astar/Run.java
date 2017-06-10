@@ -1,5 +1,6 @@
 package com.ray.astar;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.Executors;
@@ -14,35 +15,43 @@ public class Run {
 	
 	JFrame frame;
 	AStartPanel panel;
+	AStar seacher;
 	
 	public Run() {
+		seacher = new AStar();
+		
 		frame = new JFrame("A star show");
 		panel = new AStartPanel();
 		
-		
 		JMenuBar jb = new JMenuBar();
-		JMenu jm1 = new JMenu("菜单");
-		jb.add(jm1);
 		
-		JMenuItem jmi1 = new JMenuItem("载入");
-		jm1.add(jmi1);
+		JMenu m1 = new JMenu("菜单"); 
+		jb.add(m1);
 		
-		jmi1.addActionListener(new ActionListener(){
-			@Override
+		JMenuItem jm1 = new JMenuItem("载入");
+		m1.add(jm1);
+		jm1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				
+				seacher.initMap();
+				panel.registerMap(seacher.getMap());
 			}
 		});
 		
-		
+		JMenuItem jm2 = new JMenuItem("开始");
+		m1.add(jm2);
+		jm2.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				seacher.search();
+			}
+		});
 		
 		frame.setJMenuBar(jb);
 		
-		
 		frame.setContentPane(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		panel.setPreferredSize(new Dimension(600, 600));
+		frame.pack();
 		frame.setVisible(true);
-//		SwingUtilities.invokeLater(doRun);
 		// 预订刷新
 		Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(new Runnable() {
 			public void run() {
@@ -50,27 +59,9 @@ public class Run {
 			}
 		}, 100, 50, TimeUnit.MILLISECONDS);
 	}
-	
-	public void regiterMap(Cell[][] map) {
-		panel.registerMap(map);
-		frame.pack();
-		frame.setVisible(true);
-	}
-	
-	public void run() {
-		try {
-			AStar astar = new AStar(); 
-			Cell[][] map = astar.initMap();
-//			regiterMap(map);
-//			astar.search(map);
-//			map[map.length-1][map.length-1].parse();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	public static void main(String[] args) throws Exception {
-		new Run().run();
+		new Run();
 	}
 	
 }

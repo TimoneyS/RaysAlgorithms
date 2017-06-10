@@ -2,6 +2,9 @@ package com.ray.sort;
 
 import static com.ray.utils.ArrayUtil.*;
 
+import java.util.Arrays;
+
+import com.ray.utils.StdOut;
 import com.ray.utils.Timer;
 
 /**
@@ -31,13 +34,27 @@ public class RotateSort {
 		}
 	}
 	
+	// 使用大量额外空间的排序方法，效率没有使用单个额外空间的高
+	public static void sortLargeSpace (Comparable[] arr) {
+		Comparable[] temp = new Comparable[arr.length];
+		
+		int c = arr.length;
+		for (int i = 0; i < arr.length; i ++) {
+			if (i>0 && less(arr, i, i-1)) c = i;
+			temp[i] = arr[i];
+		}
+		
+		for (int i = 0; i < arr.length; i ++)
+			arr[i] = temp[(i+c)%arr.length];
+	}
+	
 	public static void main(String[] args) {
 		int size = 20000000;
 		
 		Integer[] arr = intArrRotate(size, size/3);
 		
 		Timer.click();
-		sort(arr);
+		sortLargeSpace(arr);
 		Timer.click();
 		
 		checkSorted(arr);

@@ -19,13 +19,13 @@ public class Run {
 	ExecutorService es;
 	
 	public Run() {
-		es = Executors.newCachedThreadPool();
+		es 		= Executors.newCachedThreadPool();
 		seacher = new AStar();
-		frame = new JFrame("A star show");
-		panel = new AStarPanel(600, 600);
+		frame 	= new JFrame("A star show");
+		panel 	= new AStarPanel(600, 600);
 		
 		JMenuBar jb = new JMenuBar();
-		JMenu m1 = new JMenu("菜单"); 
+		JMenu m1 	= new JMenu("菜单"); 
 		
 		addJMenuItem (m1, "载入", (ActionEvent e) -> {
 			seacher.initMap();
@@ -39,6 +39,7 @@ public class Run {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
+		
 		// 预订刷新
 		loop(frame);
 	}

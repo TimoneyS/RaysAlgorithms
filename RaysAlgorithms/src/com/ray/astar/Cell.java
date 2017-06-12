@@ -6,26 +6,26 @@ public class Cell {
 				past,	// 从起点到该点的路程
 				fore,	// 从终点到该点的路程预期
 				cost;	// 该点的路程花费
-	public CellType stat = CellType.UNCHECK;
-	public Cell parent = null;
+	public CellType stat;
+	public Cell parent;
 
 	public Cell(int i, int j, int type) {
 		this.i = i;
 		this.j = j;
 		cost = 1;
 		switch (type) {
-		case 1 : stat = CellType.BLOCK;break;
+		case 1 	: stat = CellType.BLOCK;break;
+		default : stat = CellType.UNCHECK;
 		}
 	}
+	
 	public void initPath(int size) {
 		fore = Math.abs(size - i - 1) + Math.abs(size - j - 1);
 		if (past == 0 && parent != null)
 			past = cost + parent.past;
 	}
 
-	public int sum() {
-		return past + fore;
-	}
+	public int sum() { return past + fore; }
 
 	public void parse() {
 		System.out.printf("[%2d,%2d]", i, j);

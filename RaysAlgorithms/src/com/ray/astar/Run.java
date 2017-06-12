@@ -13,9 +13,9 @@ import javax.swing.JMenuItem;
 
 public class Run {
 	
-	JFrame frame;
-	AStarPanel panel;
-	Seacher seacher;
+	JFrame 			frame;
+	AStarPanel 		panel;
+	Seacher 		seacher;
 	ExecutorService es;
 	
 	public Run() {

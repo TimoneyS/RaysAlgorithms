@@ -15,33 +15,29 @@ public class Run {
 	
 	JFrame frame;
 	AStarPanel panel;
-	AStar seacher;
+	Seacher seacher;
 	ExecutorService es;
 	
 	public Run() {
 		es 		= Executors.newCachedThreadPool();
-		seacher = new AStar();
+		seacher = new Seacher();
 		frame 	= new JFrame("A star show");
+		
 		panel 	= new AStarPanel(600, 600);
+		frame.setContentPane(panel);
 		
 		JMenuBar jb = new JMenuBar();
 		JMenu m1 	= new JMenu("菜单"); 
-		
 		addJMenuItem (m1, "载入", (ActionEvent e) -> {
 			seacher.initMap();
 			panel.registerMap(seacher.getMap());
-		} );
-		addJMenuItem (m1, "开始", (ActionEvent e) -> seacher.search() );
-		
+		});
+		addJMenuItem (m1, "开始", (ActionEvent e) -> es.execute(()->seacher.search()));
 		jb.add(m1);
-		frame.setJMenuBar(jb);
-		frame.setContentPane(panel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
+		frame.setJMenuBar(jb);		
 		
 		// 预订刷新
-		loop(frame);
+		show(frame);
 	}
 	
 	public static JMenuItem addJMenuItem(JMenu parent, String name, ActionListener listener) {
@@ -51,7 +47,10 @@ public class Run {
 		return item;
 	}
 	
-	public static void loop(JFrame frame) {
+	public static void show(JFrame frame) {
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
 		Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> frame.repaint(), 100, 50, TimeUnit.MILLISECONDS);
 	}
 

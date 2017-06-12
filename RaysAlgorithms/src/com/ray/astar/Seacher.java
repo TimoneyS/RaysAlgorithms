@@ -11,7 +11,7 @@ import com.ray.utils.StdOut;
  * @author Ray
  * 
  */
-public class AStar {
+public class Seacher {
 	
 	public int size = 0;
 	

@@ -32,7 +32,7 @@ public class Run {
 			seacher.initMap();
 			panel.registerMap(seacher.getMap());
 		});
-		addJMenuItem (m1, "开始", (ActionEvent e) -> es.execute(()->seacher.search()));
+		addJMenuItem (m1, "开始", (ActionEvent e) -> es.execute(() -> seacher.search()));
 		jb.add(m1);
 		frame.setJMenuBar(jb);		
 		

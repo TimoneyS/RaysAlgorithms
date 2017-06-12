@@ -1,14 +1,24 @@
 package com.ray.astar;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class AStartPanel extends JPanel  {
+public class AStarPanel extends JPanel  {
 	private Cell[][] map;
 	private int size;
+	
+	public AStarPanel() {
+		this(600, 600);
+	}
+	
+	public AStarPanel(int width, int height) {
+		setPreferredSize(new Dimension(width, height));
+	}
+	
 	private void paintCell(Cell cell, Graphics g) {
 		int w = getSize().width/size;
 		int h = getSize().height/size;

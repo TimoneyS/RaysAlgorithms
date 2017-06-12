@@ -2,9 +2,6 @@ package com.ray.sort;
 
 import static com.ray.utils.ArrayUtil.*;
 
-import java.util.Arrays;
-
-import com.ray.utils.StdOut;
 import com.ray.utils.Timer;
 
 /**

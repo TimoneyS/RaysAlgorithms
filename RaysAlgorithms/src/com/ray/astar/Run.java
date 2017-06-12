@@ -45,7 +45,7 @@ public class Run {
 	}
 	
 	public static JMenuItem addJMenuItem(JMenu parent, String name, ActionListener listener) {
-		JMenuItem item = new JMenuItem("¿ªÊ¼");
+		JMenuItem item = new JMenuItem(name);
 		parent.add(item);
 		item.addActionListener(listener);
 		return item;

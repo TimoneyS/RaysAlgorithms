@@ -13,16 +13,19 @@ import com.ray.utils.StdOut;
  */
 public class Seacher {
 	
-	public int size = 0;
+	private int size;
+	private Cell[][]  map;
 	
-	Cell[][]  map;
+	public void search() {
+		search(0,0);
+	}
 
 	// 算法过程
-	public void search() {
+	public void search(int startX, int startY) {
 		List<Cell> open = new LinkedList<Cell>();
 		Cell cellMin, cellTmp;
 		// 初始步骤
-		open.add(map[0][0]);
+		open.add(map[startX][startY]);
 
 		while (open.size() != 0) {
 			try {

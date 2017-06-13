@@ -20,8 +20,7 @@ public class Seacher {
 	private List<Cell> 	open;
 	private boolean 	isAuto = true;		// 自动/手动搜索，手动情况下要主动点击下一步来执行下一步的搜索
 	
-	private int endX, endY;
-	
+	private int startX, startY, endX, endY;
 	
 	public void sleep(int milliSec) {
 		try {
@@ -36,7 +35,7 @@ public class Seacher {
 	}
 	
 	// 从 open列表中取出 “最小”的元素
-	public Cell findMin() {
+	private Cell findMin() {
 		Cell min = null;
 		for (Cell cell : open) {
 			cell.initPath(endX, endY);
@@ -47,9 +46,7 @@ public class Seacher {
 	}
 	
 	// 算法过程
-	public void search(int startX, int startY, int endX, int endY) {
-		this.endX 	= endX;
-		this.endY 	= endY;
+	private void search(int startX, int startY, int endX, int endY) {
 		// 初始步骤
 		open.add(map[startX][startY]);
 		if (!isAuto) return;
@@ -69,7 +66,7 @@ public class Seacher {
 	}
 	
 	// 寻找子孙
-	public List<Cell> findChildren(int i, int j) {
+	private List<Cell> findChildren(int i, int j) {
 		List<Cell> chs = new LinkedList<Cell>();
 		if (i > 0) 			chs.add(map[i - 1][j]); // 上
 		if (i < height - 1)	chs.add(map[i + 1][j]); // 下
@@ -107,6 +104,16 @@ public class Seacher {
 			e.printStackTrace();
 		}
 		open = new LinkedList<Cell>();
+	}
+
+	public void setStart(int x, int y) {
+		startX = x;
+		startY = y;
+	}
+
+	public void setEnd(int x, int y) {
+		endX = x;
+		endY = y;
 	}
 
 	public Cell[][] getMap() {

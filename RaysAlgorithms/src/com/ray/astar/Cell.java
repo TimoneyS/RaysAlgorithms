@@ -1,6 +1,7 @@
 package com.ray.astar;
 
 public class Cell {
+	
 	public int 	i,		// 横坐标
 				j,		// 纵坐标
 				past,	// 从起点到该点的路程
@@ -12,10 +13,13 @@ public class Cell {
 	public Cell(int i, int j, int type) {
 		this.i = i;
 		this.j = j;
-		cost = 1;
+		
 		switch (type) {
 		case 1 	: stat = CellType.BLOCK;break;
-		default : stat = CellType.UNCHECK;
+		case 2 	: stat = CellType.TRAP;
+				  cost = 2;
+				  break;
+		default : stat = CellType.UNCHECK;cost = 1;;break;
 		}
 	}
 	
@@ -23,6 +27,21 @@ public class Cell {
 		fore = Math.abs(size - i - 1) + Math.abs(size - j - 1);
 		if (past == 0 && parent != null)
 			past = cost + parent.past;
+	}
+	
+	public void setParent(Cell parent) {
+		this.past 	= parent.past + this.cost;
+		this.parent = parent;
+	}
+	
+	public boolean isTypes(CellType...types) {
+		for(CellType type : types) if (type == stat) return true;
+		return false;
+	}
+	
+	public boolean isNotTypes(CellType...types) {
+		for(CellType type : types) if (type == stat) return false;
+		return true;
 	}
 
 	public int sum() { return past + fore; }
@@ -32,7 +51,7 @@ public class Cell {
 		System.out.print(" <- ");
 		stat = CellType.CHOOSE;
 		try {
-			Thread.sleep(20);
+			Thread.sleep(2);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

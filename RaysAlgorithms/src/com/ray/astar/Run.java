@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -17,27 +18,35 @@ public class Run {
 	AStarPanel 		panel;
 	Seacher 		seacher;
 	ExecutorService es;
+	JMenuBar 		menuBar;
 	
 	public Run() {
+		// 初始化
 		es 		= Executors.newCachedThreadPool();
 		seacher = new Seacher();
 		frame 	= new JFrame("A star show");
-		
 		panel 	= new AStarPanel(600, 600);
-		frame.setContentPane(panel);
-		
-		JMenuBar jb = new JMenuBar();
+		menuBar = new JMenuBar();
+		// 构造菜单
 		JMenu m1 	= new JMenu("菜单"); 
 		addJMenuItem (m1, "载入", (ActionEvent e) -> {
-			seacher.initMap();
+			seacher.init();
 			panel.registerMap(seacher.getMap());
 		});
 		addJMenuItem (m1, "开始", (ActionEvent e) -> es.execute(() -> seacher.search()));
-		jb.add(m1);
-		frame.setJMenuBar(jb);		
+		menuBar.add(m1);
 		
+		JButton b1 = new JButton("下一步");
+		b1.addActionListener((ActionEvent e) -> {seacher.nextStep();});
+		menuBar.add(b1);
+		// 拼装
+		frame.setContentPane(panel);
+		frame.setJMenuBar(menuBar);		
 		// 预订刷新
-		show(frame);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
+		Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> frame.repaint(), 100, 50, TimeUnit.MILLISECONDS);
 	}
 	
 	public static JMenuItem addJMenuItem(JMenu parent, String name, ActionListener listener) {
@@ -47,13 +56,6 @@ public class Run {
 		return item;
 	}
 	
-	public static void show(JFrame frame) {
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
-		Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> frame.repaint(), 100, 50, TimeUnit.MILLISECONDS);
-	}
-
 	public static void main(String[] args) throws Exception {
 		new Run();
 	}

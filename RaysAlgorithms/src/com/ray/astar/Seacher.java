@@ -56,10 +56,10 @@ public class Seacher {
 	}
 	
 	public void nextStep() {
-		Cell cellMin 	= findMin();							// 找到当前小元素
+		Cell cellMin 	= findMin();									// 找到当前小元素
 		List<Cell> children 	= findChildren(cellMin.i, cellMin.j);	// 生成可达元素列表
-		paeseChildren(children, cellMin);							// 解析可达元素列表
-		cellMin.stat 	= CLOSE;								// 关闭最小元素
+		paeseChildren(children, cellMin);								// 解析可达元素列表
+		cellMin.stat 	= CLOSE;										// 关闭最小元素
 		open.remove(cellMin);
 	}
 	

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class AStarPanel extends JPanel  {
 	private Cell[][] map;
-	private int size;
+	private int width, height;
 	private static Map<CellType, Color> COLOR_MAP;
 	
 	static {
@@ -36,8 +36,8 @@ public class AStarPanel extends JPanel  {
 	}
 	
 	private void paintCell(Cell cell, Graphics g) {
-		int w = getSize().width/size;
-		int h = getSize().height/size;
+		int w = getSize().width/width;
+		int h = getSize().height/height;
 		g.setColor(COLOR_MAP.get(cell.stat));
 		g.fillRect(cell.y*w , cell.x*h, w, h);
 		g.setColor(Color.BLACK);
@@ -47,7 +47,8 @@ public class AStarPanel extends JPanel  {
 	
 	public void registerMap (Cell[][] map) {
 		this.map = map;
-		size = map.length;
+		height = map.length;
+		width  = map[0].length;
 	}
 	
 	@Override

@@ -28,20 +28,20 @@ public class Run {
 		panel 	= new AStarPanel(600, 600);
 		menuBar = new JMenuBar();
 		// 构造菜单
-		JMenu m1 	= new JMenu("菜单"); 
+		JMenu m1 	= new JMenu("菜单");
 		addJMenuItem (m1, "载入", (ActionEvent e) -> {
 			seacher.init();
 			panel.registerMap(seacher.getMap());
 		});
 		addJMenuItem (m1, "开始", (ActionEvent e) -> es.execute(() -> seacher.search()));
 		menuBar.add(m1);
-		
+
 		JButton b1 = new JButton("下一步");
 		b1.addActionListener((ActionEvent e) -> {seacher.nextStep();});
 		menuBar.add(b1);
 		// 拼装
 		frame.setContentPane(panel);
-		frame.setJMenuBar(menuBar);		
+		frame.setJMenuBar(menuBar);
 		// 预订刷新
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();

@@ -19,7 +19,7 @@ public class Cell {
 		case 2 	: stat = CellType.TRAP;
 				  cost = 2;
 				  break;
-		default : stat = CellType.UNCHECK;cost = 1;;break;
+		default : stat = CellType.UNCHECK;cost = 1;break;
 		}
 	}
 	

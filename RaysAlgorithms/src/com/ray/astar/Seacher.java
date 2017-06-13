@@ -19,6 +19,9 @@ public class Seacher {
 	private List<Cell> 	open;
 	private boolean 	isAuto = false;		// 自动/手动搜索，手动情况下要主动点击下一步来执行下一步的搜索
 	
+	private int startX, startY, endX, endY;
+	
+	
 	public void sleep(int milliSec) {
 		try {
 			Thread.sleep(milliSec);
@@ -35,7 +38,7 @@ public class Seacher {
 	public Cell findMin() {
 		Cell min = null;
 		for (Cell cell : open) {
-			cell.initPath(size);
+			cell.initPath(endX, endY);
 			if (min == null || min.sum() > cell.sum()) min = cell; 
 		}
 		if (min!=null) min.stat = CURRENT_MIN;
@@ -44,10 +47,13 @@ public class Seacher {
 	
 	// 算法过程
 	public void search(int startX, int startY, int endX, int endY) {
+		this.startX = startX;
+		this.startY = startY;
+		this.endX 	= endX;
+		this.endY 	= endY;
 		// 初始步骤
 		open.add(map[startX][startY]);
 		if (!isAuto) return;
-		
 		while (open.size() != 0) {
 //			sleep(20);
 			nextStep();
@@ -56,15 +62,25 @@ public class Seacher {
 	}
 	
 	public void nextStep() {
-		Cell cellMin 	= findMin();									// 找到当前小元素
-		List<Cell> children 	= findChildren(cellMin.i, cellMin.j);	// 生成可达元素列表
-		paeseChildren(children, cellMin);								// 解析可达元素列表
+		Cell cellMin 			= findMin();							// 找到当前小元素
+		List<Cell> children 	= findChildren(cellMin.x, cellMin.y);	// 生成可达元素列表
+		parseChildren(children, cellMin);								// 解析可达元素列表
 		cellMin.stat 	= CLOSE;										// 关闭最小元素
 		open.remove(cellMin);
 	}
 	
+	// 寻找子孙
+	public List<Cell> findChildren(int i, int j) {
+		List<Cell> chs = new LinkedList<Cell>();
+		if (i > 0) 			chs.add(map[i - 1][j]); // 上
+		if (i < size - 1)	chs.add(map[i + 1][j]); // 下
+		if (j > 0) 			chs.add(map[i][j - 1]); // 左
+		if (j < size - 1) 	chs.add(map[i][j + 1]); // 右
+		return chs;
+	}
+
 	// 解析可达的元素列表
-	private void paeseChildren(List<Cell> chs, Cell min) {
+	private void parseChildren(List<Cell> chs, Cell min) {
 		for (Cell child : chs) {
 			if (child.isTypes(CLOSE, BLOCK)) continue;
 			if (child.parent == null) {
@@ -93,16 +109,6 @@ public class Seacher {
 		open = new LinkedList<Cell>();
 	}
 
-	// 寻找子孙
-	public List<Cell> findChildren(int i, int j) {
-		List<Cell> chs = new LinkedList<Cell>();
-		if (i > 0) 			chs.add(map[i - 1][j]); // 上
-		if (i < size - 1)	chs.add(map[i + 1][j]); // 下
-		if (j > 0) 			chs.add(map[i][j - 1]); // 左
-		if (j < size - 1) 	chs.add(map[i][j + 1]); // 右
-		return chs;
-	}
-	
 	public Cell[][] getMap() {
 		return map;
 	}

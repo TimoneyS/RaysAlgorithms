@@ -39,10 +39,10 @@ public class AStarPanel extends JPanel  {
 		int w = getSize().width/size;
 		int h = getSize().height/size;
 		g.setColor(COLOR_MAP.get(cell.stat));
-		g.fillRect(cell.j*w , cell.i*h, w, h);
+		g.fillRect(cell.y*w , cell.x*h, w, h);
 		g.setColor(Color.BLACK);
-		g.drawRect(cell.j*w , cell.i*h, w, h);
-		g.drawString(cell.inspect(), cell.j*w+w/4, cell.i*h + h/2);
+		g.drawRect(cell.y*w , cell.x*h, w, h);
+		g.drawString(cell.inspect(), cell.y*w+w/4, cell.x*h + h/2);
 	}
 	
 	public void registerMap (Cell[][] map) {

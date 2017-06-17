@@ -37,7 +37,7 @@ public class Run {
 		menuBar.add(m1);
 
 		JButton b1 = new JButton("下一步");
-		b1.addActionListener((ActionEvent e) -> {seacher.nextStep();});
+		b1.addActionListener((ActionEvent e) -> seacher.nextStep());
 		menuBar.add(b1);
 		// 拼装
 		frame.setContentPane(panel);

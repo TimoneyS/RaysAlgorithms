@@ -20,6 +20,7 @@ public class Seacher {
 	private List<Cell> 	open;
 	private boolean 	isAuto = true;		// 自动/手动搜索，手动情况下要主动点击下一步来执行下一步的搜索
 	
+	@SuppressWarnings("unused")
 	private int startX, startY, endX, endY;
 	
 	public void sleep(int milliSec) {

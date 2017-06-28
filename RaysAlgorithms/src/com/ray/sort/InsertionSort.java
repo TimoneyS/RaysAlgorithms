@@ -2,7 +2,6 @@ package com.ray.sort;
 
 import static com.ray.utils.ArrayUtil.*;
 
-import com.ray.utils.Timer;
 /**
  * <b>≤Â»Î≈≈–Ú</b>
  * 
@@ -24,19 +23,6 @@ public class InsertionSort {
 			}
 		}
 
-	}
-	
-	public static void main(String[] args) {
-		Integer[] arr = intArr(20000);
-		
-		shuffle(arr);
-		checkSorted(arr);
-		
-		Timer.click();
-		sort(arr);
-		Timer.click();
-		
-		checkSorted(arr);
 	}
 	
 }

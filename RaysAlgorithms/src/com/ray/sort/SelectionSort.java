@@ -2,8 +2,6 @@ package com.ray.sort;
 
 import static com.ray.utils.ArrayUtil.*;
 
-import com.ray.utils.Timer;
-
 /**
  * <b>—°‘Ò≈≈–Ú</b>
  * <p>
@@ -29,24 +27,6 @@ public class SelectionSort {
 			}
 			swap(arr, minIdx, i);
 		}
-		
-	}
-	
-	public static void main(String[] args) {
-		
-		Integer[] arr = intArr(10); 
-//		show(arr);
-		
-		Timer.click();
-		shuffle(arr);
-//		show(arr);
-		checkSorted(arr);
-		
-		Timer.click();
-		sort(arr);
-		Timer.click();
-//		show(arr);
-		checkSorted(arr);
 		
 	}
 

@@ -2,8 +2,6 @@ package com.ray.sort;
 
 import static com.ray.utils.ArrayUtil.*;
 
-import com.ray.utils.Timer;
-
 /**
  * <b>πÈ≤¢≈≈–Ú</b>
  * <p>
@@ -67,17 +65,5 @@ public class MergeSort {
 			else  						arr[i++] = temp[r++];
 		}
 	}
-	
-	public static void main(String[] args) {
-		Integer[] arr = intArr(20000000);
-		shuffle(arr);
-		
-		Timer.click();
-		UpToDown.sort(arr);
-		Timer.click();
-		
-		checkSorted(arr);
-	}
-	
 	
 }

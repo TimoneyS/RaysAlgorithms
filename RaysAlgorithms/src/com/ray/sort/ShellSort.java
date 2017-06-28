@@ -2,8 +2,6 @@ package com.ray.sort;
 
 import static com.ray.utils.ArrayUtil.*;
 
-import com.ray.utils.Timer;
-
 public class ShellSort {
 	
 	@SuppressWarnings("rawtypes")
@@ -19,17 +17,6 @@ public class ShellSort {
 			h /= 3;
 		}
 		
-	}
-	
-	public static void main(String[] args) {
-		Integer[] arr = intArr(20000);
-		shuffle(arr);
-		
-		Timer.click();
-		sort(arr);
-		Timer.click();
-		
-		checkSorted(arr);
 	}
 	
 }

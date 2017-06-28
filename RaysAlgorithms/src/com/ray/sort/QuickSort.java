@@ -2,8 +2,6 @@ package com.ray.sort;
 
 import static com.ray.utils.ArrayUtil.*;
 
-import com.ray.utils.Timer;
-
 /**
  * <b>øÏÀŸ≈≈–Ú</b>
  * <p>
@@ -36,18 +34,6 @@ public class QuickSort {
 		
 		sort(arr, lo, r-1);
 		sort(arr, r+1, hi);
-	}
-	
-	public static void main(String[] args) {
-		Integer[] arr = intArr(10000000);
-		
-		shuffle(arr);
-		
-		Timer.click();
-		sort(arr);
-		Timer.click();
-		
-		checkSorted(arr);
 	}
 	
 }

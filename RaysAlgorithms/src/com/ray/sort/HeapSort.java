@@ -1,9 +1,6 @@
 package com.ray.sort;
 
-import static com.ray.utils.ArrayUtil.*;
-
 import com.ray.utils.BinaryHeap;
-import com.ray.utils.Timer;
 
 @SuppressWarnings({ "rawtypes", "unchecked"})
 public class HeapSort {
@@ -17,18 +14,6 @@ public class HeapSort {
 		for(int i = arr.length - 1; i >= 0; i--) {
 			arr[i] = heap.delete();
 		}		
-	}
-	
-	public static void main(String[] args) {
-		Integer[] arr = intArr(20000);
-		
-		shuffle(arr);
-		
-		Timer.click();
-		sort(arr);
-		Timer.click();
-		
-		checkSorted(arr);
 	}
 	
 }

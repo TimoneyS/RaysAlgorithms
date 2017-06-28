@@ -8,8 +8,12 @@ public class CompareUtil {
 		return x.compareTo(y) < 0;
 	}
 	
-	public static boolean  greater(Comparable x, Comparable y) {
+	public static boolean greater(Comparable x, Comparable y) {
 		return x.compareTo(y) > 0;
+	}
+	
+	public static boolean equals(Comparable x, Comparable y) {
+		return x.compareTo(y) == 0;
 	}
 	
 }

@@ -21,8 +21,8 @@ public class L_575_Expression_Expand {
 	     */
 	    public String expressionExpand(String s) {
 	    	// 初始化参数
-	    	LinkedList<Integer[]> stack = new LinkedList<Integer[]>(); // 用于记录每个表达式的起点
-	    	Integer coefficient = 0;
+	    	LinkedList<int[]> stack = new LinkedList<int[]>(); // 用于记录每个表达式的起点
+	    	int coefficient = 0;
 	    	int length = s.length();
 	    	// 循环体
 	    	for (int i = 0; i < length; i ++) {
@@ -31,12 +31,12 @@ public class L_575_Expression_Expand {
 	    		if(Character.isDigit(c)) coefficient = coefficient * 10 + Character.getNumericValue(c);
 	    		// 命中左半括号，作为表达式起点处理
 	    		if( c == '[') {
-	    			stack.push(new Integer[]{i, coefficient});
+	    			stack.push(new int[]{i, coefficient});
 	    			coefficient = 0;
 	    		}
 	    		// 命中右半括号，作为表达式结束处理
 	    		if( c == ']') {
-	    			Integer[] arr = stack.pop();
+	    			int[] arr = stack.pop();
 	    			int start 	= arr[0];	// 表达式起点
 	    			int count 	= arr[1];	// 表达式系数
 	    			//  解析表达式的值

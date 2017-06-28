@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * @author rays1
  *
  */
-public class L_575_Expression_Expand {
+public class L_575_expression_expand {
 	
 	static class ExpressionExpand {
 		

@@ -9,7 +9,7 @@ public class TestUnit {
 	
 	public static void assertTrue(boolean result) {
 		if(result) StdOut.p("result is true, expect true");
-		else 	   StdOut.err("reult is false, expect true");
+		else 	   StdOut.err("result is false, expect true");
 	}
 	
 	public static void assertFalse(boolean result) {

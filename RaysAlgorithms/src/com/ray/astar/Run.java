@@ -1,5 +1,6 @@
 package com.ray.astar;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.ExecutorService;
@@ -14,18 +15,21 @@ import javax.swing.JMenuItem;
 
 public class Run {
 	
-	JFrame 			frame;
-	AStarPanel 		panel;
-	Seacher 		seacher;
-	ExecutorService es;
-	JMenuBar 		menuBar;
+	private JFrame 				frame;
+	private AStarContentPanel	panel;
+	private AStarControlPanel	controlPanel;
+	private JMenuBar 			menuBar;
+	
+	private Seacher 			seacher;
+	private ExecutorService 	es;
 	
 	public Run() {
 		// 初始化
 		es 		= Executors.newCachedThreadPool();
 		seacher = new Seacher();
 		frame 	= new JFrame("A star show");
-		panel 	= new AStarPanel(600, 600);
+		panel 	= new AStarContentPanel();
+		controlPanel = new AStarControlPanel();
 		menuBar = new JMenuBar();
 		// 构造菜单
 		JMenu m1 	= new JMenu("菜单");
@@ -38,9 +42,11 @@ public class Run {
 
 		JButton b1 = new JButton("下一步");
 		b1.addActionListener((ActionEvent e) -> seacher.nextStep());
-		menuBar.add(b1);
+		controlPanel.add(b1);
 		// 拼装
-		frame.setContentPane(panel);
+//		frame.setContentPane(panel);
+		frame.add(panel, BorderLayout.CENTER);
+		frame.add(controlPanel, BorderLayout.EAST);
 		frame.setJMenuBar(menuBar);
 		// 预订刷新
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

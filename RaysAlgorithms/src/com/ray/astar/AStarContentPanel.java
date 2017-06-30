@@ -8,10 +8,11 @@ import java.util.Map;
 
 import static com.ray.astar.CellType.*;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class AStarPanel extends JPanel  {
+public class AStarContentPanel extends JPanel {
 	private Cell[][] map;
 	private int width, height;
 	private static Map<CellType, Color> COLOR_MAP;
@@ -27,12 +28,13 @@ public class AStarPanel extends JPanel  {
 		COLOR_MAP.put(CURRENT_MIN, 	Color.CYAN);
 	}
 	
-	public AStarPanel() {
+	public AStarContentPanel() {
 		this(600, 600);
 	}
 	
-	public AStarPanel(int width, int height) {
+	public AStarContentPanel(int width, int height) {
 		setPreferredSize(new Dimension(width, height));
+		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
 	private void paintCell(Cell cell, Graphics g) {

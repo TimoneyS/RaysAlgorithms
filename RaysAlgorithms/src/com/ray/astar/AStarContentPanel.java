@@ -3,6 +3,8 @@ package com.ray.astar;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,10 +13,13 @@ import static com.ray.astar.CellType.*;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import com.ray.utils.StdOut;
+
 @SuppressWarnings("serial")
 public class AStarContentPanel extends JPanel {
+	
 	private Cell[][] map;
-	private int width, height;
+	private int xNum, yNum;
 	private static Map<CellType, Color> COLOR_MAP;
 	
 	static {
@@ -35,11 +40,23 @@ public class AStarContentPanel extends JPanel {
 	public AStarContentPanel(int width, int height) {
 		setPreferredSize(new Dimension(width, height));
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int x = e.getX()/GlobalConfig.xPix;
+				int y = e.getY()/GlobalConfig.yPix;
+				StdOut.pf("Click %2s %2s \n", x, y);
+				map[y][x].changeState();
+			}
+			
+		});
 	}
 	
 	private void paintCell(Cell cell, Graphics g) {
-		int w = getSize().width/width;
-		int h = getSize().height/height;
+		int w = GlobalConfig.xPix;
+		int h = GlobalConfig.yPix;
 		g.setColor(COLOR_MAP.get(cell.stat));
 		g.fillRect(cell.y*w , cell.x*h, w, h);
 		g.setColor(Color.BLACK);
@@ -49,8 +66,12 @@ public class AStarContentPanel extends JPanel {
 	
 	public void registerMap (Cell[][] map) {
 		this.map = map;
-		height = map.length;
-		width  = map[0].length;
+		yNum = map.length;
+		xNum  = map[0].length;
+		
+		GlobalConfig.xPix = getWidth()/xNum;
+		GlobalConfig.yPix = getHeight()/yNum;
+		
 	}
 	
 	@Override

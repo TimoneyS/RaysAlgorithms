@@ -1,6 +1,8 @@
 package com.ray.astar;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.ExecutorService;
@@ -39,14 +41,14 @@ public class Run {
 		});
 		addJMenuItem (m1, "开始", (ActionEvent e) -> es.execute(() -> seacher.search()));
 		menuBar.add(m1);
-
 		JButton b1 = new JButton("下一步");
 		b1.addActionListener((ActionEvent e) -> seacher.nextStep());
 		controlPanel.add(b1);
 		// 拼装
 //		frame.setContentPane(panel);
-		frame.add(panel, BorderLayout.CENTER);
-		frame.add(controlPanel, BorderLayout.EAST);
+		frame.setLayout(new FlowLayout());
+		frame.add(panel);
+		frame.add(controlPanel);
 		frame.setJMenuBar(menuBar);
 		// 预订刷新
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

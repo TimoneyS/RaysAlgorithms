@@ -2,7 +2,7 @@ package com.ray.astar;
 
 public class GlobalConfig {
 	
-	public static int width =10;
-	public static int height = 9;
+	public static int xPix = 0;
+	public static int yPix = 0;
 	
 }

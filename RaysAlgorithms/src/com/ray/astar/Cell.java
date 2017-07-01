@@ -58,6 +58,31 @@ public class Cell {
 		if(parent != null) parent.parse();
 	}
 	
+	public void changeState() {
+//		UNCHECK,
+//		OPEN,
+//		CLOSE,
+//		TRAP,
+//		BLOCK,
+//		CHOOSE,
+//		CURRENT_MIN,
+		switch(stat) {
+		case BLOCK:
+			stat = CellType.TRAP;
+			break;
+		case TRAP:
+			stat = CellType.UNCHECK;
+			break;
+		case UNCHECK:
+			stat = CellType.BLOCK;
+			break;
+		default:
+			break;
+		}
+		
+		
+	}
+	
 	public String inspect() {
 		return String.format("[%2d,%2d]\n[ %2d, %2d ,%2s]", x, y, past, fore, stat);
 	}

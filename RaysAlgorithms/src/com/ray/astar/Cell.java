@@ -10,7 +10,7 @@ public class Cell {
 	public CellType stat;
 	public Cell parent;
 
-	public Cell(int i, int j, int type) {
+	private Cell(int i, int j, int type) {
 		this.x = i;
 		this.y = j;
 		
@@ -22,6 +22,7 @@ public class Cell {
 		default : stat = CellType.UNCHECK;cost = 1;break;
 		}
 	}
+	public static Cell create(int i, int j, int type) { return new Cell( i, j, type);}
 	
 	public void initPath(int endX, int endY) {
 		fore = Math.abs(endX - x) + Math.abs(endY - y);

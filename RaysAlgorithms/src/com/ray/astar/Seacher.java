@@ -18,7 +18,6 @@ public class Seacher {
 	
 	private Cell[][]  	map;
 	private List<Cell> 	open;
-	private boolean 	isAuto = true;		// 自动/手动搜索，手动情况下要主动点击下一步来执行下一步的搜索
 	
 	@SuppressWarnings("unused")
 	private int startX, startY, endX, endY;
@@ -48,11 +47,11 @@ public class Seacher {
 	
 	// 算法过程
 	private void search(int startX, int startY, int endX, int endY) {
-		setStart(startX, endY);
+		setStart(startX, startY);
 		setEnd(endX, endY);
 		// 初始步骤
 		open.add(map[startX][startY]);
-		if (!isAuto) return;
+		if (!GlobalConfig.IS_AUTO) return;
 		while (open.size() != 0) {
 //			sleep(20);
 			nextStep();
@@ -114,13 +113,13 @@ public class Seacher {
 
 	// 初始化
 	public void init() {
-		String path = String.format("%s%s", System.getProperty("user.dir"), "/src/com/ray/astar/map.txt");;
-		try (Scanner sc = new Scanner(new File(path))){
+		
+		try (Scanner sc = new Scanner(new File(GlobalConfig.MAP_PATH))) {
 			xNum 	= sc.nextInt();
 			yNum 	= sc.nextInt();
 			map  = new Cell[yNum][xNum];
 			for (int i = 0; i < yNum; i++) {
-				for (int j = 0; j < xNum; j++) map[i][j] = new Cell(i, j, sc.nextInt());
+				for (int j = 0; j < xNum; j++) map[i][j] = Cell.create(i, j, sc.nextInt());
 				StdOut.p(Arrays.toString(map[i]));
 			}
 		} catch (FileNotFoundException e) {

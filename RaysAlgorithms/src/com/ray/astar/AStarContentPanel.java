@@ -5,33 +5,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.ray.astar.CellType.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-
-import com.ray.utils.StdOut;
 
 @SuppressWarnings("serial")
 public class AStarContentPanel extends JPanel {
 	
 	private Cell[][] map;
 	private int xNum, yNum;
-	private static Map<CellType, Color> COLOR_MAP;
-	
-	static {
-		COLOR_MAP = new HashMap<CellType, Color>();
-		COLOR_MAP.put(UNCHECK, 		Color.GRAY);
-		COLOR_MAP.put(OPEN, 		Color.GREEN);
-		COLOR_MAP.put(CLOSE, 		Color.DARK_GRAY);
-		COLOR_MAP.put(CHOOSE, 		Color.PINK);
-		COLOR_MAP.put(BLOCK, 		Color.BLACK);
-		COLOR_MAP.put(TRAP, 		Color.RED);
-		COLOR_MAP.put(CURRENT_MIN, 	Color.CYAN);
-	}
 	
 	public AStarContentPanel() {
 		this(600, 600);
@@ -44,10 +26,10 @@ public class AStarContentPanel extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				int x = e.getX()/GlobalConfig.xPix;
 				int y = e.getY()/GlobalConfig.yPix;
-				StdOut.pf("Click %2s %2s \n", x, y);
+				//StdOut.pf("%d %4s Click %2s %2s \n", new Date().getTime(), count++, x, y);
 				map[y][x].changeState();
 			}
 			
@@ -57,7 +39,7 @@ public class AStarContentPanel extends JPanel {
 	private void paintCell(Cell cell, Graphics g) {
 		int w = GlobalConfig.xPix;
 		int h = GlobalConfig.yPix;
-		g.setColor(COLOR_MAP.get(cell.stat));
+		g.setColor(GlobalConfig.COLOR_MAP.get(cell.stat));
 		g.fillRect(cell.y*w , cell.x*h, w, h);
 		g.setColor(Color.BLACK);
 		g.drawRect(cell.y*w , cell.x*h, w, h);

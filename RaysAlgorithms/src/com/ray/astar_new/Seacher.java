@@ -3,7 +3,7 @@ package com.ray.astar_new;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-import static com.ray.astar.CellType.*;
+import static com.ray.astar_new.CellType.*;
 
 import com.ray.utils.StdOut;
 

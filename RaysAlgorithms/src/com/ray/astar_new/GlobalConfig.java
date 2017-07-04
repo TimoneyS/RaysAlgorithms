@@ -1,12 +1,12 @@
 package com.ray.astar_new;
 
-import static com.ray.astar.CellType.BLOCK;
-import static com.ray.astar.CellType.CHOOSE;
-import static com.ray.astar.CellType.CLOSE;
-import static com.ray.astar.CellType.CURRENT_MIN;
-import static com.ray.astar.CellType.OPEN;
-import static com.ray.astar.CellType.TRAP;
-import static com.ray.astar.CellType.UNCHECK;
+import static com.ray.astar_new.CellType.BLOCK;
+import static com.ray.astar_new.CellType.CHOOSE;
+import static com.ray.astar_new.CellType.CLOSE;
+import static com.ray.astar_new.CellType.CURRENT_MIN;
+import static com.ray.astar_new.CellType.OPEN;
+import static com.ray.astar_new.CellType.TRAP;
+import static com.ray.astar_new.CellType.UNCHECK;
 
 import java.awt.Color;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ public class GlobalConfig {
 	public static int xPix = 0;
 	public static int yPix = 0;
 	
-	public static String MAP_PATH = System.getProperty("user.dir") + "/src/com/ray/astar/map.txt";
+	public static String MAP_PATH = System.getProperty("user.dir") + "/src/com/ray/astar_new/map.txt";
 	public static boolean IS_AUTO = false;		// 自动/手动搜索，手动情况下要主动点击下一步来执行下一步的搜索
 	
 	public static Map<CellType, Color> COLOR_MAP;

@@ -76,15 +76,24 @@ public class Graph {
 	int V() { return V; }
 	int E() { return E; }
 	
+	/**
+	 * 计算度数
+	 * @param G
+	 * @param v
+	 * @return
+	 */
 	public static int degree(Graph G, int v) {
-		// 计算度数
 		int degree = 0;
 		for (@SuppressWarnings("unused") int w : G.adj(v)) degree ++;
 		return degree;
 	}
 	
+	/**
+	 * 计算所有顶点的最大度数
+	 * @param G
+	 * @return
+	 */
 	public static int maxDegree(Graph G) {
-		// 计算所有顶点的最大度数
 		int max = 0;
 		for(int v = 0;  v < G.V(); v ++) {
 			if(degree(G, v) > max) max = degree(G, v);
@@ -92,13 +101,21 @@ public class Graph {
 		return max;
 	}
 	
+	/**
+	 * 计算所有顶点的平均度数
+	 * @param G
+	 * @return
+	 */
 	public static int avgDegree(Graph G) {
-		// 计算所有顶点的平均度数
 		return 2 * G.E() / G.V();
 	}
 	
+	/**
+	 * 计算自环的个数
+	 * @param G
+	 * @return
+	 */
 	public static int numberOfSelfLoops(Graph G) {
-		// 计算自环的个数
 		int count = 0;
 		for (int v = 0; v < G.V(); v ++) {
 			for (int w : G.adj(v)) if (v == w) count ++;

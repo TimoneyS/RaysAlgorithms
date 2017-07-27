@@ -1,5 +1,10 @@
 package com.ray.graph;
 
+/**
+ * ËÑË÷µÄ³éÏóÀà
+ * @author rays1
+ *
+ */
 public abstract class Search {
 	
 	/**

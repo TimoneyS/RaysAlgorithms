@@ -8,12 +8,13 @@ package com.ray.graph;
  * @author rays1
  *
  */
-public class DeepFirstSearch {
+public class DeepFirstSearch extends Search {
 	
 	private boolean[] marked;
 	private int count;
 	
 	public DeepFirstSearch(Graph G, int s) {
+	    super(G,s);
 		marked = new boolean[G.V()];
 		search(G, s);
 	}

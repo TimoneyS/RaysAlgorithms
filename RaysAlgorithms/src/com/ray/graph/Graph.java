@@ -15,6 +15,10 @@ public class Graph {
 	private int E;					// 边数
 	private Bag<Integer>[] adj;		// 内部存储数据结构
 	
+	/**
+	 * 指定顶点数初始化图
+	 * @param V
+	 */
 	@SuppressWarnings("unchecked")
 	public Graph(int V) {
 		this.V = V;
@@ -23,6 +27,10 @@ public class Graph {
 		for (int v = 0; v < V;  v ++) adj[v] = new Bag<Integer>();
 	}
 	
+	/**
+	 * 
+	 * @param in
+	 */
 	public Graph(Scanner in) {
 		this(in.nextInt());
 		int e = in.nextInt();

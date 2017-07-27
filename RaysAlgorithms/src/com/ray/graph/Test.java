@@ -9,11 +9,14 @@ import com.ray.utils.StdOut;
 public class Test {
 
 	public static void main(String[] args) {
-		
+	    String filePath = System.getProperty("user.dir") + "/src/com/ray/graph/";
+	    // String fileName = "tinyG.txt";
+	    String fileName = "gameG.txt";
+	    
+	    
 		Scanner in = null;
-		
 		try {
-			in = new Scanner(new File(System.getProperty("user.dir") + "/src/com/ray/graph/tinyG.txt"));
+			in = new Scanner(new File(filePath + fileName));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

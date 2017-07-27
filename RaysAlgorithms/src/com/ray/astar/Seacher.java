@@ -51,7 +51,7 @@ public class Seacher {
 		setEnd(endX, endY);
 		// 初始步骤
 		open.add(map[startX][startY]);
-		if (!GlobalConfig.IS_AUTO) return;
+		if (!Global.IS_AUTO) return;
 		while (open.size() != 0) {
 //			sleep(20);
 			nextStep();
@@ -114,7 +114,7 @@ public class Seacher {
 	// 初始化
 	public void init() {
 		
-		try (Scanner sc = new Scanner(new File(GlobalConfig.MAP_PATH))) {
+		try (Scanner sc = new Scanner(new File(Global.MAP_PATH))) {
 			xNum 	= sc.nextInt();
 			yNum 	= sc.nextInt();
 			map  = new Cell[yNum][xNum];

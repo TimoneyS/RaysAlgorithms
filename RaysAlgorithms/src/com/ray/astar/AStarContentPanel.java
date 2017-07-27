@@ -27,8 +27,8 @@ public class AStarContentPanel extends JPanel {
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				int x = e.getX()/GlobalConfig.xPix;
-				int y = e.getY()/GlobalConfig.yPix;
+				int x = e.getX()/Global.xPix;
+				int y = e.getY()/Global.yPix;
 				//StdOut.pf("%d %4s Click %2s %2s \n", new Date().getTime(), count++, x, y);
 				map[y][x].changeState();
 			}
@@ -37,9 +37,9 @@ public class AStarContentPanel extends JPanel {
 	}
 	
 	private void paintCell(Cell cell, Graphics g) {
-		int w = GlobalConfig.xPix;
-		int h = GlobalConfig.yPix;
-		g.setColor(GlobalConfig.COLOR_MAP.get(cell.stat));
+		int w = Global.xPix;
+		int h = Global.yPix;
+		g.setColor(Global.COLOR_MAP.get(cell.stat));
 		g.fillRect(cell.y*w , cell.x*h, w, h);
 		g.setColor(Color.BLACK);
 		g.drawRect(cell.y*w , cell.x*h, w, h);
@@ -51,8 +51,8 @@ public class AStarContentPanel extends JPanel {
 		yNum = map.length;
 		xNum  = map[0].length;
 		
-		GlobalConfig.xPix = getWidth()/xNum;
-		GlobalConfig.yPix = getHeight()/yNum;
+		Global.xPix = getWidth()/xNum;
+		Global.yPix = getHeight()/yNum;
 		
 	}
 	

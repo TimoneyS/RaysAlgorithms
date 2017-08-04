@@ -20,10 +20,12 @@ public class Test {
     }
     
 	public static void main(String[] args) {
-        String fileName = "gameG.txt";
+        String fileName = "tinyG.txt";
         Graph G = genGraph(fileName);
         
-        BreadthFirstPaths s = new BreadthFirstPaths(G, 0);
+        
+        
+        DeepFirstPaths s = new DeepFirstPaths(G, 0);
         StdOut.p(G);
         for (int i = 0; i < G.V(); i++) {
             if (s.hasPathTo(i)) {
@@ -35,5 +37,5 @@ public class Test {
         }
 
 	}
-
+	
 }

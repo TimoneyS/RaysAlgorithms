@@ -59,9 +59,9 @@ public class DeepFirstPaths
 
         Stack<Integer> path = new Stack<Integer>();
         for (int x = v; x != s; x = edgeTo[x]) {
-            path.add(x);
+            path.push(x);
         }
-        path.add(s);
+        path.push(s);
         return path;
     }
 

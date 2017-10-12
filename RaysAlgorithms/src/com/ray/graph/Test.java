@@ -23,13 +23,12 @@ public class Test {
         String fileName = "tinyG.txt";
         Graph G = genGraph(fileName);
         
-        
-        
         DeepFirstPaths s = new DeepFirstPaths(G, 0);
         StdOut.p(G);
         for (int i = 0; i < G.V(); i++) {
             if (s.hasPathTo(i)) {
                 StdOut.pt("0->" + i + " : ");
+                s.pathTo(i).iterator();
                 for (int j : s.pathTo(i))
                     StdOut.pt(j + " ");
                 StdOut.p("");

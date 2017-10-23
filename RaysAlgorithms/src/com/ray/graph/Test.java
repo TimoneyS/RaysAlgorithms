@@ -8,21 +8,12 @@ import com.ray.utils.StdOut;
 
 public class Test {
     
-    public static Graph genGraph(String fileName) {
-        String filePath = System.getProperty("user.dir") + "/src/com/ray/graph/";
-        Scanner in = null;
-        try {
-            in = new Scanner(new File(filePath + fileName));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return new Graph(in);
-    }
+    static Graph G;
     
-	public static void main(String[] args) {
-        String fileName = "tinyG.txt";
-        Graph G = genGraph(fileName);
-        
+    /**
+     * 测试深度优先搜索
+     */
+    public static void testDeepFirstPaths() {
         DeepFirstPaths s = new DeepFirstPaths(G, 0);
         StdOut.p(G);
         for (int i = 0; i < G.V(); i++) {
@@ -34,7 +25,23 @@ public class Test {
                 StdOut.p("");
             }
         }
-
+    }
+    
+    public static void initGraph(String fileName) {
+        String filePath = System.getProperty("user.dir") + "/src/com/ray/graph/";
+        Scanner in = null;
+        try {
+            in = new Scanner(new File(filePath + fileName));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        G = new Graph(in);
+    }
+    
+	public static void main(String[] args) {
+        String fileName = "tinyG.txt";
+        initGraph(fileName);
+        testDeepFirstPaths();
 	}
 	
 }

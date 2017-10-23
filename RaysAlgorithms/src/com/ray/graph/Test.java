@@ -9,12 +9,11 @@ import com.ray.utils.StdOut;
 public class Test {
     
 	public static void main(String[] args) {
-        String fileName = "tinyG.txt";
-        initGraph(fileName);
+        initGraph();
         testDeepFirstPaths();
 	}
 	
-	static Graph G;
+	private static Graph G;
     
     /**
      * 测试深度优先搜索
@@ -33,11 +32,11 @@ public class Test {
         }
     }
     
-    public static void initGraph(String fileName) {
-        String filePath = "src/com/ray/graph/";
+    public static void initGraph() {
+        String filePath = "src/com/ray/graph/tinyG.txt";
         Scanner in = null;
         try {
-            in = new Scanner(new File(filePath + fileName));
+            in = new Scanner(new File(filePath));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

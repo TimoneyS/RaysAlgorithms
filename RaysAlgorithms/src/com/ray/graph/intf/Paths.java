@@ -1,7 +1,9 @@
-package com.ray.graph;
+package com.ray.graph.intf;
+
+import com.ray.graph.Graph;
 
 /**
- * 搜索路径的抽象类
+ * 搜索路径API
  * @author rays1
  *
  */

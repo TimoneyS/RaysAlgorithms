@@ -1,5 +1,7 @@
 package com.ray.graph;
 
+import com.ray.graph.intf.Search;
+
 /**
  * 深度优先搜索<br>
  * 搜索一幅图，用一个递归方法来便利所有顶点，在访问其中一个顶点时：<br>
@@ -28,11 +30,11 @@ public class DeepFirstSearch extends Search {
                 search(G, w);
     }
 
-    boolean marked(int v) {
+    public boolean marked(int v) {
         return marked[v];
     }
 
-    int count() {
+    public int count() {
         return count;
     }
 

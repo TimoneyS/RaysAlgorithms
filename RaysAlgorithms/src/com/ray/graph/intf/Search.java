@@ -1,7 +1,9 @@
-package com.ray.graph;
+package com.ray.graph.intf;
+
+import com.ray.graph.Graph;
 
 /**
- * 搜索的抽象类
+ * 搜索API
  * @author rays1
  *
  */
@@ -19,12 +21,12 @@ public abstract class Search {
 	 * @param v
 	 * @return
 	 */
-	abstract boolean marked(int v);
+	public abstract boolean marked(int v);
 	
 	/**
 	 * 与 s 连通的顶点总数
 	 * @return
 	 */
-	abstract int count();
+	public abstract int count();
 	
 }

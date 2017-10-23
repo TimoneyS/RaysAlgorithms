@@ -2,7 +2,7 @@ package com.ray.lintcode;
 
 import static com.ray.utils.TestUnit.*;
 
-import com.ray.utils.StdOut;
+import com.ray.utils.Out;
 
 /**
  * Given a non-empty array containing only positive integers,
@@ -56,7 +56,7 @@ public class L_588_partition_equal_subset_sum {
 	     * @return return true if can partition or false
 	     */
 	    public boolean canPartition(int[] nums) {
-	    	StdOut.p(nums.length);
+	    	Out.p(nums.length);
 	    	int sum = 0;
 	    	int[] trace =  new int[nums.length];
 	    	for (int i : nums) sum += i;

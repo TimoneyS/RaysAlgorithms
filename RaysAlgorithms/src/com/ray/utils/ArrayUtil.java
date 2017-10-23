@@ -10,7 +10,7 @@ public class ArrayUtil {
 	 * @param arr
 	 */
 	public static void checkSorted(Comparable[] arr) {
-		StdOut.pf("经检查，数组%s排序。\n", isSorted(arr) ? "已" : "未");
+		Out.pf("经检查，数组%s排序。\n", isSorted(arr) ? "已" : "未");
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class ArrayUtil {
 	 * @param arr
 	 */
 	public static <T> void show(T[] arr) {
-		StdOut.p(arr);
+		Out.p(arr);
 	}
 	
 	/**

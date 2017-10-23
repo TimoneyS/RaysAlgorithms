@@ -1,6 +1,6 @@
 package com.ray.search;
 
-import static com.ray.utils.StdOut.*;
+import static com.ray.utils.Out.*;
 
 @SuppressWarnings("unchecked")
 public class BinarySearchTree<Key extends Comparable<Key>,Value> implements SymbolTable<Key, Value> {

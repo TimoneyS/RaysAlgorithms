@@ -1,6 +1,6 @@
 package com.ray.utils;
 
-import static com.ray.utils.StdOut.*;
+import static com.ray.utils.Out.*;
 
 import java.util.Date;
 

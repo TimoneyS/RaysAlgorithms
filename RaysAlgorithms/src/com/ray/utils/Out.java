@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @author Ray
  *
  */
-public class StdOut {
+public class Out {
 	
 	/**
 	 * ¥Ú”°≤¢ªª––

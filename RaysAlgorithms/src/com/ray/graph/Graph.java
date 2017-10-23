@@ -55,7 +55,7 @@ public class Graph {
 	}
 	
 	/**
-	 * 和定点 v 连通的顶点
+	 * 和顶点 v 连通的顶点
 	 * @param v
 	 * @return
 	 */

@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import static com.ray.astar.CellType.*;
 
-import com.ray.utils.StdOut;
+import com.ray.utils.Out;
 
 /**
  * A * 算法的过程演示
@@ -120,7 +120,7 @@ public class Seacher {
 			map  = new Cell[yNum][xNum];
 			for (int i = 0; i < yNum; i++) {
 				for (int j = 0; j < xNum; j++) map[i][j] = Cell.create(i, j, sc.nextInt());
-				StdOut.p(Arrays.toString(map[i]));
+				Out.p(Arrays.toString(map[i]));
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

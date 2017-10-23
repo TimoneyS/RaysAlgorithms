@@ -3,13 +3,13 @@ package com.ray.search;
 import static com.ray.utils.ArrayUtil.intArr;
 import static com.ray.utils.ArrayUtil.shuffle;
 
-import com.ray.utils.StdOut;
+import com.ray.utils.Out;
 import com.ray.utils.Timer;
 
 public class TestSymbolTable {
 	
 	public static void test(int size, SymbolTable<Integer, Integer> st) {
-		StdOut.p(">Test " + st.getClass().getSimpleName());
+		Out.p(">Test " + st.getClass().getSimpleName());
 		Integer[] arr = intArr(size);
 		shuffle(arr);
 		

@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import com.ray.graph.intf.Paths;
-import com.ray.utils.StdOut;
+import com.ray.utils.Out;
 
 public class Test {
     
@@ -15,16 +15,55 @@ public class Test {
 //        initGraph("tinyG.txt");
 //        testDeepFirstPaths();
 //        testBreadthFirstPaths();
-        
-	    initGraph("ccG.txt");
-	    testCC();
+	    
+//	    initGraph("ccG.txt");
+//	    testCC();
+	    
+//	    testSymbolGraph();
+	
+	    testSGBFS();
 	}
 	
+	/**
+	 * 测试符号图广度优先搜索
+	 */
+	public static void testSGBFS() {
+	    String s = "小红";
+	    String e = "小花";
+	    
+	    String res = "src/com/ray/graph/symbolG.txt";
+        String deli = " ";
+        SymbolGraph g = new SymbolGraph( res, deli);
+	    
+	    BreadthFirstPaths bfp = new BreadthFirstPaths(g.G(), g.index(s));
+	    
+	    LinkedList<Integer> l = bfp.pathTo(g.index(e));
+	    
+	    while (!l.isEmpty()) {
+	        Out.pt(g.name(l.pop()) + " ");
+	    }
+	    
+	    
+	}
+	
+	/**
+	 * 测试符号图
+	 */
+	public static void testSymbolGraph() {
+	    String res = "src/com/ray/graph/symbolG.txt";
+	    String deli = " ";
+	    SymbolGraph g = new SymbolGraph( res, deli);
+	    Out.p(g.G());
+	}
+	
+	/**
+	 * 测试获取连通分量
+	 */
 	public static void testCC() {
 	    CC cc = new CC(G);
-	    StdOut.p("cc done");
-	    StdOut.p(cc.getCount());
-	    StdOut.p(Arrays.toString(cc.getId()));
+	    Out.p("cc done");
+	    Out.p(cc.getCount());
+	    Out.p(Arrays.toString(cc.getId()));
 	}
 	
     /**
@@ -48,17 +87,23 @@ public class Test {
     public static void testPaths(Paths s) {
         for (int i = 0; i < G.V(); i++) {
             if (s.hasPathTo(i)) {
-                StdOut.pt("0 -> " + i + " : ");
+                Out.pt("0 -> " + i + " : ");
                 
                 LinkedList<Integer> st = s.pathTo(i);
                 while (!st.isEmpty())
-                    StdOut.pt(st.pop() + " ");
-                StdOut.p("");
+                    Out.pt(st.pop() + " ");
+                Out.p("");
             }
         }
     }
     
     public static void initGraph(String fileName) {
+        Scanner in = getScanner(fileName);
+        G = new Graph(in);
+        Out.p(G);
+    }
+    
+    private static Scanner getScanner(String fileName) {
         String filePath = "src/com/ray/graph/" + fileName;
         Scanner in = null;
         try {
@@ -66,8 +111,7 @@ public class Test {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        G = new Graph(in);
-        StdOut.p(G);
+        return in;
     }
 	
     private static Graph G;

@@ -1,6 +1,6 @@
 package com.ray.graph;
 
-import java.util.Stack;
+import java.util.LinkedList;
 
 import com.ray.graph.intf.Paths;
 
@@ -13,7 +13,7 @@ import com.ray.graph.intf.Paths;
  * @author rays1
  *
  */
-public class DeepFirstPaths extends Paths {
+public class DeepFirstPaths implements Paths {
     
     private boolean[] marked; // 标记某个顶点是否已经被访问
     private int[]     edgeTo; // 存放至某点的一个邻接点
@@ -58,11 +58,11 @@ public class DeepFirstPaths extends Paths {
      * @param v
      * @return
      */
-    public Iterable<Integer> pathTo(int v) {
+    public LinkedList<Integer> pathTo(int v) {
         if (!hasPathTo(v))
             return null;
 
-        Stack<Integer> path = new Stack<Integer>();
+        LinkedList<Integer> path = new LinkedList<Integer>();
         for (int x = v; x != s; x = edgeTo[x]) {
             path.push(x);
         }

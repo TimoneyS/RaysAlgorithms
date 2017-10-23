@@ -3,6 +3,7 @@ package com.ray.graph;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Stack;
 
 import com.ray.utils.StdOut;
 
@@ -23,10 +24,11 @@ public class Test {
         StdOut.p(G);
         for (int i = 0; i < G.V(); i++) {
             if (s.hasPathTo(i)) {
-                StdOut.pt("0->" + i + " : ");
-                s.pathTo(i).iterator();
-                for (int j : s.pathTo(i))
-                    StdOut.pt(j + " ");
+                StdOut.pt("0 -> " + i + " : ");
+                
+                Stack<Integer> st = (Stack<Integer>)s.pathTo(i);
+                while (!st.isEmpty())
+                    StdOut.pt(st.pop() + " ");
                 StdOut.p("");
             }
         }

@@ -34,7 +34,7 @@ public class Test {
     }
     
     public static void initGraph(String fileName) {
-        String filePath = System.getProperty("user.dir") + "/src/com/ray/graph/";
+        String filePath = "src/com/ray/graph/";
         Scanner in = null;
         try {
             in = new Scanner(new File(filePath + fileName));

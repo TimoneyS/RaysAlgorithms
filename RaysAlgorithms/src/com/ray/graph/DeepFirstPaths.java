@@ -2,6 +2,8 @@ package com.ray.graph;
 
 import java.util.Stack;
 
+import com.ray.graph.intf.Paths;
+
 /**
  * 深度优先搜索<br>
  * 搜索一幅图，用一个递归方法来遍历所有顶点，在访问其中一个顶点时：<br>
@@ -11,8 +13,8 @@ import java.util.Stack;
  * @author rays1
  *
  */
-public class DeepFirstPaths 
-{
+public class DeepFirstPaths extends Paths {
+    
     private boolean[] marked; // 标记某个顶点是否已经被访问
     private int[]     edgeTo; // 存放至某点的一个邻接点
     private int       s;      // 起点
@@ -23,9 +25,10 @@ public class DeepFirstPaths
         this.s = s;
         search(G, s);
     }
-    
+
     /**
      * 搜索算法
+     * 
      * @param G
      * @param v
      */
@@ -38,22 +41,24 @@ public class DeepFirstPaths
             }
         }
     }
-    
+
     /**
      * 查询起点和v是否连通
+     * 
      * @param v
      * @return
      */
     public boolean hasPathTo(int v) {
         return marked[v];
     }
-    
+
     /**
      * 获取起点至v的路径
+     * 
      * @param v
      * @return
      */
-    Iterable<Integer> pathTo(int v) {
+    public Iterable<Integer> pathTo(int v) {
         if (!hasPathTo(v))
             return null;
 

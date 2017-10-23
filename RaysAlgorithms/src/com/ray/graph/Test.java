@@ -8,7 +8,13 @@ import com.ray.utils.StdOut;
 
 public class Test {
     
-    static Graph G;
+	public static void main(String[] args) {
+        String fileName = "tinyG.txt";
+        initGraph(fileName);
+        testDeepFirstPaths();
+	}
+	
+	static Graph G;
     
     /**
      * 测试深度优先搜索
@@ -37,11 +43,5 @@ public class Test {
         }
         G = new Graph(in);
     }
-    
-	public static void main(String[] args) {
-        String fileName = "tinyG.txt";
-        initGraph(fileName);
-        testDeepFirstPaths();
-	}
 	
 }

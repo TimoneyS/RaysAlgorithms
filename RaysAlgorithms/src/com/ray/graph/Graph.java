@@ -38,6 +38,8 @@ public class Graph {
 		for (int i = 0; i < e; i++) {
 			int v = in.nextInt();
 			int w = in.nextInt();
+			if (v == w || hasEdge(v, w))                          // 不允许出现自环
+			    continue;
 			addEdge(v, w);
 		}
 		
@@ -48,10 +50,21 @@ public class Graph {
 	 * @param v
 	 * @param w
 	 */
-	void addEdge(int v, int w) {
+	public void addEdge(int v, int w) {
 		adj[v].add(w);
 		adj[w].add(v);
 		E ++;
+	}
+	
+	/**
+	 * 判断某条边是否存在
+	 * @param w
+	 * @param w
+	 * @return
+	 */
+	public boolean hasEdge(int v, int w) {
+	    for (int tempV : adj(v)) if (w == tempV) return true;
+	    return false;
 	}
 	
 	/**
@@ -62,19 +75,6 @@ public class Graph {
 	Iterable<Integer> adj(int v) {
 		return adj[v];
 	}
-	
-	public String toString() {
-		String s = V + " vertices, " + E + " Edges\n";
-		for (int v = 0; v < V(); v ++) {
-			s += v + " : ";
-			for (int w : this.adj(v)) s += w + " ";
-			s += "\n";
-		}
-		return s;
-	}
-	
-	int V() { return V; }
-	int E() { return E; }
 	
 	/**
 	 * 计算度数
@@ -122,5 +122,19 @@ public class Graph {
 		}
 		return count/2;
 	}
+	
+	   
+    public String toString() {
+        String s = V + " vertices, " + E + " Edges\n";
+        for (int v = 0; v < V(); v ++) {
+            s += v + " : ";
+            for (int w : this.adj(v)) s += w + " ";
+            s += "\n";
+        }
+        return s;
+    }
+	   
+    int V() { return V; }
+    int E() { return E; }
 
 }

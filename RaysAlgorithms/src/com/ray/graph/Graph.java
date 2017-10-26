@@ -23,12 +23,13 @@ public class Graph {
 	public Graph(int V) {
 		this.V = V;
 		this.E = 0;
-		adj = (Bag<Integer>[]) new Bag[V];
-		for (int v = 0; v < V;  v ++) adj[v] = new Bag<Integer>();
+		adj = (Bag<Integer>[]) new Bag[V];            // 初始化adj
+		for (int v = 0; v < V;  v ++)
+		    adj[v] = new Bag<Integer>();
 	}
 	
 	/**
-	 * 
+	 * 从输入流初始化图
 	 * @param in
 	 */
 	public Graph(Scanner in) {

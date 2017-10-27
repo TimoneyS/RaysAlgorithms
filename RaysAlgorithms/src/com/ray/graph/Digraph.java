@@ -34,15 +34,14 @@ public class Digraph {
      */
     public Digraph(Scanner in) {
         this(in.nextInt());
-        int e = in.nextInt();
         
+        int e = in.nextInt();
         for (int i = 0; i < e; i++) {
             int v = in.nextInt();
             int w = in.nextInt();
-            if (v == w || hasEdge(v, w))                          // 不允许出现自环
-                continue;
             addEdge(v, w);
         }
+        
     }
     
     /**
@@ -51,6 +50,8 @@ public class Digraph {
      * @param w
      */
     public void addEdge(int v, int w) {
+        if (v == w || hasEdge(v, w))                          // 不允许出现自环和平行边
+            return;
         adj[v].add(w);
         E ++;
     }
@@ -101,6 +102,6 @@ public class Digraph {
         return s;
     }
     
-    int V() {return V;}
-    int E() {return E;}    
+    public int V() {return V;}
+    public int E() {return E;}    
 }

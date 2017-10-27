@@ -61,7 +61,7 @@ public class Digraph {
      * @return
      */
     public Iterable<Integer> adj(int v) {
-        return null;
+        return adj[v];
     }
     
     /**
@@ -69,7 +69,12 @@ public class Digraph {
      * @return
      */
     public Digraph reverse() {
-        return null;
+        Digraph R = new Digraph(this.V);
+        for (int v = 0; v < V; v ++) {
+            for (int w : adj[v])
+                R.addEdge(w, v);
+        }
+        return R;
     }
     
     /**
@@ -79,7 +84,7 @@ public class Digraph {
      * @return
      */
     public boolean hasEdge(int v, int w) {
-        for (int tempV : adj(v)) if (w == tempV) return true;
+        for (int tempW : adj(v)) if (w == tempW) return true;
         return false;
     }
     
@@ -87,7 +92,13 @@ public class Digraph {
      * 提供图的打印
      */
     public String toString() {
-        return "";
+        String s = V + " vertices, " + E + " Edges\n";
+        for (int v = 0; v < V; v ++) {
+            s += v + " : ";
+            for (int w : this.adj(v)) s += w + " ";
+            s += "\n";
+        }
+        return s;
     }
     
     int V() {return V;}

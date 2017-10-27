@@ -9,10 +9,15 @@ import java.util.Scanner;
 import com.ray.graph.intf.Paths;
 import com.ray.utils.Out;
 
-public class Test {
+/**
+ * ≤‚ ‘ŒﬁœÚÕº
+ * @author rays1
+ *
+ */
+public class TestGraph {
     
 	public static void main(String[] args) {
-//        initGraph("tinyG.txt");
+//        initGraph("graphTiny.txt");
 //        testDeepFirstPaths();
 //        testBreadthFirstPaths();
 	    
@@ -42,8 +47,6 @@ public class Test {
 	    while (!l.isEmpty()) {
 	        Out.pt(g.name(l.pop()) + " ");
 	    }
-	    
-	    
 	}
 	
 	/**

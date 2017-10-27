@@ -21,7 +21,7 @@ public class SymbolGraph {
     public SymbolGraph(String res, String delimiter) {
         st = new HashMap<String, Integer>();
         
-        Scanner in = In.getScanner(res);
+        Scanner in = In.getProjectScanner(res);
         while (in.hasNextLine()) {                          // 构造索引
             String[] arr = in.nextLine().split(delimiter);
             Out.p(arr);
@@ -37,7 +37,7 @@ public class SymbolGraph {
         }
         
         G = new Graph(st.size());
-        in = In.getScanner(res);
+        in = In.getProjectScanner(res);
         while (in.hasNextLine()) {                          // 构造图
             String[] arr = in.nextLine().split(delimiter);  // 每一行的顶点和该行的其他顶点相连
             int v = index(arr[0]);

@@ -23,9 +23,12 @@ public class In {
     
     public static Scanner getClassPathScanner(String res) {
         Scanner in = null;
-        String path = In.class.getClassLoader().getResource(res).getPath();
-        in = new Scanner(path);
+        String path = In.class.getClassLoader().getResource(res).getFile();
+        try {
+            in = new Scanner(new File(path));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         return in;
     }
-    
 }

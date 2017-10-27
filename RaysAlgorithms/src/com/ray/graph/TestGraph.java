@@ -1,12 +1,11 @@
 package com.ray.graph;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 import com.ray.graph.intf.Paths;
+import com.ray.utils.In;
 import com.ray.utils.Out;
 
 /**
@@ -17,16 +16,16 @@ import com.ray.utils.Out;
 public class TestGraph {
     
 	public static void main(String[] args) {
-//        initGraph("graphTiny.txt");
+	    initGraph("com/ray/graph/graphTiny.txt");
 //        testDeepFirstPaths();
 //        testBreadthFirstPaths();
 	    
-//	    initGraph("ccG.txt");
+//	    initGraph("graphCC.txt");
 //	    testCC();
 	    
 //	    testSymbolGraph();
 	
-	    testSGBFS();
+//	    testSGBFS();
 	}
 	
 	/**
@@ -36,7 +35,7 @@ public class TestGraph {
 	    String s = "–°∫Ï";
 	    String e = "–°ª®";
 	    
-	    String res = "src/com/ray/graph/symbolG.txt";
+	    String res = "src/com/ray/graph/graphSymbol.txt";
         String deli = " ";
         SymbolGraph g = new SymbolGraph( res, deli);
 	    
@@ -53,7 +52,7 @@ public class TestGraph {
 	 * ≤‚ ‘∑˚∫≈Õº
 	 */
 	public static void testSymbolGraph() {
-	    String res = "src/com/ray/graph/symbolG.txt";
+	    String res = "src/com/ray/graph/graphSymbol.txt";
 	    String deli = " ";
 	    SymbolGraph g = new SymbolGraph( res, deli);
 	    Out.p(g.G());
@@ -101,22 +100,10 @@ public class TestGraph {
     }
     
     public static void initGraph(String fileName) {
-        Scanner in = getScanner(fileName);
+        Scanner in = In.getClassPathScanner(fileName);
         G = new Graph(in);
         Out.p(G);
     }
-    
-    private static Scanner getScanner(String fileName) {
-        String filePath = "src/com/ray/graph/" + fileName;
-        Scanner in = null;
-        try {
-            in = new Scanner(new File(filePath));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return in;
-    }
-	
     private static Graph G;
     
 }

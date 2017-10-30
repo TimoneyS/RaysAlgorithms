@@ -14,7 +14,20 @@ import com.ray.utils.Out;
 public class TestDigraph {
     
 	public static void main(String[] args) {
-	    testDiCycle();
+	    testDiDFOrder();
+	}
+	
+	/**
+	 * ≤‚ ‘Õÿ∆À≈≈–Ú
+	 * @return
+	 */
+	public static void testDiDFOrder() {
+	    Digraph G = getDigraph("digraphTopo.txt");
+	    DiDFOrder dfo = new DiDFOrder(G);
+	    
+	    while (!dfo.reverPost().isEmpty())
+	        Out.pt(dfo.reverPost().pop() + " ");
+	    
 	}
 	
 	/**

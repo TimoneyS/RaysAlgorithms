@@ -21,9 +21,10 @@ public class Out {
 	 * 打印数组并换行
 	 * @param t
 	 */
-	public static <T> void p(T[] t) {
-		p(Arrays.toString(t));
-	}
+	public static <T> void p(T[] t)   { p(Arrays.toString(t)); }
+	public static void p(int[] t)     { p(Arrays.toString(t)); }
+    public static void p(boolean[] t) { p(Arrays.toString(t)); }
+    public static void p(long[] t)    { p(Arrays.toString(t)); }
 	
 	/**
 	 * 格式化输出

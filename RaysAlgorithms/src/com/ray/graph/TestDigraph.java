@@ -14,14 +14,27 @@ import com.ray.utils.Out;
 public class TestDigraph {
     
 	public static void main(String[] args) {
-	    initGraph("digraph.txt");
-	    testDiDFP();
+	    testDiCycle();
+	}
+	
+	/**
+	 * 测试有向图，寻找环
+	 */
+	public static void testDiCycle() {
+	    Digraph G = getDigraph("digraphCycle.txt");
+	    DiCycle diCycle = new DiCycle(G, 0);
+	    Out.p(diCycle.hasCycle());
+	    while (!diCycle.getCycle().isEmpty())
+	        Out.pt(diCycle.getCycle().pop() + "  ");
+	    
 	}
 	
 	/**
 	 * 测试有向图的深度优先路径
 	 */
 	public static void testDiDFP() {
+	    Digraph G = getDigraph("digraph.txt");
+	    
 	    int s = 0;
 	    int e = 7;
 	    
@@ -33,16 +46,11 @@ public class TestDigraph {
 	        Out.pt(i + " ");
 	}
 	
-	/**
-	 * 初始化图
-	 * @param fileName
-	 */
-    public static void initGraph(String fileName) {
+    public static Digraph getDigraph(String fileName) {
         Scanner in = In.getProjectScanner("src/com/ray/graph/" + fileName);
-        G = new Digraph(in);
+        Digraph G = new Digraph(in);
         Out.p(G);
+        return G;
     }
-	
-    private static Digraph G;
     
 }

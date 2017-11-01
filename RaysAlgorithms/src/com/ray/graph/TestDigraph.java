@@ -21,7 +21,7 @@ public class TestDigraph {
 	 * 测试强连通分量
 	 */
 	public static void testSCC() {
-	    Digraph G = getDigraph("graphSCC.txt");
+	    Digraph G = getDigraph("digraphSCC.txt");
 	    SCC scc = new SCC(G);
 	    
 	    Out.pf("强连通分量个数%s\n", scc.count());

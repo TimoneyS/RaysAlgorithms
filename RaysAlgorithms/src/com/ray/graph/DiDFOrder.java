@@ -2,17 +2,14 @@ package com.ray.graph;
 
 import java.util.Stack;
 
-import com.ray.utils.Out;
-
 /**
- * 拓扑排序
+ * 拓扑排序， 计算一个图的逆后序排列
  * @author rays1
  *
  */
 public class DiDFOrder {
-    private static int level = 0;
-    private boolean[] marked; // 标记某个顶点是否已经被访问
-    private Stack<Integer> reverPost;
+    private boolean[] marked;           // 标记某个顶点是否已经被访问
+    private Stack<Integer> reverPost;   // 逆后序排列
 
     public DiDFOrder(Digraph G) {
         marked = new boolean[G.V()];
@@ -27,16 +24,12 @@ public class DiDFOrder {
      * @param G
      * @param v
      */
-    public void search(Digraph G, int v) {
+    private void search(Digraph G, int v) {
         marked[v] = true;
-        level ++;
-        Out.pf("%" + level*2 + "sdfs("+v+")\n", " ");
         for (int w : G.adj(v)) {
             if (!marked[w])
                 search(G, w);
         }
-        Out.pf("%" + level*2 + "s"+v+"done\n", " ");
-        level --;
         reverPost.push(v);
     }
     

@@ -14,7 +14,20 @@ import com.ray.utils.Out;
 public class TestDigraph {
     
 	public static void main(String[] args) {
-	    testDiDFOrder();
+	    testSCC();
+	}
+	
+	/**
+	 * 测试强连通分量
+	 */
+	public static void testSCC() {
+	    Digraph G = getDigraph("graphSCC.txt");
+	    SCC scc = new SCC(G);
+	    
+	    Out.pf("强连通分量个数%s\n", scc.count());
+	    Out.p(scc.id());
+	    
+	    
 	}
 	
 	/**

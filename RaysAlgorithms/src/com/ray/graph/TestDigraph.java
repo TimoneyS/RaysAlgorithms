@@ -26,8 +26,6 @@ public class TestDigraph {
 	    
 	    Out.pf("强连通分量个数%s\n", scc.count());
 	    Out.p(scc.id());
-	    
-	    
 	}
 	
 	/**

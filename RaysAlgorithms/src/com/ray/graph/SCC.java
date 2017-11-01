@@ -35,7 +35,7 @@ public class SCC {
         while (!reverPost.isEmpty()) {
             int v = reverPost.pop();
             if (!marked[v]) {
-                dfs(G, reverPost.pop());
+                dfs(G, v);
                 count ++;
             }
         }

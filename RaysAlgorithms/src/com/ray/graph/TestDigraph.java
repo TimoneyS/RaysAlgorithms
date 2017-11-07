@@ -24,8 +24,14 @@ public class TestDigraph {
 	    Digraph G = getDigraph("digraphSCC.txt");
 	    SCC scc = new SCC(G);
 	    
-	    Out.pf("强连通分量个数%s\n", scc.count());
-	    Out.p(scc.id());
+	    for (int i = 0; i < scc.count(); i ++) {
+	        Out.pf("连通分量 : %d\n[", i);
+	        for (int j = 0; j < scc.id().length; j ++) {
+	            if (scc.id()[j] == i) Out.pt(" " + j);
+	        }
+	        Out.p(" ]");
+	    }
+	        
 	}
 	
 	/**

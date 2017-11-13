@@ -21,7 +21,7 @@ public class TestDigraph {
 	 * 测试强连通分量
 	 */
 	public static void testSCC() {
-	    Digraph G = getDigraph("digraphSCC.txt");
+	    Digraph G = getDigraph("graphCC2.txt");
 	    SCC scc = new SCC(G);
 	    
 	    for (int i = 0; i < scc.count(); i ++) {

@@ -13,7 +13,7 @@ import com.ray.utils.Out;
 public class TestGraphEW {
     
     public static void main(String[] args) {
-        getDigraph("graphEW.txt");
+        getDigraph("tinyEWG.txt");
     }
     
     public static EdgeWeightedGraph getDigraph(String fileName) {

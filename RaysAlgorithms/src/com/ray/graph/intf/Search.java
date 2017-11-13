@@ -1,6 +1,6 @@
 package com.ray.graph.intf;
 
-import com.ray.graph.Graph;
+import com.ray.graph.graph.Graph;
 
 /**
  * ËÑË÷API

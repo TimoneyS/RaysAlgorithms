@@ -1,4 +1,4 @@
-package com.ray.graph;
+package com.ray.graph.graph;
 
 import com.ray.graph.intf.Search;
 

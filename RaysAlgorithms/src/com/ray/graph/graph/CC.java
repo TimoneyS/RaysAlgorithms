@@ -1,4 +1,4 @@
-package com.ray.graph;
+package com.ray.graph.graph;
 
 /**
  * 搜索图中的连通分量

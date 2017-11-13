@@ -1,4 +1,4 @@
-package com.ray.graph;
+package com.ray.graph.digraph;
 
 import java.util.Stack;
 

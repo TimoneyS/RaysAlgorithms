@@ -13,10 +13,22 @@ import com.ray.utils.Out;
 public class TestGraphEW {
     
     public static void main(String[] args) {
-        getDigraph("tinyEWG.txt");
+        testPrimMinST();
     }
     
-    public static EdgeWeightedGraph getDigraph(String fileName) {
+    public static void testPrimMinST() {
+        EdgeWeightedGraph G = getDigraph("tinyEWG.txt");
+        PrimMinST primMST = new PrimMinST(G);
+        Edge[] edgeTo = primMST.getEdgeTo();
+        
+        for (Edge e : edgeTo) {
+            if (e != null)
+                Out.p(e.toString());
+        }
+        
+    }
+    
+    private static EdgeWeightedGraph getDigraph(String fileName) {
         Scanner in = In.getProjectScanner("src/com/ray/graph/weightedGraph/" + fileName);
         EdgeWeightedGraph G = new EdgeWeightedGraph(in);
         Out.p(G);

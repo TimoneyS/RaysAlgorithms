@@ -11,9 +11,9 @@ import com.ray.utils.Bag;
  */
 public class EdgeWeightedGraph {
     
-    private final int V;            // 顶点数
-    private int E;                  // 边数
-    private Bag<Edge>[] adj;     // 内部存储数据结构，保存每个顶点的可达边
+    private final int   V;   // 顶点数
+    private int         E;   // 边数
+    private Bag<Edge>[] adj; // 内部存储数据结构，保存每个顶点的可达边
     
     /**
      * 指定顶点数初始化图

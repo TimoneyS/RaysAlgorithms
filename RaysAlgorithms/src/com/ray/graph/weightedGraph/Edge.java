@@ -35,4 +35,9 @@ public class Edge implements Comparable<Edge> {
         return weighted;
     }
     
+    @Override
+    public String toString() {
+        return v + " " + w + " " + weighted;
+    }
+    
 }

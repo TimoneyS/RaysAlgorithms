@@ -26,7 +26,9 @@ public class Edge implements Comparable<Edge> {
         else throw new RuntimeException("解析边错误");
     }
 
-    @Override
+    /**
+     * 目标边比当前变权重大的返回正数
+     */
     public int compareTo(Edge e) {
         return Double.compare(weighted, e.getWeighted());
     }

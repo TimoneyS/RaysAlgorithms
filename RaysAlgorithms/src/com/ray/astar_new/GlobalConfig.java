@@ -18,7 +18,7 @@ public class GlobalConfig {
 	public static int yPix = 0;
 	
 	public static String MAP_PATH = System.getProperty("user.dir") + "/src/com/ray/astar_new/map.txt";
-	public static boolean IS_AUTO = false;		// 自动/手动搜索，手动情况下要主动点击下一步来执行下一步的搜索
+	public static boolean IS_AUTO = true;		// 自动/手动搜索，手动情况下要主动点击下一步来执行下一步的搜索
 	
 	public static Map<CellType, Color> COLOR_MAP;
 	
@@ -32,5 +32,17 @@ public class GlobalConfig {
 		COLOR_MAP.put(TRAP, 		Color.RED);
 		COLOR_MAP.put(CURRENT_MIN, 	Color.CYAN);
 	}
+	
+	/**
+	 * 等待的方法
+	 * @param milliSec
+	 */
+    public static void sleep(int milliSec) {
+        try {
+            Thread.sleep(milliSec);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 	
 }

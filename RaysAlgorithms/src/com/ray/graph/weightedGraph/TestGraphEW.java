@@ -14,6 +14,7 @@ public class TestGraphEW {
     
     public static void main(String[] args) {
         testPrimMinST();
+        testLazyPrimMinST();
     }
     
     public static void testPrimMinST() {
@@ -26,6 +27,17 @@ public class TestGraphEW {
                 Out.p(e.toString());
         }
         
+    }
+    
+    public static void testLazyPrimMinST() {
+        EdgeWeightedGraph G = getDigraph("tinyEWG.txt");
+        LazyPrimMinST primMST = new LazyPrimMinST(G);
+        Edge[] edgeTo = primMST.getEdgeTo();
+        
+        for (Edge e : edgeTo) {
+            if (e != null)
+                Out.p(e.toString());
+        }
     }
     
     private static EdgeWeightedGraph getDigraph(String fileName) {

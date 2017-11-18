@@ -1,14 +1,23 @@
 package com.ray.astar_new;
 
+import static com.ray.astar_new.CellType.BLOCK;
+import static com.ray.astar_new.CellType.CLOSE;
+import static com.ray.astar_new.CellType.CURRENT_MIN;
+import static com.ray.astar_new.CellType.OPEN;
+
+import static com.ray.astar_new.GlobalConfig.sleep;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
-import static com.ray.astar_new.CellType.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
 
 import com.ray.utils.Out;
 
 /**
- * A * 算法的过程演示
+ * A * 算法
  * @author Ray
  * 
  */
@@ -21,14 +30,6 @@ public class Seacher {
 	
 	@SuppressWarnings("unused")
 	private int startX, startY, endX, endY;
-	
-	public void sleep(int milliSec) {
-		try {
-			Thread.sleep(milliSec);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public void search() {
 		search( 0, 0, yNum-1, xNum-1);
@@ -53,7 +54,7 @@ public class Seacher {
 		open.add(map[startX][startY]);
 		if (!GlobalConfig.IS_AUTO) return;
 		while (open.size() != 0) {
-//			sleep(20);
+			sleep(20);
 			nextStep();
 		}
 		
@@ -128,11 +129,21 @@ public class Seacher {
 		open = new LinkedList<Cell>();
 	}
 
+	/**
+	 * 设置算法的起点
+	 * @param x
+	 * @param y
+	 */
 	public void setStart(int x, int y) {
 		startX = x;
 		startY = y;
 	}
 
+	/**
+	 * 设置终点
+	 * @param x
+	 * @param y
+	 */
 	public void setEnd(int x, int y) {
 		endX = x;
 		endY = y;

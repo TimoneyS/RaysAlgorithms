@@ -60,13 +60,6 @@ public class Cell {
 	}
 	
 	public void changeState() {
-//		UNCHECK,
-//		OPEN,
-//		CLOSE,
-//		TRAP,
-//		BLOCK,
-//		CHOOSE,
-//		CURRENT_MIN,
 		switch(stat) {
 		case BLOCK:
 			stat = CellType.TRAP;
@@ -80,8 +73,6 @@ public class Cell {
 		default:
 			break;
 		}
-		
-		
 	}
 	
 	public String inspect() {

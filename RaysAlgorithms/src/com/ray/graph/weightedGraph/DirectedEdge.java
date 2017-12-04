@@ -1,7 +1,7 @@
 package com.ray.graph.weightedGraph;
 
 /**
- * 有向图边定义
+ * 加权有向图边定义
  * @author rays1
  *
  */

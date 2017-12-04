@@ -1,5 +1,10 @@
 package com.ray.graph.weightedGraph;
 
+/**
+ * 加权边
+ * @author rays1
+ *
+ */
 public class Edge implements Comparable<Edge> {
     
     private final int v;                    // 顶点一

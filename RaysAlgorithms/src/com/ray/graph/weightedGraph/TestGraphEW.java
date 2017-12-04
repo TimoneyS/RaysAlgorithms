@@ -17,8 +17,8 @@ public class TestGraphEW {
     }
     
     public static void testDijkstraSP() {
-        EdgeWeightedDigraph G = getDigraph("tinyEWG.txt");
-        DijkstraSP sp = new DijkstraSP(G);
+        EdgeWeightedDigraph G = getDigraph("tinyEWG2.txt");
+        DijkstraSP sp = new DijkstraSP(G, 0);
         
         for (int i = 0 ; i < G.V(); i ++) {
             Out.p("Path to " + i + " : ");

@@ -3,61 +3,49 @@ package com.ray.graph.weightedGraph;
 import java.util.Stack;
 
 import com.ray.utils.IndexMinPQ;
-import com.ray.utils.Out;
 
 /**
  * Dijkstra算法
- * 
+ * 有向加权图，最短路径搜索。
  * @author rays1
  *
  */
 public class DijkstraSP {
 
-    private DirectedEdge[] edgeTo;
-    private double[]       distTo;
-    private IndexMinPQ<Double> pq;
+    private DirectedEdge[]      edgeTo;
+    private double[]            distTo;
+    private IndexMinPQ<Double>  pq;
 
-    public DijkstraSP(EdgeWeightedDigraph G) {
+    public DijkstraSP(EdgeWeightedDigraph G, int S) {
         
         edgeTo = new DirectedEdge[G.V()];
         distTo = new double[G.V()];
-        for (int i = 0; i < distTo.length; i ++)
+        for (int i = 0; i < distTo.length; i ++) {
             distTo[i] = Double.POSITIVE_INFINITY;
-        
+        }
         pq  = new IndexMinPQ<Double>(G.V());
+        search(G, S);
+    }
+    
+    private void search(EdgeWeightedDigraph G,int S) {
         
-        distTo[0] = 0;
-        relax(G, 0);        
-        pq.insert(0, 0d);
+        distTo[S] = 0;                                      // 初始化起点
+        pq.insert(S, 0d);                                   // 初始化起点
         
-        //while (true) {
-        
-        for (int k = 0; k < 20; k++) {
-            int v = pq.delMin();
-            relax(G, v);
-            for (DirectedEdge e : G.adj(v)) {
+        while (!pq.isEmpty()) {
+            int min = pq.delMin();                                          // 获取距离树最近的顶点
+            for (DirectedEdge e : G.adj(min)) {
                 int w = e.to();
-                if (!pq.contains(w))
-                pq.insert(w, distTo[w]);
+                if (distTo[w] > distTo[min] + e.weighted()) {               // 如果从该顶点到其邻接点更近
+                    distTo[w] = distTo[min] + e.weighted();                 // 更新邻接点
+                    edgeTo[w] = e;                                          // 将到邻接点的路径设为该点
+                    
+                    if (pq.contains(w)) pq.changeKey(w, distTo[w]);         // 邻接点的路径变了， 邻接点的邻接点也要变更，因此加入队列
+                    else                pq.insert(w,  distTo[w]);
+                }
             }
             
-            Out.pt("pq : ");
-            for (int i : pq)
-                Out.pt(i + ", ");
-            Out.p("");
-            Out.pt("distTo : ");
-            for (double i : distTo)
-                Out.pt(i + ", ");
-            Out.p("");
-            Out.pt("edgeTo : ");
-            for (DirectedEdge e : edgeTo)
-                Out.pt(e + ", ");
-            Out.p("\n===============");
-           
-            if (pq.size() == 0) 
-                break;
         }
-        
     }
 
     double distTo(int v) {
@@ -84,13 +72,13 @@ public class DijkstraSP {
      * 
      * @param e
      */
+    @SuppressWarnings("unused")
     private void realx(DirectedEdge e) {
         int v = e.from(), w = e.to();
         if (distTo[w] > distTo[v] + e.weighted()) {
             distTo[w] = distTo[v] + e.weighted();
             edgeTo[w] = e;
         }
-
     }
 
     /**
@@ -99,6 +87,7 @@ public class DijkstraSP {
      * @param G
      * @param v
      */
+    @SuppressWarnings("unused")
     private void relax(EdgeWeightedDigraph G, int v) {
         for (DirectedEdge e : G.adj(v)) {
             int w = e.to();

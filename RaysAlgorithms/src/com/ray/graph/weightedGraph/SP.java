@@ -43,6 +43,7 @@ public class SP {
      * ±ßµÄËÉ³Ú
      * @param e
      */
+    @SuppressWarnings("unused")
     private void realx(DirectedEdge e) {
         int v = e.from(), w = e.to();
         if (distTo[w] > distTo[v] + e.weighted()) {
@@ -57,6 +58,7 @@ public class SP {
      * @param G
      * @param v
      */
+    @SuppressWarnings("unused")
     private void relax(EdgeWeightedDigraph G, int v) {
         for (DirectedEdge e : G.adj(v)) {
             int w = e.to();

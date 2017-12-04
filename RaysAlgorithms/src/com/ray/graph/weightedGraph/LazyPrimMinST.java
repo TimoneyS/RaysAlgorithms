@@ -1,6 +1,6 @@
 package com.ray.graph.weightedGraph;
 
-import com.ray.utils.MinPQ;
+import com.ray.utils.collections.MinPQ;
 
 /**
  * ÑÓ³ÙÉ¾³ı·ÏÆúµÄ±ßµÄPrimËã·¨

@@ -2,7 +2,7 @@ package com.ray.graph.weightedDigraph;
 
 import java.util.Scanner;
 
-import com.ray.utils.Bag;
+import com.ray.utils.collections.Bag;
 
 /**
  * 加权有向图(不允许自环和平行边)

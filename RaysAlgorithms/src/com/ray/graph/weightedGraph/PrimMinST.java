@@ -1,6 +1,6 @@
 package com.ray.graph.weightedGraph;
 
-import com.ray.utils.IndexMinPQ;
+import com.ray.utils.collections.IndexMinPQ;
 
 /**
  * PrimÀ„∑®

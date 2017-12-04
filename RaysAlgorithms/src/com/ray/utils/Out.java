@@ -45,8 +45,10 @@ public class Out {
 	
 	/**
 	 * 打印错误
+	 * 使用 {@code Err.p(msg)} 代替
 	 * @param t
 	 */
+	@Deprecated
 	public static <T> void err(T t) {
 		System.err.println(t);
 	}

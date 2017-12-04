@@ -1,4 +1,4 @@
-package com.ray.utils;
+package com.ray.utils.collections;
 
 import static com.ray.utils.ArrayUtil.*;
 

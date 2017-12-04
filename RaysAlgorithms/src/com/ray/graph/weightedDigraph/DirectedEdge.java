@@ -1,4 +1,4 @@
-package com.ray.graph.weightedGraph;
+package com.ray.graph.weightedDigraph;
 
 /**
  * 加权有向图边定义

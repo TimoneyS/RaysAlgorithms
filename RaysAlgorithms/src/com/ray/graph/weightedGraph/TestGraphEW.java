@@ -13,23 +13,6 @@ import com.ray.utils.Out;
 public class TestGraphEW {
     
     public static void main(String[] args) {
-        testDijkstraSP();
-    }
-    
-    public static void testDijkstraSP() {
-        EdgeWeightedDigraph G = getDigraph("tinyEWG2.txt");
-        DijkstraSP sp = new DijkstraSP(G, 0);
-        
-        for (int i = 0 ; i < G.V(); i ++) {
-            Out.p("Path to " + i + " : ");
-            if (sp.hasPathTo(i)) {
-                for (DirectedEdge e : sp.pathTo(i))
-                    Out.pf("%s -> %s\n", e.from(), e.to());
-            } else {
-                Out.p("no path");
-            }
-        }
-        
     }
     
     public static void testPrimMinST() {
@@ -58,13 +41,6 @@ public class TestGraphEW {
     private static EdgeWeightedGraph getGraph(String fileName) {
         Scanner in = In.getProjectScanner("src/com/ray/graph/weightedGraph/" + fileName);
         EdgeWeightedGraph G = new EdgeWeightedGraph(in);
-        Out.p(G);
-        return G;
-    }
-    
-    private static EdgeWeightedDigraph getDigraph(String fileName) {
-        Scanner in = In.getProjectScanner("src/com/ray/graph/weightedGraph/" + fileName);
-        EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
         Out.p(G);
         return G;
     }

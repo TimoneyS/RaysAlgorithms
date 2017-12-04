@@ -1,6 +1,6 @@
 package com.ray.lintcode;
 
-import static com.ray.utils.TestUnit.*;
+import static com.ray.utils.TestUtil.*;
 
 import com.ray.utils.Out;
 

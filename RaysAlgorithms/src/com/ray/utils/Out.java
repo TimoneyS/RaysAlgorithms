@@ -25,6 +25,7 @@ public class Out {
 	public static void p(int[] t)     { p(Arrays.toString(t)); }
     public static void p(boolean[] t) { p(Arrays.toString(t)); }
     public static void p(long[] t)    { p(Arrays.toString(t)); }
+    public static void p(double[] t)     { p(Arrays.toString(t)); }
 	
 	/**
 	 * 格式化输出

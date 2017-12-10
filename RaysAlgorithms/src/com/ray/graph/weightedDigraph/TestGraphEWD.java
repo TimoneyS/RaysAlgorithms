@@ -13,7 +13,23 @@ import com.ray.utils.Out;
 public class TestGraphEWD {
     
     public static void main(String[] args) {
-        testDijkstraSP();
+        testAcycliSP();
+    }
+    
+    public static void testAcycliSP() {
+        EdgeWeightedDigraph G = getDigraph("tinyEWDAG.txt");
+        AcycliSP sp = new AcycliSP(G, 0);
+        
+        for (int i = 0 ; i < G.V(); i ++) {
+            Out.p("Path to " + i + " : ");
+            if (sp.hasPathTo(i)) {
+                for (DirectedEdge e : sp.pathTo(i))
+                    Out.pf("%s -> %s\n", e.from(), e.to());
+            } else {
+                Out.p("no path");
+            }
+        }
+        
     }
     
     public static void testDijkstraSP() {

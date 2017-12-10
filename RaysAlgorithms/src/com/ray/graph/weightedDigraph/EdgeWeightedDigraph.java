@@ -108,7 +108,7 @@ public class EdgeWeightedDigraph {
         return s;
     }
        
-    int V() { return V; }
-    int E() { return E; }
+    public int V() { return V; }
+    public int E() { return E; }
     
 }

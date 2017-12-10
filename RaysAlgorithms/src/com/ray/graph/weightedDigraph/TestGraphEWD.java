@@ -21,13 +21,14 @@ public class TestGraphEWD {
         AcycliSP sp = new AcycliSP(G, 0);
         
         for (int i = 0 ; i < G.V(); i ++) {
-            Out.p("Path to " + i + " : ");
+            Out.pt("Path to " + i + " : ");
             if (sp.hasPathTo(i)) {
                 for (DirectedEdge e : sp.pathTo(i))
-                    Out.pf("%s -> %s\n", e.from(), e.to());
+                    Out.pf("%s -> %s", e.from(), e.to());
             } else {
-                Out.p("no path");
+                Out.pt("no path");
             }
+            Out.p("");
         }
         
     }

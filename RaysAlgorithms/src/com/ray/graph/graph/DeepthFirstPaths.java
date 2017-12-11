@@ -13,13 +13,13 @@ import com.ray.graph.intf.Paths;
  * @author rays1
  *
  */
-public class DeepFirstPaths implements Paths {
+public class DeepthFirstPaths implements Paths {
     
     private boolean[] marked; // 标记某个顶点是否已经被访问
     private int[]     edgeTo; // 存放至某点的一个邻接点
     private int       s;      // 起点
 
-    public DeepFirstPaths(Graph G, int s) {
+    public DeepthFirstPaths(Graph G, int s) {
         marked = new boolean[G.V()];
         edgeTo = new int[G.V()];
         this.s = s;

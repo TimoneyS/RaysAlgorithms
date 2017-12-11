@@ -11,12 +11,12 @@ import com.ray.graph.intf.Search;
  * @author rays1
  *
  */
-public class DeepFirstSearch extends Search {
+public class DeepthFirstSearch extends Search {
 
     private boolean[] marked;   // 标记某个顶点是否已经被访问
     private int       count;    
 
-    public DeepFirstSearch(Graph G, int s) {
+    public DeepthFirstSearch(Graph G, int s) {
         super(G, s);
         marked = new boolean[G.V()];
         search(G, s);

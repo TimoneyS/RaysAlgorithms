@@ -18,8 +18,8 @@ public class TestGraphEWD {
     }
     
     public static void testAcycliSP() {
-        EdgeWeightedDigraph G = getDigraph("tinyEWDAG2.txt");
-        int s = 0;
+        EdgeWeightedDigraph G = getDigraph("tinyEWDAG.txt");
+        int s = 3;
         
         AcycliSP sp = new AcycliSP(G, s);
         
@@ -28,8 +28,9 @@ public class TestGraphEWD {
             if (sp.hasPathTo(v)) {
                 Out.pf("%d to %d (%.2f)  ", s, v, sp.distTo(v));
                 RaysStack<DirectedEdge> stack = sp.pathTo(v);
-                while (!stack.isEmpty())
-                    Out.pt(stack.pop() + "    ");
+                DirectedEdge e;
+                while (( e = stack.pop())!=null)
+                    Out.pt(e + "    ");
                 Out.p();
             } else {
                 Out.pf("%d to %d         no path\n", s, v);

@@ -2,7 +2,6 @@ package com.ray.graph.weightedDigraph;
 
 import java.util.Stack;
 
-import com.ray.utils.Out;
 import com.ray.utils.collections.RaysStack;
 
 /**
@@ -34,8 +33,6 @@ public class AcycliSP {
             int v = stack.pop();
             for (DirectedEdge e : G.adj(v))
                 relax(e);
-Out.p(edgeTo);
-Out.p(distTo);
         }
 
     }

@@ -72,7 +72,7 @@ public class TestGraph {
      * 测试深度优先搜索
      */
     public static void testDeepFirstPaths() {
-        testPaths(new DeepFirstPaths(G, 0));
+        testPaths(new DeepthFirstPaths(G, 0));
     }
     
     /**

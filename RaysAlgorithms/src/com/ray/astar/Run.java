@@ -13,20 +13,22 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import com.ray.utils.In;
+
 public class Run {
 	
 	private JFrame 				frame;
 	private AStarContentPanel	panel;
 	private AStarControlPanel	controlPanel;
 	private JMenuBar 			menuBar;
+	private Map m;
+	private Seacher s;
 	
-	private Seacher 			seacher;
 	private ExecutorService 	es;
 	
 	public Run() {
 		// 初始化
 		es 		= Executors.newCachedThreadPool();
-		seacher = new Seacher();
 		frame 	= new JFrame("A star show");
 		panel 	= new AStarContentPanel();
 		controlPanel = new AStarControlPanel();
@@ -34,13 +36,23 @@ public class Run {
 		// 构造菜单
 		JMenu m1 	= new JMenu("菜单");
 		addJMenuItem (m1, "载入", (ActionEvent e) -> {
-			seacher.init();
-			panel.registerMap(seacher.getMap());
+		    m = new Map(In.getProjectScanner(Global.MAP_PATH));
+			panel.registerMap(m.cells());
 		});
-		addJMenuItem (m1, "开始", (ActionEvent e) -> es.execute(() -> seacher.search()));
+        addJMenuItem(
+                m1,
+                "开始", (ActionEvent e) -> es.execute(
+                        () -> {
+                            s = new Seacher(m, 0, 0, m.rowNum() - 1, m.colNum() - 1);
+                            for (Cell c : s.getPath(m)) {
+                                c.stat = CellType.CHOOSE;
+                            }
+                        }
+                        )
+                );
 		menuBar.add(m1);
 		JButton b1 = new JButton("下一步");
-		b1.addActionListener((ActionEvent e) -> seacher.nextStep());
+		//b1.addActionListener((ActionEvent e) -> seacher.nextStep());
 		controlPanel.add(b1);
 		// 拼装
 //		frame.setContentPane(panel);

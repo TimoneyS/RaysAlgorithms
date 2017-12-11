@@ -1,6 +1,6 @@
 package com.ray.astar;
 
-public class Cell {
+public class Cell implements Comparable<Cell> {
 	
 	public int 	x,		// ºá×ø±ê
 				y,		// ×Ý×ø±ê
@@ -60,13 +60,6 @@ public class Cell {
 	}
 	
 	public void changeState() {
-//		UNCHECK,
-//		OPEN,
-//		CLOSE,
-//		TRAP,
-//		BLOCK,
-//		CHOOSE,
-//		CURRENT_MIN,
 		switch(stat) {
 		case BLOCK:
 			stat = CellType.TRAP;
@@ -81,7 +74,6 @@ public class Cell {
 			break;
 		}
 		
-		
 	}
 	
 	public String inspect() {
@@ -92,5 +84,9 @@ public class Cell {
 	public String toString() {
 		return ( stat == CellType.BLOCK ) ? "1" : "0";
 	}
+    @Override
+    public int compareTo(Cell o) {
+        return 0;
+    }
 
 }

@@ -15,6 +15,10 @@ public class RaysStack<T> {
         top = n;
     }
     
+    public boolean isEmpty() {
+        return top.equals(floor);
+    }
+    
     public T pop() {
         T e = null;
         if (!top .equals(floor)) {

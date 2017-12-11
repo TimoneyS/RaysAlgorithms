@@ -19,7 +19,7 @@ public class TestGraphEWD {
     
     public static void testAcycliSP() {
         EdgeWeightedDigraph G = getDigraph("tinyEWDAG.txt");
-        int s = 1;
+        int s = 3;
         
         AcycliSP sp = new AcycliSP(G, s);
         

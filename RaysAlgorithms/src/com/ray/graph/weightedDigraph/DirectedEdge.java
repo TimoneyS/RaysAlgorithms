@@ -37,7 +37,7 @@ public class DirectedEdge implements Comparable<DirectedEdge> {
     
     @Override
     public String toString() {
-        return String.format("%2s -> %2s %s", from, to, weighted);
+        return String.format("%d -> %d(%.2f)", from, to, weighted);
     }
     
 }

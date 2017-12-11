@@ -3,6 +3,7 @@ package com.ray.graph.weightedDigraph;
 import java.util.Stack;
 
 import com.ray.utils.Out;
+import com.ray.utils.collections.RaysStack;
 
 /**
  * 无环加权有向图最短路径搜索方法
@@ -67,11 +68,11 @@ Out.p(distTo);
         return distTo[v] < Double.POSITIVE_INFINITY;
     }
     
-    Iterable<DirectedEdge> pathTo(int v) {
+    RaysStack<DirectedEdge> pathTo(int v) {
         if (!hasPathTo(v))
             return null;
 
-        Stack<DirectedEdge> path = new Stack<DirectedEdge>();
+        RaysStack<DirectedEdge> path = new RaysStack<DirectedEdge>();
         for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()])
             path.push(e);
 

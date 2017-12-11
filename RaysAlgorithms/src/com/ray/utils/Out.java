@@ -8,6 +8,14 @@ import java.util.Arrays;
  *
  */
 public class Out {
+    
+    /**
+     * 打印并换行
+     * @param t
+     */
+    public static <T> void p() {
+        System.out.println();
+    }
 	
 	/**
 	 * 打印并换行

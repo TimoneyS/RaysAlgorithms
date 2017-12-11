@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.ray.utils.In;
 import com.ray.utils.Out;
+import com.ray.utils.collections.RaysStack;
 
 /**
  * ≤‚ ‘ŒﬁœÚÕº
@@ -18,17 +19,23 @@ public class TestGraphEWD {
     
     public static void testAcycliSP() {
         EdgeWeightedDigraph G = getDigraph("tinyEWDAG.txt");
-        AcycliSP sp = new AcycliSP(G, 0);
+        int s = 1;
         
-        for (int i = 0 ; i < G.V(); i ++) {
-            Out.pt("Path to " + i + " : ");
-            if (sp.hasPathTo(i)) {
-                for (DirectedEdge e : sp.pathTo(i))
-                    Out.pf("%s -> %s", e.from(), e.to());
+        AcycliSP sp = new AcycliSP(G, s);
+        
+        for (int v = 0 ; v < G.V(); v ++) {
+            
+            if (sp.hasPathTo(v)) {
+                Out.pf("%d to %d (%.2f)  ", s, v, sp.distTo(v));
+                RaysStack<DirectedEdge> stack = sp.pathTo(v);
+                DirectedEdge e;
+                while (( e = stack.pop())!=null)
+                    Out.pt(e + "    ");
+                Out.p();
             } else {
-                Out.pt("no path");
+                Out.pf("%d to %d         no path\n", s, v);
             }
-            Out.p("");
+            
         }
         
     }

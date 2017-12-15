@@ -5,9 +5,10 @@ import java.util.Stack;
 import com.ray.utils.collections.RaysStack;
 
 /**
- * 无环加权有向图最短路径搜索方法
+ * 无环加权有向图最短路径搜索方法<br>
+ * 按照拓扑排序放松顶点，每个先放松的顶点都只会被放松一次<br>
  * @author rays1
- *
+ * 
  */
 public class AcycliSP {
     

@@ -75,6 +75,15 @@ public class EdgeWeightedDigraph {
     }
     
     /**
+     * 添加一条边
+     * @param v
+     * @param w
+     */
+    public void addEdge(int v, int w, double weighted) {
+        addEdge(new DirectedEdge(v, w, weighted));
+    }
+    
+    /**
      * 判断某条边是否存在
      * @param w
      * @param w

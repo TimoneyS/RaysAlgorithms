@@ -1,7 +1,5 @@
 package com.ray.graph.weightedDigraph;
 
-import java.util.Stack;
-
 import com.ray.utils.collections.RaysStack;
 
 /**
@@ -15,12 +13,8 @@ public class AcycliLP {
     AcycliSP acycliSP;
     
     public AcycliLP(EdgeWeightedDigraph G, int S) {
-        EdgeWeightedDigraph G_R = G.copy();
         
-        for (DirectedEdge e : G_R.edges() ) {
-            e.weighted();
-        }
-
+        
     }
     
     double distTo(int v) {

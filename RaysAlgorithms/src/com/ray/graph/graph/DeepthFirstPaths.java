@@ -2,7 +2,7 @@ package com.ray.graph.graph;
 
 import java.util.LinkedList;
 
-import com.ray.graph.intf.Paths;
+import com.ray.graph.common.Paths;
 
 /**
  * 深度优先搜索<br>

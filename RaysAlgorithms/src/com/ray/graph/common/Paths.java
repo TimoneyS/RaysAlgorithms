@@ -1,4 +1,4 @@
-package com.ray.graph.intf;
+package com.ray.graph.common;
 
 import java.util.LinkedList;
 

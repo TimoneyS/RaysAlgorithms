@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import com.ray.graph.intf.Paths;
+import com.ray.graph.common.Paths;
 import com.ray.utils.In;
 import com.ray.utils.Out;
 

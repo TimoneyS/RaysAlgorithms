@@ -14,7 +14,36 @@ import com.ray.utils.collections.RaysStack;
 public class TestGraphEWD {
     
     public static void main(String[] args) {
-        testAcycliSP();
+        testCPM();
+    }
+    
+    public static void testCPM() {
+        Scanner in = In.getClassPathScanner("com/ray/graph/weightedDigraph/CPM.txt");
+        
+        CPM cpm = new CPM(in);
+    }
+ 
+    public static void testAcycliLP() {
+        EdgeWeightedDigraph G = getDigraph("tinyEWDAG.txt");
+        int s = 3;
+        
+        AcycliLP sp = new AcycliLP(G, s);
+        
+        for (int v = 0 ; v < G.V(); v ++) {
+            
+            if (sp.hasPathTo(v)) {
+                Out.pf("%d to %d (%.2f)  ", s, v, sp.distTo(v));
+                RaysStack<DirectedEdge> stack = sp.pathTo(v);
+                DirectedEdge e;
+                while (( e = stack.pop())!=null)
+                    Out.pt(e + "    ");
+                Out.p();
+            } else {
+                Out.pf("%d to %d         no path\n", s, v);
+            }
+            
+        }
+        
     }
     
     public static void testAcycliSP() {

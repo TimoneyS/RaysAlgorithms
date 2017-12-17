@@ -99,7 +99,7 @@ public class EdgeWeightedDigraph {
      * @param v
      * @return
      */
-    Iterable<DirectedEdge> adj(int v) {
+    public Iterable<DirectedEdge> adj(int v) {
         return adj[v];
     }
     

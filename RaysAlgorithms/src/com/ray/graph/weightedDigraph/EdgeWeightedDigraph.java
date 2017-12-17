@@ -116,6 +116,23 @@ public class EdgeWeightedDigraph {
         }
         return s;
     }
+    
+    /**
+     * …Ó∏¥÷∆
+     * @return
+     */
+    public EdgeWeightedDigraph copy() {
+        
+        EdgeWeightedDigraph G = new EdgeWeightedDigraph(V);
+        
+        for (int i = 0; i < V; i ++) {
+            for (DirectedEdge e : adj[i]) {
+                G.addEdge(e.copy());
+            }
+        }
+        
+        return G;
+    }
        
     public int V() { return V; }
     public int E() { return E; }

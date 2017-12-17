@@ -35,6 +35,14 @@ public class DirectedEdge implements Comparable<DirectedEdge> {
         return weighted;
     }
     
+    /**
+     * Éî¸´ÖÆ
+     * @return
+     */
+    public DirectedEdge copy() {
+        return new DirectedEdge(from, to, weighted);
+    }
+    
     @Override
     public String toString() {
         return String.format("%d -> %d(%.2f)", from, to, weighted);

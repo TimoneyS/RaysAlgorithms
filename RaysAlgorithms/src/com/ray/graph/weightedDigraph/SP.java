@@ -12,15 +12,6 @@ public class SP {
     DirectedEdge[]    edgeTo;
     double[]          distTo;
     
-    public SP(EdgeWeightedDigraph G) {
-        // TODO Auto-generated constructor stub
-        edgeTo = new DirectedEdge[G.V()];
-        distTo = new double[G.V()];
-        for (int i = 0; i < distTo.length; i ++)
-            distTo[i] = Double.POSITIVE_INFINITY;
-        
-    }
-    
     double distTo(int v) {
         return distTo[v];
     }

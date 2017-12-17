@@ -36,7 +36,7 @@ public class TopoLogical {
     public void search(Digraph G, int v) {
         marked[v] = true;                       // 将 v 标记为已经访问
         for (int w : G.adj(v))                  // 访问 v 的每个邻接顶点 w
-            if (!marked[v]) search(G, w);       // 若邻接顶点未被访问，则访问其邻接顶点
+            if (!marked[w]) search(G, w);       // 若邻接顶点未被访问，则访问其邻接顶点
         reverPost.push(v);                      // 完成后的顶点加入栈，后完成的顶点在栈顶
     }
     

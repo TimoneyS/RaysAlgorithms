@@ -14,7 +14,7 @@ import com.ray.utils.Out;
 public class TestDigraph {
     
 	public static void main(String[] args) {
-	    testSCC();
+	    testDiDFOrder();
 	}
 	
 	/**
@@ -40,10 +40,10 @@ public class TestDigraph {
 	 */
 	public static void testDiDFOrder() {
 	    Digraph G = getDigraph("digraphTopo.txt");
-	    DiDFOrder dfo = new DiDFOrder(G);
+	    TopoLogical topo = new TopoLogical(G);
 	    
-	    while (!dfo.reverPost().isEmpty())
-	        Out.pt(dfo.reverPost().pop() + " ");
+	    while (!topo.order().isEmpty())
+	        Out.pt(topo.order().pop() + " ");
 	    
 	}
 	
@@ -77,7 +77,7 @@ public class TestDigraph {
 	}
 	
     public static Digraph getDigraph(String fileName) {
-        Scanner in = In.getProjectScanner("src/com/ray/graph/" + fileName);
+        Scanner in = In.getProjectScanner("src/com/ray/graph/digraph/" + fileName);
         Digraph G = new Digraph(in);
         Out.p(G);
         return G;

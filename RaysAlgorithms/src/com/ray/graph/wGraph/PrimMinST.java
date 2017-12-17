@@ -1,4 +1,4 @@
-package com.ray.graph.weightedGraph;
+package com.ray.graph.wGraph;
 
 import com.ray.utils.collections.IndexMinPQ;
 

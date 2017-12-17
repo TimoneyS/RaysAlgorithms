@@ -1,4 +1,4 @@
-package com.ray.graph.weightedGraph;
+package com.ray.graph.wGraph;
 
 /**
  * 加权图的最小生成树

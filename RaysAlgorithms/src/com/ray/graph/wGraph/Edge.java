@@ -1,4 +1,4 @@
-package com.ray.graph.weightedGraph;
+package com.ray.graph.wGraph;
 
 /**
  * º”»®±ﬂ

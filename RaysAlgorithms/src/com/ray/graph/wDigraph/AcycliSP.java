@@ -1,4 +1,4 @@
-package com.ray.graph.weightedDigraph;
+package com.ray.graph.wDigraph;
 
 import java.util.Stack;
 
@@ -38,24 +38,32 @@ public class AcycliSP {
 
     }
 
+    /**
+     * 放松一条边
+     * @param e
+     */
     private void relax(DirectedEdge e) {
-        int v = e.from();
-        int w = e.to();
-        if (distTo[w] > distTo[v] + e.weighted()) {
-            distTo[w] = distTo[v] + e.weighted();
-            edgeTo[w] = e;
+        int v = e.from();                                   // 边的起点
+        int w = e.to();                                     // 边的终点
+        if (distTo[w] > distTo[v] + e.weighted()) {         // 从生成树到 w 的距离，比从该边起点到 w 要远
+            edgeTo[w] = e;                                  // 将到 w 的边设置为该边
+            distTo[w] = distTo[v] + e.weighted();           // 将到 w 的距离设为从该边到 w 的距离
         }
     }
     
+    /**
+     * 拓扑排序搜索
+     * @param G
+     * @param v
+     */
     private void search(EdgeWeightedDigraph G, int v) {
-        
-        marked[v] = true;
-        for (DirectedEdge e : G.adj(v)) {
-            int w = e.to();
-            if (!marked[w])
-                search(G, w);
+        marked[v] = true;                       // 将 v 标记为已经访问
+        for (DirectedEdge e : G.adj(v)) {       // 访问 v 的每条邻边 e
+            int w = e.to();                     // 邻边 e 的终点
+            if (!marked[w])                     // 若邻边未被访问
+                search(G, w);                   // 访问其邻边
         }
-        stack.push(v);
+        stack.push(v);                          // 完成后的顶点加入栈，后完成的顶点在栈顶
     }
     
     double distTo(int v) {

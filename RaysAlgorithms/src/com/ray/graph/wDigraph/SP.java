@@ -1,4 +1,4 @@
-package com.ray.graph.weightedDigraph;
+package com.ray.graph.wDigraph;
 
 import java.util.Stack;
 

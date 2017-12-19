@@ -14,7 +14,9 @@ import com.ray.utils.collections.RaysStack;
 public class TestGraphEWD {
     
     public static void main(String[] args) {
-        testCPM();
+        testAcycliSP();
+        Out.sep();
+        testAcycliLP();
     }
     
     public static void testCPM() {
@@ -23,6 +25,9 @@ public class TestGraphEWD {
         CPM cpm = new CPM(in);
     }
  
+    /**
+     * 无环有向图，最长路径
+     */
     public static void testAcycliLP() {
         EdgeWeightedDigraph G = getDigraph("tinyEWDAG.txt");
         int s = 3;
@@ -30,22 +35,22 @@ public class TestGraphEWD {
         AcycliLP sp = new AcycliLP(G, s);
         
         for (int v = 0 ; v < G.V(); v ++) {
-            
+            if (v == s) continue;
             if (sp.hasPathTo(v)) {
                 Out.pf("%d to %d (%.2f)  ", s, v, sp.distTo(v));
                 RaysStack<DirectedEdge> stack = sp.pathTo(v);
-                DirectedEdge e;
-                while (( e = stack.pop())!=null)
-                    Out.pt(e + "    ");
-                Out.p();
+                while (!stack.isEmpty()) Out.pt(stack.pop() + "    ");
             } else {
-                Out.pf("%d to %d         no path\n", s, v);
+                Out.pf("%d to %d         no path", s, v);
             }
-            
+            Out.p();
         }
         
     }
     
+    /**
+     * 无环有向图，最短路径
+     */
     public static void testAcycliSP() {
         EdgeWeightedDigraph G = getDigraph("tinyEWDAG.txt");
         int s = 3;
@@ -53,22 +58,22 @@ public class TestGraphEWD {
         AcycliSP sp = new AcycliSP(G, s);
         
         for (int v = 0 ; v < G.V(); v ++) {
-            
+            if (v == s) continue;
             if (sp.hasPathTo(v)) {
                 Out.pf("%d to %d (%.2f)  ", s, v, sp.distTo(v));
                 RaysStack<DirectedEdge> stack = sp.pathTo(v);
-                DirectedEdge e;
-                while (( e = stack.pop())!=null)
-                    Out.pt(e + "    ");
-                Out.p();
+                while (!stack.isEmpty()) Out.pt(stack.pop() + "    ");
             } else {
-                Out.pf("%d to %d         no path\n", s, v);
+                Out.pf("%d to %d         no path", s, v);
             }
-            
+            Out.p();
         }
         
     }
     
+    /**
+     * Dijkstra 算法 最短路径
+     */
     public static void testDijkstraSP() {
         EdgeWeightedDigraph G = getDigraph("tinyEWD2.txt");
         DijkstraSP sp = new DijkstraSP(G, 0);
@@ -86,7 +91,7 @@ public class TestGraphEWD {
     }
     
     private static EdgeWeightedDigraph getDigraph(String fileName) {
-        Scanner in = In.getProjectScanner("src/com/ray/graph/weightedDigraph/" + fileName);
+        Scanner in = In.getProjectScanner("src/com/ray/graph/wDigraph/" + fileName);
         EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
         Out.p(G);
         return G;

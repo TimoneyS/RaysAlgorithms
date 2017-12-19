@@ -3,6 +3,7 @@ package com.ray.graph.wDigraph;
 import java.util.Stack;
 
 import com.ray.graph.digraph.TopoLogical;
+import com.ray.utils.Out;
 import com.ray.utils.collections.RaysStack;
 
 /**
@@ -28,12 +29,12 @@ public class AcycliLP {
         
         TopoLogical topo = new TopoLogical(G);
         Stack<Integer> stack = topo.order();
-        
+Out.p(stack);
         while (!stack.empty()) {
             for (DirectedEdge e : G.adj(stack.pop()))
                 relax(e);
         }
-        
+Out.p("end");       
     }
     
     /**

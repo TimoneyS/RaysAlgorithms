@@ -20,6 +20,9 @@ public class AcycliSP {
 
         edgeTo = new DirectedEdge[G.V()];
         distTo = new double[G.V()];
+        
+        for (int i=0; i< G.V(); i ++)
+            distTo[i] = Double.POSITIVE_INFINITY;
 
         distTo[S] = 0.0;
         

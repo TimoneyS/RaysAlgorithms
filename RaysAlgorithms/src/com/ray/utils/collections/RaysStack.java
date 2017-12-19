@@ -6,7 +6,7 @@ package com.ray.utils.collections;
  *
  * @param <T>
  */
-public final class RaysStack<T> {
+public final class RaysStack<T> implements Stack<T> {
     
     private Node<T> floor;
     private Node<T> top;

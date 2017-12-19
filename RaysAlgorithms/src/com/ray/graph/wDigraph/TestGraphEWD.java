@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.ray.utils.In;
 import com.ray.utils.Out;
 import com.ray.utils.collections.RaysStack;
+import com.ray.utils.collections.Stack;
 
 /**
  * ≤‚ ‘ŒﬁœÚÕº
@@ -14,15 +15,19 @@ import com.ray.utils.collections.RaysStack;
 public class TestGraphEWD {
     
     public static void main(String[] args) {
-        testAcycliSP();
-        Out.sep();
-        testAcycliLP();
+        testCPM();
     }
     
     public static void testCPM() {
-        Scanner in = In.getClassPathScanner("com/ray/graph/weightedDigraph/CPM.txt");
+        Scanner in = In.getClassPathScanner("com/ray/graph/wDigraph/CPM.txt");
         
         CPM cpm = new CPM(in);
+        
+        Stack<DirectedEdge> stack = cpm.getPath();
+        while (!stack.isEmpty()) {
+            Out.pf(stack.pop() + "  ");
+        }
+        
     }
  
     /**

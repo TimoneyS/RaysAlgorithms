@@ -15,11 +15,11 @@ import com.ray.utils.Out;
 public class Seacher {
 	
 	private List<Cell> 	open;
-	private boolean[][] marked;
+	//private boolean[][] marked;
 	private int startRow, startCol, endRow, endCol;
 	
 	public Seacher(Map m, int x1, int y1, int x2, int y2) {
-	    marked  = new boolean[m.rowNum()][m.colNum()];
+	    // marked  = new boolean[m.rowNum()][m.colNum()];
 	    open = new LinkedList<Cell>();
 	    
 	    startRow   = x1;

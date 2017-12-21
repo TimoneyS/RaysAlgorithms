@@ -57,6 +57,7 @@ public class MaxPQ<Key> implements Iterable<Key> {
      *
      * @param  initCapacity the initial capacity of this priority queue
      */
+    @SuppressWarnings("unchecked")
     public MaxPQ(int initCapacity) {
         pq = (Key[]) new Object[initCapacity + 1];
         n = 0;
@@ -76,6 +77,7 @@ public class MaxPQ<Key> implements Iterable<Key> {
      * @param  initCapacity the initial capacity of this priority queue
      * @param  comparator the order in which to compare the keys
      */
+    @SuppressWarnings("unchecked")
     public MaxPQ(int initCapacity, Comparator<Key> comparator) {
         this.comparator = comparator;
         pq = (Key[]) new Object[initCapacity + 1];
@@ -97,6 +99,7 @@ public class MaxPQ<Key> implements Iterable<Key> {
      *
      * @param  keys the array of keys
      */
+    @SuppressWarnings("unchecked")
     public MaxPQ(Key[] keys) {
         n = keys.length;
         pq = (Key[]) new Object[keys.length + 1];
@@ -140,6 +143,7 @@ public class MaxPQ<Key> implements Iterable<Key> {
     }
 
     // helper function to double the size of the heap array
+    @SuppressWarnings("unchecked")
     private void resize(int capacity) {
         assert capacity > n;
         Key[] temp = (Key[]) new Object[capacity];
@@ -208,6 +212,7 @@ public class MaxPQ<Key> implements Iterable<Key> {
    /***************************************************************************
     * Helper functions for compares and swaps.
     ***************************************************************************/
+    @SuppressWarnings("unchecked")
     private boolean less(int i, int j) {
         if (comparator == null) {
             return ((Comparable<Key>) pq[i]).compareTo(pq[j]) < 0;

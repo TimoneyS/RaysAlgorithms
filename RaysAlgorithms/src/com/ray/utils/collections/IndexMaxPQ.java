@@ -54,6 +54,7 @@ public class IndexMaxPQ<Key extends Comparable<Key>> implements Iterable<Integer
      * @param  maxN the keys on this priority queue are index from {@code 0} to {@code maxN - 1}
      * @throws IllegalArgumentException if {@code maxN < 0}
      */
+    @SuppressWarnings("unchecked")
     public IndexMaxPQ(int maxN) {
         if (maxN < 0) throw new IllegalArgumentException();
         n = 0;

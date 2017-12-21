@@ -15,7 +15,7 @@ import com.ray.utils.collections.Stack;
 public class TestGraphEWD {
     
     public static void main(String[] args) {
-        testCPM();
+        testDijkstraSP();
     }
     
     public static void testCPM() {
@@ -80,14 +80,16 @@ public class TestGraphEWD {
      * Dijkstra Ëã·¨ ×î¶ÌÂ·¾¶
      */
     public static void testDijkstraSP() {
-        EdgeWeightedDigraph G = getDigraph("tinyEWD2.txt");
-        DijkstraSP sp = new DijkstraSP(G, 0);
+        EdgeWeightedDigraph G = getDigraph("tinyEWDAG2.txt");
+        DijkstraSP sp = new DijkstraSP(G, 1);
         
         for (int i = 0 ; i < G.V(); i ++) {
-            Out.p("Path to " + i + " : ");
+            Out.pt("Path to " + i + " : ");
             if (sp.hasPathTo(i)) {
-                for (DirectedEdge e : sp.pathTo(i))
-                    Out.pf("%s -> %s\n", e.from(), e.to());
+                Stack<DirectedEdge> stack  = sp.pathTo(i);
+                while (!stack.isEmpty())
+                    Out.pt(stack.pop() + "  ");
+                Out.p();
             } else {
                 Out.p("no path");
             }

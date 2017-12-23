@@ -1,6 +1,6 @@
 package com.ray.graph.common;
 
-import com.ray.graph.graph.Graph;
+import com.ray.graph.g.Graph;
 
 /**
  * ËÑË÷API

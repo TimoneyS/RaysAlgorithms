@@ -2,36 +2,36 @@ package com.ray.astar;
 
 public class Cell implements Comparable<Cell> {
 	
-	public int 	x,		// 横坐标
-				y,		// 纵坐标
-				past,	// 从起点到该点的路程
-				fore,	// 从终点到该点的路程预期
-				cost;	// 该点的路程花费
-	public CellType stat;
-	public Cell parent;
+    public int      rowNum;   // 行数
+    public int      colNum;   // 列数
+    public int      past;     // 从起点到该点的路程
+    public int      fore;     // 从终点到该点的路程预期
+    public int      weighted; // 该点权重
+    public CellType stat;
+    public Cell     parent;
 
-	private Cell(int i, int j, int type) {
-		this.x = i;
-		this.y = j;
+	private Cell(int row, int col, int type) {
+		this.rowNum = row;
+		this.colNum = col;
 		
 		switch (type) {
 		case 1 	: stat = CellType.BLOCK;break;
 		case 2 	: stat = CellType.TRAP;
-				  cost = 2;
+				  weighted = 2;
 				  break;
-		default : stat = CellType.UNCHECK;cost = 1;break;
+		default : stat = CellType.UNCHECK;weighted = 1;break;
 		}
 	}
-	public static Cell create(int i, int j, int type) { return new Cell( i, j, type);}
+	public static Cell create(int row, int col, int type) { return new Cell( row, col, type);}
 	
 	public void initPath(int endX, int endY) {
-		fore = Math.abs(endX - x) + Math.abs(endY - y);
+		fore = Math.abs(endX - rowNum) + Math.abs(endY - colNum);
 		if (past == 0 && parent != null)
-			past = cost + parent.past;
+			past = weighted + parent.past;
 	}
 	
 	public void setParent(Cell parent) {
-		this.past 	= parent.past + this.cost;
+		this.past 	= parent.past + this.weighted;
 		this.parent = parent;
 	}
 	
@@ -45,10 +45,10 @@ public class Cell implements Comparable<Cell> {
 		return true;
 	}
 
-	public int sum() { return past + fore; }
+	public int costWithThis() { return past + fore; }
 
 	public void parse() {
-		System.out.printf("[%2d,%2d]", x, y);
+		System.out.printf("[%2d,%2d]", rowNum, colNum);
 		System.out.print(" <- ");
 		stat = CellType.CHOOSE;
 		try {
@@ -76,8 +76,24 @@ public class Cell implements Comparable<Cell> {
 		
 	}
 	
+	public void close() {
+	    stat = CellType.CLOSE;
+	}
+	
+    public boolean isClosed() {
+        return stat.equals(CellType.CLOSE);
+    }
+    
+    public void open() {
+        stat = CellType.OPEN;
+    }
+    
+    public boolean isOpne() {
+        return stat.equals(CellType.OPEN);
+    }
+	
 	public String inspect() {
-		return String.format("[%2d,%2d]\n[ %2d, %2d ,%2s]", x, y, past, fore, stat);
+		return String.format("[%2d,%2d]\n[ %2d, %2d ,%2s]", rowNum, colNum, past, fore, stat);
 	}
 	
 	@Override
@@ -86,7 +102,7 @@ public class Cell implements Comparable<Cell> {
 	}
     @Override
     public int compareTo(Cell o) {
-        return 0;
+        return Integer.valueOf(costWithThis()).compareTo(o.costWithThis());
     }
 
 }

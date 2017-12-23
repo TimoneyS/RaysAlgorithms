@@ -40,10 +40,10 @@ public class AStarContentPanel extends JPanel {
 		int w = Global.xPix;
 		int h = Global.yPix;
 		g.setColor(Global.COLOR_MAP.get(cell.stat));
-		g.fillRect(cell.y*w , cell.x*h, w, h);
+		g.fillRect(cell.colNum*w , cell.rowNum*h, w, h);
 		g.setColor(Color.BLACK);
-		g.drawRect(cell.y*w , cell.x*h, w, h);
-		g.drawString(cell.inspect(), cell.y*w+w/4, cell.x*h + h/2);
+		g.drawRect(cell.colNum*w , cell.rowNum*h, w, h);
+		g.drawString(cell.inspect(), cell.colNum*w+w/4, cell.rowNum*h + h/2);
 	}
 	
 	public void registerMap (Cell[][] map) {

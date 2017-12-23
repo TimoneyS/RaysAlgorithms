@@ -7,17 +7,22 @@ import java.util.Scanner;
 
 import com.ray.utils.Out;
 
+/**
+ * 地图的抽象对象
+ * @author rays1
+ *
+ */
 public class Map {
     
-    private int         rowNum, colNum;
+    private int         maxRow, maxCol;
     private Cell[][]    map;
     
     public Map(Scanner in) {
-        rowNum    = in.nextInt();
-        colNum    = in.nextInt();
-        map  = new Cell[rowNum][colNum];
-        for (int i = 0; i < rowNum; i++) {
-            for (int j = 0; j < colNum; j++) map[i][j] = Cell.create(i, j, in.nextInt());
+        maxRow    = in.nextInt();
+        maxCol    = in.nextInt();
+        map  = new Cell[maxRow][maxCol];
+        for (int i = 0; i < maxRow; i++) {
+            for (int j = 0; j < maxCol; j++) map[i][j] = Cell.create(i, j, in.nextInt());
             Out.p(Arrays.toString(map[i]));
         }
     }
@@ -30,21 +35,30 @@ public class Map {
         return map[row][col];
     }
     
-    public int colNum() {
-        return colNum;
+    public int maxCol() {
+        return maxCol;
     }
     
-    public int rowNum() {
-        return rowNum;
+    public int maxRow() {
+        return maxRow;
     }
     
-    // 寻找子孙
-    public List<Cell> adj(int i, int j) {
+    /**
+     * 获取邻接点
+     * @param row
+     * @param col
+     * @return
+     */
+    public List<Cell> adj(int row, int col) {
         List<Cell> chs = new LinkedList<Cell>();
-        if (i > 0)          chs.add(map[i - 1][j]); // 上
-        if (i < rowNum - 1)   chs.add(map[i + 1][j]); // 下
-        if (j > 0)          chs.add(map[i][j - 1]); // 左
-        if (j < colNum - 1)   chs.add(map[i][j + 1]); // 右
+        if (row > 0)
+            chs.add(map[row - 1][col]); // 上
+        if (row < maxRow - 1)
+            chs.add(map[row + 1][col]); // 下
+        if (col > 0)
+            chs.add(map[row][col - 1]); // 左
+        if (col < maxCol - 1)
+            chs.add(map[row][col + 1]); // 右
         return chs;
     }
     

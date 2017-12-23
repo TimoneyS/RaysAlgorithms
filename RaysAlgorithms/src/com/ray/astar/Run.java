@@ -21,8 +21,8 @@ public class Run {
 	private AStarContentPanel	panel;
 	private AStarControlPanel	controlPanel;
 	private JMenuBar 			menuBar;
-	private Map m;
-	private Seacher s;
+	private Map map;
+	private Seacher seacher;
 	
 	private ExecutorService 	es;
 	
@@ -36,15 +36,15 @@ public class Run {
 		// 构造菜单
 		JMenu m1 	= new JMenu("菜单");
 		addJMenuItem (m1, "载入", (ActionEvent e) -> {
-		    m = new Map(In.getProjectScanner(Global.MAP_PATH));
-			panel.registerMap(m.cells());
+		    map = new Map(In.getProjectScanner(Global.MAP_PATH));
+			panel.registerMap(map.cells());
 		});
         addJMenuItem(
                 m1,
                 "开始", (ActionEvent e) -> es.execute(
                         () -> {
-                            s = new Seacher(m, 0, 0, m.rowNum() - 1, m.colNum() - 1);
-                            for (Cell c : s.getPath(m)) {
+                            seacher = new Seacher(map, 1, 1, 9, 9);
+                            for (Cell c : seacher.getPath(map)) {
                                 c.stat = CellType.CHOOSE;
                             }
                         }

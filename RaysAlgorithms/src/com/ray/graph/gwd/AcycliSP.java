@@ -10,10 +10,7 @@ import com.ray.graph.gd.TopoLogical;
  * @author rays1
  * 
  */
-public class AcycliSP {
-    
-    private DirectedEdge[]      edgeTo;
-    private double[]            distTo;
+public class AcycliSP extends SP {
     
     public AcycliSP(EdgeWeightedDigraph G, int S) {
 
@@ -33,37 +30,6 @@ public class AcycliSP {
                 relax(e);
         }
 
-    }
-
-    /**
-     * 放松一条边
-     * @param e
-     */
-    private void relax(DirectedEdge e) {
-        int v = e.from(), w = e.to();                       // 边的起点和终点
-        if (distTo[w] > distTo[v] + e.weighted()) {         // 从生成树到 w 的距离，比从该边起点到 w 要远
-            edgeTo[w] = e;                                  // 将到 w 的边设置为该边
-            distTo[w] = distTo[v] + e.weighted();           // 将到 w 的距离设为从该边到 w 的距离
-        }
-    }
-    
-    double distTo(int v) {
-        return distTo[v];
-    }
-
-    boolean hasPathTo(int v) {
-        return distTo[v] < Double.POSITIVE_INFINITY;
-    }
-    
-    Stack<DirectedEdge> pathTo(int v) {
-        if (!hasPathTo(v))
-            return null;
-
-        Stack<DirectedEdge> path = new Stack<DirectedEdge>();
-        for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()])
-            path.push(e);
-
-        return path;
     }
     
 }

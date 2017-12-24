@@ -18,6 +18,8 @@ public class TestGraphEWD {
         testDijkstraSP();
     }
     
+    
+    
     public static void testCPM() {
         Scanner in = In.getClassPathScanner("com/ray/graph/wDigraph/CPM.txt");
         
@@ -80,25 +82,29 @@ public class TestGraphEWD {
      * Dijkstra Ëã·¨ ×î¶ÌÂ·¾¶
      */
     public static void testDijkstraSP() {
-        EdgeWeightedDigraph G = getDigraph("tinyEWDAG2.txt");
-        DijkstraSP sp = new DijkstraSP(G, 1);
+        EdgeWeightedDigraph G = getDigraph("tinyEWD.txt");
+        int s = 0;
+        
+        DijkstraSP sp = new DijkstraSP(G, s);
         
         for (int i = 0 ; i < G.V(); i ++) {
-            Out.pt("Path to " + i + " : ");
+            if (s == i) continue;
+
             if (sp.hasPathTo(i)) {
+                Out.pf("Path to %d(%.2f) : ", i, sp.distTo(i));
                 Stack<DirectedEdge> stack  = sp.pathTo(i);
                 while (!stack.isEmpty())
                     Out.pt(stack.pop() + "  ");
                 Out.p();
             } else {
-                Out.p("no path");
+                Out.p("Path to " + i + " : no path");
             }
         }
         
     }
     
     private static EdgeWeightedDigraph getDigraph(String fileName) {
-        Scanner in = In.getProjectScanner("src/com/ray/graph/wDigraph/" + fileName);
+        Scanner in = In.getProjectScanner("src/com/ray/graph/gwd/" + fileName);
         EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
         Out.p(G);
         return G;

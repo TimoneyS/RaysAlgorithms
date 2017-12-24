@@ -7,6 +7,10 @@ import com.ray.utils.collections.Stack;
 /**
  * Dijkstra算法
  * 有向加权图，最短路径搜索。
+ * 若v是从起点可达的，则所有 v -> w 的边都只会被放松一次。<br/>
+ * 当v被放松时，必有 distTo[v] <= distTo[w] + e.weight。<br/>
+ * distTo[w] 的值只会变小，而distTo[v]的值不会变。<br/>
+ * 因此在所有s可达的顶点均被添加到树中后，最短路径的最优性条件成立。
  * @author rays1
  *
  */

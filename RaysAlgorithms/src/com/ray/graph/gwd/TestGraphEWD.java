@@ -21,7 +21,7 @@ public class TestGraphEWD {
     
     
     public static void testCPM() {
-        Scanner in = In.getClassPathScanner("com/ray/graph/wDigraph/CPM.txt");
+        Scanner in = In.getClassPathScanner("com/ray/graph/gwd/CPM.txt");
         
         CPM cpm = new CPM(in);
         

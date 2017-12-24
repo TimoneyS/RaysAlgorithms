@@ -1,12 +1,10 @@
 package com.ray.graph.gwd;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 import com.ray.utils.In;
 import com.ray.utils.Out;
-import com.ray.utils.collections.RaysStack;
-import com.ray.utils.collections.Stack;
-
 /**
  * ≤‚ ‘ŒﬁœÚÕº
  * @author rays1
@@ -15,10 +13,18 @@ import com.ray.utils.collections.Stack;
 public class TestGraphEWD {
     
     public static void main(String[] args) {
-        testDijkstraSP();
+        testBellmanFord();
     }
     
-    
+    /**
+     * Bellman-FordÀ„∑®
+     */
+    public static void testBellmanFord() {
+        EdgeWeightedDigraph G = getDigraph("tinyEWDn.txt");
+        int s = 0;
+        SP sp = new BellmanFordSP(G, s);
+        printSP(sp, G, s);
+    }
     
     public static void testCPM() {
         Scanner in = In.getClassPathScanner("com/ray/graph/gwd/CPM.txt");
@@ -38,20 +44,8 @@ public class TestGraphEWD {
     public static void testAcycliLP() {
         EdgeWeightedDigraph G = getDigraph("tinyEWDAG.txt");
         int s = 3;
-        
-        AcycliLP sp = new AcycliLP(G, s);
-        
-        for (int v = 0 ; v < G.V(); v ++) {
-            if (v == s) continue;
-            if (sp.hasPathTo(v)) {
-                Out.pf("%d to %d (%.2f)  ", s, v, sp.distTo(v));
-                RaysStack<DirectedEdge> stack = sp.pathTo(v);
-                while (!stack.isEmpty()) Out.pt(stack.pop() + "    ");
-            } else {
-                Out.pf("%d to %d         no path", s, v);
-            }
-            Out.p();
-        }
+        SP sp = new AcycliLP(G, s);
+        printSP(sp, G, s);
         
     }
     
@@ -61,20 +55,8 @@ public class TestGraphEWD {
     public static void testAcycliSP() {
         EdgeWeightedDigraph G = getDigraph("tinyEWDAG.txt");
         int s = 3;
-        
-        AcycliSP sp = new AcycliSP(G, s);
-        
-        for (int v = 0 ; v < G.V(); v ++) {
-            if (v == s) continue;
-            if (sp.hasPathTo(v)) {
-                Out.pf("%d to %d (%.2f)  ", s, v, sp.distTo(v));
-                RaysStack<DirectedEdge> stack = sp.pathTo(v);
-                while (!stack.isEmpty()) Out.pt(stack.pop() + "    ");
-            } else {
-                Out.pf("%d to %d         no path", s, v);
-            }
-            Out.p();
-        }
+        SP sp = new AcycliSP(G, s);
+        printSP(sp, G, s);
         
     }
     
@@ -84,9 +66,11 @@ public class TestGraphEWD {
     public static void testDijkstraSP() {
         EdgeWeightedDigraph G = getDigraph("tinyEWD.txt");
         int s = 0;
-        
         DijkstraSP sp = new DijkstraSP(G, s);
-        
+        printSP(sp, G, s);
+    }
+    
+    private static void printSP(SP sp, EdgeWeightedDigraph G, int s) {
         for (int i = 0 ; i < G.V(); i ++) {
             if (s == i) continue;
 
@@ -100,7 +84,6 @@ public class TestGraphEWD {
                 Out.p("Path to " + i + " : no path");
             }
         }
-        
     }
     
     private static EdgeWeightedDigraph getDigraph(String fileName) {

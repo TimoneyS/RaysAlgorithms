@@ -5,12 +5,15 @@ import com.ray.utils.collections.RaysStack;
 import com.ray.utils.collections.Stack;
 
 /**
- * Dijkstra算法
- * 有向加权图，最短路径搜索。
+ * Dijkstra算法<br/>
+ * 有向加权图，最短路径搜索。<br/>
  * 若v是从起点可达的，则所有 v -> w 的边都只会被放松一次。<br/>
  * 当v被放松时，必有 distTo[v] <= distTo[w] + e.weight。<br/>
  * distTo[w] 的值只会变小，而distTo[v]的值不会变。<br/>
- * 因此在所有s可达的顶点均被添加到树中后，最短路径的最优性条件成立。
+ * 因此在所有s可达的顶点均被添加到树中后，最短路径的最优性条件成立。<br/>
+ * <br/>
+ * 注：由于顶点在被放松后，还可能再一次加入队列。<br/>
+ * 所以本算法实现实际上也能处理负权重的边，但是这种情况下极端的用例可能导致算法时间复杂度达到指数级别。
  * @author rays1
  *
  */

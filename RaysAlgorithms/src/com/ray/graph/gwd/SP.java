@@ -7,41 +7,21 @@ import java.util.Stack;
  * @author rays1
  *
  */
-public class SP {
+public abstract class SP {
 
-    DirectedEdge[]    edgeTo;
-    double[]          distTo;
-    
-    double distTo(int v) {
-        return distTo[v];
-    }
-    
-    boolean hasPathTo(int v) {
-        return distTo[v] < Double.POSITIVE_INFINITY;
-    }
-    
-    Iterable<DirectedEdge> pathTo(int v) {
-        if (!hasPathTo(v)) return null;
-        
-        Stack<DirectedEdge> path = new Stack<DirectedEdge>();
-        for (DirectedEdge e = edgeTo[v]; e !=null; e = edgeTo[e.from()])
-            path.push(e);
-        
-        return path;
-    }
+    protected DirectedEdge[]    edgeTo;
+    protected double[]          distTo;
     
     /**
      * 边的松弛
      * @param e
      */
-    @SuppressWarnings("unused")
-    private void realx(DirectedEdge e) {
-        int v = e.from(), w = e.to();
-        if (distTo[w] > distTo[v] + e.weighted()) {
-            distTo[w] = distTo[v] + e.weighted();
-            edgeTo[w] = e;
+    protected void relax(DirectedEdge e) {
+        int v = e.from(), w = e.to();                       // 边的起点和终点
+        if (distTo[w] > distTo[v] + e.weighted()) {         // 从生成树到 w 的距离，比从该边起点到 w 要远
+            edgeTo[w] = e;                                  // 将到 w 的边设置为该边
+            distTo[w] = distTo[v] + e.weighted();           // 将到 w 的距离设为从该边到 w 的距离
         }
-        
     }
     
     /**
@@ -49,8 +29,7 @@ public class SP {
      * @param G
      * @param v
      */
-    @SuppressWarnings("unused")
-    private void relax(EdgeWeightedDigraph G, int v) {
+    protected void relax(EdgeWeightedDigraph G, int v) {
         for (DirectedEdge e : G.adj(v)) {
             int w = e.to();
             if (distTo[w] > distTo[v] + e.weighted()) {
@@ -59,6 +38,24 @@ public class SP {
             }
         }
     }
-    
+
+    public double distTo(int v) {
+        return distTo[v];
+    }
+
+    public boolean hasPathTo(int v) {
+        return distTo[v] < Double.POSITIVE_INFINITY;
+    }
+
+    public Stack<DirectedEdge> pathTo(int v) {
+        if (!hasPathTo(v)) return null;
+        
+        Stack<DirectedEdge> path = new Stack<DirectedEdge>();
+        for (DirectedEdge e = edgeTo[v]; e !=null; e = edgeTo[e.from()])
+            path.push(e);
+        
+        return path;
+    }
+
     
 }

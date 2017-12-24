@@ -3,7 +3,6 @@ package com.ray.graph.gwd;
 import java.util.Stack;
 
 import com.ray.graph.gd.TopoLogical;
-import com.ray.utils.collections.RaysStack;
 
 /**
  * 无环加权有向图最短路径搜索方法<br>
@@ -56,11 +55,11 @@ public class AcycliSP {
         return distTo[v] < Double.POSITIVE_INFINITY;
     }
     
-    RaysStack<DirectedEdge> pathTo(int v) {
+    Stack<DirectedEdge> pathTo(int v) {
         if (!hasPathTo(v))
             return null;
 
-        RaysStack<DirectedEdge> path = new RaysStack<DirectedEdge>();
+        Stack<DirectedEdge> path = new Stack<DirectedEdge>();
         for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()])
             path.push(e);
 

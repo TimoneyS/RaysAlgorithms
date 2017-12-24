@@ -1,10 +1,9 @@
 package com.ray.graph.gwd;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 import com.ray.utils.Out;
-import com.ray.utils.collections.RaysStack;
-import com.ray.utils.collections.Stack;
 
 /**
  * 平行任务调度算法
@@ -13,7 +12,7 @@ import com.ray.utils.collections.Stack;
  */
 public class CPM {
     
-    private RaysStack<DirectedEdge> path;
+    private Stack<DirectedEdge> path;
     
     public CPM(Scanner in) {
         int N = in.nextInt();

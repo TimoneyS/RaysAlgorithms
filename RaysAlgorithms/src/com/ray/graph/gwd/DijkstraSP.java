@@ -1,8 +1,6 @@
 package com.ray.graph.gwd;
 
 import com.ray.utils.collections.IndexMinPQ;
-import com.ray.utils.collections.RaysStack;
-import com.ray.utils.collections.Stack;
 
 /**
  * DijkstraÀ„∑®<br/>
@@ -17,10 +15,8 @@ import com.ray.utils.collections.Stack;
  * @author rays1
  *
  */
-public class DijkstraSP {
+public class DijkstraSP extends SP {
 
-    private DirectedEdge[]      edgeTo;
-    private double[]            distTo;
     private IndexMinPQ<Double>  pq;
 
     public DijkstraSP(EdgeWeightedDigraph G, int S) {
@@ -53,25 +49,7 @@ public class DijkstraSP {
             }
             
         }
-    }
-
-    double distTo(int v) {
-        return distTo[v];
-    }
-
-    boolean hasPathTo(int v) {
-        return distTo[v] < Double.POSITIVE_INFINITY;
-    }
-
-    Stack<DirectedEdge> pathTo(int v) {
-        if (!hasPathTo(v))
-            return null;
-
-        Stack<DirectedEdge> path = new RaysStack<DirectedEdge>();
-        for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()])
-            path.push(e);
-
-        return path;
+        
     }
 
 }

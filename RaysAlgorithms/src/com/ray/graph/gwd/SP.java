@@ -9,7 +9,13 @@ import java.util.Stack;
  */
 public abstract class SP {
 
+    /**
+     * 保存最短路径到顶点的边
+     */
     protected DirectedEdge[]    edgeTo;
+    /**
+     * 从起点到该顶顶点的距离
+     */
     protected double[]          distTo;
     
     /**

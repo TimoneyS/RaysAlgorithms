@@ -68,7 +68,7 @@ public class TestDigraph {
 	    int s = 0;
 	    int e = 7;
 	    
-	    DiDFP dfp = new DiDFP(G, s);
+	    DiDeepthFirstPath dfp = new DiDeepthFirstPath(G, s);
 	    
 	    LinkedList<Integer> list = dfp.pathTo(e);
 	    

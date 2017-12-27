@@ -1,7 +1,11 @@
-package com.ray.graph.gw;
+package com.ray.graph.gd;
 
 import java.util.Scanner;
 
+import com.ray.graph.gw.Edge;
+import com.ray.graph.gw.EdgeWeightedGraph;
+import com.ray.graph.gw.LazyPrimMinST;
+import com.ray.graph.gw.PrimMinST;
 import com.ray.utils.In;
 import com.ray.utils.Out;
 

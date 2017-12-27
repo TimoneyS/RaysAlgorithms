@@ -3,6 +3,7 @@ package com.ray.graph.g;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Stack;
 
 import com.ray.graph.common.Paths;
 import com.ray.utils.In;
@@ -16,7 +17,6 @@ import com.ray.utils.Out;
 public class TestGraph {
     
 	public static void main(String[] args) {
-	    // initGraph("com/ray/graph/graphTiny.txt");
 	    testBreadthFirstPaths();
 	}
 	
@@ -33,7 +33,7 @@ public class TestGraph {
 	    
 	    BreadthFirstPaths bfp = new BreadthFirstPaths(g.G(), g.index(s));
 	    
-	    LinkedList<Integer> l = bfp.pathTo(g.index(e));
+	    Stack<Integer> l = bfp.pathTo(g.index(e));
 	    
 	    while (!l.isEmpty()) {
 	        Out.pt(g.name(l.pop()) + " ");
@@ -88,7 +88,7 @@ public class TestGraph {
             if (s.hasPathTo(i)) {
                 Out.pt("0 -> " + i + " : ");
                 
-                LinkedList<Integer> st = s.pathTo(i);
+                Stack<Integer> st = s.pathTo(i);
                 while (!st.isEmpty())
                     Out.pt(st.pop() + " ");
                 Out.p("");
@@ -97,7 +97,7 @@ public class TestGraph {
     }
     
     private static Graph initGraph(String fileName) {
-        Scanner in = In.getClassPathScanner(fileName);
+        Scanner in = In.getClassPathScanner(TestGraph.class ,fileName);
         Graph G = new Graph(in);
         Out.p(G);
         return G;

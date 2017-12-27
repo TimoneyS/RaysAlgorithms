@@ -1,4 +1,4 @@
-package com.ray.graph.gd;
+package com.ray.graph.gw;
 
 import java.util.Scanner;
 

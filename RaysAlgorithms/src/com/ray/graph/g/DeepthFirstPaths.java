@@ -1,6 +1,6 @@
 package com.ray.graph.g;
 
-import java.util.LinkedList;
+import java.util.Stack;
 
 import com.ray.graph.common.Paths;
 
@@ -58,16 +58,16 @@ public class DeepthFirstPaths implements Paths {
      * @param v
      * @return
      */
-    public LinkedList<Integer> pathTo(int v) {
+    public Stack<Integer> pathTo(int v) {
         if (!hasPathTo(v))
             return null;
 
-        LinkedList<Integer> path = new LinkedList<Integer>();
+        Stack<Integer> stack = new Stack<Integer>();
         for (int x = v; x != s; x = edgeTo[x]) {
-            path.push(x);
+            stack.push(x);
         }
-        path.push(s);
-        return path;
+        stack.push(s);
+        return stack;
     }
 
 }

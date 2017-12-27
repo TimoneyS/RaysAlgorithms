@@ -1,7 +1,6 @@
 package com.ray.graph.g;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -17,17 +16,17 @@ import com.ray.utils.Out;
 public class TestGraph {
     
 	public static void main(String[] args) {
-	    testBreadthFirstPaths();
+	    testSymbolGraphBFS();
 	}
 	
 	/**
 	 * ≤‚ ‘∑˚∫≈Õºπ„∂»”≈œ»À—À˜
 	 */
-	public static void testSGBFS() {
+	public static void testSymbolGraphBFS() {
 	    String s = "–°∫Ï";
 	    String e = "–°ª®";
 	    
-	    String res = "src/com/ray/graph/graphSymbol.txt";
+	    String res = "test/com/ray/graph/g/graphSymbol.txt";
         String deli = " ";
         SymbolGraph g = new SymbolGraph( res, deli);
 	    
@@ -38,16 +37,6 @@ public class TestGraph {
 	    while (!l.isEmpty()) {
 	        Out.pt(g.name(l.pop()) + " ");
 	    }
-	}
-	
-	/**
-	 * ≤‚ ‘∑˚∫≈Õº
-	 */
-	public static void testSymbolGraph() {
-	    String res = "src/com/ray/graph/graphSymbol.txt";
-	    String deli = " ";
-	    SymbolGraph g = new SymbolGraph( res, deli);
-	    Out.p(g.G());
 	}
 	
 	/**

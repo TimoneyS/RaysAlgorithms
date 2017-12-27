@@ -1,6 +1,7 @@
 package com.ray.graph.common;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * ËÑË÷Â·¾¶API
@@ -21,6 +22,6 @@ public interface Paths {
 	 * @param v
 	 * @return
 	 */
-	public LinkedList<Integer> pathTo(int v);
+	public Stack<Integer> pathTo(int v);
 	
 }

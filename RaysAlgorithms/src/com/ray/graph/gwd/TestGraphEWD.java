@@ -5,6 +5,7 @@ import java.util.Stack;
 
 import com.ray.utils.In;
 import com.ray.utils.Out;
+import com.ray.utils.Timer;
 /**
  * 测试无向图
  * @author rays1
@@ -13,7 +14,7 @@ import com.ray.utils.Out;
 public class TestGraphEWD {
     
     public static void main(String[] args) {
-        testBellmanFord();
+        testDijkstraSP();
     }
     
     /**
@@ -64,7 +65,7 @@ public class TestGraphEWD {
      * Dijkstra 算法 最短路径
      */
     public static void testDijkstraSP() {
-        EdgeWeightedDigraph G = getDigraph("tinyEWD.txt");
+        EdgeWeightedDigraph G = getDigraph("mediumEWG.txt");
         int s = 0;
         DijkstraSP sp = new DijkstraSP(G, s);
         printSP(sp, G, s);

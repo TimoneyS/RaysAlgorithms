@@ -1,5 +1,8 @@
 package com.ray.graph.gwd;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 /**
  * BellmanFord算法<br/>
  * 在任意含有V个顶点的加权有向图中给定起点s，
@@ -11,7 +14,49 @@ package com.ray.graph.gwd;
  *
  */
 public class BellmanFordSP extends SP {
-
+    
+    private boolean[]       onQ;
+    private Queue<Integer>  queue;
+    
+    public BellmanFordSP(EdgeWeightedDigraph G, int s) {
+        
+        onQ  = new boolean[G.V()];
+        distTo = new double[G.V()];
+        edgeTo = new DirectedEdge[G.V()];
+        queue  = new ArrayDeque<Integer>(G.V());
+        
+        for (int i = 0; i < distTo.length; i++) {
+            distTo[i] = Double.POSITIVE_INFINITY;
+        }
+        
+        queue.add(s);
+        onQ[s] = true;
+        distTo[s] = 0;
+        
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            onQ[v] = false;
+            relax(G, v);
+        }
+        
+    }
+    
+    @Override
+    protected void relax(EdgeWeightedDigraph G, int v) {
+        for (DirectedEdge e : G.adj(v)) {
+            int w = e.to();
+            if (distTo[w] > distTo[v] + e.weighted()) {
+                distTo[w] = distTo[v] + e.weighted();
+                edgeTo[w] = e;
+                if (onQ[w] == false) {
+                    queue.add(w);
+                    onQ[w] = true;
+                }
+            }
+        }
+    }
+    
+    /*// 简单实现方式 需要 执行V * E 次，其中有许多无用的放松操作
     public BellmanFordSP(EdgeWeightedDigraph G, int s) {
         
         distTo = new double[G.V()];
@@ -34,5 +79,5 @@ public class BellmanFordSP extends SP {
         }
         
     }
-    
+    */
 }

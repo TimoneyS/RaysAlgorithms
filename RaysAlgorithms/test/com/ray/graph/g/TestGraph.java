@@ -16,16 +16,8 @@ import com.ray.utils.Out;
 public class TestGraph {
     
 	public static void main(String[] args) {
-	    initGraph("com/ray/graph/graphTiny.txt");
-//        testDeepFirstPaths();
-//        testBreadthFirstPaths();
-	    
-//	    initGraph("graphCC.txt");
-//	    testCC();
-	    
-//	    testSymbolGraph();
-	
-//	    testSGBFS();
+	    // initGraph("com/ray/graph/graphTiny.txt");
+	    testBreadthFirstPaths();
 	}
 	
 	/**
@@ -62,6 +54,8 @@ public class TestGraph {
 	 * 测试获取连通分量
 	 */
 	public static void testCC() {
+	    Graph G = initGraph("graphTiny.txt");
+	    
 	    CC cc = new CC(G);
 	    Out.p("cc done");
 	    Out.p(cc.getCount());
@@ -72,21 +66,24 @@ public class TestGraph {
      * 测试深度优先搜索
      */
     public static void testDeepFirstPaths() {
-        testPaths(new DeepthFirstPaths(G, 0));
+        Graph G = initGraph("graphTiny.txt");
+        testPaths(G, new DeepthFirstPaths(G, 0));
     }
     
     /**
      * 测试广度优先搜索
      */
     public static void testBreadthFirstPaths() {
-        testPaths(new BreadthFirstPaths(G, 0));
+        Graph G = initGraph("graphTiny.txt");
+        testPaths(G, new BreadthFirstPaths(G, 0));
     }
     
     /**
      * 通用方法
      * @param s
      */
-    public static void testPaths(Paths s) {
+    private static void testPaths(Graph G, Paths s) {
+        
         for (int i = 0; i < G.V(); i++) {
             if (s.hasPathTo(i)) {
                 Out.pt("0 -> " + i + " : ");
@@ -99,11 +96,11 @@ public class TestGraph {
         }
     }
     
-    public static void initGraph(String fileName) {
+    private static Graph initGraph(String fileName) {
         Scanner in = In.getClassPathScanner(fileName);
-        G = new Graph(in);
+        Graph G = new Graph(in);
         Out.p(G);
+        return G;
     }
-    private static Graph G;
     
 }

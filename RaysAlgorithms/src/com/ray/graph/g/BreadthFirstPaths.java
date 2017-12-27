@@ -25,12 +25,13 @@ public class BreadthFirstPaths implements Paths {
         edgeTo = new int[G.V()];
         queue = new LinkedList<Integer>();
         this.s = s;
+        queue.add(s);
+        marked[s] = true;
+        
         search(G, s);
     }
 
     public void search(Graph G, int s) {
-        queue.add(s);
-        marked[s] = true;
         while (!queue.isEmpty()) {
             int v = queue.poll();
             for (int w : G.adj(v)) {

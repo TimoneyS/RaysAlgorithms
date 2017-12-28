@@ -7,13 +7,13 @@ import java.util.LinkedList;
  * @author rays1
  *
  */
-public class DiDFP {
+public class DiDeepthFirstPath {
 
     private boolean[] marked; // 标记某个顶点是否已经被访问
     private int[]     edgeTo; // 存放至某点的一个邻接点
     private int       s;      // 起点
 
-    public DiDFP(Digraph G, int s) {
+    public DiDeepthFirstPath(Digraph G, int s) {
         marked = new boolean[G.V()];
         edgeTo = new int[G.V()];
         this.s = s;

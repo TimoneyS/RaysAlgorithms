@@ -1,6 +1,5 @@
-package com.ray.graph.common;
+package com.ray.graph.g;
 
-import java.util.LinkedList;
 import java.util.Stack;
 
 /**

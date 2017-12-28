@@ -14,7 +14,7 @@ import com.ray.utils.Out;
 public class TestDigraph {
     
 	public static void main(String[] args) {
-	    testDiDFOrder();
+	    testDiCycle();
 	}
 	
 	/**
@@ -77,7 +77,7 @@ public class TestDigraph {
 	}
 	
     public static Digraph getDigraph(String fileName) {
-        Scanner in = In.getProjectScanner("src/com/ray/graph/digraph/" + fileName);
+        Scanner in = In.getClassPathScanner(TestDigraph.class, fileName);
         Digraph G = new Digraph(in);
         Out.p(G);
         return G;

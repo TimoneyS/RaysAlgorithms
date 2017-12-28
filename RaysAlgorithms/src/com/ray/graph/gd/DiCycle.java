@@ -3,7 +3,7 @@ package com.ray.graph.gd;
 import java.util.Stack;
 
 /**
- * 监测有向图的环
+ * 检测有向图的环
  * @author rays1
  *
  */
@@ -33,7 +33,8 @@ public class DiCycle {
                 search(G, w);
             } else if (onStack[w]) {
                 cycle = new Stack<Integer>();
-                for (int i = v; i != w; i = pathTo[i]) cycle.push(i);
+                for (int i = v; i != w; i = pathTo[i])
+                    cycle.push(i);
                 cycle.push(w);
                 cycle.push(v);
             }

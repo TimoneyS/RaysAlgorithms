@@ -1,4 +1,4 @@
-package com.ray.search;
+package com.rays.algo.search;
 
 /**
  * 演示基于有序数组的二分搜索

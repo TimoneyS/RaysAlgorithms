@@ -1,4 +1,4 @@
-package com.ray.search;
+package com.rays.algo.search;
 
 /**
  * <b>链表实现的符号表，查找算法为顺序查找</b>

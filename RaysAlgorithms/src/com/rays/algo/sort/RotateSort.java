@@ -1,4 +1,4 @@
-package com.ray.sort;
+package com.rays.algo.sort;
 
 import static com.ray.utils.ArrayUtil.*;
 

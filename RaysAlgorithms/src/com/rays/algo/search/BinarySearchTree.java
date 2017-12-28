@@ -1,4 +1,4 @@
-package com.ray.search;
+package com.rays.algo.search;
 
 import static com.ray.utils.Out.*;
 

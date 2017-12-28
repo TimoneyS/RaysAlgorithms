@@ -1,4 +1,4 @@
-package com.ray.search;
+package com.rays.algo.search;
 
 /**
  * <p>Table是一种存储键值对的数据结构，可以根据键从中取出对应的值</p>

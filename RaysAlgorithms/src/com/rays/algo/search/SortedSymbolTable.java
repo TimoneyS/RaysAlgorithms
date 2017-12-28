@@ -1,4 +1,4 @@
-package com.ray.search;
+package com.rays.algo.search;
 
 public interface SortedSymbolTable <Key extends Comparable<Key>,Value> extends SymbolTable<Key, Value> {
 	Key min();

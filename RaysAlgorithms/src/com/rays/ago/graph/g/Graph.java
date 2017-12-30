@@ -135,7 +135,7 @@ public class Graph {
         return s;
     }
 	   
-    int V() { return V; }
+    public int V() { return V; }
     int E() { return E; }
 
 }

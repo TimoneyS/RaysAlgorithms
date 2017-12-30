@@ -1,4 +1,4 @@
-package com.ray.graph.gwd;
+package com.rays.algo.graph.gwd;
 
 import java.util.Scanner;
 import java.util.Stack;

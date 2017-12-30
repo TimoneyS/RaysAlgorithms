@@ -1,4 +1,4 @@
-package com.ray.graph.g;
+package com.rays.algo.graph.g;
 
 import java.util.Arrays;
 import java.util.Scanner;

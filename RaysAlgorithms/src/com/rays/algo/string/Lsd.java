@@ -19,7 +19,7 @@ public class Lsd {
         int w = keys[0].length();
         int R = 256;
         
-        for (int i = 0; i < w; i++) {
+        for (int i = w-1; i >= 0; i--) {
             int[] counts = new int[R+1];
             
             // 频率统计
@@ -34,7 +34,7 @@ public class Lsd {
             
             // 数据分类
             String[] aux = new String[N];
-            for (int j = 0; i < N; j++) {
+            for (int j = 0; j < N; j++) {
                 aux[counts[keys[j].charAt(i)]++] = keys[j];
             }
             
@@ -58,8 +58,9 @@ public class Lsd {
         
         String[] keys = list.toArray(new String[0]);
 Out.p(keys);        
-        new Lsd().sort(list.toArray(new String[0]));
-Out.p(keys);
+        new Lsd().sort(keys);
+        for (String s : keys)
+            Out.p(s);
     }
     
 }

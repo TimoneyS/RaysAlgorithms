@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 import com.ray.common.utils.In;
 import com.ray.common.utils.Out;
-import com.ray.graph.gw.Edge;
-import com.ray.graph.gw.EdgeWeightedGraph;
-import com.ray.graph.gw.LazyPrimMinST;
-import com.ray.graph.gw.PrimMinST;
+import com.rays.algo.graph.gw.Edge;
+import com.rays.algo.graph.gw.EdgeWeightedGraph;
+import com.rays.algo.graph.gw.LazyPrimMinST;
+import com.rays.algo.graph.gw.PrimMinST;
 
 /**
  * ≤‚ ‘ŒﬁœÚÕº

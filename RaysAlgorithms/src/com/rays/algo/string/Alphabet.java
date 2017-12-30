@@ -1,6 +1,6 @@
 package com.rays.algo.string;
 
-import com.ray.utils.Out;
+import com.ray.common.utils.Out;
 
 public class Alphabet {
     

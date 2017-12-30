@@ -1,6 +1,6 @@
 package com.rays.algo.sort;
 
-import static com.ray.utils.ArrayUtil.*;
+import static com.ray.common.utils.ArrayUtil.*;
 
 public class ShellSort {
 	

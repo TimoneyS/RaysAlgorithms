@@ -13,7 +13,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import com.ray.utils.In;
+import com.ray.common.utils.In;
 
 public class Run {
 	

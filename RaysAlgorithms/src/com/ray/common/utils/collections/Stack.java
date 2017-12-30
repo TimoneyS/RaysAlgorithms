@@ -1,4 +1,4 @@
-package com.ray.utils.collections;
+package com.ray.common.utils.collections;
 
 public interface Stack<T> {
     

@@ -1,6 +1,6 @@
 package com.ray.graph.gw;
 
-import com.ray.utils.collections.IndexMinPQ;
+import com.ray.common.utils.collections.IndexMinPQ;
 
 /**
  * PrimÀ„∑®

@@ -1,8 +1,8 @@
 package com.rays.algo.sort;
 
-import static com.ray.utils.ArrayUtil.*;
+import static com.ray.common.utils.ArrayUtil.*;
 
-import com.ray.utils.Timer;
+import com.ray.common.utils.Timer;
 
 /**
  * 什么是旋转数组？

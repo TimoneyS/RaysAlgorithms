@@ -3,8 +3,8 @@ package com.ray.graph.gd;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import com.ray.utils.In;
-import com.ray.utils.Out;
+import com.ray.common.utils.In;
+import com.ray.common.utils.Out;
 
 /**
  * ²âÊÔÓĞÏòÍ¼

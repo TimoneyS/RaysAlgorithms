@@ -1,8 +1,8 @@
 package com.ray.lintcode;
 
-import static com.ray.utils.TestUtil.*;
+import static com.ray.common.utils.TestUtil.*;
 
-import com.ray.utils.Out;
+import com.ray.common.utils.Out;
 
 /**
  * Given a non-empty array containing only positive integers,

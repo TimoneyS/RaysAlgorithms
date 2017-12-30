@@ -1,6 +1,6 @@
-package com.ray.utils.collections;
+package com.ray.common.utils.collections;
 
-import static com.ray.utils.ArrayUtil.*;
+import static com.ray.common.utils.ArrayUtil.*;
 
 /**
  * ¶þ²æ¶Ñ

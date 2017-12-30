@@ -2,7 +2,7 @@ package com.ray.graph.gd;
 
 import java.util.Stack;
 
-import com.ray.utils.Out;
+import com.ray.common.utils.Out;
 
 /**
  * 搜索有向图的强连通分量<br/>

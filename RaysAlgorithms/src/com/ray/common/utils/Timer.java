@@ -1,6 +1,6 @@
-package com.ray.utils;
+package com.ray.common.utils;
 
-import static com.ray.utils.Out.*;
+import static com.ray.common.utils.Out.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

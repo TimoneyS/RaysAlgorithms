@@ -1,6 +1,6 @@
 package com.ray.graph.gwd;
 
-import com.ray.utils.collections.IndexMinPQ;
+import com.ray.common.utils.collections.IndexMinPQ;
 
 /**
  * DijkstraÀ„∑®<br/>

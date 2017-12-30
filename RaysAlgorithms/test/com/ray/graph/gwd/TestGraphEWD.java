@@ -3,9 +3,9 @@ package com.ray.graph.gwd;
 import java.util.Scanner;
 import java.util.Stack;
 
-import com.ray.utils.In;
-import com.ray.utils.Out;
-import com.ray.utils.Timer;
+import com.ray.common.utils.In;
+import com.ray.common.utils.Out;
+import com.ray.common.utils.Timer;
 /**
  * ≤‚ ‘ŒﬁœÚÕº
  * @author rays1

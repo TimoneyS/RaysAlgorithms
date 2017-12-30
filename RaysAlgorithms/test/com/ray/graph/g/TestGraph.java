@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
 
-import com.ray.utils.In;
-import com.ray.utils.Out;
+import com.ray.common.utils.In;
+import com.ray.common.utils.Out;
 
 /**
  * ²âÊÔÎŞÏòÍ¼

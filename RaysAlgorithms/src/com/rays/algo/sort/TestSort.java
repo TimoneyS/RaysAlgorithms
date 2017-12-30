@@ -1,10 +1,10 @@
 package com.rays.algo.sort;
 
-import static com.ray.utils.ArrayUtil.checkSorted;
-import static com.ray.utils.ArrayUtil.intArr;
-import static com.ray.utils.ArrayUtil.shuffle;
+import static com.ray.common.utils.ArrayUtil.checkSorted;
+import static com.ray.common.utils.ArrayUtil.intArr;
+import static com.ray.common.utils.ArrayUtil.shuffle;
 
-import com.ray.utils.Timer;
+import com.ray.common.utils.Timer;
 
 public class TestSort {
 	

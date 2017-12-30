@@ -1,6 +1,6 @@
 package com.ray.graph.gw;
 
-import com.ray.utils.collections.MinPQ;
+import com.ray.common.utils.collections.MinPQ;
 
 /**
  * ÑÓ³ÙÉ¾³ý·ÏÆúµÄ±ßµÄPrimËã·¨

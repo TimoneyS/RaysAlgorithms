@@ -1,6 +1,6 @@
 package com.rays.algo.sort;
 
-import com.ray.utils.collections.BinaryHeap;
+import com.ray.common.utils.collections.BinaryHeap;
 
 @SuppressWarnings({ "rawtypes", "unchecked"})
 public class HeapSort {

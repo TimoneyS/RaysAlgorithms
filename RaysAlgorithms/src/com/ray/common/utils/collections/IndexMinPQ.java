@@ -1,4 +1,4 @@
-package com.ray.utils.collections;
+package com.ray.common.utils.collections;
 
 /******************************************************************************
  *  Compilation:  javac IndexMinPQ.java
@@ -12,7 +12,7 @@ package com.ray.utils.collections;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import com.ray.utils.Out;
+import com.ray.common.utils.Out;
 
 /**
  *  The {@code IndexMinPQ} class represents an indexed priority queue of generic keys.

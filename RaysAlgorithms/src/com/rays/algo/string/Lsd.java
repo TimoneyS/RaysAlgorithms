@@ -8,18 +8,23 @@ import com.ray.common.utils.In;
 import com.ray.common.utils.Out;
 
 /**
- * 低位优先字符串排序
+ * 低位优先字符串排序<br>
+ * 算法的核心在于键索引计数的排序是稳定的<br>
+ * 即在排序过程中，键值相等的元素的相对位置是不变的。
  * @author rays1
  *
  */
 public class Lsd {
     
     public void sort(String[] keys) {
+        
         int N = keys.length;
         int w = keys[0].length();
         int R = 256;
         
+        // 从定位到高位共循环w轮，每轮按照指定的位对所有字符串排序。
         for (int i = w-1; i >= 0; i--) {
+        
             int[] counts = new int[R+1];
             
             // 频率统计

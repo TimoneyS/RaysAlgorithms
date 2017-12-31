@@ -8,6 +8,7 @@ import com.ray.common.utils.In;
 import com.ray.common.utils.Out;
 
 /**
+ * ¸ßÎ»ÓÅÏÈµÄ×Ö·û´®ÅÅÐò
  * @author rays1
  *
  */
@@ -22,46 +23,39 @@ public class MSD {
      */
     public void sort(String[] a) {
         aux = new String[a.length];
-        keyIndexSord(a, 0, 0, a.length-1);
+        keyIndexSord(a, 0, a.length-1, 0);
     }
     
     /**
      * @param a
-     * @param l
-     * @param s
-     * @param e
+     * @param d
+     * @param lo
+     * @param hi
      */
-    public void keyIndexSord(String[] a, int l, int s, int e) {
-        if (s >= e) return;
+    public void keyIndexSord(String[] a, int lo, int hi, int d) {
+        if (lo >= hi) return;
         
-        int R = 10;
+        int R = 255;
         int[] counts = new int[R + 2];
         
         // ¼üË÷ÒýÅÅÐò
-        for (int i = s; i <= e; i++) {
-            counts[getChar(a[i], l) + 1] ++;
+        for (int i = lo; i <= hi; i++) {
+            counts[getChar(a[i], d) + 2] ++;
         }
-Out.p(counts);
         for (int i = 0; i < R+1; i++) {
             counts[i+1] += counts[i];
         }
-Out.p(counts);
-        for (int i = s; i <= e; i++) {
-            aux[counts[getChar(a[i], l) + 1]++] = a[i];
+        for (int i = lo; i <= hi; i++) {
+            int charIndex = getChar(a[i], d);
+            aux[counts[charIndex + 1]++] = a[i];
         }
-        for (int i = s; i <= e; i++) {
-            a[i] = aux[i-s];
+        for (int i = lo; i <= hi; i++) {
+            a[i] = aux[i-lo];
         }
         
-        // °´ÕÕÇÐµãÅÅÐò
-        int temp = getChar(a[s], l);
-        int s1 = s;
-        for (int i = s; i <= e; i++) {
-            if (temp != getChar(a[i], l)) {
-                keyIndexSord(a, l+1, s1, i-1);
-                temp = getChar(a[i], l);
-                s1 = i;
-            }
+        // °´ÕÕÊ××ÖÄ¸µÝ¹é
+        for (int i = 0; i < R; i++) {
+            keyIndexSord(a, lo+counts[i], lo+counts[i+1]-1, d+1);
         }
         
     }
@@ -72,7 +66,7 @@ Out.p(counts);
      * @return
      */
     public int getChar(String s, int i) {
-        return (s.length() >i) ? s.charAt(i)-48 : -1; 
+        return (s.length() > i) ? s.charAt(i) : -1; 
     }
     
     public static void main(String[] args) {
@@ -83,9 +77,10 @@ Out.p(counts);
         }
         
         String[] keys = list.toArray(new String[0]);
-Out.p(keys);        
+Out.p(keys);
         new MSD().sort(keys);
-for (String s : keys) Out.p(s);        
+for (String s : keys) Out.p(s);
+
     }
     
 }

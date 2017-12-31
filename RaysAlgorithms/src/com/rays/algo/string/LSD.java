@@ -64,8 +64,7 @@ public class LSD {
         String[] keys = list.toArray(new String[0]);
 Out.p(keys);        
         new LSD().sort(keys);
-        for (String s : keys)
-            Out.p(s);
+        for (String s : keys) Out.p(s);
     }
     
 }

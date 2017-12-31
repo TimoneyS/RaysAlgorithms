@@ -14,7 +14,7 @@ import com.ray.common.utils.Out;
  * @author rays1
  *
  */
-public class Lsd {
+public class LSD {
     
     public void sort(String[] keys) {
         
@@ -54,7 +54,7 @@ public class Lsd {
     
     public static void main(String[] args) {
         
-        Scanner in = In.getClassPathScanner(Lsd.class, "lsd.txt");
+        Scanner in = In.getClassPathScanner(LSD.class, "lsd.txt");
         
         List<String> list = new LinkedList<String>();
         while (in.hasNext()) {
@@ -63,7 +63,7 @@ public class Lsd {
         
         String[] keys = list.toArray(new String[0]);
 Out.p(keys);        
-        new Lsd().sort(keys);
+        new LSD().sort(keys);
         for (String s : keys)
             Out.p(s);
     }

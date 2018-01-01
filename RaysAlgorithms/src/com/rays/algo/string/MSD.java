@@ -14,8 +14,19 @@ import com.ray.common.utils.Out;
  */
 public class MSD {
     
-    String[] aux;
-    
+    private static int      R = 256; // 基数
+    private static String[] aux;     // 缓存数组
+
+    /**
+     * 封装获取字符串的字符方法，字符串尾部返回-1
+     * @param s
+     * @param i
+     * @return
+     */
+    private static int getChar(String s, int i) {
+        return (s.length() > i) ? s.charAt(i) : -1; 
+    }
+
     /**
      * @param a
      * @param s
@@ -35,7 +46,6 @@ public class MSD {
     public void keyIndexSord(String[] a, int lo, int hi, int d) {
         if (lo >= hi) return;
         
-        int R = 255;
         int[] counts = new int[R + 2];
         
         // 键索引排序
@@ -58,15 +68,6 @@ public class MSD {
             keyIndexSord(a, lo+counts[i], lo+counts[i+1]-1, d+1);
         }
         
-    }
-    
-    /**
-     * @param s
-     * @param i
-     * @return
-     */
-    public int getChar(String s, int i) {
-        return (s.length() > i) ? s.charAt(i) : -1; 
     }
     
     public static void main(String[] args) {

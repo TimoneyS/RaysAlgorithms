@@ -1,6 +1,6 @@
 package com.ray.common.utils;
 
-public class TestUtil {
+public class Assert {
 	
 	public static void assertEqual(Object a, Object b) {
 		if(a.equals(b)) Out.pf("`%s` equals `%s`\n", a, b);

@@ -1,6 +1,6 @@
-package com.ray.reorder;
+package com.ray.fun.reorder;
 
-import static com.ray.reorder.Board.DIR;
+import static com.ray.fun.reorder.Board.DIR;
 
 import java.awt.Color;
 import java.awt.Font;

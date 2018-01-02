@@ -1,4 +1,4 @@
-package com.ray.reorder;
+package com.ray.fun.reorder;
 
 /** 
  * 放置核心逻辑的类

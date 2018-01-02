@@ -1,4 +1,4 @@
-package com.ray.reorder;
+package com.ray.fun.reorder;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

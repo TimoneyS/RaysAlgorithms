@@ -1,11 +1,11 @@
-package com.ray.astar;
+package com.ray.fun.astar;
+
+import static com.ray.fun.astar.CellType.*;
 
 import java.util.*;
 
 import com.ray.common.utils.In;
 import com.ray.common.utils.Out;
-
-import static com.ray.astar.CellType.*;
 
 /**
  * A * 算法的搜索方法

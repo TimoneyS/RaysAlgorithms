@@ -5,14 +5,19 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Deque;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import com.ray.common.utils.In;
+
 @SuppressWarnings("serial")
 public class AStarContentPanel extends JPanel {
 	
-	private Cell[][] map;
+    private Map map;
+    private Seacher seacher;
+	private Cell[][] cells;
 	private int xNum, yNum;
 	
 	public AStarContentPanel() {
@@ -30,7 +35,7 @@ public class AStarContentPanel extends JPanel {
 				int x = e.getX()/Global.xPix;
 				int y = e.getY()/Global.yPix;
 				//StdOut.pf("%d %4s Click %2s %2s \n", new Date().getTime(), count++, x, y);
-				map[y][x].changeState();
+				cells[y][x].changeState();
 			}
 			
 		});
@@ -46,19 +51,32 @@ public class AStarContentPanel extends JPanel {
 		g.drawString(cell.inspect(), cell.colNum*w+w/4, cell.rowNum*h + h/2);
 	}
 	
-	public void registerMap (Cell[][] map) {
-		this.map = map;
-		yNum = map.length;
-		xNum  = map[0].length;
-		
-		Global.xPix = getWidth()/xNum;
-		Global.yPix = getHeight()/yNum;
-		
+	public void generateMap(String path) {
+	    map = new Map(In.getProjectScanner(path));
+	    
+        this.cells = map.cells();
+        yNum = cells.length;
+        xNum = cells[0].length;
+
+        Global.xPix = getWidth() / xNum;
+        Global.yPix = getHeight() / yNum;
+	}
+	
+	public void startSearch(int sRow, int sCol, int eRow, int eCol) {
+	    seacher = new Seacher(map, sRow, sCol, eRow, eCol);
+	}
+	
+	public Deque<Cell> getPath(int eRow, int eCol) {
+	    return seacher.getPath(map, eRow, eCol);
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if (map!=null) for (Cell[] row : map) for (Cell cell : row) paintCell(cell, g);
+		if (cells==null) return;
+		
+	    for (Cell[] row : cells)
+	        for (Cell cell : row)
+	            paintCell(cell, g);
 	}
 }

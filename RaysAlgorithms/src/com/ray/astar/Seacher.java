@@ -17,7 +17,6 @@ public class Seacher {
 	// private List<Cell> 	open;
 	private PriorityQueue<Cell> open;
 	private int[][] distTo;
-	private int endRow, endCol;
 	
 	public Seacher(Map m, int startRow, int startCol, int endRow, int endCol) {
 	    //open = new LinkedList<Cell>();
@@ -30,8 +29,6 @@ public class Seacher {
             }
         }
 	    
-	    this.endRow     = endRow;
-	    this.endCol     = endCol;
 	    search( m, startRow, startCol, endRow, endCol);
     }
 	
@@ -68,14 +65,13 @@ public class Seacher {
 
     }
 	
-	public Deque<Cell> getPath(Map map) {
+	public Deque<Cell> getPath(Map map, int eRow, int eCol) {
         Deque<Cell> stack = new LinkedList<Cell>();
-    	Cell c = map.getCell(endRow, endCol);
+    	Cell c = map.getCell(eRow, eCol);
     	while(c != null) {
     		stack.push(c);
     		c = c.parent;
     	}
-    	
     	return stack;
     }
 
@@ -83,7 +79,7 @@ public class Seacher {
         Map m = new Map(In.getProjectScanner(Global.MAP_PATH));
         Seacher s = new Seacher(m, 1, 1, 9, 9);
         
-       for( Cell c : s.getPath(m)) {
+       for( Cell c : s.getPath(m, 9, 9)) {
            Out.pf("[%d,%d] -> ", c.rowNum,c.colNum);
        }
     }

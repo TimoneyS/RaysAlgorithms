@@ -1,4 +1,6 @@
-package com.ray.reorder_v2;
+package com.ray.reorder;
+
+import static com.ray.reorder.Board.DIR;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,8 +10,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
-
-import static com.ray.reorder_v2.Board.DIR;
 
 /**
  * 主要负责处理界面的类

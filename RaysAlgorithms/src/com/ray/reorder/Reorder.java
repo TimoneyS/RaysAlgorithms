@@ -1,4 +1,4 @@
-package com.ray.reorder_v1;
+package com.ray.reorder;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -7,12 +7,12 @@ import javax.swing.JFrame;
 
 public class Reorder {
 	
-	JFrame frame;
-	BoardPanel panel;
+	private JFrame frame;
+	private Panel panel;
 	
 	public Reorder() {
-		frame = new JFrame("Fake Draw");
-		panel = new BoardPanel();
+		frame = new JFrame("ƴͼ");
+		panel = new Panel();
 		panel.setPreferredSize(new Dimension(Config.WIDTH, Config.HEIGTH));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(panel, BorderLayout.CENTER);
@@ -21,7 +21,6 @@ public class Reorder {
 		
 		frame.addKeyListener(panel.getKeyListener());
 	}
-	
 	
 	public static void main(String[] args) {
 		new Reorder();

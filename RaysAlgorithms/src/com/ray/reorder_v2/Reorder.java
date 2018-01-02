@@ -22,7 +22,6 @@ public class Reorder {
 		frame.addKeyListener(panel.getKeyListener());
 	}
 	
-	
 	public static void main(String[] args) {
 		new Reorder();
 	}

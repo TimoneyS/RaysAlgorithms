@@ -18,7 +18,6 @@ public class Global {
 	public static int yPix = 0;
 	
 	public static String MAP_PATH = "src/com/ray/astar/map.txt";
-	public static boolean IS_AUTO = true;		// 自动/手动搜索，手动情况下要主动点击下一步来执行下一步的搜索
 	
 	public static Map<CellType, Color> COLOR_MAP;
 	

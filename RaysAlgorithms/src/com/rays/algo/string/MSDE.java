@@ -3,6 +3,8 @@ package com.rays.algo.string;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.ray.common.utils.In;
 import com.ray.common.utils.Out;
@@ -12,10 +14,23 @@ import com.ray.common.utils.Out;
  * @author rays1
  *
  */
-public class MSD {
+public class MSDE {
+    
+    static class Element<T> {
+        String key;
+        T value;
+        public Element(String key, T value) {
+            this.key = key;
+            this.value = value;
+        }
+        @Override
+        public String toString() {
+            return String.format("(%s,%s)", key, value);
+        }
+    }
     
     private static int      R = 256; // 基数
-    private static String[] aux;     // 缓存数组
+    private static Element<?>[] aux;     // 缓存数组
 
     /**
      * 封装获取字符串的字符方法，字符串尾部返回-1
@@ -23,8 +38,8 @@ public class MSD {
      * @param i
      * @return
      */
-    private static int getChar(String s, int i) {
-        return (s.length() > i) ? s.charAt(i) : -1; 
+    private static int getChar(Element<?> s, int i) {
+        return (s.key.length() > i) ? s.key.charAt(i) : -1; 
     }
 
     /**
@@ -32,8 +47,8 @@ public class MSD {
      * @param s
      * @param e
      */
-    public void sort(String[] a) {
-        aux = new String[a.length];
+    public void sort(Element<?>[] a) {
+        aux = new Element[a.length];
         keyIndexSord(a, 0, a.length-1, 0);
     }
     
@@ -43,7 +58,7 @@ public class MSD {
      * @param lo
      * @param hi
      */
-    public void keyIndexSord(String[] a, int lo, int hi, int d) {
+    public void keyIndexSord(Element<?>[] a, int lo, int hi, int d) {
         if (lo >= hi) return;
         
         int[] counts = new int[R + 2];
@@ -71,16 +86,27 @@ public class MSD {
     }
     
     public static void main(String[] args) {
-        Scanner in = In.getClassPathScanner(MSD.class, "msd.txt");
-        List<String> list = new LinkedList<String>();
+        Pattern ptn = Pattern.compile(".+infoType=\"(\\d+)\".+name=\"(\\w+)\".+");
+        
+        Scanner in = In.getClassPathScanner(MSDE.class, "msde.txt");
+        List<Element<String>> list = new LinkedList<Element<String>>();
         while (in.hasNext()) {
-            list.add(in.next());
+            String line = in.nextLine();
+            
+            if (line.matches("\\s*<class infoType.+")) {
+                Matcher m = ptn.matcher(line);
+                m.matches();
+                Element<String> el = new Element<String>(m.group(2) + m.group(1), line);
+                list.add(el);
+            }
+            
+            // list.add(in.next());
         }
         
-        String[] keys = list.toArray(new String[0]);
+        Element<?>[] keys = list.toArray(new Element[0]);
 Out.p(keys);
-        new MSD().sort(keys);
-for (String s : keys) Out.p(s);
+        new MSDE().sort(keys);
+for (Element<?> s : keys) Out.p(s.value);
 
     }
     

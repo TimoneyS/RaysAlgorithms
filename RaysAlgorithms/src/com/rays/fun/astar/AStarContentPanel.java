@@ -1,4 +1,4 @@
-package com.ray.fun.astar;
+package com.rays.fun.astar;
 
 import java.awt.Color;
 import java.awt.Dimension;

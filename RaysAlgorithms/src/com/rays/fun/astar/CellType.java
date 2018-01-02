@@ -1,4 +1,4 @@
-package com.ray.fun.astar;
+package com.rays.fun.astar;
 
 public enum CellType { 
 	UNCHECK,

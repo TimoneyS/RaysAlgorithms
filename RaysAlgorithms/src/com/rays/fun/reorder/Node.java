@@ -1,4 +1,4 @@
-package com.ray.fun.reorder;
+package com.rays.fun.reorder;
 
 public class Node {
 	int[] numbers;

@@ -1,12 +1,12 @@
-package com.ray.fun.astar;
+package com.rays.fun.astar;
 
-import static com.ray.fun.astar.CellType.BLOCK;
-import static com.ray.fun.astar.CellType.CHOOSE;
-import static com.ray.fun.astar.CellType.CLOSE;
-import static com.ray.fun.astar.CellType.CURRENT_MIN;
-import static com.ray.fun.astar.CellType.OPEN;
-import static com.ray.fun.astar.CellType.TRAP;
-import static com.ray.fun.astar.CellType.UNCHECK;
+import static com.rays.fun.astar.CellType.BLOCK;
+import static com.rays.fun.astar.CellType.CHOOSE;
+import static com.rays.fun.astar.CellType.CLOSE;
+import static com.rays.fun.astar.CellType.CURRENT_MIN;
+import static com.rays.fun.astar.CellType.OPEN;
+import static com.rays.fun.astar.CellType.TRAP;
+import static com.rays.fun.astar.CellType.UNCHECK;
 
 import java.awt.Color;
 import java.util.HashMap;

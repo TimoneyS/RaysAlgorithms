@@ -1,4 +1,4 @@
-package com.ray.fun.astar;
+package com.rays.fun.astar;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;

@@ -1,6 +1,6 @@
-package com.ray.fun.astar;
+package com.rays.fun.astar;
 
-import static com.ray.fun.astar.CellType.*;
+import static com.rays.fun.astar.CellType.*;
 
 import java.util.*;
 

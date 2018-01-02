@@ -1,4 +1,4 @@
-package com.ray.fun.astar;
+package com.rays.fun.astar;
 
 import java.util.Arrays;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package com.rays.algo.string;
+package com.rays.algo.string.sort;
 
 import java.util.LinkedList;
 import java.util.List;

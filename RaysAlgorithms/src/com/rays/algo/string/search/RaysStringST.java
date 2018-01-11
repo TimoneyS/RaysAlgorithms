@@ -36,7 +36,7 @@ public class RaysStringST<Value> implements StringST<Value> {
     @Override
     public void put(String key, Value val) {
         // root = put(root, key, val, 0);
-        put(key, val, 0);
+        put(root, key, val);
     }
     
     /**
@@ -45,29 +45,24 @@ public class RaysStringST<Value> implements StringST<Value> {
      * @param val
      * @param dummyTag
      */
-    private void put(String key, Value val, int dummyTag) {
-        Node<Value> node = root;
-        
-        for (int j = 0; j < key.length(); j++) {
-            char c = key.charAt(j);
-            node.next[c] = put(node.next[c], key, val, j+1 ,0);
+    private void put(Node<Value> node, String key, Value val) {
+        for (int d = 0; d < key.length(); d++) {
+            char c = key.charAt(d);
+            
+            if ( (d+1) == key.length()) {
+                node.value = val;
+            }
+            
+            node.next[c] = put(node.next[c], key, val, d+1 ,0);
             node = node.next[c];
+            
         }
         
     }
     
-    /**
-     * ¸¨Öú·½·¨
-     * @param node
-     * @param key
-     * @param val
-     * @param j
-     * @param dummyTag
-     * @return
-     */
-    private Node<Value> put(Node<Value> node, String key, Value val, int j, int dummyTag) {
+    private Node<Value> put(Node<Value> node, String key, Value val, int d, int dummyTag) {
         if (node == null) node = new Node<Value>();
-        if ( (j == key.length()) && node.value == null) {
+        if ( (d == key.length()) && node.value == null) {
             node.value = val;
         }
         return node;
@@ -83,6 +78,7 @@ public class RaysStringST<Value> implements StringST<Value> {
      * @param d
      * @return
      */
+    @SuppressWarnings("unused")
     private Node<Value> put(Node<Value> node, String key, Value val, int d) {
         
         if (node == null ) node = new Node<Value>();

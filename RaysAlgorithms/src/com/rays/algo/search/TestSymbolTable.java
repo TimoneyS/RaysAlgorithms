@@ -12,16 +12,16 @@ public class TestSymbolTable {
 		Out.p(">Test " + st.getClass().getSimpleName());
 		Integer[] arr = intArr(size);
 		shuffle(arr);
-		
-		Timer.click();
+		Timer t = Timer.create();
+		t.click();
 		for(Integer i : arr) {
 			st.put(i, i*10);
 		}
-		Timer.click();
+		t.click();
 		for(Integer i = 0; i < size; i++) {
 			st.get(i);
 		}
-		Timer.stop();
+		t.stop();
 	}
 	
 	public static void main(String[] args) {

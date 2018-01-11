@@ -11,10 +11,11 @@ public class TestSort {
 	interface Case {public void run(Comparable<?>[] arr);}
 	
 	public static void runcase(Comparable<?>[] arr, Case t) {
+        Timer timer = Timer.create();
 		shuffle(arr);
-		Timer.click();
+		timer.click();
 		t.run(arr);
-		Timer.stop();
+		timer.stop();
 		checkSorted(arr);
 	}
 	

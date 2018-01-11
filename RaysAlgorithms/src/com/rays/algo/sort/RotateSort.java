@@ -46,14 +46,13 @@ public class RotateSort {
 	}
 	
 	public static void main(String[] args) {
-		int size = 20000000;
+		int size = 20000;
 		
 		Integer[] arr = intArrRotate(size, size/3);
-		
-		Timer.click();
+		Timer t = Timer.create();
+		t.click();
 		sortLargeSpace(arr);
-		Timer.click();
-		
+		t.stop();
 		checkSorted(arr);
 	}
 	

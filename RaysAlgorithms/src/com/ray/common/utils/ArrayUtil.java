@@ -8,14 +8,6 @@ import com.ray.common.utils.io.Out;
 public class ArrayUtil {
 	
 	/**
-	 * 检查数组是否已经排序
-	 * @param arr
-	 */
-	public static void checkSorted(Comparable[] arr) {
-		Out.pf("经检查，数组%s排序。\n", isSorted(arr) ? "已" : "未");
-	}
-	
-	/**
 	 * 获取 整形数组
 	 * @param size
 	 * @return
@@ -43,15 +35,40 @@ public class ArrayUtil {
 	}
 	
 	/**
+     * 检查数组是否已经排序
+     * @param arr
+     */
+    public static void checkSorted(Comparable[] arr) {
+    	Out.pf("经检查，数组%s排序。\n", isSorted(arr) ? "已" : "未");
+    }
+
+    /**
+     * 检查数组局部是否已经排序
+     * @param arr
+     */
+    public static void checkSorted(Comparable[] arr, int lo, int hi) {
+        Out.pf("经检查，数组%s排序。\n", isSorted(arr, lo, hi) ? "已" : "未");
+    }
+
+    /**
 	 * 检查数组是否已经排序
 	 * @param arr
 	 * @return
 	 */
 	public static boolean isSorted(Comparable[] arr){
-		for(int i = 1; i < arr.length; i ++)
-			if(arr[i-1].compareTo(arr[i]) > 0) return false;
-		return true;
+	    return isSorted(arr, 0, arr.length - 1);
 	}
+	
+    /**
+     * 检查数组局部是否已经排序
+     * @param arr
+     * @return
+     */
+    public static boolean isSorted(Comparable[] arr, int lo, int hi){
+        for(int i = lo; i < hi; i ++)
+            if(arr[i].compareTo(arr[i+1]) > 0) return false;
+        return true;
+    }
 	
 	/**
 	 * 比较数组元素

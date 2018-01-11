@@ -1,5 +1,8 @@
 package com.ray.common.utils;
 
+import com.ray.common.utils.io.Err;
+import com.ray.common.utils.io.Out;
+
 public class Assert {
 	
 	public static void assertEqual(Object a, Object b) {

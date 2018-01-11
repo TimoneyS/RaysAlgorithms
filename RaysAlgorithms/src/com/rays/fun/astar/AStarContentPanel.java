@@ -10,7 +10,7 @@ import java.util.Deque;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import com.ray.common.utils.In;
+import com.ray.common.utils.io.In;
 
 @SuppressWarnings("serial")
 public class AStarContentPanel extends JPanel {

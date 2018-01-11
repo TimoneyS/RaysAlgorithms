@@ -3,8 +3,8 @@ package com.rays.algo.search;
 import static com.ray.common.utils.ArrayUtil.intArr;
 import static com.ray.common.utils.ArrayUtil.shuffle;
 
-import com.ray.common.utils.Out;
 import com.ray.common.utils.Timer;
+import com.ray.common.utils.io.Out;
 
 public class TestSymbolTable {
 	

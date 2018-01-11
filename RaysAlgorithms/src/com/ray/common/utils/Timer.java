@@ -3,6 +3,8 @@ package com.ray.common.utils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.ray.common.utils.io.Out;
+
 /**
  * ¼ÆÊ±Æ÷Àà
  * @author Ray

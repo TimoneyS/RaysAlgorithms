@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.ray.common.utils.In;
-import com.ray.common.utils.Out;
+import com.ray.common.utils.io.In;
+import com.ray.common.utils.io.Out;
 
 /**
  * ·ûºÅÍ¼

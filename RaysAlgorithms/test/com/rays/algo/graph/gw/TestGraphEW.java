@@ -2,8 +2,8 @@ package com.rays.algo.graph.gw;
 
 import java.util.Scanner;
 
-import com.ray.common.utils.In;
-import com.ray.common.utils.Out;
+import com.ray.common.utils.io.In;
+import com.ray.common.utils.io.Out;
 import com.rays.algo.graph.gw.Edge;
 import com.rays.algo.graph.gw.EdgeWeightedGraph;
 import com.rays.algo.graph.gw.LazyPrimMinST;

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.ray.common.utils.Out;
+import com.ray.common.utils.io.Out;
 
 /**
  * 地图的抽象对象

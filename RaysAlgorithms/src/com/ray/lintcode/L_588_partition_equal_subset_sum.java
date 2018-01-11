@@ -2,7 +2,7 @@ package com.ray.lintcode;
 
 import static com.ray.common.utils.Assert.*;
 
-import com.ray.common.utils.Out;
+import com.ray.common.utils.io.Out;
 
 /**
  * Given a non-empty array containing only positive integers,

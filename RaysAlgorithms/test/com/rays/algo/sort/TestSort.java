@@ -10,6 +10,29 @@ public class TestSort {
 	
 	interface Case {public void run(Comparable<?>[] arr);}
 	
+	public static void testSelectionSort() {
+	    Integer[] arr = intArr(20000);
+	    testSort("—°‘Ò≈≈–Ú", new SelectionSort<Integer>(), arr);
+	}
+	
+	public static void main(String[] args) {
+	    testSelectionSort();
+	    
+	    
+//        
+//        runcase(arr, (a) -> HeapSort.sort(a));
+//        runcase(arr, (a) -> InsertionSort.sort(a));
+//        runcase(arr, (a) -> MergeSort.DownToUp.sort(a));
+//        runcase(arr, (a) -> QuickSort.sort(a));
+//        runcase(arr, (a) -> ShellSort.sort(a));
+        
+    }
+	
+	public static <T extends Comparable<?>> void testSort(String name, Sort<T> s, T[] arr) {
+	    s.sort(arr);
+        checkSorted(arr);
+	}
+	
 	public static void runcase(Comparable<?>[] arr, Case t) {
         Timer timer = Timer.create();
 		shuffle(arr);
@@ -17,18 +40,6 @@ public class TestSort {
 		t.run(arr);
 		timer.stop();
 		checkSorted(arr);
-	}
-	
-	public static void main(String[] args) {
-		Integer[] arr = intArr(20000);
-		
-		runcase(arr, (a) -> HeapSort.sort(a));
-		runcase(arr, (a) -> InsertionSort.sort(a));
-		runcase(arr, (a) -> MergeSort.DownToUp.sort(a));
-		runcase(arr, (a) -> QuickSort.sort(a));
-		runcase(arr, (a) -> SelectionSort.sort(a));
-		runcase(arr, (a) -> ShellSort.sort(a));
-		
 	}
 	
 }

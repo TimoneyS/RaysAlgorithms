@@ -13,7 +13,7 @@ package com.rays.algo.sort;
  * 2.数据的移动量最少<br/>
  * @author Ray
  */
-public class SelectionSort<T extends Comparable<?>> implements Sort<T> {
+public class SelectionSort<T extends Comparable<?>> extends Sort<T> {
 
 //	public void sort(Comparable[] arr) {
 //		
@@ -28,12 +28,8 @@ public class SelectionSort<T extends Comparable<?>> implements Sort<T> {
 //	}
 
     @Override
-    public void sort(T[] arr) {
-        
-    }
-
-    @Override
     public void sort(T[] arr, int lo, int hi) {
+        
         
     }
 

@@ -2,39 +2,49 @@ package com.rays.algo.sort;
 
 import static com.ray.common.utils.ArrayUtil.checkSorted;
 import static com.ray.common.utils.ArrayUtil.intArr;
-import static com.ray.common.utils.ArrayUtil.shuffle;
 
 import com.ray.common.utils.ArrayUtil;
 import com.ray.common.utils.Timer;
-import com.ray.common.utils.io.Out;
 
 public class TestSort {
-	
-	interface Case {public void run(Comparable<?>[] arr);}
+    
+    private static <T extends Comparable<?>> void testSort(String name, Sort<T> s, T[] arr) {
+        Timer timer = Timer.create(name);
+        timer.click();
+        s.sort(arr);
+        timer.stop();
+        checkSorted(arr);
+    }
 
-   public static void testInsertionSort() {
+    /**
+     * ≤‚ ‘—°‘Ò≈≈–Ú
+     */
+    public static void testSelectionSort() {
         Integer[] arr = intArr(20);
         ArrayUtil.shuffle(arr);
-        Out.p(arr);
-        testSort("—°‘Ò≈≈–Ú", new InsertionSort<Integer>(), arr);
-        Out.p(arr);
+        testSort("—°‘Ò≈≈–Ú", new SelectionSort<Integer>(), arr);
     }
-	
-	public static void testSelectionSort() {
-	    Integer[] arr = intArr(20);
-	    ArrayUtil.shuffle(arr);
-	    Out.p(arr);
-	    testSort("—°‘Ò≈≈–Ú", new SelectionSort<Integer>(), arr);
-	    Out.p(arr);
-	}
-	
-	public static void main(String[] args) {
-	    testInsertionSort();
+
+    /**
+     * ≤‚ ‘≤Â»Î≈≈–Ú
+     */
+    public static void testInsertionSort() {
+        Integer[] arr = intArr(20000);
+        ArrayUtil.shuffle(arr);
+        testSort("≤Â»Î≈≈–Ú", new InsertionSort<Integer>(), arr);
     }
-	
-	private static <T extends Comparable<?>> void testSort(String name, Sort<T> s, T[] arr) {
-	    s.sort(arr);
-        checkSorted(arr);
-	}
-	
+    
+    /**
+     * ≤‚ ‘œ£∂˚≈≈–Ú
+     */
+    public static void testShellSort() {
+        Integer[] arr = intArr(200000);
+        ArrayUtil.shuffle(arr);
+        testSort("œ£∂˚≈≈–Ú", new ShellSort<Integer>(), arr);
+    }
+
+    public static void main(String[] args) {
+        testShellSort();
+    }
+
 }

@@ -1,22 +1,33 @@
 package com.rays.algo.sort;
 
-import static com.ray.common.utils.ArrayUtil.*;
+import com.ray.common.utils.ArrayUtil;
 
-public class ShellSort {
+/**
+ * <b>希尔排序</b>
+ * <p>
+ * 基本思想 :<br/>
+ * 使数组中所有相隔h的元素是有序的，即h有序。<br/>
+ * 之后逐渐缩小h，创造更小h有序。<br/>
+ * 当h缩小为1时，便是数组整体有序。<br/>
+ * ...
+ * <p>
+ * @author rays1
+ *
+ * @param <T>
+ */
+public class ShellSort<T extends Comparable<?>> extends Sort<T> {
 	
-	@SuppressWarnings("rawtypes")
-	public static void sort(Comparable[] arr) {
-		
-		int h = arr.length / 3;
-		
-		while(h >= 1){
-			for(int i = h; i < arr.length; i ++) {
-				for(int j = i; j >= h && less(arr, j, j-h); j -= h)
-					swap(arr, j, j-h);
-			}
-			h /= 3;
-		}
-		
-	}
+    @Override
+    public void sort(T[] arr, int lo, int hi) {
+        int h = (hi-lo+1)/3;
+        while (h >= 1) {
+            for (int i = lo+h; i <= hi; i ++) {
+                for (int j = i; (j-lo) >= h && ArrayUtil.less(arr, j, j-h); j -= h) {
+                    ArrayUtil.swap(arr, j, j-h);
+                }
+            }
+            h = (h == 2) ? 1 : h/3;
+        }
+    }
 	
 }

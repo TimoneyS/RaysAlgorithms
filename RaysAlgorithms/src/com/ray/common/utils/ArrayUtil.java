@@ -83,15 +83,31 @@ public class ArrayUtil {
 		return arr[i].compareTo(arr[j]) < 0;
 	}
 	
-	/**
-	 * 打印数组
-	 * @param arr
-	 */
-	public static <T> void show(T[] arr) {
-		Out.p(arr);
-	}
+    /**
+     * 数组最小元素的索引
+     * @param arr
+     * @param i
+     * @param j
+     */
+    public static <T> int min(Comparable[] arr) {
+        return min(arr, 0, arr.length-1);
+    }	
 	
 	/**
+	 * 某一区域内最小元素的索引
+	 * @param arr
+	 * @param i
+	 * @param j
+	 */
+	public static <T> int min(Comparable[] arr, int lo,  int hi) {
+	    int index = lo;
+	    for (int i = lo; i <= hi; i++) {
+            if (less(arr, i, index)) index = i;
+        }
+	    return index;
+    }
+
+    /**
 	 * 打乱数组顺序
 	 * @param arr
 	 */
@@ -124,6 +140,14 @@ public class ArrayUtil {
 		for (int i = 0; i < size; i ++)
 			swap(arr, l1 + i, l2 + i);
 	}
+	
+	/**
+     * 打印数组
+     * @param arr
+     */
+    public static <T> void show(T[] arr) {
+    	Out.p(arr);
+    }
 	
 	
 }

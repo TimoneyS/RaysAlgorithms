@@ -112,10 +112,18 @@ public class ArrayUtil {
 	 * @param arr
 	 */
 	public static <T> void shuffle(T[] arr) {
-		Random r = new Random(42);
-		for(int i = 0; i < arr.length; i ++)
-			swap(arr, i, r.nextInt(arr.length));
+	    shuffle(arr, 42);
 	}
+	
+    /**
+     * 打乱数组顺序
+     * @param arr
+     */
+    public static <T> void shuffle(T[] arr, int seed) {
+        Random r = new Random(seed);
+        for(int i = 0; i < arr.length; i ++)
+            swap(arr, i, r.nextInt(arr.length));
+    }
 	
 	/**
 	 * 交换数组元素位置

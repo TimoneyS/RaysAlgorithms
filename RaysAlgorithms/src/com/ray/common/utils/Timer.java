@@ -16,7 +16,11 @@ public class Timer {
     private static AtomicInteger    BEAN_COUNT = new AtomicInteger(0);
     private static SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("[yyyy-MM-dd hh:mm:ss:ms]");
 	
-	/**
+	private String name;
+    private int record_count = 0;
+    private long[] dateArr = new long[2];
+
+    /**
 	 * 时间戳
 	 */
 	public static String tag() {
@@ -37,11 +41,7 @@ public class Timer {
 	    BEAN_COUNT.incrementAndGet();
     }
 	
-	private String name;
-	private int record_count = 0;
-	private long[] dateArr = new long[2];
-	
-    /**
+	/**
      * "按下" 计时器<br/>
      * 第一次按下 开始记录时间，之后每次按下将显示距离上一次的时间，并开始下一次计时
      */
@@ -68,6 +68,9 @@ public class Timer {
        } 
     }
     
+    /**
+     * 调整数组
+     */
     private void adjustDateArray() {
         if (record_count == dateArr.length) {
             long[] temp = new long[dateArr.length * 2];

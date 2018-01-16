@@ -89,8 +89,8 @@ public class ArrayUtil {
      * @param i
      * @param j
      */
-    public static <T> int min(Comparable[] arr) {
-        return min(arr, 0, arr.length-1);
+    public static <T> int getIndexOfMin(Comparable[] arr) {
+        return getIndexOfMin(arr, 0, arr.length-1);
     }	
 	
 	/**
@@ -99,7 +99,7 @@ public class ArrayUtil {
 	 * @param i
 	 * @param j
 	 */
-	public static <T> int min(Comparable[] arr, int lo,  int hi) {
+	public static <T> int getIndexOfMin(Comparable[] arr, int lo,  int hi) {
 	    int index = lo;
 	    for (int i = lo; i <= hi; i++) {
             if (less(arr, i, index)) index = i;

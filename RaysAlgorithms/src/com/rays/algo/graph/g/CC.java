@@ -1,4 +1,4 @@
-package com.rays.ago.graph.g;
+package com.rays.algo.graph.g;
 
 /**
  * 搜索图中的连通分量

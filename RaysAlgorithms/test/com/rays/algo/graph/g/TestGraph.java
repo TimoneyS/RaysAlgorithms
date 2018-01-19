@@ -6,12 +6,12 @@ import java.util.Stack;
 
 import com.ray.common.utils.io.In;
 import com.ray.common.utils.io.Out;
-import com.rays.ago.graph.g.BreadthFirstPaths;
-import com.rays.ago.graph.g.CC;
-import com.rays.ago.graph.g.DeepthFirstPaths;
-import com.rays.ago.graph.g.Graph;
-import com.rays.ago.graph.g.Paths;
-import com.rays.ago.graph.g.SymbolGraph;
+import com.rays.algo.graph.g.BreadthFirstPaths;
+import com.rays.algo.graph.g.CC;
+import com.rays.algo.graph.g.DeepthFirstPaths;
+import com.rays.algo.graph.g.Graph;
+import com.rays.algo.graph.g.Paths;
+import com.rays.algo.graph.g.SymbolGraph;
 
 /**
  * ≤‚ ‘ŒﬁœÚÕº

@@ -1,4 +1,4 @@
-package com.rays.ago.graph.g;
+package com.rays.algo.graph.g;
 
 /**
  * 深度优先搜索<br>

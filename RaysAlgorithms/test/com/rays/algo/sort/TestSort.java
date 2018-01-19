@@ -42,9 +42,18 @@ public class TestSort {
         ArrayUtil.shuffle(arr);
         testSort("希尔排序", new ShellSort<Integer>(), arr);
     }
+    
+    /**
+     * 测试自顶向下的归并排序
+     */
+    public static void testMergeSortU2D() {
+        Integer[] arr = intArr(2000000);
+        ArrayUtil.shuffle(arr);
+        testSort("自顶向下归并排序", new MergeSort.UpToDown<>(), arr);
+    }
 
     public static void main(String[] args) {
-        testShellSort();
+        testMergeSortU2D();
     }
 
 }

@@ -16,8 +16,8 @@ public class InsertionSort<T extends Comparable<?>> extends Sort<T> {
 
     @Override
     public void sort(T[] arr, int lo, int hi) {
-        for (int i = lo; i <= hi; i++) {
-            for (int j = i; j > 0 && ArrayUtil.less(arr, j, j-1); j --) {
+        for (int i = lo; i <= hi; i++) {                                     // 循环所有元素
+            for (int j = i; j > lo && ArrayUtil.less(arr, j, j-1); j --) {   // 当前元素向左比较
                 ArrayUtil.swap(arr, j, j-1);
             }
         }

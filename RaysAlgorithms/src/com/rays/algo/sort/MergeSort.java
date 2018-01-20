@@ -58,23 +58,21 @@ public class MergeSort {
 	}
 	
 	/**
-	 * 小数组采用选择排序的归并排序
+	 * 小数组采用插入排序的自底向上归并排序
 	 * @author rays1
 	 *
 	 * @param <T>
 	 */
-	public static class DownToUpSelect<T extends Comparable<?>> extends Sort<T>  {
+	public static class DownToUpInsert<T extends Comparable<?>> extends Sort<T>  {
         @Override
         public void sort(T[] arr, int lo, int hi) {
             Comparable<?>[] temp = new Comparable<?>[hi-lo+1];
-            Sort<T> s = new SelectionSort<>();
-            
+            Sort<T> s = new InsertionSort<>();
             int optiSize = 16;  // 切换选择排序和归并排序的尺寸
             
             int N = hi - lo + 1;
-            for (int i = 0; i < N-optiSize; i += optiSize) {
+            for (int i = 0; i < N-optiSize; i += optiSize)
                 s.sort(arr, i, Math.min(i+optiSize-1, hi));
-            }
 
             for (int size = optiSize; size < N; size *= 2) {                     // 幂次递增的归并尺寸
                 for (int l = lo; l < N-size; l += size*2 ) {                     // 循环处理每一对待归并的子数组

@@ -3,7 +3,6 @@ package com.ray.common.utils;
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class CompareUtil {
 	
-
 	public static boolean less(Comparable x, Comparable y){
 		return x.compareTo(y) < 0;
 	}

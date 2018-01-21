@@ -1,6 +1,7 @@
 package com.rays.algo.sort;
 
-import static com.ray.common.utils.ArrayUtil.*;
+import static com.ray.common.utils.ArrayUtil.less;
+import static com.ray.common.utils.ArrayUtil.swap;
 
 /**
  * <b>快速排序</b>
@@ -13,27 +14,34 @@ import static com.ray.common.utils.ArrayUtil.*;
  * @author Ray
  *
  */
-@SuppressWarnings("rawtypes")
-public class QuickSort {
-	
-	public static void sort(Comparable[] arr) {
-		sort(arr, 0, arr.length-1);
-	}
-	
-	public static void sort(Comparable[] arr, int lo, int hi) {
-		if (lo>=hi) return;
-		int l = lo + 1;
-		int r = hi;
-		while (true) {
-			while (less(arr, l, lo)) { l++; if (l >= r) break; }
-			while (less(arr, lo, r)) r--;
-			if (l >= r) break;
-			swap(arr, l, r);
-		}
-		swap(arr, lo, r);
-		
-		sort(arr, lo, r-1);
-		sort(arr, r+1, hi);
-	}
+public class QuickSort<T extends Comparable<?>> extends Sort<T> {
+
+    @Override
+    public void sort(T[] arr, int lo, int hi) {
+        if (lo >= hi) return;
+        int j = partition(arr, lo, hi);
+        sort(arr, lo, j-1);
+        sort(arr, j+1, hi);
+    }
+    
+    /**
+     * 切分方法
+     * @param arr
+     * @param lo
+     * @param hi
+     * @return
+     */
+    private int partition(T[] arr, int lo, int hi) {
+        int l = lo + 1;                                 // 左侧索引
+        int r = hi;                                     // 右侧索引
+        while (true) {
+            while (less(arr, lo, r) && r > lo) r --;    // 从右侧寻找一个不大于arr[lo]的元素
+            while (less(arr, l, lo) && l < hi) l ++;    // 从左侧寻找一个不小于arr[lo]的元素
+            if (r > l) swap(arr, r, l);                 // 将左右侧不符合条件的元素相互交换
+            else break;
+        }
+        swap(arr, r, lo);                               // r所在位置即为切点，将arr[lo]放至切点
+        return r;
+    }
 	
 }

@@ -45,7 +45,7 @@ import java.util.NoSuchElementException;
  *
  *  @param <Key> the generic type of key on this priority queue
  */
-public class MinPQ<Key> implements Iterable<Key> {
+public class MinPQImpl<Key> implements Iterable<Key> {
     private Key[] pq;                    // store items at indices 1 to n
     private int n;                       // number of items on priority queue
     private Comparator<Key> comparator;  // optional comparator
@@ -56,7 +56,7 @@ public class MinPQ<Key> implements Iterable<Key> {
      * @param  initCapacity the initial capacity of this priority queue
      */
     @SuppressWarnings("unchecked")
-    public MinPQ(int initCapacity) {
+    public MinPQImpl(int initCapacity) {
         pq = (Key[]) new Object[initCapacity + 1];
         n = 0;
     }
@@ -64,7 +64,7 @@ public class MinPQ<Key> implements Iterable<Key> {
     /**
      * Initializes an empty priority queue.
      */
-    public MinPQ() {
+    public MinPQImpl() {
         this(1);
     }
 
@@ -76,7 +76,7 @@ public class MinPQ<Key> implements Iterable<Key> {
      * @param  comparator the order in which to compare the keys
      */
     @SuppressWarnings("unchecked")
-    public MinPQ(int initCapacity, Comparator<Key> comparator) {
+    public MinPQImpl(int initCapacity, Comparator<Key> comparator) {
         this.comparator = comparator;
         pq = (Key[]) new Object[initCapacity + 1];
         n = 0;
@@ -87,7 +87,7 @@ public class MinPQ<Key> implements Iterable<Key> {
      *
      * @param  comparator the order in which to compare the keys
      */
-    public MinPQ(Comparator<Key> comparator) {
+    public MinPQImpl(Comparator<Key> comparator) {
         this(1, comparator);
     }
 
@@ -99,7 +99,7 @@ public class MinPQ<Key> implements Iterable<Key> {
      * @param  keys the array of keys
      */
     @SuppressWarnings("unchecked")
-    public MinPQ(Key[] keys) {
+    public MinPQImpl(Key[] keys) {
         n = keys.length;
         pq = (Key[]) new Object[keys.length + 1];
         for (int i = 0; i < n; i++)
@@ -253,13 +253,13 @@ public class MinPQ<Key> implements Iterable<Key> {
 
     private class HeapIterator implements Iterator<Key> {
         // create a new pq
-        private MinPQ<Key> copy;
+        private MinPQImpl<Key> copy;
 
         // add all items to copy of heap
         // takes linear time since already in heap order so no keys move
         public HeapIterator() {
-            if (comparator == null) copy = new MinPQ<Key>(size());
-            else                    copy = new MinPQ<Key>(size(), comparator);
+            if (comparator == null) copy = new MinPQImpl<Key>(size());
+            else                    copy = new MinPQImpl<Key>(size(), comparator);
             for (int i = 1; i <= n; i++)
                 copy.insert(pq[i]);
         }

@@ -5,6 +5,7 @@ import static com.ray.common.utils.ArrayUtil.intArr;
 
 import com.ray.common.utils.ArrayUtil;
 import com.ray.common.utils.Timer;
+import com.ray.common.utils.io.Out;
 
 public class TestSort {
     
@@ -78,14 +79,27 @@ public class TestSort {
         ArrayUtil.shuffle(arr);
         testSort("øÏÀŸ≈≈–Ú", new QuickSort<>(), arr);
     }
-
+    
+    /**
+     * ≤‚ ‘∂—≈≈–Ú
+     */
+    public static void testHeapSort() {
+        //Integer[] arr = intArr(10);
+        String s = "SORTEXAMPLE";
+        Character[] arr = new Character[s.length()];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = s.charAt(i);
+        }
+        testSort("∂—≈≈–Ú", new HeapSort<>(), arr);
+    }
+    
     public static void main(String[] args) {
 //        testSelectionSort();
 //        testInsertionSort();
 //        testMergeSortU2D();
 //        testMergeSortD2U();
 //        testMergeSortD2UInsert();
-        testQuickSort();
+        testHeapSort();
     }
 
 }

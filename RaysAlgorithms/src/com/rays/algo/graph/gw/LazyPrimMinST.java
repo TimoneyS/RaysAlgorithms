@@ -1,6 +1,7 @@
 package com.rays.algo.graph.gw;
 
-import com.ray.common.utils.collections.MinPQImpl;
+import com.ray.common.utils.collections.MinPQ;
+import com.ray.common.utils.collections.RaysMinPQ;
 
 /**
  * ÑÓ³ÙÉ¾³ý·ÏÆúµÄ±ßµÄPrimËã·¨
@@ -10,10 +11,10 @@ import com.ray.common.utils.collections.MinPQImpl;
 public class LazyPrimMinST {
     private boolean[]        marked;
     private Edge             edgeTo[];
-    private MinPQImpl<Edge> PQ;
+    private MinPQ<Edge> PQ;
     
     public LazyPrimMinST(EdgeWeightedGraph G) {
-        PQ = new MinPQImpl<Edge>(G.E());
+        PQ = new RaysMinPQ<Edge>(G.E());
         edgeTo = new Edge[G.V()];
         marked = new boolean[G.V()];
         

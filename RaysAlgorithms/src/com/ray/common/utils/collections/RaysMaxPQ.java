@@ -6,7 +6,6 @@ import static com.ray.common.utils.ArrayUtil.swap;
 import java.util.Random;
 
 import com.ray.common.utils.Timer;
-import com.ray.common.utils.io.Out;
 
 /**
  * 个人实现的最大优先级队列
@@ -114,7 +113,6 @@ public class RaysMaxPQ<Key extends Comparable<Key>> implements MaxPQ<Key> {
         t.click();
         pq.delMax();
         t.stop();
-
         
     }
     

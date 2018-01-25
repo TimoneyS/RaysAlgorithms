@@ -55,15 +55,15 @@ public class Timer {
      */
     public void stop() {
         click();
-        record_count = 0;
         show();
+        record_count = 0;
     }
     
     /**
      * "显示" 计时器结果
      */
     public void show() {
-       for (int i = 1; i < dateArr.length; i++) {
+       for (int i = 1; i < record_count; i++) {
            Out.pf("[%s]第%2d次耗时 %s ms\n", name, i, dateArr[i] - dateArr[i-1]);
        } 
     }
@@ -72,7 +72,7 @@ public class Timer {
      * 调整数组
      */
     private void adjustDateArray() {
-        if (record_count == dateArr.length) {
+        if (record_count+1 >= dateArr.length) {
             long[] temp = new long[dateArr.length * 2];
             for (int i = 0; i < dateArr.length; i++) {
                 temp[i] = dateArr[i];

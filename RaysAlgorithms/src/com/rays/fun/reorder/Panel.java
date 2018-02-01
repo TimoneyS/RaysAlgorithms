@@ -1,7 +1,5 @@
 package com.rays.fun.reorder;
 
-import static com.rays.fun.reorder.Board.DIR;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -27,7 +25,7 @@ public class Panel extends JPanel {
 	public Panel() {
 		size = Config.SIZE;
 		cell_width = Config.CELL_WIDTH;
-		currFont = new Font("微软雅黑",Font.BOLD, size * 10);
+		currFont = new Font("微软雅黑", Font.BOLD, size * 10);
 		
 		board = new Board(size);
 		board.reset();
@@ -69,16 +67,14 @@ public class Panel extends JPanel {
 			public void keyPressed(KeyEvent e) { 
 					// 定义一些键盘事件对应的操作
 					switch(e.getKeyCode()){
-					case Config.UP         : board.move(DIR[0]);break;
-					case Config.DOWN       : board.move(DIR[1]);break;
-					case Config.LEFT       : board.move(DIR[2]);break;
-					case Config.RIGHT      : board.move(DIR[3]);break;
+					case Config.UP         : board.moveUp();break;
+					case Config.DOWN       : board.moveDown();break;
+					case Config.LEFT       : board.moveLeft();break;
+					case Config.RIGHT      : board.moveRight();break;
 					case KeyEvent.VK_F1    : board.reset();break;
 					case KeyEvent.VK_F2    : ;break;
-					case KeyEvent.VK_F10 :   ;break;
+					case KeyEvent.VK_F10   : ;break;
 					}
-					board.get_dist();
-				
 				repaint();
 			}
 		};

@@ -2,7 +2,7 @@ package com.rays.fun.reorder;
 
 /** 
  * 表示面板                                                                                                           <br/>
- * **** 面板实际可表示为一个二维数组 ********************* <br/>
+ * **** 面板实际可表示为一个二维数组,如尺寸为3的面板  ********* <br/>
  * |---|-----------|                              <br/>
  * |x\y| 0 | 1 | 2 |                              <br/> 
  * |---|-----------|                              <br/>
@@ -29,9 +29,11 @@ package com.rays.fun.reorder;
  */
 public class Board {
 	
-    private int                 size;              // 地图尺寸
-    private int[]               N;                 // 用一维数组表示的二维的地图
-    private int                 index;             // 当前元素的一维坐标
+    private int                 size;              // 拼图的尺寸
+    private int[]               N;                 // 用一维数组表示的二维的图板
+    private int                 cursor;            // 当前元素的一维坐标
+    
+    private Board() {}
     
 	public Board(int size) {
 		this.size = size;
@@ -39,20 +41,23 @@ public class Board {
 		reset();
 	}
 	
+	/**
+	 * 重置
+	 */
 	public void reset() {
 		for (int i = 0; i < N.length; i++) N[i]=i;
-		index = N.length - 1;
+		cursor = N.length - 1;
 	}
 	
 	/**
 	 * 所有格子和其正确位置的曼哈顿距离之和
 	 * @return
 	 */
-	private int dist(){
+	public int dist(){
 		int distSum = 0;
 		for(int i = 0; i < N.length; i ++) {
 			int num = N[i];
-			int dist = Math.abs(i/size - num/size) + Math.abs(i%size - num % size);
+			int dist = Math.abs(i / size - num / size) + Math.abs(i % size - num % size);
 			distSum += dist;
 		}
 		return distSum;
@@ -67,14 +72,24 @@ public class Board {
 	    }
 	}
 	
-	public void moveUp() { if (index >= size) exch(index, index-=size); }
-	public void moveDown() { if (index<N.length - size) exch(index, index+=size); }
-	public void moveLeft() { if (index%3 != 0) exch(index, --index); }
-    public void moveRight() { if ( index+1 % 3 != 0) exch(index, ++index); }
+	public void move(Dir dir) {
+	    switch(dir) {
+	        case UP    : moveUp();break;
+	        case DOWN  : moveDown();break;
+	        case LEFT  : moveLeft();break;
+	        case RIGHT : moveRight();break;
+	    }
+	}
+	
+	private void moveUp()    { if ( cursor >= size)           swap(cursor, cursor -= size); }
+	private void moveDown()  { if ( cursor < N.length - size) swap(cursor, cursor += size); }
+	private void moveLeft()  { if ( cursor % 3 != 0)          swap(cursor, -- cursor); }
+	private void moveRight() { if ( cursor % 3 != size-1)     swap(cursor, ++ cursor); }
 	
     public int getNum(int i, int j) { return N[i * size + j]; }
-	
-	private void exch(int i, int j){
+    public int[] getN() { return N; }
+    
+	private void swap(int i, int j){
 		int temp = N[i];
 		N[i] = N[j];
 		N[j] = temp;
@@ -86,4 +101,18 @@ public class Board {
         board.show();
     }
 	
+	@Override
+	protected Board clone() {
+	    Board b = new Board();
+	    b.N = new int[N.length];
+	    for (int i = 0; i < N.length; i++) b.N[i] = N[i];
+	    b.size = size;
+	    b.cursor = cursor;
+	    return b;
+	}
+	
+}
+
+enum Dir {
+    UP, DOWN, LEFT, RIGHT
 }

@@ -65,16 +65,16 @@ public class Panel extends JPanel {
 	public KeyListener getKeyListener(){
 		return new KeyAdapter(){
 			public void keyPressed(KeyEvent e) { 
-					// 定义一些键盘事件对应的操作
-					switch(e.getKeyCode()){
-					case Config.UP         : board.moveUp();break;
-					case Config.DOWN       : board.moveDown();break;
-					case Config.LEFT       : board.moveLeft();break;
-					case Config.RIGHT      : board.moveRight();break;
-					case KeyEvent.VK_F1    : board.reset();break;
-					case KeyEvent.VK_F2    : ;break;
-					case KeyEvent.VK_F10   : ;break;
-					}
+				// 定义一些键盘事件对应的操作
+				switch(e.getKeyCode()){
+    				case KeyEvent.VK_W   : board.move(Dir.UP);break;
+    				case KeyEvent.VK_S   : board.move(Dir.DOWN);break;
+    				case KeyEvent.VK_A   : board.move(Dir.LEFT);break;
+    				case KeyEvent.VK_D   : board.move(Dir.RIGHT);break;
+    				case KeyEvent.VK_F1  : board.reset();break;
+    				case KeyEvent.VK_F2  : ;break;
+    				case KeyEvent.VK_F10 : ;break;
+				}
 				repaint();
 			}
 		};

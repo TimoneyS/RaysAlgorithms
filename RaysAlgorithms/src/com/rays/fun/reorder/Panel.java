@@ -42,7 +42,7 @@ public class Panel extends JPanel {
 		for(int i = 0; i < size; i ++){
 			for(int j = 0; j < size; j ++){
 				int num = board.getNum(i, j);
-				if(num == size*size){
+				if(num == size*size-1){
 					g.setColor(Color.LIGHT_GRAY);
 					g.fillRect(j*cell_width, i*cell_width, cell_width, cell_width);
 				} else {

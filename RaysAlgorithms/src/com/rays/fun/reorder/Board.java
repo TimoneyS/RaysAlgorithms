@@ -2,6 +2,8 @@ package com.rays.fun.reorder;
 
 import java.util.Random;
 
+import com.ray.common.util.TimeUnit;
+
 /** 
  * 表示面板                                                                                                           <br/>
  * **** 面板实际可表示为一个二维数组,如尺寸为3的面板  ********* <br/>
@@ -51,6 +53,9 @@ public class Board {
 		cursor = N.length - 1;
 	}
 	
+	/**
+	 * 根据A*算法对面板重新排序
+	 */
 	public void reorder() {
 	    Seacher s = new Seacher();
 	    Path p = s.search(this);
@@ -62,7 +67,7 @@ public class Board {
                 for (Dir dir : p.getPath()) {
                     System.out.println("move " + dir);
                     move(dir);
-                    Config.sleep(500);
+                    TimeUnit.MILL_SECOND.sleep(500);
                 }
                 System.out.println("Reorder OK!!!");
             }

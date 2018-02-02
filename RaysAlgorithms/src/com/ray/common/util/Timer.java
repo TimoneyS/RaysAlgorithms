@@ -1,10 +1,10 @@
-package com.ray.common.utils;
+package com.ray.common.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.ray.common.utils.io.Out;
+import com.ray.common.io.Out;
 
 /**
  * ¼ÆÊ±Æ÷Àà

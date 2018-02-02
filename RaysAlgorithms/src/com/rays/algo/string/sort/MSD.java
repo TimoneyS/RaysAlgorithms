@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.ray.common.utils.io.In;
-import com.ray.common.utils.io.Out;
+import com.ray.common.io.In;
+import com.ray.common.io.Out;
 
 /**
  * 高位优先的字符串排序

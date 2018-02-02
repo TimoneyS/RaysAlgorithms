@@ -1,7 +1,7 @@
 package com.rays.algo.graph.gw;
 
-import com.ray.common.utils.collections.MinPQ;
-import com.ray.common.utils.collections.RaysMinPQ;
+import com.ray.common.collections.MinPQ;
+import com.ray.common.collections.RaysMinPQ;
 
 /**
  * ÑÓ³ÙÉ¾³ý·ÏÆúµÄ±ßµÄPrimËã·¨

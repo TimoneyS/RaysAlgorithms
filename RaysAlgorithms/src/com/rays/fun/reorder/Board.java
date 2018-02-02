@@ -1,5 +1,7 @@
 package com.rays.fun.reorder;
 
+import java.util.Random;
+
 /** 
  * 表示面板                                                                                                           <br/>
  * **** 面板实际可表示为一个二维数组,如尺寸为3的面板  ********* <br/>
@@ -49,6 +51,25 @@ public class Board {
 		cursor = N.length - 1;
 	}
 	
+	public void reorder() {
+	    Seacher s = new Seacher();
+	    Path p = s.search(this);
+	    System.out.println("Search OK!!!");
+	    Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Start to reorder.");
+                for (Dir dir : p.getPath()) {
+                    System.out.println("move " + dir);
+                    move(dir);
+                    Config.sleep(500);
+                }
+                System.out.println("Reorder OK!!!");
+            }
+	    });
+	    t.start();
+	}
+	
 	/**
 	 * 所有格子和其正确位置的曼哈顿距离之和
 	 * @return
@@ -95,12 +116,6 @@ public class Board {
 		N[j] = temp;
 	}
 	
-	public static void main(String[] args) {
-        Board board = new Board(3);
-        board.moveUp();
-        board.show();
-    }
-	
 	@Override
 	protected Board clone() {
 	    Board b = new Board();
@@ -111,6 +126,26 @@ public class Board {
 	    return b;
 	}
 	
+    public void shuffe() {
+        Random r = new Random(42);
+        for (int i = 0; i< 1000; i++) {
+            int n = r.nextInt()%4;
+            switch (n) {
+                case 0 : move(Dir.UP);break;
+                case 1 : move(Dir.DOWN);break;
+                case 2 : move(Dir.LEFT);break;
+                case 3 : move(Dir.RIGHT);break;
+            };
+        }
+        
+    }
+	
+    public static void main(String[] args) {
+        Board board = new Board(3);
+        board.moveUp();
+        board.show();
+    }
+    
 }
 
 enum Dir {

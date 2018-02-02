@@ -3,8 +3,8 @@ package com.rays.algo.graph.gd;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import com.ray.common.utils.io.In;
-import com.ray.common.utils.io.Out;
+import com.ray.common.io.In;
+import com.ray.common.io.Out;
 import com.rays.algo.graph.gd.DiCycle;
 import com.rays.algo.graph.gd.DiDeepthFirstPath;
 import com.rays.algo.graph.gd.Digraph;

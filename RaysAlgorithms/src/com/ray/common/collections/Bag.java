@@ -1,4 +1,4 @@
-package com.ray.common.utils.collections;
+package com.ray.common.collections;
 
 /******************************************************************************
  *  Compilation:  javac Bag.java

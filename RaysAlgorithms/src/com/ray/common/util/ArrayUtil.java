@@ -1,8 +1,8 @@
-package com.ray.common.utils;
+package com.ray.common.util;
 
 import java.util.Random;
 
-import com.ray.common.utils.io.Out;
+import com.ray.common.io.Out;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class ArrayUtil {

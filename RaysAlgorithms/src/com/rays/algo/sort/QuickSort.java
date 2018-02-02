@@ -1,7 +1,7 @@
 package com.rays.algo.sort;
 
-import static com.ray.common.utils.ArrayUtil.less;
-import static com.ray.common.utils.ArrayUtil.swap;
+import static com.ray.common.util.ArrayUtil.less;
+import static com.ray.common.util.ArrayUtil.swap;
 
 /**
  * <b>¿ìËÙÅÅĞò</b>

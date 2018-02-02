@@ -1,28 +1,26 @@
-package com.ray.common.utils.collections;
+package com.ray.common.collections;
 
-import static com.ray.common.utils.ArrayUtil.less;
-import static com.ray.common.utils.ArrayUtil.swap;
+import static com.ray.common.util.ArrayUtil.less;
+import static com.ray.common.util.ArrayUtil.swap;
 
-import java.util.NoSuchElementException;
 import java.util.Random;
 
-import com.ray.common.utils.Timer;
-import com.ray.common.utils.io.Out;
+import com.ray.common.util.Timer;
 
 /**
- * 个人实现的最小优先级队列
+ * 个人实现的最大优先级队列
  * @author rays1
  *
  * @param <Key>
  */
-public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
+public class RaysMaxPQ<Key extends Comparable<Key>> implements MaxPQ<Key> {
 
-    public RaysMinPQ() {
+    public RaysMaxPQ() {
         this(1);
     }
     
     @SuppressWarnings("unchecked")
-    public RaysMinPQ(int capacity) {
+    public RaysMaxPQ(int capacity) {
         inner = (Key[]) new Comparable[capacity+1];
         cursor = 0;
     }
@@ -32,6 +30,19 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
         resize();
         inner[++cursor] = key;  // 新元素放入末尾
         swim(cursor);           // 对新元素执行上浮
+    }
+
+    @Override
+    public Key max() {
+        return inner[1];
+    }
+
+    @Override
+    public Key delMax() {
+        Key v = max();
+        inner[1] = inner[cursor--];
+        sink(1);
+        return v;
     }
     
     @SuppressWarnings("unchecked")
@@ -44,20 +55,6 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
         for (int i = 0; i < temp.length; i++) {
             inner[i] = temp[i];
         }
-    }
-    
-    @Override
-    public Key min() {
-        if (isEmpty()) throw new NoSuchElementException("Priority queue underflow");
-        return inner[1];
-    }
-
-    @Override
-    public Key delMin() {
-        Key v = min();
-        inner[1] = inner[cursor--];
-        sink(1);
-        return v;
     }
 
     @Override
@@ -78,7 +75,7 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
      * @param index
      **************************************/
     private void swim(int index) {
-        while(index > 1 && less(inner, index, index/2)) {     // 未到达根节点或者父节点的元素比当前元素小
+        while(index > 1 && less(inner, index/2, index)) {     // 未到达根节点或者父节点的元素比当前元素小
             swap(inner, index, index/2);                      // 交换当前元素和其父节点
             index/=2;                                         // 当前元素索引修正
         }
@@ -91,9 +88,9 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
     private void sink(int index) {
         while (index * 2 <= cursor) {                                 // 当前索引未超过边界
             int childIndex = index*2;                                 // 子节点索引
-            if(less(inner, childIndex+1, childIndex)) childIndex ++;  // 选取较大的子节点的索引
-            if(less(inner, childIndex, index)) {                      // 子节点更大
-                swap(inner, childIndex, index);                      
+            if(less(inner, childIndex, childIndex+1)) childIndex ++;  // 选取较大的子节点的索引
+            if(less(inner, index, childIndex)) {                      // 子节点更大
+                swap(inner, index, childIndex);                      
                 index = childIndex;
             } else {                                                  // 当前元素大于子节点
                 break;
@@ -102,9 +99,9 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
     }
     
     public static void main(String[] args) {
-        MinPQ<Integer> pq = new RaysMinPQ<Integer>();
+        MaxPQ<Integer> pq = new RaysMaxPQ<Integer>();
         
-        int size = 20;
+        int size = 2000000;
         Random r = new Random(42);
         
         Timer t = Timer.create();
@@ -114,9 +111,9 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
             pq.insert(r.nextInt(size * 10));
         }
         t.click();
-        while (!pq.isEmpty())
-            Out.p(pq.delMin());
+        pq.delMax();
         t.stop();
+        
     }
     
 }

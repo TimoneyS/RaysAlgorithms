@@ -1,6 +1,12 @@
-package com.ray.common.utils.collections;
+package com.ray.common.collections;
 
-public interface MaxPQ<Key extends Comparable<Key>> {
+/**
+ * 最小优先级队列
+ * @author rays1
+ *
+ * @param <Key>
+ */
+public interface MinPQ<Key extends Comparable<Key>> {
     
     /**
      * 插入元素
@@ -9,16 +15,16 @@ public interface MaxPQ<Key extends Comparable<Key>> {
     void insert(Key key);
     
     /**
-     * 获取最大元素
+     * 获取最小元素
      * @return
      */
-    Key max();
+    Key min();
     
     /**
-     * 删除最大元素
+     * 删除最小元素
      * @return
      */
-    Key delMax();
+    Key delMin();
     
     /**
      * 队列是否为空

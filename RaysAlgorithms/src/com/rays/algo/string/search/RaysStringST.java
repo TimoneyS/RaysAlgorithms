@@ -1,6 +1,6 @@
 package com.rays.algo.string.search;
 
-import com.ray.common.utils.io.Out;
+import com.ray.common.io.Out;
 
 public class RaysStringST<Value> implements StringST<Value> {
     

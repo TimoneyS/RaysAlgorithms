@@ -2,7 +2,7 @@ package com.rays.algo.graph.gwd;
 
 import java.util.Scanner;
 
-import com.ray.common.utils.collections.Bag;
+import com.ray.common.collections.Bag;
 
 /**
  * 加权有向图(不允许自环和平行边)

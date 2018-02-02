@@ -1,4 +1,4 @@
-package com.ray.common.utils.io;
+package com.ray.common.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;

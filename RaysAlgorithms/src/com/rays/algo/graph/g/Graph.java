@@ -2,7 +2,7 @@ package com.rays.algo.graph.g;
 
 import java.util.Scanner;
 
-import com.ray.common.utils.collections.Bag;
+import com.ray.common.collections.Bag;
 
 /**
  * ÎÞÏòÍ¼

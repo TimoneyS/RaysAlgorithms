@@ -1,4 +1,4 @@
-package com.ray.common.utils;
+package com.ray.common.util;
 
 public class TimeUnit {
     

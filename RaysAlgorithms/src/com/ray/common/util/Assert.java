@@ -1,7 +1,7 @@
-package com.ray.common.utils;
+package com.ray.common.util;
 
-import com.ray.common.utils.io.Err;
-import com.ray.common.utils.io.Out;
+import com.ray.common.io.Err;
+import com.ray.common.io.Out;
 
 public class Assert {
 	

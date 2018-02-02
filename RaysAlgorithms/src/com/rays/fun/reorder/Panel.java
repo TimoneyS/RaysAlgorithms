@@ -72,10 +72,9 @@ public class Panel extends JPanel {
     				case KeyEvent.VK_A   : board.move(Dir.LEFT);break;
     				case KeyEvent.VK_D   : board.move(Dir.RIGHT);break;
     				case KeyEvent.VK_F1  : board.reset();break;
-    				case KeyEvent.VK_F2  : ;break;
-    				case KeyEvent.VK_F10 : ;break;
+    				case KeyEvent.VK_F2  : board.shuffe();break;
+    				case KeyEvent.VK_F10 : board.reorder();break;
 				}
-				repaint();
 			}
 		};
 	}

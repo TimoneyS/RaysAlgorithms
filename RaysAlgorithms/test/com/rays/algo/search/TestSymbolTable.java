@@ -1,8 +1,7 @@
 package com.rays.algo.search;
 
-import static com.ray.common.util.ArrayUtil.intArr;
-
 import com.ray.common.io.Out;
+import com.ray.common.util.ArrayUtil;
 import com.ray.common.util.Timer;
 
 public class TestSymbolTable {
@@ -15,7 +14,7 @@ public class TestSymbolTable {
         SymbolTable<Integer, Integer> st = new SequentialSearchST<>();
         Timer t = Timer.create();
         
-        Integer[] arr = intArr(size);
+        Integer[] arr = ArrayUtil.intArr(size);
         t.click();
         for(Integer i : arr) st.put(i, i);
         Out.p(st.size());
@@ -24,9 +23,33 @@ public class TestSymbolTable {
         t.stop();
     }
     
+    /**
+     * 测试有序数组实现的基于二分搜索的符号表
+     */
+    public static void testBinarySearchST() {
+        
+        int size = 10;
+        SortedSymbolTable<Integer, Integer> st = new BinarySearchST<>(size);
+        Integer[] arr = ArrayUtil.intArr(size);
+        
+        for (Integer i : arr) {
+            st.put(i, i);
+        }
+        st.delete(1);
+        st.delete(3);
+        st.delete(5);
+        for (Integer key : st.keys()) {
+            Out.pf("%s -> %s \n", key, st.get(key));
+        }
+        
+        int index = 1;
+        Out.pf("floor(%s) = %s\n", index, st.floor(index));
+        Out.pf("ceiling(%s) = %s\n", index, st.ceiling(index));
+    }
+    
 	public static void main(String[] args) {
-	    testSequentialSearchST();
-		
+	    //testSequentialSearchST();
+	    testBinarySearchST();
 //		test(size, new BinarySearch<>(size));
 		
 //		test(size, new BinarySearchTree<>());

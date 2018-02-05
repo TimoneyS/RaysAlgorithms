@@ -24,10 +24,9 @@ public class TestSymbolTable {
     }
     
     /**
-     * 测试有序数组实现的基于二分搜索的符号表
+     * 测试基于有序数组的二分搜索符号表
      */
     public static void testBinarySearchST() {
-        
         int size = 10;
         SortedSymbolTable<Integer, Integer> st = new BinarySearchST<>(size);
         Integer[] arr = ArrayUtil.intArr(size);
@@ -47,9 +46,21 @@ public class TestSymbolTable {
         Out.pf("ceiling(%s) = %s\n", index, st.ceiling(index));
     }
     
+    public static void testBinarySearchTree() {
+        int size = 11;
+        //Integer[] arr = ArrayUtil.intArr(size);
+        Integer[] arr = new Integer[] {8, 10, 2, 6, 9, 11, 1, 3, 5, 7};
+        BinarySearchTree<Integer, Integer> st = new BinarySearchTree<>();
+        
+        for (Integer i : arr) st.put(i,i);
+        
+        st.show();
+    }
+    
 	public static void main(String[] args) {
-	    //testSequentialSearchST();
-	    testBinarySearchST();
+//      testSequentialSearchST();
+//      testBinarySearchST();
+	    testBinarySearchTree();
 //		test(size, new BinarySearch<>(size));
 		
 //		test(size, new BinarySearchTree<>());

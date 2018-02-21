@@ -49,7 +49,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
             n.left = put(n.left, key, value);
         else                                            // 根小于键，放入右子树
             n.right = put(n.right, key, value);
-        n.size = size(n.left) + size(n.right);
+        n.size = size(n.left) + size(n.right) + 1;
         return n;
 	}
 
@@ -67,11 +67,11 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
 	private Node get(Node node, Key key) {
 	    if (node == null) return null;
 	    int c = node.key.compareTo(key);
-        if (c == 0)              // 命中
+        if (c == 0)                         // 命中
             return node;
-        else if ( c > 0)         // 根大于键，需要在左子树中查找
+        else if ( c > 0)                    // 根大于键，需要在左子树中查找
             return get(node.left, key);
-        else                     // 根小于键，需要在右子树中查找
+        else                                // 根小于键，需要在右子树中查找
             return get(node.right, key);
 	}
 	
@@ -140,23 +140,24 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
      * @return
      */
     private Node min(Node node) {
-        while (node.left != null) {
-            node = node.left;
-        }
-        return node;
+        if (node.left == null) return node;
+        else return min(node.left);
     }
 
     @Override
     public Key max() {
-        Node n = root;
-        while (n.right != null) {
-            n = n.right;
-        }
-        return n.key;
+        return max(root).key;
     }
 
+    private Node max(Node node) {
+        if (node.right == null) return node;
+        else return max(node.right);
+    }
+    
     @Override
-    public void deleteMin() { deleteMin(root); }
+    public void deleteMin() {
+        root = deleteMin(root);
+    }
     
     /**
      * 删除某个结点下的最小结点
@@ -167,17 +168,6 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
         node.left = deleteMin(node.left);
         node.size = size(node.left) + size(node.right) + 1;
         return node;
-//        Node bak_root = node.right;
-//        while(node.left != null) {              // 循环找到最小的结点
-//            bak_root = node;
-//            node.size = node.size - 1;
-//            node = node.left;
-//        }
-//        if (node == root)
-//            root = bak_root;                    // 删除根结点（此时根结点必然无左子树） - 将其左结点设置为新的根结点
-//        else if (bak_root != null)
-//            bak_root.left = node.right;         // 删除最小结点n - 将n的父节点的左结点，设置为n的右结点
-//        return bak_root;
     }
 
     @Override
@@ -195,25 +185,67 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
 
     @Override
     public Key floor(Key key) {
-        // TODO Auto-generated method stub
-        return key;
+        return floor(key, root);
+    }
+    
+    private Key floor(Key key, Node node) {
+        if (node == null) return null;
+        int c = key.compareTo(node.key);
+        if (c == 0 ) {                                  // 命中根结点
+            return node.key;
+        } else if (c > 0) {                             // 根结点大于目标结点
+            Key rs = floor(key, node.right);            // 在右子树中查找
+            if (rs == null)                             // 若右子树无符合的结点则返回根结点
+                return node.key;
+            else                                        // 否则返回右子树中的结点
+                return rs;
+        } else {
+            return floor(key, node.left);
+        }
     }
 
     @Override
     public Key ceiling(Key key) {
-        // TODO Auto-generated method stub
-        return null;
+        return ceiling(key, root);
+    }
+    
+    private Key ceiling(Key key, Node node) {
+        if (node == null) return null;
+        int c = key.compareTo(node.key);
+        if(c == 0) {
+            return node.key;
+        } else if (c > 0){
+            return ceiling(key, node.right);
+        } else {
+            Key rs = ceiling(key, node.left);
+            if (rs == null)
+                return node.key;
+            else
+                return rs;
+        }
+        
     }
 
     @Override
     public int rank(Key key) {
-        // TODO Auto-generated method stub
-        return 0;
+        return rank(key, root);
+    }
+    
+    public int rank(Key key, Node node) {
+        if(node == null) return 0;
+        int c = key.compareTo(node.key);
+        if (c == 0) {
+            return size(node.left);
+        } else if (c > 0) {
+            int rs = rank(key, node.right);
+            return rs + size(node.left) + 1;
+        } else {
+            return rank(key, node.left);
+        }
     }
 
-    @Override
+    @Override 
     public Key select(int k) {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -232,7 +264,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
     public void tree(Node node, int deepth) {
         if (node.right != null) tree(node.right, deepth+1);
         Out.pf("%"+(deepth*10)+"s", " ");
-        Out.pf("[%2s,s:%2s]\n", node.key, node.size);
+        Out.pf("[%2s,size:%2s]\n", node.key, node.size);
         if (node.left  != null) tree(node.left, deepth+1);
     }
 
@@ -244,12 +276,9 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
         st.show();
 
         for (Integer i : arr) {
-            Out.p("delete " + i);
-            st.delete(i);
-            st.show();
+            Out.pf("rank %s : %s\n", i, st.rank(i));
         }
         
-        st.show();
     }
 
 }

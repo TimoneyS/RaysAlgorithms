@@ -145,5 +145,35 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 		if(n.left  != null) tree(  n.left, keys, deep+1, seq - (n.left.right == null ? 1 : n.left.right.N+1) );
 		if(n.right != null) tree( n.right, keys, deep+1, seq + (n.right.left == null ? 1 : n.right.left.N+1) );
 	}
+
+    @Override
+    public void delete(Key key) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public boolean isEmpty() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public boolean contains(Key key) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public int size() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public Iterable<Key> keys() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 	
 }

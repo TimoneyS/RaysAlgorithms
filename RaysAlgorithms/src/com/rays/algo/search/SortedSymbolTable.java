@@ -15,6 +15,12 @@ public interface SortedSymbolTable <Key extends Comparable<Key>,Value> extends S
     public Key min();
     
     /**
+     * 最大的键
+     * @return
+     */
+    public Key max();
+
+    /**
      * 删除最小键
      */
     public void deleteMin();
@@ -23,12 +29,6 @@ public interface SortedSymbolTable <Key extends Comparable<Key>,Value> extends S
      * 删除最大键
      */
     public void deleteMax();
-    
-    /**
-     * 最大的键
-     * @return
-     */
-    public Key max();
     
     /**
      * 小于等于key的最大键

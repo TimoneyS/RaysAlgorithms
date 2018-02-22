@@ -2,6 +2,9 @@ package com.rays.algo.search;
 
 import static com.ray.common.io.Out.*;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.ray.common.io.Out;
 
 /**
@@ -125,8 +128,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
 
     @Override
     public Iterable<Key> keys() {
-        // TODO Auto-generated method stub
-        return null;
+        return keys(min(), max());
     }
 
     @Override
@@ -251,8 +253,20 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
 
     @Override
     public Iterable<Key> keys(Key lo, Key hi) {
-        // TODO Auto-generated method stub
-        return null;
+        List<Key> list = new LinkedList<>();
+        keys(root, list, lo, hi);
+        return list;
+    }
+    
+    public void keys(Node node, List<Key> list, Key lo, Key hi) {
+        if (node == null) return;
+        
+        int cl = node.key.compareTo(lo);
+        int ch = node.key.compareTo(hi);
+        
+        if (cl > 0) keys(node.left, list, lo, hi);
+        if (ch < 0) keys(node.right, list, lo, hi);
+        if (cl >= 0 && ch <= 0) list.add(node.key);
     }
     
     public void show() {
@@ -275,9 +289,18 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
         for (Integer i : arr) st.put(i,i);
         st.show();
 
-        for (Integer i : arr) {
-            Out.pf("rank %s : %s\n", i, st.rank(i));
+        
+        int l = 0;
+        int h = 9;
+        Out.pf("keys %s - %s :", l, h);
+        for (Integer i : st.keys(l, h)) {
+            Out.pf("%s ", i);
         }
+        Out.p();
+        
+//        for (Integer i : arr) {
+//            Out.pf("rank %s : %s\n", i, st.rank(i));
+//        }
         
     }
 

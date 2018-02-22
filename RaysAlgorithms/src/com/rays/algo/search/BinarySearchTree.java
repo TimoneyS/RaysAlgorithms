@@ -265,8 +265,8 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
         int ch = node.key.compareTo(hi);
         
         if (cl > 0) keys(node.left, list, lo, hi);
-        if (ch < 0) keys(node.right, list, lo, hi);
         if (cl >= 0 && ch <= 0) list.add(node.key);
+        if (ch < 0) keys(node.right, list, lo, hi);
     }
     
     public void show() {

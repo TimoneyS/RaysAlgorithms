@@ -32,7 +32,7 @@ public class TestGraph {
 	    String e = "Ð¡»¨";
 	    
 	    String res = "test/com/rays/algo/graph/g/graphSymbol.txt";
-        String deli = " ";
+        String deli = "  ";
         SymbolGraph g = new SymbolGraph( res, deli);
 	    
 	    BreadthFirstPaths bfp = new BreadthFirstPaths(g.G(), g.index(s));

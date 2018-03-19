@@ -1,11 +1,11 @@
 package com.ray.common.collections;
 
-import static com.ray.common.util.ArrayUtil.less;
-import static com.ray.common.util.ArrayUtil.swap;
+import static com.ray.util.ArrayUtil.less;
+import static com.ray.util.ArrayUtil.swap;
 
 import java.util.Random;
 
-import com.ray.common.util.Timer;
+import com.ray.util.Timer;
 
 /**
  * 个人实现的最大优先级队列

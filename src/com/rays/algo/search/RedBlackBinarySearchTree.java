@@ -1,10 +1,10 @@
 package com.rays.algo.search;
 
-import static com.ray.common.io.Out.p;
+import static com.ray.util.io.Out.p;
 
-import com.ray.common.io.Out;
-import com.ray.common.util.ArrayUtil;
-import com.ray.common.util.Timer;
+import com.ray.util.ArrayUtil;
+import com.ray.util.Timer;
+import com.ray.util.io.Out;
 
 /**
  * 基于红黑树实现的 2-3树结构的符号表<br/>

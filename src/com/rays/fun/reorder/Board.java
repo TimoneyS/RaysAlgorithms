@@ -2,7 +2,7 @@ package com.rays.fun.reorder;
 
 import java.util.Random;
 
-import com.ray.common.util.TimeUnit;
+import com.ray.util.TimeUnit;
 
 /** 
  * ±Ì æ√Ê∞Â                                                                                                           <br/>

@@ -1,6 +1,6 @@
 package com.ray.common.collections;
 
-import static com.ray.common.util.ArrayUtil.*;
+import static com.ray.util.ArrayUtil.*;
 
 /**
  * <b>¶þ²æ¶Ñ</b><br/>

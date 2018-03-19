@@ -6,8 +6,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.ray.common.io.In;
-import com.ray.common.io.Out;
+import com.ray.util.io.In;
+import com.ray.util.io.Out;
 
 /**
  * 高位优先的字符串排序

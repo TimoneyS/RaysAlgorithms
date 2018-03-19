@@ -1,8 +1,8 @@
 package com.rays.algo.search;
 
-import com.ray.common.io.Out;
-import com.ray.common.util.ArrayUtil;
-import com.ray.common.util.Timer;
+import com.ray.util.ArrayUtil;
+import com.ray.util.Timer;
+import com.ray.util.io.Out;
 
 public class TestSymbolTable {
 	

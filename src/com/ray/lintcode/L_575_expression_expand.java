@@ -1,6 +1,6 @@
 package com.ray.lintcode;
 
-import static com.ray.common.util.Assert.*;
+import static com.ray.util.Assert.*;
 
 import java.util.LinkedList;
 

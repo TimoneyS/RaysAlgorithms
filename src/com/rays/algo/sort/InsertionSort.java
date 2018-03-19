@@ -1,6 +1,6 @@
 package com.rays.algo.sort;
 
-import com.ray.common.util.ArrayUtil;
+import com.ray.util.ArrayUtil;
 
 /**
  * <b>≤Â»Î≈≈–Ú</b>

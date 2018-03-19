@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
 
-import com.ray.common.io.In;
-import com.ray.common.io.Out;
+import com.ray.util.io.In;
+import com.ray.util.io.Out;
 import com.rays.algo.graph.g.BreadthFirstPaths;
 import com.rays.algo.graph.g.CC;
 import com.rays.algo.graph.g.DeepthFirstPaths;

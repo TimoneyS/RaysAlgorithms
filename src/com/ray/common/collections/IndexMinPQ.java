@@ -12,7 +12,7 @@ package com.ray.common.collections;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import com.ray.common.io.Out;
+import com.ray.util.io.Out;
 
 /**
  *  The {@code IndexMinPQ} class represents an indexed priority queue of generic keys.

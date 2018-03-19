@@ -3,7 +3,7 @@ package com.rays.algo.graph.gwd;
 import java.util.Scanner;
 import java.util.Stack;
 
-import com.ray.common.io.Out;
+import com.ray.util.io.Out;
 
 /**
  * 平行任务调度算法

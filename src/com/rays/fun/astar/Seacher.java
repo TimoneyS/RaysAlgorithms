@@ -4,8 +4,8 @@ import static com.rays.fun.astar.CellType.*;
 
 import java.util.*;
 
-import com.ray.common.io.In;
-import com.ray.common.io.Out;
+import com.ray.util.io.In;
+import com.ray.util.io.Out;
 
 /**
  * A * 算法的搜索方法

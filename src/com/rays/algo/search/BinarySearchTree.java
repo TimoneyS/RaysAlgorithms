@@ -1,11 +1,11 @@
 package com.rays.algo.search;
 
-import static com.ray.common.io.Out.*;
+import static com.ray.util.io.Out.*;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import com.ray.common.io.Out;
+import com.ray.util.io.Out;
 
 /**
  * ¶ş²æ²éÕÒÊ÷

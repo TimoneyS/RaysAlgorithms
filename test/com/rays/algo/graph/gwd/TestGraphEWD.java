@@ -3,8 +3,8 @@ package com.rays.algo.graph.gwd;
 import java.util.Scanner;
 import java.util.Stack;
 
-import com.ray.common.io.In;
-import com.ray.common.io.Out;
+import com.ray.util.io.In;
+import com.ray.util.io.Out;
 import com.rays.algo.graph.gwd.AcycliLP;
 import com.rays.algo.graph.gwd.AcycliSP;
 import com.rays.algo.graph.gwd.BellmanFordSP;

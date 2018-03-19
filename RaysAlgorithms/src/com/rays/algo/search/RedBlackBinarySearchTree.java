@@ -1,10 +1,17 @@
 package com.rays.algo.search;
 
 import static com.ray.common.io.Out.p;
-import static com.ray.common.io.Out.pf;
+
+import com.ray.common.io.Out;
+import com.ray.common.util.ArrayUtil;
+import com.ray.common.util.Timer;
 
 /**
- * 红黑树 实现的 2-3 树结构的符号表查找插入算法
+ * 基于红黑树实现的 2-3树结构的符号表<br/>
+ * 红黑树的定义:<br/>
+ * 1.红链接均为左链接<br/>
+ * 2.结点不能同时存在两条红链接<br/>
+ * 3.树是完美平衡的，即任意空链接到根结点的路径上的黑链接数量相同<br/>
  * @author Ray
  *
  * @param <Key>
@@ -18,11 +25,11 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 	private Node root;
 	
 	private class Node {
-		Key key;
-		Value value;
-		Node left, right;
-		int N;
-		boolean color;
+        Key     key;
+        Value   value;
+        Node    left, right;
+        int     N;
+        boolean color;          // boolean类型表示链接颜色
 		Node(Key k, Value v, int n, boolean c) {
 			key 	= k;
 			value 	= v;
@@ -35,16 +42,6 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 		Node n = root;
 		while ( n != null ) {
 			if (n.key.equals(key)) 				return n.value;
-			else if ( n.key.compareTo(key) > 0) n = n.left;
-			else 								n = n.right;
-		}
-		return null;
-	}
-	
-	private Node getNode(Key key) {
-		Node n = root;
-		while ( n != null && key != null) {
-			if (n.key.equals(key)) 				return n;
 			else if ( n.key.compareTo(key) > 0) n = n.left;
 			else 								n = n.right;
 		}
@@ -65,7 +62,6 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 		if      (cmp < 0) node.left  = put( node.left, key, value);
 		else if (cmp > 0) node.right = put(node.right, key, value);
 		else			  node.value = value;
-//		else 			  { node.value = value; return node;}
 		
 		if (isRed(node.right) && !isRed(node.left)) 	node = rotateLeft(node);
 		if (isRed(node.left) && isRed(node.left.left)) 	node = rotateRight(node);
@@ -76,35 +72,56 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 		return node;
 	}
 	
+	/**
+	 * 反转颜色，两个子红链接变为黑链接，然后将中间父连接变为红链接
+	 * @param n
+	 */
 	public void flipColors(Node n) {
-		// 反转颜色，两个子红链接变为黑链接，然后将中间父连接变为红链接
 		n.color = RED;
 		n.left.color = BLACK;
 		n.right.color = BLACK;
 	}
 	
-	Node rotateLeft(Node h) {
-		// 左旋转
+	/**
+	 * 左旋转操作
+	 *     h                           x      <br/>
+	 *  n      x        ==>         h     r   <br/>
+	 *       l   r                n   l       <br/>
+	 * 用于消除红色的右链接
+	 * @param h
+	 * @return
+	 */
+	private Node rotateLeft(Node h) {
 		Node x = h.right;
 		h.right = x.left;
 		x.left = h;
+		
 		x.color = h.color;
 		h.color = RED;
+		
 		x.N = h.N;
 		h.N = 1 + size(h.left) + size(h.right);
+		
 		return x;
 	}
 	
-	Node rotateRight(Node h) {
-		// 右旋转
+	/**
+	 * 右旋转
+	 *        h                        x
+	 *    x       n        ==>     l       h
+	 *  l   r                            r   n
+	 * @param h
+	 * @return
+	 */
+	private Node rotateRight(Node h) {
 		Node x = h.left;
 		
 		h.left = x.right;
 		x.right = h;
-		x.N = h.N;
 		
 		x.color = h.color;
 		h.color = RED;
+		
 		x.N = h.N;
 		h.N = 1 + size(h.left) + size(h.right);
 		
@@ -121,29 +138,18 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 		return n.N;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void show() {
-		int count = root.N;
-		
-		Key[][] keys = (Key[][]) new Comparable[count][count];
-		
-		tree( root, keys, 0, (root.left == null ? 0 : root.left.N));
-		for(Key[] row : keys) {
-			boolean emptyRow = true;
-			for(Key k : row) {
-				Node n = getNode(k);
-				pf( "%4s",  ( k == null ? " " : k + ( isRed(n) ? "*" : "") ) );
-				if(k != null) emptyRow = false;
-			}
-			p("");
-			if(emptyRow) break;
-		}
+        p("== tree ===========================");
+        if (root != null) tree(root, 1);
+        p("===================================");
 	}
 	
-	public void tree(Node n, Key[][] keys,int deep,  int seq) {
-		keys[deep][seq] = n.key;
-		if(n.left  != null) tree(  n.left, keys, deep+1, seq - (n.left.right == null ? 1 : n.left.right.N+1) );
-		if(n.right != null) tree( n.right, keys, deep+1, seq + (n.right.left == null ? 1 : n.right.left.N+1) );
+	public void tree(Node node, int deepth) {
+        if(node == null) return;
+        tree(node.right, deepth+1);
+        Out.pf("%"+(deepth*10)+"s", " ");
+        Out.pf("%s[%2s,s:%2s]\n", node.color == RED ? "==" : "--", node.key, size(node));
+        tree(node.left, deepth+1);
 	}
 
     @Override
@@ -174,6 +180,31 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     public Iterable<Key> keys() {
         // TODO Auto-generated method stub
         return null;
+    }
+    
+    public static void main(String[] args) {
+        
+        Timer t = Timer.create();
+        int size = 10;
+        
+        Integer[] arr = ArrayUtil.intArr(size);
+        ArrayUtil.shuffle(arr);
+        
+        RedBlackBinarySearchTree<Integer, Integer> rbst = new RedBlackBinarySearchTree<>();
+        
+        t.click();
+        for (Integer i : arr) {
+            rbst.put(i, i);
+        }
+        rbst.show();
+        t.click();
+        for (Integer i : arr) {
+            rbst.get(i);
+        }
+        t.click();
+        
+        t.show();
+        
     }
 	
 }

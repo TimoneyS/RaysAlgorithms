@@ -276,10 +276,11 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
     }
 
     public void tree(Node node, int deepth) {
-        if (node.right != null) tree(node.right, deepth+1);
+        if(node == null) return;
+        tree(node.right, deepth+1);
         Out.pf("%"+(deepth*10)+"s", " ");
-        Out.pf("[%2s,size:%2s]\n", node.key, node.size);
-        if (node.left  != null) tree(node.left, deepth+1);
+        Out.pf("--[%2s,s:%2s]\n", node.key, node.size);
+        tree(node.left, deepth+1);
     }
 
     public static void main(String[] args) {

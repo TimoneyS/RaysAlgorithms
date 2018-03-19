@@ -31,7 +31,7 @@ public class TestGraph {
 	    String s = "Ð¡ºì";
 	    String e = "Ð¡»¨";
 	    
-	    String res = "test/com/ray/graph/g/graphSymbol.txt";
+	    String res = "test/com/rays/algo/graph/g/graphSymbol.txt";
         String deli = " ";
         SymbolGraph g = new SymbolGraph( res, deli);
 	    

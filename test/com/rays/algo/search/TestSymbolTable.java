@@ -47,7 +47,7 @@ public class TestSymbolTable {
     }
     
     public static void testBinarySearchTree() {
-        int size = 11;
+//        int size = 11;
         //Integer[] arr = ArrayUtil.intArr(size);
         Integer[] arr = new Integer[] {8, 10, 2, 6, 9, 11, 1, 3, 5, 7};
         BinarySearchTree<Integer, Integer> st = new BinarySearchTree<>();

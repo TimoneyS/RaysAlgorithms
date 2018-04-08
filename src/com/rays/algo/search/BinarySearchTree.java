@@ -284,7 +284,6 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
     }
 
     public static void main(String[] args) {
-        //Integer[] arr = ArrayUtil.intArr(size);
         Integer[] arr = new Integer[] {8, 4, 10, 2, 6, 9, 11, 1, 3, 5, 7};
         BinarySearchTree<Integer, Integer> st = new BinarySearchTree<>();
         for (Integer i : arr) st.put(i,i);

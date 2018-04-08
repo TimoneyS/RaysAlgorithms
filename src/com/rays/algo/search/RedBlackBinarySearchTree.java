@@ -2,7 +2,11 @@ package com.rays.algo.search;
 
 import static com.ray.util.io.Out.p;
 
+import java.util.List;
+
 import com.ray.util.ArrayUtil;
+import com.ray.util.RMath;
+import com.ray.util.RString;
 import com.ray.util.Timer;
 import com.ray.util.io.Out;
 
@@ -79,19 +83,16 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
         if (node == null) return new Node(key, value, RED);
         
         int cmp = key.compareTo(node.key);
-        if (cmp == 0) {
-            node.value = value;                         // 命中结点
-        } else if (cmp > 0) {
-            node.right = put(key, value, node.right);   // 放入右子树
-        } else {
-            node.left  = put(key, value, node.left);    // 放入左子树
-        }
+        if (cmp == 0)       node.value = value;                         // 命中结点
+        else if (cmp > 0)   node.right = put(key, value, node.right);   // 放入右子树
+        else                node.left  = put(key, value, node.left);    // 放入左子树
         
         if (!isRed(node.left) && isRed(node.right))      node = rotateLeft(node);   // 是否需要左旋转
         if ( isRed(node.left) && isRed(node.left.left))  node = rotateRight(node);  // 是否需要右旋转
         if ( isRed(node.left) && isRed(node.right))      flipColors(node);          // 是否需要翻转颜色
         
         node.N = 1 + size(node.left) + size(node.right);
+        
         return node;
     }
 
@@ -127,8 +128,25 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 
     @Override
     public void deleteMin() {
-        // TODO Auto-generated method stub
-        
+        if (!isRed(root.left) && !isRed(root.right))    // 根结点为2-结点
+            root.color = RED;
+        root = deleteMin(root);
+        if (!isEmpty())
+            root.color = BLACK;
+    }
+    
+    /**
+     * 删除最小结点的辅助方法
+     * @param h
+     * @return
+     */
+    public Node deleteMin(Node h) {
+        if (h.left == null) return null;
+        // 自上而下的变换，目的是在左侧最终构建一个3-结点或者4-结点
+        if (!isRed(h.left) && !isRed(h.left.left))   // 左子节点为 2-结点
+            h = moveRedLeft(h);
+        h.left = deleteMin(h.left);
+        return balance(h);
     }
 
     @Override
@@ -193,7 +211,6 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     private Node rotateLeft(Node h) {
         Node x = h.right;
         
-        
         h.right = x.left;
         x.left = h;
         
@@ -243,9 +260,9 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
      * @param n
      */
     private void flipColors(Node n) {
-        n.color = RED;
-        n.left.color = BLACK;
-        n.right.color = BLACK;
+        n.color = !n.color;
+        n.left.color = !n.left.color;
+        n.right.color = !n.right.color;
     }
     
     private int size(Node n) {
@@ -262,11 +279,49 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
         if(x == null) return false;
         return x.color == RED;
     }
+    
+    /**
+     * 将根结点的右子树里左子数最近的红链接移至右结点处
+     * @param h
+     * @return
+     */
+    private Node moveRedLeft(Node h) {
+        flipColors(h);
+        if (isRed(h.right.left)) {              // 右子树为非  2-结点
+            h.right = rotateRight(h.right);
+            h = rotateLeft(h);
+            flipColors(h);
+        }
+        return h;
+    }
+    
+    private Node balance(Node h) {
+        // assert (h != null);
 
+        if (isRed(h.right))                      h = rotateLeft(h);
+        if (isRed(h.left) && isRed(h.left.left)) h = rotateRight(h);
+        if (isRed(h.left) && isRed(h.right))     flipColors(h);
+
+        h.N = size(h.left) + size(h.right) + 1;
+        return h;
+    }
+    
+    public void show(String msg) {
+        show(msg, root);
+    }
+    
+    public void show(String msg, Node node) {
+        Out.p("== " + msg + " " + RString.multiString('=', 40-msg.length()-4));
+        if (root != null) tree(node, 1, 0);
+        Out.p(RString.multiString('=', 40));
+    }
+    
     public void show() {
-        p("== tree ===========================");
-        if (root != null) tree(root, 1, 0);
-        p("===================================");
+        show("tree");
+    }
+    
+    public void show(Node node) {
+        show("tree Node" + node.key, node);
     }
 
     private void tree(Node node, int deepth, int c) {
@@ -291,29 +346,20 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     
     public static void main(String[] args) {
         
-        Timer t = Timer.create();
         int size = 10;
-        
-        Integer[] arr = ArrayUtil.intArr(size);
+        Integer[] arr = ArrayUtil.integerArr(size);
         ArrayUtil.shuffle(arr);
         
+        Out.p(arr);
         RedBlackBinarySearchTree<Integer, Integer> st = new RedBlackBinarySearchTree<>();
-        
-        t.click();
         for (Integer i : arr) {
-            Out.pf("put(%s)\n", i);
             st.put(i, i);
-            st.show();
         }
-       
-        t.click();
-        for (Integer i : arr) {
-            Integer temp = st.get(i);
-            Out.pf("get(%s) = %s\n", i, temp);
-        }
-        t.click();
+        st.show();
         
-        t.show();
+        st.deleteMin();
+        
+        st.show();
         
     }
 	

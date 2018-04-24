@@ -1,6 +1,6 @@
 package com.rays.algo.sort;
 
-import com.ray.util.ArrayUtil;
+import com.ray.util.RArrays;
 
 /**
  * <b>—°‘Ò≈≈–Ú</b>
@@ -20,8 +20,8 @@ public class SelectionSort<T extends Comparable<?>> extends Sort<T> {
     @Override
     public void sort(T[] arr, int lo, int hi) {
         for (int i = lo; i <= hi; i++) {
-            int minIndex = ArrayUtil.getIndexOfMin(arr, i, hi);
-            ArrayUtil.swap(arr, i, minIndex);
+            int minIndex = RArrays.getIndexOfMin(arr, i, hi);
+            RArrays.swap(arr, i, minIndex);
         }
     }
 

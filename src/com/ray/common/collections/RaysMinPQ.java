@@ -1,7 +1,7 @@
 package com.ray.common.collections;
 
-import static com.ray.util.ArrayUtil.less;
-import static com.ray.util.ArrayUtil.swap;
+import static com.ray.util.RArrays.less;
+import static com.ray.util.RArrays.swap;
 
 import java.util.NoSuchElementException;
 import java.util.Random;

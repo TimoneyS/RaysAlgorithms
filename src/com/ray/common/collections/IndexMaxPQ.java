@@ -364,7 +364,7 @@ public class IndexMaxPQ<Key extends Comparable<Key>> implements Iterable<Integer
 //        int[] perm = new int[strings.length];
 //        for (int i = 0; i < strings.length; i++)
 //            perm[i] = i;
-//        ArrayUtil.shuffle(perm);
+//        RArrays.shuffle(perm);
 //        for (int i = 0; i < perm.length; i++) {
 //            String key = pq.keyOf(perm[i]);
 //            pq.delete(perm[i]);

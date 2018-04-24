@@ -15,12 +15,12 @@ public class DeepthFirstPaths implements Paths {
     
     private boolean[] marked; // 标记某个顶点是否已经被访问
     private int[]     edgeTo; // 存放至某点的一个邻接点
-    private int       s;      // 起点
+    private int       start;      // 起点
 
     public DeepthFirstPaths(Graph G, int s) {
         marked = new boolean[G.V()];
         edgeTo = new int[G.V()];
-        this.s = s;
+        start = s;
         search(G, s);
     }
 
@@ -40,31 +40,20 @@ public class DeepthFirstPaths implements Paths {
         }
     }
 
-    /**
-     * 查询起点和v是否连通
-     * 
-     * @param v
-     * @return
-     */
+    @Override
     public boolean hasPathTo(int v) {
         return marked[v];
     }
 
-    /**
-     * 获取起点至v的路径
-     * 
-     * @param v
-     * @return
-     */
+    @Override
     public Stack<Integer> pathTo(int v) {
-        if (!hasPathTo(v))
-            return null;
-
+        if (!hasPathTo(v)) return null;
+        
         Stack<Integer> stack = new Stack<Integer>();
-        for (int x = v; x != s; x = edgeTo[x]) {
+        for (int x = v; x != start; x = edgeTo[x]) {
             stack.push(x);
         }
-        stack.push(s);
+        stack.push(start);
         return stack;
     }
 

@@ -21,7 +21,7 @@ import com.rays.algo.graph.g.SymbolGraph;
 public class TestGraph {
     
 	public static void main(String[] args) {
-	    testSymbolGraphBFS();
+	    initGraph("graphTiny.txt");
 	}
 	
 	/**

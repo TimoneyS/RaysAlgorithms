@@ -1,7 +1,8 @@
 package com.rays.algo.graph.g;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
-import com.ray.common.collections.Bag;
 
 /**
  * 无向图
@@ -12,7 +13,7 @@ public class Graph {
 	
 	private final int V;			// 顶点数
 	private int E;					// 边数
-	private Bag<Integer>[] adj;		// 内部存储数据结构，保存每个顶点的可达顶点
+	private List<Integer>[] adj;	// 内部存储数据结构，保存每个顶点的可达顶点
 	
 	/**
 	 * 指定顶点数初始化图
@@ -22,9 +23,9 @@ public class Graph {
 	public Graph(int V) {
 		this.V = V;
 		this.E = 0;
-		adj = (Bag<Integer>[]) new Bag[V];
+		adj = (List<Integer>[]) new LinkedList[V];
 		for (int v = 0; v < V;  v ++)
-		    adj[v] = new Bag<Integer>();
+		    adj[v] = new LinkedList<Integer>();
 	}
 	
 	/**
@@ -32,17 +33,34 @@ public class Graph {
 	 * @param in
 	 */
 	public Graph(Scanner in) {
-		this(in.nextInt());
-		int e = in.nextInt();
-		
-		for (int i = 0; i < e; i++) {
-			int v = in.nextInt();
-			int w = in.nextInt();
-			if (v == w || hasEdge(v, w)) // 不允许出现自环
-			    continue;
-			addEdge(v, w);
-		}
-		
+	    
+	    while (in.hasNext()) {
+	        int v = in.nextInt();
+	        int w = in.nextInt();
+	        
+	        // 判断是否需要调整数组大小
+	        int max = Math.max(v+1, w+1);
+	        if (adj == null || adj.length < max)
+	            adjustArrayTo(max);
+	        
+            if (v == w || hasEdge(v, w)) // 不允许出现自环
+                continue;
+            addEdge(v, w);
+	    }
+	    
+	    this.V = adj.length;
+	}
+	
+	@SuppressWarnings("unchecked")
+    private void adjustArrayTo(int size) {
+	    int oldSize = adj == null ? 0 : adj.length;
+	    List<Integer>[] arr = adj;
+	    adj = (List<Integer>[]) new LinkedList[size];
+        for (int v = 0; v < oldSize;  v ++)
+            adj[v] = arr[v];
+        for (int v = oldSize; v < size;  v ++)
+            adj[v] = new LinkedList<Integer>();
+            
 	}
 	
 	/**
@@ -63,7 +81,9 @@ public class Graph {
 	 * @return
 	 */
 	public boolean hasEdge(int v, int w) {
-	    for (int tempV : adj(v)) if (w == tempV) return true;
+	    for (int tempV : adj(v))
+	        if (w == tempV)
+	            return true;
 	    return false;
 	}
 	
@@ -74,18 +94,6 @@ public class Graph {
 	 */
 	Iterable<Integer> adj(int v) {
 		return adj[v];
-	}
-	
-	/**
-	 * 计算度数
-	 * @param G
-	 * @param v
-	 * @return
-	 */
-	public static int degree(Graph G, int v) {
-		int degree = 0;
-		for (@SuppressWarnings("unused") int w : G.adj(v)) degree ++;
-		return degree;
 	}
 	
     public String toString() {

@@ -1,7 +1,6 @@
 package com.rays.algo.graph.g;
 
 import java.util.Scanner;
-
 import com.ray.common.collections.Bag;
 
 /**
@@ -23,7 +22,7 @@ public class Graph {
 	public Graph(int V) {
 		this.V = V;
 		this.E = 0;
-		adj = (Bag<Integer>[]) new Bag[V];            // 初始化adj
+		adj = (Bag<Integer>[]) new Bag[V];
 		for (int v = 0; v < V;  v ++)
 		    adj[v] = new Bag<Integer>();
 	}
@@ -39,7 +38,7 @@ public class Graph {
 		for (int i = 0; i < e; i++) {
 			int v = in.nextInt();
 			int w = in.nextInt();
-			if (v == w || hasEdge(v, w))                          // 不允许出现自环
+			if (v == w || hasEdge(v, w)) // 不允许出现自环
 			    continue;
 			addEdge(v, w);
 		}
@@ -89,42 +88,6 @@ public class Graph {
 		return degree;
 	}
 	
-	/**
-	 * 计算所有顶点的最大度数
-	 * @param G
-	 * @return
-	 */
-	public static int maxDegree(Graph G) {
-		int max = 0;
-		for(int v = 0;  v < G.V(); v ++) {
-			if(degree(G, v) > max) max = degree(G, v);
-		}
-		return max;
-	}
-	
-	/**
-	 * 计算所有顶点的平均度数
-	 * @param G
-	 * @return
-	 */
-	public static int avgDegree(Graph G) {
-		return 2 * G.E() / G.V();
-	}
-	
-	/**
-	 * 计算自环的个数
-	 * @param G
-	 * @return
-	 */
-	public static int numberOfSelfLoops(Graph G) {
-		int count = 0;
-		for (int v = 0; v < G.V(); v ++) {
-			for (int w : G.adj(v)) if (v == w) count ++;
-		}
-		return count/2;
-	}
-	
-	   
     public String toString() {
         String s = V + " vertices, " + E + " Edges\n";
         for (int v = 0; v < V(); v ++) {
@@ -136,6 +99,6 @@ public class Graph {
     }
 	   
     public int V() { return V; }
-    int E() { return E; }
+    public int E() { return E; }
 
 }

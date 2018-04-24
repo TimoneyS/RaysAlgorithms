@@ -12,7 +12,7 @@ package com.rays.algo.search;
  * @param <Key>
  * @param <Value>
  */
-public interface SymbolTable <Key extends Comparable<Key>, Value> {
+public interface SymbolTable <Key, Value> {
     
     /**
      * ªÒ»°÷µ

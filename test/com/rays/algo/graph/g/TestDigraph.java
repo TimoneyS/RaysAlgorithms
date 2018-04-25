@@ -16,7 +16,7 @@ import com.rays.algo.graph.Paths;
 public class TestDigraph {
     
 	public static void main(String[] args) {
-	    testDiCycle();
+	    testDiBFP();
 	}
 	
 	/**
@@ -61,6 +61,24 @@ public class TestDigraph {
 	    
 	}
 	
+	   /**
+     * 测试有向图的深度优先路径
+     */
+    public static void testDiBFP() {
+        Digraph G = getDigraph("digraph.txt");
+        
+        int s = 0;
+        int e = 6;
+        
+        Paths dfp = new BreadthFirstPaths(G, s);
+        
+        Stack<Integer> stack = dfp.pathTo(e);
+        
+        while (!stack.isEmpty())
+            Out.pt(stack.pop() + " ->");
+            
+    }
+	
 	/**
 	 * 测试有向图的深度优先路径
 	 */
@@ -68,17 +86,18 @@ public class TestDigraph {
 	    Digraph G = getDigraph("digraph.txt");
 	    
 	    int s = 0;
-	    int e = 7;
+	    int e = 6;
 	    
 	    Paths dfp = new DeepthFirstPaths(G, s);
 	    
-	    Stack<Integer> list = dfp.pathTo(e);
+	    Stack<Integer> stack = dfp.pathTo(e);
 	    
-	    for (int i : list)
-	        Out.pt(i + " ");
+	    while (!stack.isEmpty())
+	        Out.pt(stack.pop() + " ->");
+	        
 	}
 	
-    public static Digraph getDigraph(String fileName) {
+    private static Digraph getDigraph(String fileName) {
         Scanner in = In.getClassPathScanner(TestDigraph.class, fileName);
         Digraph G = new Digraph(in);
         Out.p(G);

@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Stack;
 
+import com.rays.algo.graph.Digraph;
 import com.rays.algo.graph.Graph;
 import com.rays.algo.graph.Paths;
 
@@ -21,20 +22,52 @@ public class BreadthFirstPaths implements Paths {
     private int[]               edgeTo;     // 存放至某点的一个邻接点
     private int                 start;      // 起点
     private Queue<Integer>      queue;
-
-    public BreadthFirstPaths(Graph G, int s) {
+    
+    private BreadthFirstPaths(int V, int s) {
+        marked = new boolean[V];
+        edgeTo = new int[V];
+        queue = new ArrayDeque<Integer>(V);
         
-        marked = new boolean[G.V()];
-        edgeTo = new int[G.V()];
-        queue = new ArrayDeque<Integer>(G.V());
-        
-        this.start = s;
+        start = s;
         queue.add(s);
         marked[s] = true;
+        
+    }
+    
+    /**
+     * 无向图广度优先
+     * @param G
+     * @param s
+     */
+    public BreadthFirstPaths(Graph G, int s) {
+        this(G.V(), s);
+        search(G, s);
+    }
+    
+    /**
+     * 有向图广度优先
+     * @param G
+     * @param s
+     */
+    public BreadthFirstPaths(Digraph G, int s) {
+        this(G.V(), s);
         search(G, s);
     }
 
     private void search(Graph G, int s) {
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            
+            for (int w : G.adj(v)) {
+                if (marked[w]) continue;
+                edgeTo[w] = v;
+                queue.add(w);
+                marked[w] = true;
+            }
+        }
+    }
+    
+    private void search(Digraph G, int s) {
         while (!queue.isEmpty()) {
             int v = queue.poll();
             

@@ -1,12 +1,12 @@
 package com.rays.algo.graph.gd;
 
-import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Stack;
 
 import com.ray.util.io.In;
 import com.ray.util.io.Out;
 import com.rays.algo.graph.gd.DiCycle;
-import com.rays.algo.graph.gd.DiDeepthFirstPath;
+import com.rays.algo.graph.gd.DiDeepthFirstPaths;
 import com.rays.algo.graph.gd.Digraph;
 import com.rays.algo.graph.gd.SCC;
 import com.rays.algo.graph.gd.TopoLogical;
@@ -73,9 +73,9 @@ public class TestDigraph {
 	    int s = 0;
 	    int e = 7;
 	    
-	    DiDeepthFirstPath dfp = new DiDeepthFirstPath(G, s);
+	    DiDeepthFirstPaths dfp = new DiDeepthFirstPaths(G, s);
 	    
-	    LinkedList<Integer> list = dfp.pathTo(e);
+	    Stack<Integer> list = dfp.pathTo(e);
 	    
 	    for (int i : list)
 	        Out.pt(i + " ");

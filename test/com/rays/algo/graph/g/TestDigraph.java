@@ -16,7 +16,7 @@ import com.rays.algo.graph.Paths;
 public class TestDigraph {
     
 	public static void main(String[] args) {
-	    testDiBFP();
+	    testDiCycle();
 	}
 	
 	/**
@@ -55,14 +55,15 @@ public class TestDigraph {
 	public static void testDiCycle() {
 	    Digraph G = getDigraph("digraphCycle.txt");
 	    DiCycle diCycle = new DiCycle(G, 0);
-	    Out.p(diCycle.hasCycle());
+	    Out.p( (diCycle.hasCycle() ? "" : "不") + "存在环");
+	    
 	    while (!diCycle.getCycle().isEmpty())
-	        Out.pt(diCycle.getCycle().pop() + "  ");
+	        Out.pt(diCycle.getCycle().pop() + " -> ");
 	    
 	}
 	
-	   /**
-     * 测试有向图的深度优先路径
+	 /**
+     * 测试有向图的广度优先路径
      */
     public static void testDiBFP() {
         Digraph G = getDigraph("digraph.txt");

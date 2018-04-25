@@ -37,23 +37,22 @@ public class Graph {
 	    while (in.hasNext()) {
 	        int v = in.nextInt();
 	        int w = in.nextInt();
-	        
 	        // 判断是否需要调整数组大小
-	        int max = Math.max(v+1, w+1);
-	        if (adj == null || adj.length < max)
-	            adjustArrayTo(max);
-	        
-            if (v == w || hasEdge(v, w)) // 不允许出现自环
-                continue;
+            adjustArrayTo(Math.max(v, w) + 1);
             addEdge(v, w);
 	    }
 	    
 	    this.V = adj.length;
 	}
 	
+	/**
+	 * 判断是否需要调整数组大小
+	 * @param size
+	 */
 	@SuppressWarnings("unchecked")
     private void adjustArrayTo(int size) {
-	    int oldSize = adj == null ? 0 : adj.length;
+	    if (adj != null && adj.length >= size) return ;
+	    int oldSize = (adj == null) ? 0 : adj.length;
 	    List<Integer>[] arr = adj;
 	    adj = (List<Integer>[]) new LinkedList[size];
         for (int v = 0; v < oldSize;  v ++)
@@ -69,6 +68,7 @@ public class Graph {
 	 * @param w
 	 */
 	public void addEdge(int v, int w) {
+	    if (v == w || hasEdge(v, w))return; // 不允许出现自环和平行边
 		adj[v].add(w);
 		adj[w].add(v);
 		E ++;

@@ -1,8 +1,8 @@
 package com.rays.algo.graph.gd;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
-
-import com.ray.common.collections.Bag;
 
 /**
  * 有向图
@@ -13,7 +13,7 @@ public class Digraph {
     
     private int V;                  // 顶点数
     private int E;                  // 边数
-    private Bag<Integer>[] adj;     // 内部存储数据结构，保存每个顶点的邻接顶点
+    private List<Integer>[] adj;    // 内部存储数据结构，保存每个顶点的邻接顶点
     
     /**
      * 指定顶点数初始化图
@@ -23,9 +23,9 @@ public class Digraph {
     public Digraph(int V) {
         this.V = V;
         this.E = 0;
-        adj = (Bag<Integer>[]) new Bag[V];            // 初始化adj
+        adj = (List<Integer>[]) new LinkedList[V];            // 初始化adj
         for (int v = 0; v < V;  v ++)
-            adj[v] = new Bag<Integer>();
+            adj[v] = new LinkedList<Integer>();
     }
     
     /**
@@ -33,14 +33,17 @@ public class Digraph {
      * @param in
      */
     public Digraph(Scanner in) {
-        this(in.nextInt());
-        
-        int e = in.nextInt();
-        for (int i = 0; i < e; i++) {
+        while (in.hasNext()) {
             int v = in.nextInt();
             int w = in.nextInt();
+            // 判断是否需要调整数组大小
+            adjustArrayTo(Math.max(v, w) + 1);
+            if (v == w || hasEdge(v, w)) // 不允许出现自环
+                continue;
             addEdge(v, w);
         }
+        
+        this.V = adj.length;
         
     }
     
@@ -50,8 +53,7 @@ public class Digraph {
      * @param w
      */
     public void addEdge(int v, int w) {
-        if (v == w || hasEdge(v, w))                          // 不允许出现自环和平行边
-            return;
+        if (v == w || hasEdge(v, w)) return; // 不允许出现自环和平行边
         adj[v].add(w);
         E ++;
     }
@@ -85,13 +87,30 @@ public class Digraph {
      * @return
      */
     public boolean hasEdge(int v, int w) {
-        for (int tempW : adj(v)) if (w == tempW) return true;
+        for (int tempW : adj(v))
+            if (w == tempW)
+                return true;
         return false;
     }
     
     /**
-     * 提供图的打印
+     * 判断是否需要调整数组大小
+     * @param size
      */
+    @SuppressWarnings("unchecked")
+    private void adjustArrayTo(int size) {
+        if (adj != null && adj.length >= size) return ;
+        
+        int oldSize = (adj == null) ? 0 : adj.length;
+        List<Integer>[] arr = adj;
+        adj = (List<Integer>[]) new LinkedList[size];
+        for (int v = 0; v < oldSize;  v ++)
+            adj[v] = arr[v];
+        for (int v = oldSize; v < size;  v ++)
+            adj[v] = new LinkedList<Integer>();
+            
+    }
+    
     public String toString() {
         String s = V + " vertices, " + E + " Edges\n";
         for (int v = 0; v < V; v ++) {

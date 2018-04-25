@@ -2,7 +2,7 @@ package com.rays.algo.graph.gd;
 
 import java.util.Stack;
 
-import com.rays.algo.graph.g.Paths;
+import com.rays.algo.graph.Paths;
 
 /**
  * 有向图的深度优先搜索(和无向图的深度优先算法代码一致)

@@ -31,7 +31,12 @@ public class CC {
         }
     }
     
-    public void dfs(Graph g, int s) {       // 深度优先搜索算法
+    /**
+     * 深度优先搜索算法
+     * @param g
+     * @param s
+     */
+    private void dfs(Graph g, int s) {
         marked[s] = true;
         id[s]     = count;                  // id用于记录该顶点属于哪一个连通分量
         for (int v : g.adj(s)) {

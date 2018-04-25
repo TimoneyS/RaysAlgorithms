@@ -21,7 +21,7 @@ import com.rays.algo.graph.g.SymbolGraph;
 public class TestGraph {
     
 	public static void main(String[] args) {
-	    testBreadthFirstPaths();
+	    testCC();
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class TestGraph {
 	 * 测试获取连通分量
 	 */
 	public static void testCC() {
-	    Graph G = initGraph("graphTiny.txt");
+	    Graph G = initGraph("graphCC.txt");
 	    
 	    CC cc = new CC(G);
 	    Out.p("cc done");

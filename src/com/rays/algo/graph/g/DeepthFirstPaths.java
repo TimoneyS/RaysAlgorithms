@@ -2,8 +2,9 @@ package com.rays.algo.graph.g;
 
 import java.util.Stack;
 
+import com.rays.algo.graph.Digraph;
+import com.rays.algo.graph.Graph;
 import com.rays.algo.graph.Paths;
-import com.rays.algo.graph.gd.Digraph;
 
 /**
  * 深度优先搜索<br>

@@ -2,6 +2,8 @@ package com.rays.algo.graph.gd;
 
 import java.util.Stack;
 
+import com.rays.algo.graph.Digraph;
+
 /**
  * 检测有向图的环
  * @author rays1

@@ -3,6 +3,7 @@ package com.rays.algo.graph.gd;
 import java.util.Stack;
 
 import com.ray.util.io.Out;
+import com.rays.algo.graph.Digraph;
 
 /**
  * 搜索有向图的强连通分量<br/>

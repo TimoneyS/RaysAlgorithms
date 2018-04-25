@@ -1,5 +1,7 @@
 package com.rays.algo.graph.g;
 
+import com.rays.algo.graph.Graph;
+
 /**
  * 搜索图中的连通分量
  * @author rays1

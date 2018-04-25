@@ -1,4 +1,4 @@
-package com.rays.algo.graph.g;
+package com.rays.algo.graph;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -92,7 +92,7 @@ public class Graph {
 	 * @param v
 	 * @return
 	 */
-	Iterable<Integer> adj(int v) {
+	public Iterable<Integer> adj(int v) {
 		return adj[v];
 	}
 	

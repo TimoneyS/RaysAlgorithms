@@ -5,9 +5,9 @@ import java.util.Stack;
 
 import com.ray.util.io.In;
 import com.ray.util.io.Out;
+import com.rays.algo.graph.Digraph;
 import com.rays.algo.graph.Paths;
 import com.rays.algo.graph.gd.DiCycle;
-import com.rays.algo.graph.gd.Digraph;
 import com.rays.algo.graph.gd.SCC;
 import com.rays.algo.graph.gd.TopoLogical;
 

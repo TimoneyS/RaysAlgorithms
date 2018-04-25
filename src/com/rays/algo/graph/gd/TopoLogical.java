@@ -2,6 +2,7 @@ package com.rays.algo.graph.gd;
 
 import java.util.Stack;
 
+import com.rays.algo.graph.Digraph;
 import com.rays.algo.graph.gwd.DirectedEdge;
 import com.rays.algo.graph.gwd.EdgeWeightedDigraph;
 

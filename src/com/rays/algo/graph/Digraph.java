@@ -1,4 +1,4 @@
-package com.rays.algo.graph.gd;
+package com.rays.algo.graph;
 
 import java.util.LinkedList;
 import java.util.List;

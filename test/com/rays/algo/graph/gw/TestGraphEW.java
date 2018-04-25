@@ -17,6 +17,7 @@ import com.rays.algo.graph.gw.PrimMinST;
 public class TestGraphEW {
     
     public static void main(String[] args) {
+        testLazyPrimMinST();
     }
     
     public static void testPrimMinST() {
@@ -43,7 +44,7 @@ public class TestGraphEW {
     }
     
     private static EdgeWeightedGraph getGraph(String fileName) {
-        Scanner in = In.getProjectScanner("src/com/ray/graph/weightedGraph/" + fileName);
+        Scanner in = In.getClassPathScanner(TestGraphEW.class, fileName);
         EdgeWeightedGraph G = new EdgeWeightedGraph(in);
         Out.p(G);
         return G;

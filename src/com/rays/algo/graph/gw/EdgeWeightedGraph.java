@@ -1,11 +1,11 @@
 package com.rays.algo.graph.gw;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
-import com.ray.common.collections.Bag;
-
 /**
- * 加权图(不允许自环和平行边)
+ * 加权无向图(不允许自环和平行边)
  * @author rays1
  *
  */
@@ -13,38 +13,40 @@ public class EdgeWeightedGraph {
     
     private final int   V;   // 顶点数
     private int         E;   // 边数
-    private Bag<Edge>[] adj; // 内部存储数据结构，保存每个顶点的可达边
-    
-    /**
-     * 指定顶点数初始化图
-     * @param V
-     */
-    @SuppressWarnings("unchecked")
-    public EdgeWeightedGraph(int V) {
-        this.V = V;
-        this.E = 0;
-        adj = (Bag<Edge>[]) new Bag[V];            // 初始化adj
-        for (int v = 0; v < V;  v ++)
-            adj[v] = new Bag<Edge>();
-    }
+    private List<Edge>[] adj; // 内部存储数据结构，保存每个顶点的可达边
     
     /**
      * 从输入流初始化图
      * @param in
      */
     public EdgeWeightedGraph(Scanner in) {
-        this(in.nextInt());
-        int e = in.nextInt();
         
-        for (int i = 0; i < e; i++) {
+        while (in.hasNext()) {
             int v = in.nextInt();
             int w = in.nextInt();
             double weighted = in.nextDouble();
-            if (v == w || hasEdge(v, w))                          // 不允许出现自环
-                continue;
+            adjustArrayTo(Math.max(v, w)+1);
             addEdge(new Edge(v, w, weighted));
         }
         
+        V = adj.length;
+        
+    }
+    
+    /**
+     * 调整数组大小
+     * @param size
+     */
+    @SuppressWarnings("unchecked")
+    private void adjustArrayTo(int size) {
+        if (adj != null && adj.length >= size) return ;
+        int oldSize = (adj == null) ? 0 : adj.length;
+        List<Edge>[] arr = adj;
+        adj = (List<Edge>[]) new LinkedList[size];
+        for (int v = 0; v < oldSize;  v ++)
+            adj[v] = arr[v];
+        for (int v = oldSize; v < size;  v ++)
+            adj[v] = new LinkedList<Edge>();
     }
     
     /**
@@ -55,6 +57,7 @@ public class EdgeWeightedGraph {
     public void addEdge(Edge e) {
         int v = e.either();
         int w = e.other(v);
+        if (v == w || hasEdge(v, w)) return; // 不允许出现自环
         adj[v].add(e);
         adj[w].add(e);        
         E ++;

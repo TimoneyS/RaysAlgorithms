@@ -46,7 +46,7 @@ public class Graph {
 	}
 	
 	/**
-	 * 判断是否需要调整数组大小
+	 * 调整数组大小
 	 * @param size
 	 */
 	@SuppressWarnings("unchecked")
@@ -59,7 +59,6 @@ public class Graph {
             adj[v] = arr[v];
         for (int v = oldSize; v < size;  v ++)
             adj[v] = new LinkedList<Integer>();
-            
 	}
 	
 	/**

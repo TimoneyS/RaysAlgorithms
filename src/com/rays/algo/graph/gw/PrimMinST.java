@@ -1,6 +1,8 @@
 package com.rays.algo.graph.gw;
 
 import com.ray.common.collections.IndexMinPQ;
+import com.rays.algo.graph.Edge;
+import com.rays.algo.graph.EdgeWeightedGraph;
 
 /**
  * PrimÀ„∑®

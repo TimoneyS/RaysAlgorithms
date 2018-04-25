@@ -1,5 +1,8 @@
 package com.rays.algo.graph.gw;
 
+import com.rays.algo.graph.Edge;
+import com.rays.algo.graph.EdgeWeightedGraph;
+
 /**
  * 加权图的最小生成树
  * @author rays1

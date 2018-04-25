@@ -1,4 +1,4 @@
-package com.rays.algo.graph.gw;
+package com.rays.algo.graph;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +20,6 @@ public class EdgeWeightedGraph {
      * @param in
      */
     public EdgeWeightedGraph(Scanner in) {
-        
         while (in.hasNext()) {
             int v = in.nextInt();
             int w = in.nextInt();
@@ -28,9 +27,7 @@ public class EdgeWeightedGraph {
             adjustArrayTo(Math.max(v, w)+1);
             addEdge(new Edge(v, w, weighted));
         }
-        
         V = adj.length;
-        
     }
     
     /**
@@ -79,7 +76,7 @@ public class EdgeWeightedGraph {
      * @param v
      * @return
      */
-    Iterable<Edge> adj(int v) {
+    public Iterable<Edge> adj(int v) {
         return adj[v];
     }
     
@@ -97,7 +94,7 @@ public class EdgeWeightedGraph {
         return s;
     }
        
-    int V() { return V; }
-    int E() { return E; }
+    public int V() { return V; }
+    public int E() { return E; }
     
 }

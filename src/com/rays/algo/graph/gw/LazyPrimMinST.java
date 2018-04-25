@@ -2,6 +2,8 @@ package com.rays.algo.graph.gw;
 
 import com.ray.common.collections.MinPQ;
 import com.ray.common.collections.RaysMinPQ;
+import com.rays.algo.graph.Edge;
+import com.rays.algo.graph.EdgeWeightedGraph;
 
 /**
  * ÑÓ³ÙÉ¾³ý·ÏÆúµÄ±ßµÄPrimËã·¨

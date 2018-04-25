@@ -1,6 +1,8 @@
 package com.rays.algo.graph.gwd;
 
 import com.ray.common.collections.IndexMinPQ;
+import com.rays.algo.graph.DirectedEdge;
+import com.rays.algo.graph.EdgeWeightedDigraph;
 
 /**
  * DijkstraÀ„∑®<br/>

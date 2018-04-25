@@ -3,6 +3,9 @@ package com.rays.algo.graph.gwd;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+import com.rays.algo.graph.DirectedEdge;
+import com.rays.algo.graph.EdgeWeightedDigraph;
+
 /**
  * BellmanFord算法<br/>
  * 在任意含有V个顶点的加权有向图中给定起点s，

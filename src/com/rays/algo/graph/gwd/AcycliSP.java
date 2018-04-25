@@ -2,6 +2,8 @@ package com.rays.algo.graph.gwd;
 
 import java.util.Stack;
 
+import com.rays.algo.graph.DirectedEdge;
+import com.rays.algo.graph.EdgeWeightedDigraph;
 import com.rays.algo.graph.g.DiTopoLogical;
 
 /**

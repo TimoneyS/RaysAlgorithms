@@ -3,8 +3,8 @@ package com.rays.algo.graph.g;
 import java.util.Stack;
 
 import com.rays.algo.graph.Digraph;
-import com.rays.algo.graph.gwd.DirectedEdge;
-import com.rays.algo.graph.gwd.EdgeWeightedDigraph;
+import com.rays.algo.graph.DirectedEdge;
+import com.rays.algo.graph.EdgeWeightedDigraph;
 
 /**
  * ÕºµƒÕÿ∆À≈≈–Ú

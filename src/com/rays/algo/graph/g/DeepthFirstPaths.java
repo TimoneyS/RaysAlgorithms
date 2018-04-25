@@ -21,10 +21,14 @@ public class DeepthFirstPaths implements Paths {
     private int[]     edgeTo; // 存放至某点的一个邻接点
     private int       start;      // 起点
 
-    public DeepthFirstPaths(Graph G, int s) {
-        marked = new boolean[G.V()];
-        edgeTo = new int[G.V()];
+    private DeepthFirstPaths(int V, int s) {
+        marked = new boolean[V];
+        edgeTo = new int[V];
         start = s;
+    }
+    
+    public DeepthFirstPaths(Graph G, int s) {
+        this(G.V(), s);
         search(G, s);
     }
     
@@ -34,9 +38,7 @@ public class DeepthFirstPaths implements Paths {
      * @param s
      */
     public DeepthFirstPaths(Digraph G, int s) {
-        marked = new boolean[G.V()];
-        edgeTo = new int[G.V()];
-        start = s;
+        this(G.V(), s);
         search(G, s);
     }
     

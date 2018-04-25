@@ -1,4 +1,4 @@
-package com.rays.algo.graph.gd;
+package com.rays.algo.graph.g;
 
 import java.util.Stack;
 
@@ -27,14 +27,14 @@ import com.rays.algo.graph.Digraph;
  *<br/>
  *      S -> V 有路径 && V -> S 有路径 => S 和 V 是强连通分量<br/>
  */
-public class SCC {
+public class DiSCC {
     
     private boolean[] marked;           // 标记某个顶点是否已经被访问
     private Stack<Integer> reverPost;   // 逆后序排列
     private int[] id;
     private int count;
     
-    public SCC(Digraph G) {
+    public DiSCC(Digraph G) {
         // 初始化
         marked = new boolean[G.V()];
         reverPost = new Stack<Integer>();

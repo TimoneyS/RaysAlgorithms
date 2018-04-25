@@ -1,4 +1,4 @@
-package com.rays.algo.graph.gd;
+package com.rays.algo.graph.g;
 
 import java.util.Stack;
 
@@ -12,7 +12,7 @@ import com.rays.algo.graph.gwd.EdgeWeightedDigraph;
  * @author rays1
  *
  */
-public class TopoLogical {
+public class DiTopoLogical {
     private boolean[]      marked;      // 标记某个顶点是否已经被访问
     private Stack<Integer> reverPost;   // 逆后序排列
 
@@ -20,14 +20,14 @@ public class TopoLogical {
      * 有向图拓扑排序
      * @param G
      */
-    public TopoLogical(Digraph G) {
+    public DiTopoLogical(Digraph G) {
         marked = new boolean[G.V()];
         reverPost = new Stack<Integer>();
         for (int v = 0; v < marked.length; v++)
             if (!marked[v]) search(G, v);
     }
     
-    public TopoLogical(EdgeWeightedDigraph G) {
+    public DiTopoLogical(EdgeWeightedDigraph G) {
         marked = new boolean[G.V()];
         reverPost = new Stack<Integer>();
         for (int v = 0; v < marked.length; v++)

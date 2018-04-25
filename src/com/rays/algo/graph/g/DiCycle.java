@@ -1,4 +1,4 @@
-package com.rays.algo.graph.gd;
+package com.rays.algo.graph.g;
 
 import java.util.Stack;
 

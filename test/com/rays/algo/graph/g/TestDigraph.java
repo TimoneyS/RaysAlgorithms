@@ -7,9 +7,6 @@ import com.ray.util.io.In;
 import com.ray.util.io.Out;
 import com.rays.algo.graph.Digraph;
 import com.rays.algo.graph.Paths;
-import com.rays.algo.graph.gd.DiCycle;
-import com.rays.algo.graph.gd.SCC;
-import com.rays.algo.graph.gd.TopoLogical;
 
 /**
  * 测试有向图
@@ -27,7 +24,7 @@ public class TestDigraph {
 	 */
 	public static void testSCC() {
 	    Digraph G = getDigraph("graphCC2.txt");
-	    SCC scc = new SCC(G);
+	    DiSCC scc = new DiSCC(G);
 	    
 	    for (int i = 0; i < scc.count(); i ++) {
 	        Out.pf("连通分量 : %d\n[", i);
@@ -45,7 +42,7 @@ public class TestDigraph {
 	 */
 	public static void testDiDFOrder() {
 	    Digraph G = getDigraph("digraphTopo.txt");
-	    TopoLogical topo = new TopoLogical(G);
+	    DiTopoLogical topo = new DiTopoLogical(G);
 	    
 	    while (!topo.order().isEmpty())
 	        Out.pt(topo.order().pop() + " ");

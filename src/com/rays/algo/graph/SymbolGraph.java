@@ -1,4 +1,4 @@
-package com.rays.algo.graph.g;
+package com.rays.algo.graph;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import com.ray.util.io.In;
 import com.ray.util.io.Out;
-import com.rays.algo.graph.Graph;
 
 /**
  * ·ûºÅÍ¼

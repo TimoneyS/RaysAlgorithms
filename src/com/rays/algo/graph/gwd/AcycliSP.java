@@ -2,7 +2,7 @@ package com.rays.algo.graph.gwd;
 
 import java.util.Stack;
 
-import com.rays.algo.graph.gd.TopoLogical;
+import com.rays.algo.graph.g.DiTopoLogical;
 
 /**
  * 无环加权有向图最短路径搜索方法<br>
@@ -22,7 +22,7 @@ public class AcycliSP extends SP {
 
         distTo[S] = 0.0;
         
-        TopoLogical topo = new TopoLogical(G);
+        DiTopoLogical topo = new DiTopoLogical(G);
         Stack<Integer> stack = topo.order();
         
         while (!stack.empty()) {

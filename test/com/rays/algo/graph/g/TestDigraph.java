@@ -1,12 +1,12 @@
-package com.rays.algo.graph.gd;
+package com.rays.algo.graph.g;
 
 import java.util.Scanner;
 import java.util.Stack;
 
 import com.ray.util.io.In;
 import com.ray.util.io.Out;
+import com.rays.algo.graph.Paths;
 import com.rays.algo.graph.gd.DiCycle;
-import com.rays.algo.graph.gd.DiDeepthFirstPaths;
 import com.rays.algo.graph.gd.Digraph;
 import com.rays.algo.graph.gd.SCC;
 import com.rays.algo.graph.gd.TopoLogical;
@@ -73,7 +73,7 @@ public class TestDigraph {
 	    int s = 0;
 	    int e = 7;
 	    
-	    DiDeepthFirstPaths dfp = new DiDeepthFirstPaths(G, s);
+	    Paths dfp = new DeepthFirstPaths(G, s);
 	    
 	    Stack<Integer> list = dfp.pathTo(e);
 	    

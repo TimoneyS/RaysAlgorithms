@@ -46,7 +46,7 @@ public class DiCycle {
         return cycle;
     }
     
-    boolean hasCycle() {
+    public boolean hasCycle() {
         return cycle != null;
     }
     

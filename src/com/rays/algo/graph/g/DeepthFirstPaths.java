@@ -3,6 +3,7 @@ package com.rays.algo.graph.g;
 import java.util.Stack;
 
 import com.rays.algo.graph.Paths;
+import com.rays.algo.graph.gd.Digraph;
 
 /**
  * 深度优先搜索<br>
@@ -24,6 +25,33 @@ public class DeepthFirstPaths implements Paths {
         edgeTo = new int[G.V()];
         start = s;
         search(G, s);
+    }
+    
+    /**
+     * 有向图深度优先
+     * @param G
+     * @param s
+     */
+    public DeepthFirstPaths(Digraph G, int s) {
+        marked = new boolean[G.V()];
+        edgeTo = new int[G.V()];
+        start = s;
+        search(G, s);
+    }
+    
+    /**
+     * 无向图深度优先
+     * @param G
+     * @param v
+     */
+    private void search(Digraph G, int v) {
+        marked[v] = true;
+        for (int w : G.adj(v)) {
+            if (!marked[w]) {
+                edgeTo[w] = v;
+                search(G, w);
+            }
+        }
     }
 
     /**

@@ -6,11 +6,11 @@ import java.util.Stack;
 
 import com.ray.util.io.In;
 import com.ray.util.io.Out;
+import com.rays.algo.graph.Paths;
 import com.rays.algo.graph.g.BreadthFirstPaths;
 import com.rays.algo.graph.g.CC;
 import com.rays.algo.graph.g.DeepthFirstPaths;
 import com.rays.algo.graph.g.Graph;
-import com.rays.algo.graph.g.Paths;
 import com.rays.algo.graph.g.SymbolGraph;
 
 /**

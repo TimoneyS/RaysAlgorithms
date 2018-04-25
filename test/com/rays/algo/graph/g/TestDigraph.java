@@ -16,7 +16,7 @@ import com.rays.algo.graph.Paths;
 public class TestDigraph {
     
 	public static void main(String[] args) {
-	    testDiCycle();
+	    testDiDFOrder();
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class TestDigraph {
 	    DiTopoLogical topo = new DiTopoLogical(G);
 	    
 	    while (!topo.order().isEmpty())
-	        Out.pt(topo.order().pop() + " ");
+	        Out.pt(topo.order().pop() + " -> ");
 	    
 	}
 	

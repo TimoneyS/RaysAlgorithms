@@ -1,8 +1,8 @@
 package com.rays.algo.graph;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
-
-import com.ray.common.collections.Bag;
 
 /**
  * 加权有向图(不允许自环和平行边)
@@ -13,19 +13,15 @@ public class EdgeWeightedDigraph {
     
     private final int   V;              // 顶点数
     private int         E;              // 边数
-    private Bag<DirectedEdge>[] adj;    // 内部存储数据结构，保存每个顶点的可达边
+    private List<DirectedEdge>[] adj;    // 内部存储数据结构，保存每个顶点的可达边
     
-    /**
-     * 指定顶点数初始化图
-     * @param V
-     */
     @SuppressWarnings("unchecked")
     public EdgeWeightedDigraph(int V) {
         this.V = V;
         this.E = 0;
-        adj = (Bag<DirectedEdge>[]) new Bag[V];            // 初始化adj
+        adj = (List<DirectedEdge>[]) new LinkedList[V];
         for (int v = 0; v < V;  v ++)
-            adj[v] = new Bag<DirectedEdge>();
+            adj[v] = new LinkedList<DirectedEdge>();
     }
     
     /**
@@ -33,26 +29,39 @@ public class EdgeWeightedDigraph {
      * @param in
      */
     public EdgeWeightedDigraph(Scanner in) {
-        this(in.nextInt());
-        int e = in.nextInt();
-        
-        for (int i = 0; i < e; i++) {
+        while (in.hasNext()) {
             int from = in.nextInt();
             int to = in.nextInt();
             double weighted = in.nextDouble();
-            if (from == to || hasEdge(from, to))                          // 不允许出现自环
-                continue;
+            adjustArrayTo(Math.max(from, to));
             addEdge(new DirectedEdge(from, to, weighted));
         }
-        
+        V = adj.length;
     }
+    
+    /**
+     * 调整数组大小
+     * @param size
+     */
+    @SuppressWarnings("unchecked")
+    private void adjustArrayTo(int size) {
+        if (adj != null && adj.length >= size) return ;
+        int oldSize = (adj == null) ? 0 : adj.length;
+        List<DirectedEdge>[] arr = adj;
+        adj = (List<DirectedEdge>[]) new LinkedList[size];
+        for (int v = 0; v < oldSize;  v ++)
+            adj[v] = arr[v];
+        for (int v = oldSize; v < size;  v ++)
+            adj[v] = new LinkedList<DirectedEdge>();
+    }
+    
     
     /**
      * 返回有向图的所有边
      * @return
      */
     public Iterable<DirectedEdge> edges() {
-        Bag<DirectedEdge> bag = new Bag<DirectedEdge>();
+        List<DirectedEdge> bag = new LinkedList<DirectedEdge>();
         
         for (int i = 0; i < adj.length; i++) {
             for (DirectedEdge edge : adj[i])
@@ -60,7 +69,6 @@ public class EdgeWeightedDigraph {
         }
         
         return bag;
-        
     }
     
     /**
@@ -70,6 +78,8 @@ public class EdgeWeightedDigraph {
      */
     public void addEdge(DirectedEdge e) {
         int from = e.from();
+        int to = e.to();
+        if (from == to || hasEdge(from, to)) return;  // 不允许出现自环
         adj[from].add(e);
         E ++;
     }

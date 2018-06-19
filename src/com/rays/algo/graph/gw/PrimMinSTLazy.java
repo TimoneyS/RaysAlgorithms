@@ -18,7 +18,8 @@ public class PrimMinSTLazy implements MinST {
     
     private boolean[]        marked;
     private Edge[]           edgeTo;
-    private MinPQ<Edge> PQ;
+    private MinPQ<Edge>      PQ;
+    private double weight;
     
     public PrimMinSTLazy(EdgeWeightedGraph G) {
         
@@ -27,21 +28,25 @@ public class PrimMinSTLazy implements MinST {
         marked = new boolean[G.V()];
         
         visit(G, 0);
-        
         while (!PQ.isEmpty()) {
             Edge edge = PQ.delMin();
             int v = edge.either();
-            
             if (marked[v]) {
                 v = edge.other(v);
                 if (marked[v]) continue;
             }
             
             edgeTo[v] = edge;
-            
             visit(G, v);
             
         }
+        
+        // 计算生成树权重
+        weight = 0;
+        for (Edge edge : edgeTo) {
+            weight +=  edge.getWeighted();
+        }
+        
     }
     
     /**
@@ -52,7 +57,7 @@ public class PrimMinSTLazy implements MinST {
     public void visit(EdgeWeightedGraph G, int v) {
         marked[v] = true;
         for (Edge e : G.adj(v)) {
-            if (marked[e.other(v)]) continue;
+            if (marked[e.other(v)]) continue;   // 失效的边
             PQ.insert(e);
         }
     }
@@ -64,10 +69,6 @@ public class PrimMinSTLazy implements MinST {
 
     @Override
     public double weight() {
-        double weight = 0;
-        for (Edge edge : edgeTo) {
-            weight +=  edge.getWeighted();
-        }
         return weight;
     }
     

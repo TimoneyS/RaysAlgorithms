@@ -1,24 +1,17 @@
 package com.ray.common.collections;
 
-import static com.ray.util.RArrays.less;
-import static com.ray.util.RArrays.swap;
-
-import java.util.NoSuchElementException;
-import java.util.Random;
-
-import com.ray.util.io.Out;
-import com.ray.util.Timer;
-
 /**
- * 个人实现的最小优先级队列
  * 
- * 内部使用数据表示的二叉树保存数据
+
+ * 最小优先级队列<br/>
  * 
- *              4
+ * 内部使用数据表示的二叉树保存数据，二叉树是无序的，但是所有的父节点一定小于其子节点，所以根节点是最小的元素<br/>
+ * 
+ *              1
  *           /     \
- *          2       6
+ *          3       3
  *        /   \   /   \
- *       1     3 5     7   
+ *       4     7 6     5   
  * 
  * @author rays1
  *
@@ -71,12 +64,11 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
     }
 
     /*********************
-     * (辅助方法)重新调整内部数组的尺寸
+     * (辅助方法)调整数组尺寸
      *********************/
     @SuppressWarnings("unchecked")
     private void resize() {
         if (cursor+1 < inner.length) return;
-        
         int newSize = inner.length * 2;
         Key[] temp = inner;
         inner = (Key[]) new Comparable[newSize];
@@ -85,51 +77,48 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
         }
     }
 
-    /**************************************
-     * (辅助方法)上浮操作
-     * @param index
-     **************************************/
+    /*********************
+     * (辅助方法)上浮
+     *********************/
     private void swim(int index) {
-        int fIndex = index/2;
-        while(index > 1 && less(inner, index, fIndex)) {     // 未到达根节点或者父节点的元素比当前元素小
-            swap(inner, index, fIndex);                      // 交换当前元素和其父节点
-            index = fIndex;                                  // 当前元素索引修正
+        // 不断的向上比对，如果当前结点元素比父结点小则交换
+        while(index > 1 && less(inner[index], inner[index/2])) {
+            swap(inner, index, index/2);
+            index = index/2;
         }
     }
 
-    /**************************************
-     * (辅助方法)下沉操作
-     * @param index
-     **************************************/
+    /*********************
+     * (辅助方法)下沉
+     *********************/
     private void sink(int index) {
-        while (index * 2 <= cursor) {                                 // 当前索引未超过边界
-            int childIndex = index*2;                                 // 子节点索引
-            if(less(inner, childIndex+1, childIndex)) childIndex ++;  // 选取较大的子节点的索引
-            if(less(inner, childIndex, index)) {                      // 子节点更大
+        // 不断的和子节点中较小的子节点交换
+        while (index * 2 <= cursor) {
+            int childIndex = index*2;
+            if(less(inner[childIndex+1], inner[childIndex])) childIndex ++;
+            if(less(inner[childIndex], inner[index])) {
                 swap(inner, childIndex, index);
                 index = childIndex;
-            } else {                                                  // 当前元素大于子节点
+            } else {
                 break;
             }
         }
     }
-
-    public static void main(String[] args) {
-        MinPQ<Integer> pq = new RaysMinPQ<Integer>();
-
-        int size = 20;
-        Random r = new Random(42);
-
-        Timer t = Timer.create();
-
-        t.click();
-        for (int i = 0; i < size; i++) {
-            pq.insert(r.nextInt(size * 10));
-        }
-        t.click();
-        while (!pq.isEmpty())
-            Out.p(pq.delMin());
-        t.stop();
+    
+    /*********************
+     * (辅助方法)比对
+     *********************/
+    private  boolean less(Key a, Key b) {
+        return a.compareTo(b) < 0;
     }
     
+    /*********************
+     * (辅助方法)交换
+     *********************/
+    public void swap(Key[] arr, int i, int j) {
+        Key temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
 }

@@ -10,12 +10,12 @@ import com.rays.algo.graph.EdgeWeightedGraph;
  * @author rays1
  *
  */
-public class LazyPrimMinST {
+public class PrimMinSTLazy {
     private boolean[]        marked;
     private Edge             edgeTo[];
     private MinPQ<Edge> PQ;
     
-    public LazyPrimMinST(EdgeWeightedGraph G) {
+    public PrimMinSTLazy(EdgeWeightedGraph G) {
         PQ = new RaysMinPQ<Edge>(G.E());
         edgeTo = new Edge[G.V()];
         marked = new boolean[G.V()];

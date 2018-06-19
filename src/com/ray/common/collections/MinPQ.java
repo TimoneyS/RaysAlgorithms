@@ -40,4 +40,11 @@ public interface MinPQ<Key extends Comparable<Key>> {
      */
     int size();
 
+    /**
+     * ¼ì²âÊÇ·ñ°üº¬
+     * @param key
+     * @return
+     */
+    boolean contains(Key key);
+    
 }

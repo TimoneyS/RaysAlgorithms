@@ -121,4 +121,15 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
         arr[j] = temp;
     }
 
+    @Override
+    public boolean contains(Key key) {
+        for (Key k : inner) {
+            if (k ==  null) break;
+            
+            if (k.hashCode() == key.hashCode()) 
+                return true;
+        }
+        return false;
+    }
+
 }

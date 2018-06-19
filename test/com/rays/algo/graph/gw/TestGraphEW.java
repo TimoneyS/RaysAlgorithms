@@ -7,7 +7,7 @@ import com.ray.util.io.Out;
 import com.rays.algo.graph.Edge;
 import com.rays.algo.graph.EdgeWeightedGraph;
 import com.rays.algo.graph.gw.LazyPrimMinST;
-import com.rays.algo.graph.gw.PrimMinSTOld;
+import com.rays.algo.graph.gw.PrimMinST;
 
 /**
  * ≤‚ ‘ŒﬁœÚÕº
@@ -17,12 +17,13 @@ import com.rays.algo.graph.gw.PrimMinSTOld;
 public class TestGraphEW {
     
     public static void main(String[] args) {
-        testLazyPrimMinST();
+        testPrimMinST();
     }
     
     public static void testPrimMinST() {
-        EdgeWeightedGraph G = getGraph("tinyEWG.txt");
-        PrimMinSTOld primMST = new PrimMinSTOld(G);
+        
+        EdgeWeightedGraph G = getGraph("primMST.txt");
+        PrimMinST primMST = new PrimMinST(G);
         Edge[] edgeTo = primMST.getEdgeTo();
         
         for (Edge e : edgeTo) {

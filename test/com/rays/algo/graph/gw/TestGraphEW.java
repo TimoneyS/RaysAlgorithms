@@ -25,10 +25,10 @@ public class TestGraphEW {
 
         EdgeWeightedGraph G = getGraph("primMST.txt");
         PrimMinST primMST = new PrimMinST(G);
-        PrimMinSTNew primMSTNew = new PrimMinSTNew(G);
+        PrimMinSTLazy primMSTLazy = new PrimMinSTLazy(G);
 
-        Out.p(" ====== 打印最小生成树 primMSTNew ======");
-        for (Edge e : primMSTNew.edges()) {
+        Out.p(" ====== 打印最小生成树 primMSTLazy ======");
+        for (Edge e : primMSTLazy.edges()) {
             if (e != null)
                 Out.p(e.toString());
         }
@@ -41,17 +41,6 @@ public class TestGraphEW {
         }
         Out.p();
 
-    }
-
-    public static void testLazyPrimMinST() {
-        EdgeWeightedGraph G = getGraph("tinyEWG.txt");
-        PrimMinSTLazy primMST = new PrimMinSTLazy(G);
-        Edge[] edgeTo = primMST.getEdgeTo();
-
-        for (Edge e : edgeTo) {
-            if (e != null)
-                Out.p(e.toString());
-        }
     }
 
     private static EdgeWeightedGraph getGraph(String fileName) {

@@ -1,5 +1,7 @@
 package com.rays.algo.graph.gw;
 
+import java.util.Arrays;
+
 import com.ray.common.collections.MinPQ;
 import com.ray.common.collections.RaysMinPQ;
 import com.rays.algo.graph.Edge;
@@ -7,15 +9,19 @@ import com.rays.algo.graph.EdgeWeightedGraph;
 
 /**
  * ÑÓ³ÙÉ¾³ý·ÏÆúµÄ±ßµÄPrimËã·¨
+ * 
+ * 
  * @author rays1
  *
  */
-public class PrimMinSTLazy {
+public class PrimMinSTLazy implements MinST {
+    
     private boolean[]        marked;
-    private Edge             edgeTo[];
+    private Edge[]           edgeTo;
     private MinPQ<Edge> PQ;
     
     public PrimMinSTLazy(EdgeWeightedGraph G) {
+        
         PQ = new RaysMinPQ<Edge>(G.E());
         edgeTo = new Edge[G.V()];
         marked = new boolean[G.V()];
@@ -25,13 +31,14 @@ public class PrimMinSTLazy {
         while (!PQ.isEmpty()) {
             Edge edge = PQ.delMin();
             int v = edge.either();
+            
             if (marked[v]) {
                 v = edge.other(v);
-                if (marked[v])
-                    continue;
+                if (marked[v]) continue;
             }
             
             edgeTo[v] = edge;
+            
             visit(G, v);
             
         }
@@ -49,12 +56,19 @@ public class PrimMinSTLazy {
             PQ.insert(e);
         }
     }
-    
-    public Edge[] getEdgeTo() {
-        return edgeTo;
+
+    @Override
+    public Iterable<Edge> edges() {
+        return Arrays.asList(edgeTo);
+    }
+
+    @Override
+    public double weight() {
+        double weight = 0;
+        for (Edge edge : edgeTo) {
+            weight +=  edge.getWeighted();
+        }
+        return weight;
     }
     
-    public boolean[] getMarked() {
-        return marked;
-    }
 }

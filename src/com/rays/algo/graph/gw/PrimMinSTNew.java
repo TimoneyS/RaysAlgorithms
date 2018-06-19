@@ -38,8 +38,10 @@ public class PrimMinSTNew implements MinST{
             Edge e = PQ.delMin();
             int v = e.either();
             
-            if (marked[v]) v = e.other(v);  // 寻找终点
-            if (marked[v]) continue;        // 两个子节点都包含在树中，说明是废弃的边
+            if (marked[v]) {
+                v = e.other(v);  // 寻找终点
+                if (marked[v]) continue;        // 两个子节点都包含在树中，说明是废弃的边
+            }
       
             edgeTo[v] = e;
             weight += e.getWeighted();

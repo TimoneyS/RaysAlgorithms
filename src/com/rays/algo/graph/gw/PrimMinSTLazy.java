@@ -28,8 +28,11 @@ public class PrimMinSTLazy implements MinST {
         marked = new boolean[G.V()];
         
         visit(G, 0);
+        
         while (!PQ.isEmpty()) {
+            
             Edge edge = PQ.delMin();
+            
             int v = edge.either();
             if (marked[v]) {
                 v = edge.other(v);

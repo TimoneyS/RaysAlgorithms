@@ -69,10 +69,6 @@ public class PrimMinST implements MinST{
         
     }
     
-    public Edge[] getEdgeTo() {
-        return edgeTo;
-    }
-    
     public boolean[] getMarked() {
         return marked;
     }

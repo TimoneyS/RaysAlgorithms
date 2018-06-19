@@ -24,9 +24,8 @@ public class TestGraphEW {
         
         EdgeWeightedGraph G = getGraph("primMST.txt");
         PrimMinST primMST = new PrimMinST(G);
-        Edge[] edgeTo = primMST.getEdgeTo();
         
-        for (Edge e : edgeTo) {
+        for (Edge e : primMST.edges()) {
             if (e != null)
                 Out.p(e.toString());
         }

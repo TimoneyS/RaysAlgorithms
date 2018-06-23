@@ -1,5 +1,6 @@
 package com.rays.algo.graph;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -95,6 +96,27 @@ public class EdgeWeightedGraph {
             }
         }
         return sb.toString();
+    }
+    /**
+     * 获取所有边
+     * @return
+     */
+    public Iterable<Edge> edges() {
+        List<Edge> list = new ArrayList<Edge>(E);
+        for (int v = 0; v < V; v++) {
+            int selfLoops = 0;
+            for (Edge e : adj(v)) {
+                if (e.other(v) > v) {
+                    list.add(e);
+                } else if (e.other(v) == v) {
+                    // add only one copy of each self loop (self loops will be consecutive)
+                    if (selfLoops % 2 == 0)
+                        list.add(e);
+                    selfLoops++;
+                }
+            }
+        }
+        return list;
     }
     
     /**

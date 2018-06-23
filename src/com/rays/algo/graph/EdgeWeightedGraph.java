@@ -11,9 +11,9 @@ import java.util.Scanner;
  */
 public class EdgeWeightedGraph {
     
-    private final int   V;   // 顶点数
-    private int         E;   // 边数
-    private List<Edge>[] adj; // 内部存储数据结构，保存每个顶点的可达边
+    private final int       V;   // 顶点数
+    private int             E;   // 边数
+    private List<Edge>[]  adj; // 内部存储数据结构，保存每个顶点的可达边
     
     /**
      * 从输入流初始化图
@@ -84,17 +84,29 @@ public class EdgeWeightedGraph {
      * 打印图
      */
     public String toString() {
-        String s = V + " vertices, " + E + " Edges\n";
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append(V).append(" vertices, ").append(E).append(" Edges\n");
+        
         for (int v = 0; v < V(); v ++) {
-            String temp = v + " ";
+            sb.append(v).append(" ");
             for (Edge e : this.adj(v)) {
-                s += temp + e.other(v) + " " + e.getWeighted() + "\n";
+                sb.append(e.other(v)).append(" ").append(e.getWeighted()).append("\n");
             }
         }
-        return s;
+        return sb.toString();
     }
-       
+    
+    /**
+     * 顶点数
+     * @return
+     */
     public int V() { return V; }
+    
+    /**
+     * 边树
+     * @return
+     */
     public int E() { return E; }
     
 }

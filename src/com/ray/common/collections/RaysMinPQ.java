@@ -63,6 +63,17 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
         return cursor;
     }
 
+    @Override
+    public boolean contains(Key key) {
+        for (Key k : inner) {
+            if (k ==  null) break;
+            
+            if (k.hashCode() == key.hashCode()) 
+                return true;
+        }
+        return false;
+    }
+
     /*********************
      * (辅助方法)调整数组尺寸
      *********************/
@@ -108,28 +119,17 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
     /*********************
      * (辅助方法)比对
      *********************/
-    private  boolean less(Key a, Key b) {
+    private boolean less(Key a, Key b) {
         return a.compareTo(b) < 0;
     }
     
     /*********************
      * (辅助方法)交换
      *********************/
-    public void swap(Key[] arr, int i, int j) {
+    private void swap(Key[] arr, int i, int j) {
         Key temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
-    }
-
-    @Override
-    public boolean contains(Key key) {
-        for (Key k : inner) {
-            if (k ==  null) break;
-            
-            if (k.hashCode() == key.hashCode()) 
-                return true;
-        }
-        return false;
     }
 
 }

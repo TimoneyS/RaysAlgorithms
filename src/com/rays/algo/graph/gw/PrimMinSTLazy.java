@@ -47,7 +47,8 @@ public class PrimMinSTLazy implements MinST {
         // 计算生成树权重
         weight = 0;
         for (Edge edge : edgeTo) {
-            weight +=  edge.getWeighted();
+            if (edge!= null)
+                weight +=  edge.getWeighted();
         }
         
     }

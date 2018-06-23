@@ -1,6 +1,6 @@
 package com.rays.algo.graph.gwd;
 
-import com.ray.common.collections.IndexMinPQ;
+import com.ray.common.collections.RaysIndexMinPQ;
 import com.rays.algo.graph.DirectedEdge;
 import com.rays.algo.graph.EdgeWeightedDigraph;
 
@@ -19,7 +19,7 @@ import com.rays.algo.graph.EdgeWeightedDigraph;
  */
 public class DijkstraSP extends SP {
 
-    private IndexMinPQ<Double>  pq;
+    private RaysIndexMinPQ<Double>  pq;
 
     public DijkstraSP(EdgeWeightedDigraph G, int S) {
         
@@ -28,7 +28,7 @@ public class DijkstraSP extends SP {
         for (int i = 0; i < distTo.length; i ++) {
             distTo[i] = Double.POSITIVE_INFINITY;
         }
-        pq  = new IndexMinPQ<Double>(G.V());
+        pq  = new RaysIndexMinPQ<Double>(G.V());
         search(G, S);
     }
     

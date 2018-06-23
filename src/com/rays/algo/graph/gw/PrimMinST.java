@@ -19,6 +19,7 @@ public class PrimMinST implements MinST {
     private Edge[]                 edgeTo; // 从生成树到某个顶点的路径
     private boolean[]              marked; // 访问标记
     private RaysIndexMinPQ<Double> PQ;     // 保存最小权重的边的索引
+    private double weight;
 
     public PrimMinST(EdgeWeightedGraph G) {
         
@@ -32,6 +33,13 @@ public class PrimMinST implements MinST {
             visit(G, PQ.delMin());
         }
         
+        // 计算生成树权重
+        weight = 0;
+        for (Edge edge : edgeTo) {
+            if (edge!= null)
+                weight +=  edge.getWeighted();
+        }
+        
     }
     
     /**
@@ -42,16 +50,13 @@ public class PrimMinST implements MinST {
     public void visit(EdgeWeightedGraph G, int v) {
         
         marked[v] = true;
-        
         for (Edge e : G.adj(v)) {
             
             int w = e.other(v);
             if (marked[w]) continue;    // 废弃的边
             
             if (PQ.contains(w)) {
-                
-                double ew = PQ.keyOf(w);
-                if (e.getWeighted() < ew) {
+                if (e.getWeighted() < PQ.keyOf(w)) {
                     edgeTo[w] = e;
                     PQ.changeKey(w, e.getWeighted());
                 }
@@ -71,7 +76,7 @@ public class PrimMinST implements MinST {
 
     @Override
     public double weight() {
-        return 0;
+        return weight;
     }
     
 }

@@ -10,7 +10,6 @@ import com.rays.algo.graph.EdgeWeightedGraph;
 /**
  * ÑÓ³ÙÉ¾³ý·ÏÆúµÄ±ßµÄPrimËã·¨
  * 
- * 
  * @author rays1
  *
  */
@@ -32,7 +31,6 @@ public class PrimMinSTLazy implements MinST {
         while (!PQ.isEmpty()) {
             
             Edge edge = PQ.delMin();
-            
             int v = edge.either();
             if (marked[v]) {
                 v = edge.other(v);

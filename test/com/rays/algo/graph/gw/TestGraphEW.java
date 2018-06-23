@@ -19,12 +19,12 @@ import com.rays.algo.graph.gw.PrimMinST;
 public class TestGraphEW {
 
     public static void main(String[] args) {
-        testPrimMinST();
+        testMinST();
     }
+    
+    public static void testMinST() {
 
-    public static void testPrimMinST() {
-
-        EdgeWeightedGraph G = getGraph("10000EWG.txt");
+        EdgeWeightedGraph G = getGraph("tinyEWG.txt");
         
         Timer t = Timer.create();
         
@@ -32,21 +32,30 @@ public class TestGraphEW {
         PrimMinST primMST = new PrimMinST(G);
         t.click();
         PrimMinSTLazy primMSTLazy = new PrimMinSTLazy(G);
+        t.click();
+        PrimMinSTLazy kruskalMinST = new PrimMinSTLazy(G);
         t.stop();
 
-//        Out.p(" ====== 打印最小生成树 primMSTLazy ======");
-//        for (Edge e : primMSTLazy.edges()) {
-//            if (e != null)
-//                Out.p(e.toString());
-//        }
-//        Out.p();
-//        
-//        Out.p(" ====== 打印最小生成树 primMST ======");
-//        for (Edge e : primMST.edges()) {
-//            if (e != null)
-//                Out.p(e.toString());
-//        }
-//        Out.p();
+        Out.p(" ====== 打印最小生成树 primMSTLazy ======");
+        for (Edge e : primMSTLazy.edges()) {
+            if (e != null)
+                Out.p(e.toString());
+        }
+        Out.p();
+        
+        Out.p(" ====== 打印最小生成树 primMST ======");
+        for (Edge e : primMST.edges()) {
+            if (e != null)
+                Out.p(e.toString());
+        }
+        Out.p();
+        
+        Out.p(" ====== 打印最小生成树 kruskalMinST ======");
+        for (Edge e : kruskalMinST.edges()) {
+            if (e != null)
+                Out.p(e.toString());
+        }
+        Out.p();
 
     }
 

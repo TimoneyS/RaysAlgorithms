@@ -37,7 +37,9 @@ public class DijkstraSP extends SP {
     
     @Override
     protected void relax(EdgeWeightedDigraph G, int v) {
+        
         for (DirectedEdge e : G.adj(v)) {
+            
             int w = e.to();
             if (distTo[w] > distTo[v] + e.weighted()) {     // 如果从该顶点到其邻接点更近
                 distTo[w] = distTo[v] + e.weighted();       // 更新邻接点
@@ -49,7 +51,9 @@ public class DijkstraSP extends SP {
                 else
                     pq.insert(w, distTo[w]);
             }
+            
         }
+        
     }
 
 }

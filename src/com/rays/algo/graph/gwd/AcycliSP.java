@@ -27,10 +27,8 @@ public class AcycliSP extends SP {
         DiTopoLogical topo = new DiTopoLogical(G);
         Stack<Integer> stack = topo.order();
         
-        while (!stack.empty()) {
-            for (DirectedEdge e : G.adj(stack.pop()))
-                relax(e);
-        }
+        while (!stack.empty())
+            relax(G, stack.pop());
 
     }
     

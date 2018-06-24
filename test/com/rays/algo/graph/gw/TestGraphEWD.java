@@ -21,7 +21,7 @@ import com.rays.algo.graph.gwd.SP;
 public class TestGraphEWD {
     
     public static void main(String[] args) {
-        testDijkstraSP();
+        testAcycliSP();
     }
     
     /**
@@ -61,8 +61,8 @@ public class TestGraphEWD {
      * 无环有向图，最短路径
      */
     public static void testAcycliSP() {
-        EdgeWeightedDigraph G = getDigraph("tinyEWDAG.txt");
-        int s = 3;
+        EdgeWeightedDigraph G = getDigraph("EWDAGTiny.txt");
+        int s = 5;
         SP sp = new AcycliSP(G, s);
         printSP(sp, G, s);
         

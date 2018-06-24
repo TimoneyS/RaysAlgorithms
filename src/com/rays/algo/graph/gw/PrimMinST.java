@@ -18,7 +18,7 @@ public class PrimMinST implements MinST {
     
     private Edge[]                 edgeTo; // 从生成树到某个顶点的路径
     private RaysIndexMinPQ<Double> PQ;     // 保存最小权重的边的索引
-    private double weight;
+    private double                 weight;
 
     public PrimMinST(EdgeWeightedGraph G) {
         

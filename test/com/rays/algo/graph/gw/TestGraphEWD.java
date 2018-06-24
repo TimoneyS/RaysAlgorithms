@@ -72,7 +72,7 @@ public class TestGraphEWD {
      * Dijkstra Ëã·¨ ×î¶ÌÂ·¾¶
      */
     public static void testDijkstraSP() {
-        EdgeWeightedDigraph G = getDigraph("mediumEWG.txt");
+        EdgeWeightedDigraph G = getDigraph("tinyEWG.txt");
         int s = 0;
         DijkstraSP sp = new DijkstraSP(G, s);
         printSP(sp, G, s);
@@ -95,7 +95,7 @@ public class TestGraphEWD {
     }
     
     private static EdgeWeightedDigraph getDigraph(String fileName) {
-        Scanner in = In.getProjectScanner("src/com/ray/graph/gwd/" + fileName);
+        Scanner in = In.getClassPathScanner(TestGraphEWD.class, fileName);
         EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
         Out.p(G);
         return G;

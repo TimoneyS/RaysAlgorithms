@@ -33,7 +33,7 @@ public class EdgeWeightedDigraph {
             int from = in.nextInt();
             int to = in.nextInt();
             double weighted = in.nextDouble();
-            adjustArrayTo(Math.max(from, to));
+            adjustArrayTo(Math.max(from, to)+1);
             addEdge(new DirectedEdge(from, to, weighted));
         }
         V = adj.length;

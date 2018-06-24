@@ -17,7 +17,6 @@ import com.rays.algo.graph.EdgeWeightedGraph;
 public class PrimMinST implements MinST {
     
     private Edge[]                 edgeTo; // 从生成树到某个顶点的路径
-    private boolean[]              marked; // 访问标记
     private RaysIndexMinPQ<Double> PQ;     // 保存最小权重的边的索引
     private double weight;
 
@@ -25,7 +24,6 @@ public class PrimMinST implements MinST {
         
         PQ = new RaysIndexMinPQ<Double>(G.V());
         edgeTo = new Edge[G.V()];
-        marked = new boolean[G.V()];
         
         PQ.insert(0, 0.0);
         visit(G, 0);
@@ -49,11 +47,10 @@ public class PrimMinST implements MinST {
      */
     public void visit(EdgeWeightedGraph G, int v) {
         
-        marked[v] = true;
         for (Edge e : G.adj(v)) {
             
             int w = e.other(v);
-            if (marked[w]) continue;    // 废弃的边
+            if (edgeTo[w] != null) continue;    // 废弃的边
             
             if (PQ.contains(w)) {
                 if (e.getWeighted() < PQ.keyOf(w)) {

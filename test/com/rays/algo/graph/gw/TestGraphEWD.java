@@ -72,7 +72,7 @@ public class TestGraphEWD {
      * Dijkstra Ëã·¨ ×î¶ÌÂ·¾¶
      */
     public static void testDijkstraSP() {
-        EdgeWeightedDigraph G = getDigraph("tinyEWG.txt");
+        EdgeWeightedDigraph G = getDigraph("EWDTiny.txt");
         int s = 0;
         DijkstraSP sp = new DijkstraSP(G, s);
         printSP(sp, G, s);

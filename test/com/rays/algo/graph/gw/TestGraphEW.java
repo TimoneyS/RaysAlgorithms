@@ -24,7 +24,7 @@ public class TestGraphEW {
     
     public static void testMinST() {
 
-        EdgeWeightedGraph G = getGraph("tinyEWG.txt");
+        EdgeWeightedGraph G = getGraph("EWGTiny.txt");
         
         Timer t = Timer.create();
         
@@ -33,7 +33,7 @@ public class TestGraphEW {
         t.click();
         PrimMinSTLazy primMSTLazy = new PrimMinSTLazy(G);
         t.click();
-        PrimMinSTLazy kruskalMinST = new PrimMinSTLazy(G);
+        KruskalMinST kruskalMinST = new KruskalMinST(G);
         t.stop();
 
         Out.p(" ====== 打印最小生成树 primMSTLazy ======");

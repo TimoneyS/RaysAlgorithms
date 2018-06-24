@@ -40,8 +40,9 @@ public class KruskalMinST implements MinST {
             int w = e.other(v);
             
             // 两个顶点属于同一个子树，如加入会成环，因此该边属于废弃边，跳过
-            if (group[v] == group[w] && group[v] != -1)
+            if (group[v] == group[w] && group[v] != -1) {
                 continue;
+            }
             
             if (group[v] == group[w] && group[v] == -1) {
                 // 两个顶点都是独立顶点
@@ -54,8 +55,9 @@ public class KruskalMinST implements MinST {
                 group[w] = group[v];
             } else {
                 // v w分别属于独立的子树，两个子树合并
+                int temp = group[w];
                 for (int i = 0; i < group.length; i++) {
-                    if (group[i] == group[w])
+                    if (group[i] == temp)
                         group[i] = group[v];
                 }
             }

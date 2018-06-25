@@ -7,4 +7,5 @@ public interface Stack<T> {
     void push(T e);
     
     boolean isEmpty();
+    
 }

@@ -21,14 +21,14 @@ import com.rays.algo.graph.gwd.SP;
 public class TestGraphEWD {
     
     public static void main(String[] args) {
-        testDijkstraSP();
+        testBellmanFord();
     }
     
     /**
      * Bellman-Ford算法
      */
     public static void testBellmanFord() {
-        EdgeWeightedDigraph G = getDigraph("tinyEWDn.txt");
+        EdgeWeightedDigraph G = getDigraph("EWDTinyN.txt");
         int s = 0;
         SP sp = new BellmanFordSP(G, s);
         printSP(sp, G, s);
@@ -62,7 +62,7 @@ public class TestGraphEWD {
      */
     public static void testAcycliSP() {
         EdgeWeightedDigraph G = getDigraph("EWDTinyA.txt");
-        int s = 5;
+        int s = 0;
         SP sp = new AcycliSP(G, s);
         printSP(sp, G, s);
         
@@ -72,7 +72,7 @@ public class TestGraphEWD {
      * Dijkstra 算法 最短路径
      */
     public static void testDijkstraSP() {
-        EdgeWeightedDigraph G = getDigraph("EWDTinyN.txt");
+        EdgeWeightedDigraph G = getDigraph("EWDTemp.txt");
         int s = 0;
         DijkstraSP sp = new DijkstraSP(G, s);
         printSP(sp, G, s);

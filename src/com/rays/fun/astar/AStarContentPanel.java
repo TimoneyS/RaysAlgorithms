@@ -15,7 +15,7 @@ import com.ray.util.io.In;
 @SuppressWarnings("serial")
 public class AStarContentPanel extends JPanel {
 	
-    private Map map;
+    private Graph map;
     private Seacher seacher;
 	private Cell[][] cells;
 	private int xNum, yNum;
@@ -52,7 +52,7 @@ public class AStarContentPanel extends JPanel {
 	}
 	
 	public void generateMap(String path) {
-	    map = new Map(In.getProjectScanner(path));
+	    map = new Graph(In.getProjectScanner(path));
 	    
         this.cells = map.cells();
         yNum = cells.length;

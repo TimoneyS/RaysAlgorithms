@@ -2,11 +2,11 @@ package com.rays.fun.astar;
 
 public class Cell implements Comparable<Cell> {
 	
-    public int      rowNum;   // 行数
-    public int      colNum;   // 列数
-    public int      past;     // 从起点到该点的路程
-    public int      fore;     // 从终点到该点的路程预期
-    public int      weighted; // 该点权重
+    public int      rowNum;     // 行数
+    public int      colNum;     // 列数
+    public int      past;       // 从起点到该点的路程
+    public int      weight;     // 从终点到该点的路程预期
+    public int      weighted;   // 该点权重
     public CellType stat;
     public Cell     parent;
 
@@ -25,7 +25,7 @@ public class Cell implements Comparable<Cell> {
 	public static Cell create(int row, int col, int type) { return new Cell( row, col, type);}
 	
 	public void initPath(int endX, int endY) {
-		fore = Math.abs(endX - rowNum) + Math.abs(endY - colNum);
+		weight = Math.abs(endX - rowNum) + Math.abs(endY - colNum);
 		if (past == 0 && parent != null)
 			past = weighted + parent.past;
 	}
@@ -45,7 +45,7 @@ public class Cell implements Comparable<Cell> {
 		return true;
 	}
 
-	public int costWithThis() { return past + fore; }
+	public int costWithThis() { return past + weight; }
 
 	public void parse() {
 		System.out.printf("[%2d,%2d]", rowNum, colNum);
@@ -93,7 +93,7 @@ public class Cell implements Comparable<Cell> {
     }
 	
 	public String inspect() {
-		return String.format("[%2d,%2d]\n[ %2d, %2d ,%2s]", rowNum, colNum, past, fore, stat);
+		return String.format("[%2d,%2d]\n[ %2d, %2d ,%2s]", rowNum, colNum, past, weight, stat);
 	}
 	
 	@Override

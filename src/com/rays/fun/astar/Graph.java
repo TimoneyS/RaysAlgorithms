@@ -12,12 +12,12 @@ import com.ray.util.io.Out;
  * @author rays1
  *
  */
-public class Map {
+public class Graph {
     
     private int         maxRow, maxCol;
     private Cell[][]    map;
     
-    public Map(Scanner in) {
+    public Graph(Scanner in) {
         maxRow    = in.nextInt();
         maxCol    = in.nextInt();
         map  = new Cell[maxRow][maxCol];

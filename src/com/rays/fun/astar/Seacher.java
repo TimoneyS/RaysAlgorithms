@@ -14,12 +14,10 @@ import com.ray.util.io.Out;
  */
 public class Seacher {
 	
-	// private List<Cell> 	open;
 	private PriorityQueue<Cell> open;
 	private int[][] distTo;
 	
-	public Seacher(Map m, int startRow, int startCol, int endRow, int endCol) {
-	    //open = new LinkedList<Cell>();
+	public Seacher(Graph m, int startRow, int startCol, int endRow, int endCol) {
 	    open = new PriorityQueue<Cell>();
 	    distTo = new int[m.maxRow()][m.maxCol()];
 	    
@@ -40,7 +38,7 @@ public class Seacher {
 	 * @param endRow
 	 * @param endCol
 	 */
-    private void search(Map m, int startRow, int startCol, int endRow, int endCol) {
+    private void search(Graph m, int startRow, int startCol, int endRow, int endCol) {
         // ≥ı º≤Ω÷Ë
         Cell s = m.getCell(startRow, startCol);
         s.initPath(endRow, endCol);
@@ -65,7 +63,7 @@ public class Seacher {
 
     }
 	
-	public Deque<Cell> getPath(Map map, int eRow, int eCol) {
+	public Deque<Cell> getPath(Graph map, int eRow, int eCol) {
         Deque<Cell> stack = new LinkedList<Cell>();
     	Cell c = map.getCell(eRow, eCol);
     	while(c != null) {
@@ -76,7 +74,7 @@ public class Seacher {
     }
 
     public static void main(String[] args) {
-        Map m = new Map(In.getProjectScanner(Global.MAP_PATH));
+        Graph m = new Graph(In.getProjectScanner(Global.MAP_PATH));
         Seacher s = new Seacher(m, 1, 1, 9, 9);
         
        for( Cell c : s.getPath(m, 9, 9)) {

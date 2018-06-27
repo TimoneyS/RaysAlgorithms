@@ -1,8 +1,5 @@
 package com.ray.common.collections;
 
-import static com.ray.util.RArrays.less;
-import static com.ray.util.RArrays.swap;
-
 import java.util.Random;
 
 import com.ray.util.Timer;
@@ -75,8 +72,8 @@ public class RaysMaxPQ<Key extends Comparable<Key>> implements MaxPQ<Key> {
      * @param index
      **************************************/
     private void swim(int index) {
-        while(index > 1 && less(inner, index/2, index)) {     // 未到达根节点或者父节点的元素比当前元素小
-            swap(inner, index, index/2);                      // 交换当前元素和其父节点
+        while(index > 1 && less(index/2, index)) {     // 未到达根节点或者父节点的元素比当前元素小
+            swap(index, index/2);                      // 交换当前元素和其父节点
             index/=2;                                         // 当前元素索引修正
         }
     }
@@ -88,14 +85,31 @@ public class RaysMaxPQ<Key extends Comparable<Key>> implements MaxPQ<Key> {
     private void sink(int index) {
         while (index * 2 <= cursor) {                                 // 当前索引未超过边界
             int childIndex = index*2;                                 // 子节点索引
-            if(less(inner, childIndex, childIndex+1)) childIndex ++;  // 选取较大的子节点的索引
-            if(less(inner, index, childIndex)) {                      // 子节点更大
-                swap(inner, index, childIndex);                      
+            if(less(childIndex, childIndex+1)) childIndex ++;         // 选取较大的子节点的索引
+            if(less(index, childIndex)) {                             // 子节点更大
+                swap(index, childIndex);                      
                 index = childIndex;
             } else {                                                  // 当前元素大于子节点
                 break;
             }
         }
+    }
+    
+    /*********************
+     * (辅助方法)比对
+     *********************/
+    private boolean less(int a, int b) {
+        
+        return inner[a].compareTo(inner[b]) < 0;
+    }
+    
+    /*********************
+     * (辅助方法)交换
+     *********************/
+    private void swap(int i, int j) {
+        Key temp = inner[i];
+        inner[i] = inner[j];
+        inner[j] = temp;
     }
     
     public static void main(String[] args) {

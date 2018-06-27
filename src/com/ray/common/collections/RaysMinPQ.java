@@ -93,8 +93,8 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
      *********************/
     private void swim(int index) {
         // 不断的向上比对，如果当前结点元素比父结点小则交换
-        while(index > 1 && less(inner[index], inner[index/2])) {
-            swap(inner, index, index/2);
+        while(index > 1 && less(index, index/2)) {
+            swap(index, index/2);
             index = index/2;
         }
     }
@@ -106,9 +106,9 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
         // 不断的和子节点中较小的子节点交换
         while (index * 2 <= cursor) {
             int childIndex = index*2;
-            if(less(inner[childIndex+1], inner[childIndex])) childIndex ++;
-            if(less(inner[childIndex], inner[index])) {
-                swap(inner, childIndex, index);
+            if(less(childIndex+1, childIndex)) childIndex ++;
+            if(less(childIndex, index)) {
+                swap(childIndex, index);
                 index = childIndex;
             } else {
                 break;
@@ -119,17 +119,18 @@ public class RaysMinPQ<Key extends Comparable<Key>> implements MinPQ<Key> {
     /*********************
      * (辅助方法)比对
      *********************/
-    private boolean less(Key a, Key b) {
-        return a.compareTo(b) < 0;
+    private boolean less(int a, int b) {
+        
+        return inner[a].compareTo(inner[b]) < 0;
     }
     
     /*********************
      * (辅助方法)交换
      *********************/
-    private void swap(Key[] arr, int i, int j) {
-        Key temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+    private void swap(int i, int j) {
+        Key temp = inner[i];
+        inner[i] = inner[j];
+        inner[j] = temp;
     }
 
 }

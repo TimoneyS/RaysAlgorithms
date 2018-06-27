@@ -51,7 +51,7 @@ public class Run {
                 m1,
                 "Ѱ·", (ActionEvent e) -> es.execute( () -> {
                             contentPanel.startSearch(1, 1, 9, 9);
-                            for (Cell c : contentPanel.getPath(9, 9)) { c.stat = CellType.CHOOSE; }
+                            for (Edge c : contentPanel.getPath(9, 9)) { c.stat = CellType.CHOOSE; }
                         })
                 );
         menuBar.add(m1);

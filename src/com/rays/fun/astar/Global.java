@@ -17,7 +17,7 @@ public class Global {
 	public static int xPix = 0;
 	public static int yPix = 0;
 	
-	public static String MAP_PATH = "src/com/ray/astar/map.txt";
+	public static String MAP_PATH = "src/com/rays/fun/astar/map.txt";
 	
 	public static Map<CellType, Color> COLOR_MAP;
 	

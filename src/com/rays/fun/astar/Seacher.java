@@ -14,11 +14,11 @@ import com.ray.util.io.Out;
  */
 public class Seacher {
 	
-	private PriorityQueue<Cell> open;
+	private PriorityQueue<Edge> open;
 	private int[][] distTo;
 	
 	public Seacher(Graph m, int startRow, int startCol, int endRow, int endCol) {
-	    open = new PriorityQueue<Cell>();
+	    open = new PriorityQueue<Edge>();
 	    distTo = new int[m.maxRow()][m.maxCol()];
 	    
 	    for (int i = 0; i < distTo.length; i++) {
@@ -40,14 +40,14 @@ public class Seacher {
 	 */
     private void search(Graph m, int startRow, int startCol, int endRow, int endCol) {
         // 初始步骤
-        Cell s = m.getCell(startRow, startCol);
+        Edge s = m.getCell(startRow, startCol);
         s.initPath(endRow, endCol);
         
         open.add(s);
 
         while (open.size() != 0) {
-            Cell min = open.poll();                                     // 找到当前节点
-            for (Cell cell : m.adj(min.rowNum, min.colNum)) {           // 解析可达节点
+            Edge min = open.poll();                                     // 找到当前节点
+            for (Edge cell : m.adj(min.rowNum, min.colNum)) {           // 解析可达节点
                 if (cell.isTypes(CLOSE, BLOCK)) continue;
                 if (cell.parent == null) {
                     cell.initPath(endRow, endCol);
@@ -63,9 +63,9 @@ public class Seacher {
 
     }
 	
-	public Deque<Cell> getPath(Graph map, int eRow, int eCol) {
-        Deque<Cell> stack = new LinkedList<Cell>();
-    	Cell c = map.getCell(eRow, eCol);
+	public Deque<Edge> getPath(Graph map, int eRow, int eCol) {
+        Deque<Edge> stack = new LinkedList<Edge>();
+    	Edge c = map.getCell(eRow, eCol);
     	while(c != null) {
     		stack.push(c);
     		c = c.parent;
@@ -77,7 +77,7 @@ public class Seacher {
         Graph m = new Graph(In.getProjectScanner(Global.MAP_PATH));
         Seacher s = new Seacher(m, 1, 1, 9, 9);
         
-       for( Cell c : s.getPath(m, 9, 9)) {
+       for( Edge c : s.getPath(m, 9, 9)) {
            Out.pf("[%d,%d] -> ", c.rowNum,c.colNum);
        }
     }

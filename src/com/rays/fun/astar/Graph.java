@@ -15,23 +15,23 @@ import com.ray.util.io.Out;
 public class Graph {
     
     private int         maxRow, maxCol;
-    private Cell[][]    map;
+    private Edge[][]    map;
     
     public Graph(Scanner in) {
         maxRow    = in.nextInt();
         maxCol    = in.nextInt();
-        map  = new Cell[maxRow][maxCol];
+        map  = new Edge[maxRow][maxCol];
         for (int i = 0; i < maxRow; i++) {
-            for (int j = 0; j < maxCol; j++) map[i][j] = Cell.create(i, j, in.nextInt());
+            for (int j = 0; j < maxCol; j++) map[i][j] = Edge.create(i, j, in.nextInt());
             Out.p(Arrays.toString(map[i]));
         }
     }
     
-    public Cell[][] cells() {
+    public Edge[][] cells() {
         return map;
     }
     
-    public Cell getCell(int row, int col) {
+    public Edge getCell(int row, int col) {
         return map[row][col];
     }
     
@@ -49,8 +49,8 @@ public class Graph {
      * @param col
      * @return
      */
-    public List<Cell> adj(int row, int col) {
-        List<Cell> chs = new LinkedList<Cell>();
+    public List<Edge> adj(int row, int col) {
+        List<Edge> chs = new LinkedList<Edge>();
         if (row > 0)
             chs.add(map[row - 1][col]); // ио
         if (row < maxRow - 1)

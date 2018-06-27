@@ -1,16 +1,16 @@
 package com.rays.fun.astar;
 
-public class Cell implements Comparable<Cell> {
+public class Edge implements Comparable<Edge> {
 	
-    public int      rowNum;     // 行数
-    public int      colNum;     // 列数
-    public int      past;       // 从起点到该点的路程
-    public int      weight;     // 从终点到该点的路程预期
-    public int      weighted;   // 该点权重
+    public int      rowNum;   // 行数
+    public int      colNum;   // 列数
+    public int      past;     // 从起点到该点的路程
+    public int      forcast;  // 从终点到该点的路程预期
+    public int      weighted; // 该点权重
     public CellType stat;
-    public Cell     parent;
+    public Edge     parent;
 
-	private Cell(int row, int col, int type) {
+	private Edge(int row, int col, int type) {
 		this.rowNum = row;
 		this.colNum = col;
 		
@@ -22,15 +22,15 @@ public class Cell implements Comparable<Cell> {
 		default : stat = CellType.UNCHECK;weighted = 1;break;
 		}
 	}
-	public static Cell create(int row, int col, int type) { return new Cell( row, col, type);}
+	public static Edge create(int row, int col, int type) { return new Edge( row, col, type);}
 	
 	public void initPath(int endX, int endY) {
-		weight = Math.abs(endX - rowNum) + Math.abs(endY - colNum);
+		forcast = Math.abs(endX - rowNum) + Math.abs(endY - colNum);
 		if (past == 0 && parent != null)
 			past = weighted + parent.past;
 	}
 	
-	public void setParent(Cell parent) {
+	public void setParent(Edge parent) {
 		this.past 	= parent.past + this.weighted;
 		this.parent = parent;
 	}
@@ -45,7 +45,7 @@ public class Cell implements Comparable<Cell> {
 		return true;
 	}
 
-	public int costWithThis() { return past + weight; }
+	public int costWithThis() { return past + forcast; }
 
 	public void parse() {
 		System.out.printf("[%2d,%2d]", rowNum, colNum);
@@ -93,7 +93,7 @@ public class Cell implements Comparable<Cell> {
     }
 	
 	public String inspect() {
-		return String.format("[%2d,%2d]\n[ %2d, %2d ,%2s]", rowNum, colNum, past, weight, stat);
+		return String.format("[%2d,%2d]\n[ %2d, %2d ,%2s]", rowNum, colNum, past, forcast, stat);
 	}
 	
 	@Override
@@ -101,7 +101,7 @@ public class Cell implements Comparable<Cell> {
 		return ( stat == CellType.BLOCK ) ? "1" : "0";
 	}
     @Override
-    public int compareTo(Cell o) {
+    public int compareTo(Edge o) {
         return Integer.valueOf(costWithThis()).compareTo(o.costWithThis());
     }
 

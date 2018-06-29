@@ -30,31 +30,12 @@ public class AStarContentPanel extends JPanel {
 	    
 		setPreferredSize(new Dimension(width, height));
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		addMouseListener(new MouseHandler());
 		
-		addMouseListener(new MouseAdapter() {
-		    
-			boolean click = false;
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-			    
-			    if (click || mouseMoving) {
-    				Out.p("mouse is moving");
-			    } else {
-			        click = true;
-			        int y = e.getX()/Global.xPix;
-                    int x = e.getY()/Global.yPix;
-                    Out.pf("%d Click %2s %2s \n", new Date().getTime(), x, y);
-                    mouseMoveTo(x, y);
-                    click = false;
-			    }
-			    
-			}
-			
-		});
 	}
 	
 	public void generateMap(String path) {
+	    
 	    G = new Graph(In.getProjectScanner(path));
 	    mouse =  new Mouse( 1, 0);
 	    
@@ -78,7 +59,6 @@ public class AStarContentPanel extends JPanel {
 	        mouseMoving = false;
 	    } else {
 	        Cell cell = mousePath.pop();
-//	        Out.pf("moveTo(%s, %s)\n", cell.x(), cell.y());
 	        mouse.moveTo(cell.x(), cell.y());
 	    }
 	}
@@ -89,10 +69,31 @@ public class AStarContentPanel extends JPanel {
 		
 		painter.paint(g);
 		painter.paint(g, mouse);
-		
 		mouseMoving(count);
 		
 		count ++;
+	}
+	
+	class MouseHandler extends MouseAdapter {
+	    
+	    boolean click = false;
+        
+        @Override
+        public void mousePressed(MouseEvent e) {
+            
+            if (click || mouseMoving) {
+                Out.p("mouse is moving");
+            } else {
+                click = true;
+                int y = e.getX()/Global.xPix;
+                int x = e.getY()/Global.yPix;
+                Out.pf("%d Click %2s %2s \n", new Date().getTime(), x, y);
+                mouseMoveTo(x, y);
+                click = false;
+            }
+            
+        }
+        
 	}
 	
 }

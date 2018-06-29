@@ -3,6 +3,8 @@ package com.rays.fun.astar;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import com.ray.util.io.Out;
+
 public class GraphPatinter {
 
     private Graph G;
@@ -33,7 +35,6 @@ public class GraphPatinter {
         int h = Global.yPix;
         
         int width = Global.xPix/2;
-        
         g.setColor(new Color(59, 172, 230));
         
         g.fillRect(mouse.y() * w + width/2, mouse.x() * h + width/2, width, width);

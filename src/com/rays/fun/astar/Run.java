@@ -3,11 +3,9 @@ package com.rays.fun.astar;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -17,14 +15,11 @@ public class Run {
 	
 	private JFrame 				frame;           // 主框架   
 	private AStarContentPanel	contentPanel;    // 内容面板
-	private AStarControlPanel	controlPanel;    // 控制面板
 	private JMenuBar 			menuBar;         // 菜单栏
-	private ExecutorService 	es;              // 线程执行
 	
 	public Run() {
 	    loadContentPanel();
 	    loadJMenu();
-	    loadControlPanel();
 	    assmbleCompoment();
 	    refreshFrame(50, TimeUnit.MILLISECONDS);
 	    
@@ -34,7 +29,7 @@ public class Run {
      * 加载内容面板
      */
     public void loadContentPanel() {
-        contentPanel    = new AStarContentPanel();
+        contentPanel    = new AStarContentPanel(Global.WIN_WIDTH, Global.WIN_HEIGHT);
         contentPanel.generateMap(Global.MAP_PATH);
     }
     /**
@@ -60,25 +55,13 @@ public class Run {
 	}
 	
 	/**
-	 * 加载控制面板
-	 */
-	public void loadControlPanel() {
-	    controlPanel = new AStarControlPanel();
-	    JButton b1 = new JButton("下一步");
-        //b1.addActionListener((ActionEvent e) -> seacher.nextStep());
-        controlPanel.add(b1);
-	}
-	
-	/**
      * 组装图形组件
      */
     public void assmbleCompoment() {
         frame = new JFrame("A star show");
         // 拼装
-        // frame.setContentPane(panel);
         frame.setLayout(new FlowLayout());
         frame.add(contentPanel);
-        frame.add(controlPanel);
         frame.setJMenuBar(menuBar);
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,7 +74,6 @@ public class Run {
      */
     public void refreshFrame(int delay, TimeUnit unit) {
         // 预订刷新
-        es      = Executors.newCachedThreadPool();
         Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> frame.repaint(), 100, delay, unit);
     }
 

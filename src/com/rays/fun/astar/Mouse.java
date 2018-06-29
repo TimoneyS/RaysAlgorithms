@@ -7,13 +7,11 @@ package com.rays.fun.astar;
  */
 public class Mouse {
     
-    private Graph G;
     private int x;
     private int y;
     
-    public Mouse(Graph g, int x, int y) {
+    public Mouse(int x, int y) {
         super();
-        G = g;
         this.x = x;
         this.y = y;
     }

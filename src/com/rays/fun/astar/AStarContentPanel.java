@@ -25,10 +25,6 @@ public class AStarContentPanel extends JPanel {
     private boolean mouseMoving;
     private Deque<Cell> mousePath;
 	
-	public AStarContentPanel() {
-		this(600, 600);
-	}
-	
 	public AStarContentPanel(int width, int height) {
 	    painter = new GraphPatinter();
 	    
@@ -36,9 +32,12 @@ public class AStarContentPanel extends JPanel {
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		addMouseListener(new MouseAdapter() {
+		    
 			boolean click = false;
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
+			    
 			    if (click || mouseMoving) {
     				Out.p("mouse is moving");
 			    } else {
@@ -49,6 +48,7 @@ public class AStarContentPanel extends JPanel {
                     mouseMoveTo(x, y);
                     click = false;
 			    }
+			    
 			}
 			
 		});
@@ -56,7 +56,7 @@ public class AStarContentPanel extends JPanel {
 	
 	public void generateMap(String path) {
 	    G = new Graph(In.getProjectScanner(path));
-	    mouse =  new Mouse(G, 1, 0);
+	    mouse =  new Mouse( 1, 0);
 	    
 	    painter.setG(G);
 	    

@@ -6,7 +6,10 @@ import java.util.Map;
 
 public class Global {
 	
-	public static int xPix = 0;
+	public static final int WIN_WIDTH = 600;
+    public static final int WIN_HEIGHT = 600;
+    
+    public static int xPix = 0;
 	public static int yPix = 0;
 	
 	public static String MAP_PATH = "src/com/rays/fun/astar/map.txt";

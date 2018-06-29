@@ -50,8 +50,10 @@ public class Run {
         addJMenuItem(
                 m1,
                 "Ѱ·", (ActionEvent e) -> es.execute( () -> {
-                            contentPanel.startSearch(1, 1, 9, 9);
-                            for (Edge c : contentPanel.getPath(9, 9)) { c.stat = CellType.CHOOSE; }
+                            contentPanel.startSearch(0, 0, 4, 4);
+                            for (Cell c : contentPanel.getPath(4, 4)) {
+                                c.setCellType(CellType.PATH);
+                            }
                         })
                 );
         menuBar.add(m1);

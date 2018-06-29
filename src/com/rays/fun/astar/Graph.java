@@ -1,11 +1,8 @@
 package com.rays.fun.astar;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
-import com.ray.util.io.Out;
 
 /**
  * 地图的抽象对象
@@ -15,23 +12,23 @@ import com.ray.util.io.Out;
 public class Graph {
     
     private int         maxRow, maxCol;
-    private Edge[][]    map;
+    private Cell[][]    map;
     
     public Graph(Scanner in) {
         maxRow    = in.nextInt();
         maxCol    = in.nextInt();
-        map  = new Edge[maxRow][maxCol];
+        map  = new Cell[maxRow][maxCol];
         for (int i = 0; i < maxRow; i++) {
-            for (int j = 0; j < maxCol; j++) map[i][j] = Edge.create(i, j, in.nextInt());
-            Out.p(Arrays.toString(map[i]));
+            for (int j = 0; j < maxCol; j++)
+                map[i][j] = Cell.create(i, j, in.nextInt());
         }
     }
     
-    public Edge[][] cells() {
+    public Cell[][] cells() {
         return map;
     }
     
-    public Edge getCell(int row, int col) {
+    public Cell getCell(int row, int col) {
         return map[row][col];
     }
     
@@ -49,8 +46,8 @@ public class Graph {
      * @param col
      * @return
      */
-    public List<Edge> adj(int row, int col) {
-        List<Edge> chs = new LinkedList<Edge>();
+    public List<Cell> adj(int row, int col) {
+        List<Cell> chs = new LinkedList<Cell>();
         if (row > 0)
             chs.add(map[row - 1][col]); // 上
         if (row < maxRow - 1)
@@ -60,6 +57,22 @@ public class Graph {
         if (col < maxCol - 1)
             chs.add(map[row][col + 1]); // 右
         return chs;
+    }
+    
+    public int manhattan(int x1, int y1, int x2, int y2) {
+        return Math.abs(x2- x1) + Math.abs(y2-y1);
+    }
+    
+    public int toIndex(int x, int y) {
+        return x * maxRow + y;
+    }
+    
+    public int toX(int index) {
+        return index / maxRow;
+    }
+    
+    public int toY(int index) {
+        return index % maxCol;
     }
     
 }

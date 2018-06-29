@@ -1,9 +1,9 @@
 package com.rays.fun.astar;
 
-import static com.rays.fun.astar.CellType.*;
+import java.util.Deque;
+import java.util.LinkedList;
 
-import java.util.*;
-
+import com.ray.common.collections.RaysIndexMinPQ;
 import com.ray.util.io.In;
 import com.ray.util.io.Out;
 
@@ -14,17 +14,27 @@ import com.ray.util.io.Out;
  */
 public class Seacher {
 	
-	private PriorityQueue<Edge> open;
-	private int[][] distTo;
+    private RaysIndexMinPQ<Double> open;
+    private int[]                  pathTo;
+    private boolean[]              isClose;
+    private double[]               distToS;
+    private double[]               distToE;
+    private double[]               costWith;
 	
 	public Seacher(Graph m, int startRow, int startCol, int endRow, int endCol) {
-	    open = new PriorityQueue<Edge>();
-	    distTo = new int[m.maxRow()][m.maxCol()];
 	    
-	    for (int i = 0; i < distTo.length; i++) {
-	        for (int j = 0; j < distTo[i].length; j++) {
-                distTo[i][j] = Integer.MAX_VALUE;
-            }
+	    int V = m.maxRow()*m.maxCol(); 
+	    
+	    open = new RaysIndexMinPQ<Double>(V);
+	    pathTo  = new int[V];
+	    distToS = new double[V];
+	    distToE = new double[V];
+	    costWith = new double[V];;
+	    isClose  = new boolean[V];;
+	    
+	    for (int i = 0; i < distToE.length; i++) {
+            distToE[i] = Integer.MAX_VALUE;
+            pathTo[i] = -1;
         }
 	    
 	    search( m, startRow, startCol, endRow, endCol);
@@ -32,54 +42,74 @@ public class Seacher {
 	
 	/**
 	 * A*算法，搜索算法
-	 * @param m
+	 * @param G
 	 * @param startRow
 	 * @param startCol
 	 * @param endRow
 	 * @param endCol
 	 */
-    private void search(Graph m, int startRow, int startCol, int endRow, int endCol) {
-        // 初始步骤
-        Edge s = m.getCell(startRow, startCol);
-        s.initPath(endRow, endCol);
+    private void search(Graph G, int startRow, int startCol, int endRow, int endCol) {
         
-        open.add(s);
-
-        while (open.size() != 0) {
-            Edge min = open.poll();                                     // 找到当前节点
-            for (Edge cell : m.adj(min.rowNum, min.colNum)) {           // 解析可达节点
-                if (cell.isTypes(CLOSE, BLOCK)) continue;
-                if (cell.parent == null) {
-                    cell.initPath(endRow, endCol);
-                    cell.open();
-                    cell.setParent(min);
-                    open.add(cell);
-                } else if (cell.costWithThis() < min.parent.costWithThis()) {
-                     min.setParent(cell);
+        int startIndex = G.toIndex(startRow, startCol);
+        
+        distToS[startIndex] = 0;
+        distToE[startIndex] = G.manhattan(startRow, startCol, endRow, endCol);
+        costWith[startIndex] = distToS[startIndex] +  distToE[startIndex];
+        
+        open.insert(startIndex, costWith[startIndex]);
+        
+        while (!open.isEmpty()) {
+            int min = open.delMin();
+            for (Cell cell : G.adj(G.toX(min), G.toY(min))) {       // 解析可达节点
+                
+                int current = G.toIndex(cell.x(), cell.y());
+                
+                if (cell.getCellType().equals(CellType.WALL) || isClose[current])
+                    continue;
+                
+                if (pathTo[current] == -1) {
+                    distToS[current] = distToS[min] + cell.weight();
+                    distToE[current] = G.manhattan(cell.x(), cell.y(), endRow, endCol);
+                    
+                    costWith[current] = distToS[current] +  distToE[current];
+                    pathTo[current] = min;
+                    
+                    open.insert(current, costWith[current]);
+                } else if (costWith[pathTo[current]] < costWith[pathTo[min]]) {
+                    pathTo[min] = current;
                 }
             }
-            min.close();                                                // 关闭最小节点
+            
+            isClose[min] = true;
+
         }
 
     }
 	
-	public Deque<Edge> getPath(Graph map, int eRow, int eCol) {
-        Deque<Edge> stack = new LinkedList<Edge>();
-    	Edge c = map.getCell(eRow, eCol);
-    	while(c != null) {
-    		stack.push(c);
-    		c = c.parent;
+	public Deque<Cell> getPath(Graph G, int eRow, int eCol) {
+	    
+        Deque<Cell> stack = new LinkedList<Cell>();
+    	
+        int index = G.toIndex(eRow, eCol);
+        stack.push(G.getCell( G.toX(index), G.toY(index)));
+        
+    	while(pathTo[index] != -1) {
+    		index = pathTo[index];
+            Cell c = G.getCell( G.toX(index), G.toY(index));
+            stack.push(c);
     	}
+    	
     	return stack;
     }
 
     public static void main(String[] args) {
         Graph m = new Graph(In.getProjectScanner(Global.MAP_PATH));
-        Seacher s = new Seacher(m, 1, 1, 9, 9);
-        
-       for( Edge c : s.getPath(m, 9, 9)) {
-           Out.pf("[%d,%d] -> ", c.rowNum,c.colNum);
-       }
+        Seacher s = new Seacher(m, 0, 0, 4, 4);
+
+        for (Cell c : s.getPath(m, 4, 4)) {
+            Out.pf("[%d,%d] -> ", c.x(), c.y());
+        }
+
     }
 	
 }

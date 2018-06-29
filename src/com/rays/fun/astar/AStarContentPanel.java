@@ -17,7 +17,7 @@ public class AStarContentPanel extends JPanel {
 	
     private Graph map;
     private Seacher seacher;
-	private Edge[][] cells;
+	private Cell[][] cells;
 	private int xNum, yNum;
 	
 	public AStarContentPanel() {
@@ -35,20 +35,20 @@ public class AStarContentPanel extends JPanel {
 				int x = e.getX()/Global.xPix;
 				int y = e.getY()/Global.yPix;
 				//StdOut.pf("%d %4s Click %2s %2s \n", new Date().getTime(), count++, x, y);
-				cells[y][x].changeState();
+				// cells[y][x].changeState();
 			}
 			
 		});
 	}
 	
-	private void paintCell(Edge cell, Graphics g) {
+	private void paintCell(Cell cell, Graphics g) {
 		int w = Global.xPix;
 		int h = Global.yPix;
-		g.setColor(Global.COLOR_MAP.get(cell.stat));
-		g.fillRect(cell.colNum*w , cell.rowNum*h, w, h);
+		 g.setColor(Global.COLOR_MAP.get(cell.getCellType()));
+		g.fillRect(cell.y()*w , cell.x()*h, w, h);
 		g.setColor(Color.BLACK);
-		g.drawRect(cell.colNum*w , cell.rowNum*h, w, h);
-		g.drawString(cell.inspect(), cell.colNum*w+w/4, cell.rowNum*h + h/2);
+		g.drawRect(cell.y()*w , cell.x()*h, w, h);
+		// g.drawString(cell.inspect(), cell.y()*w+w/4, cell.x()*h + h/2);
 	}
 	
 	public void generateMap(String path) {
@@ -66,7 +66,7 @@ public class AStarContentPanel extends JPanel {
 	    seacher = new Seacher(map, sRow, sCol, eRow, eCol);
 	}
 	
-	public Deque<Edge> getPath(int eRow, int eCol) {
+	public Deque<Cell> getPath(int eRow, int eCol) {
 	    return seacher.getPath(map, eRow, eCol);
 	}
 	
@@ -75,8 +75,8 @@ public class AStarContentPanel extends JPanel {
 		super.paintComponent(g);
 		if (cells==null) return;
 		
-	    for (Edge[] row : cells)
-	        for (Edge cell : row)
+	    for (Cell[] row : cells)
+	        for (Cell cell : row)
 	            paintCell(cell, g);
 	}
 }

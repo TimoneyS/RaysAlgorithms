@@ -57,8 +57,8 @@ public class Board {
 	 * 根据A*算法对面板重新排序
 	 */
 	public void reorder() {
-	    Seacher s = new Seacher();
-	    Path p = s.search(this);
+	    Seacher s = new Seacher(this);
+	    Phase p = s.getPath();
 	    System.out.println("Search OK!!!");
 	    Thread t = new Thread(new Runnable() {
             @Override
@@ -109,8 +109,8 @@ public class Board {
 	
 	private void moveUp()    { if ( cursor >= size)           swap(cursor, cursor -= size); }
 	private void moveDown()  { if ( cursor < N.length - size) swap(cursor, cursor += size); }
-	private void moveLeft()  { if ( cursor % 3 != 0)          swap(cursor, -- cursor); }
-	private void moveRight() { if ( cursor % 3 != size-1)     swap(cursor, ++ cursor); }
+	private void moveLeft()  { if ( cursor % size != 0)       swap(cursor, -- cursor); }
+	private void moveRight() { if ( cursor % size != size-1)  swap(cursor, ++ cursor); }
 	
     public int getNum(int i, int j) { return N[i * size + j]; }
     public int[] getN() { return N; }
@@ -133,7 +133,7 @@ public class Board {
 	
     public void shuffe() {
         Random r = new Random(42);
-        for (int i = 0; i< 1000; i++) {
+        for (int i = 0; i < 1000; i++) {
             int n = r.nextInt()%4;
             switch (n) {
                 case 0 : move(Dir.UP);break;

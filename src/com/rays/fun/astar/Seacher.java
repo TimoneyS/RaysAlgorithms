@@ -91,12 +91,12 @@ public class Seacher {
         Deque<Cell> stack = new LinkedList<Cell>();
     	
         int index = G.toIndex(eRow, eCol);
-        stack.push(G.getCell( G.toX(index), G.toY(index)));
+//        stack.push(G.getCell( G.toX(index), G.toY(index)));
         
     	while(pathTo[index] != -1) {
-    		index = pathTo[index];
             Cell c = G.getCell( G.toX(index), G.toY(index));
             stack.push(c);
+            index = pathTo[index];
     	}
     	
     	return stack;

@@ -57,5 +57,10 @@ public class Cell implements Comparable<Cell> {
     public int compareTo(Cell o) {
         return 0;
     }
+    
+    @Override
+    public String toString() {
+        return "[" + x + ", " + y + "]";
+    }
 
 }

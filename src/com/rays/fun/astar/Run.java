@@ -47,15 +47,15 @@ public class Run {
         addJMenuItem (m1, "ÔØÈë", (ActionEvent e) -> {
             contentPanel.generateMap(Global.MAP_PATH);
         });
-        addJMenuItem(
-                m1,
-                "Ñ°Â·", (ActionEvent e) -> es.execute( () -> {
-                            contentPanel.startSearch(0, 0, 4, 4);
-                            for (Cell c : contentPanel.getPath(4, 4)) {
-                                c.setCellType(CellType.PATH);
-                            }
-                        })
-                );
+//        addJMenuItem(
+//                m1,
+//                "Ñ°Â·", (ActionEvent e) -> es.execute( () -> {
+//                            contentPanel.moveTo(0, 0, 4, 4);
+//                            for (Cell c : contentPanel.getPath(4, 4)) {
+//                                c.setCellType(CellType.PATH);
+//                            }
+//                        })
+//                );
         menuBar.add(m1);
 	}
 	

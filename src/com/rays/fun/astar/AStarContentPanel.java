@@ -5,78 +5,94 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 import java.util.Deque;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import com.ray.util.io.In;
+import com.ray.util.io.Out;
 
 @SuppressWarnings("serial")
 public class AStarContentPanel extends JPanel {
 	
-    private Graph map;
+    private Graph G;
+    private GraphPatinter painter;
     private Seacher seacher;
-	private Cell[][] cells;
-	private int xNum, yNum;
+    private Mouse mouse; 
+    private long count = 0;
+    private boolean mouseMoving;
+    private Deque<Cell> mousePath;
 	
 	public AStarContentPanel() {
 		this(600, 600);
 	}
 	
 	public AStarContentPanel(int width, int height) {
+	    painter = new GraphPatinter();
+	    
 		setPreferredSize(new Dimension(width, height));
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		addMouseListener(new MouseAdapter() {
-			
+			boolean click = false;
 			@Override
 			public void mousePressed(MouseEvent e) {
-				int x = e.getX()/Global.xPix;
-				int y = e.getY()/Global.yPix;
-				//StdOut.pf("%d %4s Click %2s %2s \n", new Date().getTime(), count++, x, y);
-				// cells[y][x].changeState();
+			    if (click || mouseMoving) {
+    				Out.p("mouse is moving");
+			    } else {
+			        click = true;
+			        int y = e.getX()/Global.xPix;
+                    int x = e.getY()/Global.yPix;
+                    Out.pf("%d Click %2s %2s \n", new Date().getTime(), x, y);
+                    mouseMoveTo(x, y);
+                    click = false;
+			    }
 			}
 			
 		});
 	}
 	
-	private void paintCell(Cell cell, Graphics g) {
-		int w = Global.xPix;
-		int h = Global.yPix;
-		 g.setColor(Global.COLOR_MAP.get(cell.getCellType()));
-		g.fillRect(cell.y()*w , cell.x()*h, w, h);
-		g.setColor(Color.BLACK);
-		g.drawRect(cell.y()*w , cell.x()*h, w, h);
-		// g.drawString(cell.inspect(), cell.y()*w+w/4, cell.x()*h + h/2);
-	}
-	
 	public void generateMap(String path) {
-	    map = new Graph(In.getProjectScanner(path));
+	    G = new Graph(In.getProjectScanner(path));
+	    mouse =  new Mouse(G, 1, 0);
 	    
-        this.cells = map.cells();
-        yNum = cells.length;
-        xNum = cells[0].length;
-
-        Global.xPix = getWidth() / xNum;
-        Global.yPix = getHeight() / yNum;
+	    painter.setG(G);
+	    
+        Global.xPix = getWidth() / G.maxCol();
+        Global.yPix = getHeight() / G.maxRow();
+        
 	}
 	
-	public void startSearch(int sRow, int sCol, int eRow, int eCol) {
-	    seacher = new Seacher(map, sRow, sCol, eRow, eCol);
+	private void mouseMoveTo(int eRow, int eCol) {
+	    seacher = new Seacher(G, mouse.x(), mouse.y(), eRow, eCol);
+	    mousePath = seacher.getPath(G, eRow, eCol);
+	    mouseMoving = true;
 	}
 	
-	public Deque<Cell> getPath(int eRow, int eCol) {
-	    return seacher.getPath(map, eRow, eCol);
+	private void mouseMoving(long count) {
+	    if (!mouseMoving || count % 3 != 0) return;
+	    
+	    if (mousePath != null && mousePath.isEmpty()) {
+	        mouseMoving = false;
+	    } else {
+	        Cell cell = mousePath.pop();
+//	        Out.pf("moveTo(%s, %s)\n", cell.x(), cell.y());
+	        mouse.moveTo(cell.x(), cell.y());
+	    }
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if (cells==null) return;
 		
-	    for (Cell[] row : cells)
-	        for (Cell cell : row)
-	            paintCell(cell, g);
+		painter.paint(g);
+		painter.paint(g, mouse);
+		
+		mouseMoving(count);
+		
+		count ++;
 	}
+	
 }

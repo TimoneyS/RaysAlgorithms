@@ -3,8 +3,6 @@ package com.rays.fun.astar;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.ray.util.io.Out;
-
 public class GraphPatinter {
 
     private Graph G;

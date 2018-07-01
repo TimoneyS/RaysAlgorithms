@@ -2,6 +2,8 @@ package com.rays.fun.reorder;
 
 import java.util.Random;
 
+import com.ray.common.collections.RaysStack;
+import com.ray.common.collections.Stack;
 import com.ray.util.TimeUnit;
 
 /** 
@@ -58,17 +60,25 @@ public class Board {
 	 */
 	public void reorder() {
 	    Seacher s = new Seacher(this);
-	    Phase p = s.getPath();
+	    
 	    System.out.println("Search OK!!!");
 	    Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("Start to reorder.");
-                for (Dir dir : p.getPath()) {
+                Phase p = s.getPath();
+                Stack<Dir> stack = new RaysStack<>();
+                while (p.prev() != null) {
+                    stack.push(p.getDir());
+                    p = p.prev();
+                }
+                while (!stack.isEmpty()) {
+                    Dir dir = stack.pop();
                     System.out.println("move " + dir);
                     move(dir);
-                    TimeUnit.MILL_SECOND.sleep(500);
+                    TimeUnit.MILL_SECOND.sleep(200);
                 }
+  
                 System.out.println("Reorder OK!!!");
             }
 	    });
@@ -125,7 +135,8 @@ public class Board {
 	protected Board clone() {
 	    Board b = new Board();
 	    b.N = new int[N.length];
-	    for (int i = 0; i < N.length; i++) b.N[i] = N[i];
+	    for (int i = 0; i < N.length; i++)
+	        b.N[i] = N[i];
 	    b.size = size;
 	    b.cursor = cursor;
 	    return b;

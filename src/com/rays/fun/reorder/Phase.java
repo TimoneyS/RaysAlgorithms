@@ -6,28 +6,32 @@ import java.util.List;
 
 public class Phase implements Comparable<Phase> {
     
+    private Phase     prev;
     private Board     board;
-    private List<Dir> path;
     private int       step;
     private int       dist;
     private String    symbol;
+    private Dir dir;
     
-    public Phase(Board board, int step, List<Dir> path, Dir dir) {
-        
-        this.path  = new LinkedList<>();
+    public Phase (Board board) {
+        this.step = 0;
         this.board = board.clone();
-        this.step  = step;
-        this.symbol = Arrays.toString(board.getN());
+        this.dist = board.dist();
+        this.symbol = Arrays.toString(this.board.getN());
+    }
+    
+    public Phase(Phase prev, Dir dir) {
+     
+        this.prev = prev;
+        this.dir = dir;
         
-        if (path != null)
-            this.path.addAll(path);
+        this.board = prev.board.clone();
+        this.board.move(dir);
+        this.symbol = Arrays.toString(this.board.getN());
         
-        if (dir != null) {
-            this.path.add(dir);
-            this.board.move(dir);
-        }
-        
+        this.step  = prev.step+1;
         this.dist = this.board.dist();
+    
     }
 
     @Override
@@ -37,11 +41,11 @@ public class Phase implements Comparable<Phase> {
     
     public List<Phase> adj() {
         List<Phase> list = new LinkedList<>();
-        list.add(new Phase(board, step+1, path, Dir.LEFT));
-        list.add(new Phase(board, step+1, path, Dir.RIGHT));
-        list.add(new Phase(board, step+1, path, Dir.UP));
-        list.add(new Phase(board, step+1, path, Dir.DOWN));
-
+        list.add(new Phase(this, Dir.LEFT));
+        list.add(new Phase(this, Dir.RIGHT));
+        list.add(new Phase(this, Dir.UP));
+        list.add(new Phase(this, Dir.DOWN));
+                                 
         return list;       
     }
     
@@ -55,12 +59,16 @@ public class Phase implements Comparable<Phase> {
         return true;
     }
     
-    public List<Dir> getPath() {
-        return path;
+    public Dir getDir() {
+        return dir;
+    }
+    
+     public Phase prev() {
+        return prev;
     }
     
     public void show() {
-        System.out.printf("Step = %s, Dist = %s, Path = %s\n", step, dist, path);
+        System.out.printf("Step = %s, Dist = %s, Prev = %s\n", step, dist, prev);
         board.show();
         System.out.println("====================================");
     }

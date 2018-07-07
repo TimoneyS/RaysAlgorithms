@@ -1,6 +1,6 @@
 package com.ray.common.collections;
 
-import com.ray.util.io.Out;
+import com.ray.io.Out;
 
 /**
  * 

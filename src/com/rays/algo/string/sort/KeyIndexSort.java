@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import com.ray.util.io.In;
-import com.ray.util.io.Out;
+import com.ray.io.In;
+import com.ray.io.Out;
 
 /**
  * ¼üË÷Òı¼ÆÊıÅÅĞò

@@ -2,7 +2,7 @@ package com.rays.algo.graph.g;
 
 import java.util.Stack;
 
-import com.ray.util.io.Out;
+import com.ray.io.Out;
 import com.rays.algo.graph.Digraph;
 
 /**

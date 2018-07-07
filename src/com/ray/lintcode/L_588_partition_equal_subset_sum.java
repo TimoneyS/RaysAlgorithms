@@ -1,8 +1,6 @@
 package com.ray.lintcode;
 
-import static com.ray.util.Assert.*;
-
-import com.ray.util.io.Out;
+import com.ray.io.Out;
 
 /**
  * Given a non-empty array containing only positive integers,
@@ -91,8 +89,8 @@ public class L_588_partition_equal_subset_sum {
 	}
 	
 	public static void test(int[] nums, boolean result) {
-		if(result) 	assertTrue( Solution.canPartition(nums));
-		else 		assertFalse(Solution.canPartition(nums));
+//		if(result) 	assertTrue( Solution.canPartition(nums));
+//		else 		assertFalse(Solution.canPartition(nums));
 	}
 	
 	public static void main(String[] args) {

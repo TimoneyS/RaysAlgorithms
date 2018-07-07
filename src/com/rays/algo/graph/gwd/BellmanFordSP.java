@@ -3,7 +3,7 @@ package com.rays.algo.graph.gwd;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-import com.ray.util.io.Out;
+import com.ray.io.Out;
 import com.rays.algo.graph.DirectedEdge;
 import com.rays.algo.graph.EdgeWeightedDigraph;
 

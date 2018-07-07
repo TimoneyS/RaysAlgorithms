@@ -3,8 +3,8 @@ package com.rays.algo.graph.gw;
 import java.util.Scanner;
 import java.util.Stack;
 
-import com.ray.util.io.In;
-import com.ray.util.io.Out;
+import com.ray.io.In;
+import com.ray.io.Out;
 import com.rays.algo.graph.DirectedEdge;
 import com.rays.algo.graph.EdgeWeightedDigraph;
 import com.rays.algo.graph.gwd.AcycliLP;

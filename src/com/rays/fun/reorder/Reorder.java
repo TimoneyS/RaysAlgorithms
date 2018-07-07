@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 
-import com.ray.util.RFrame;
+import com.ray.gui.RFrame;
 
 public class Reorder {
 

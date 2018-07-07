@@ -2,8 +2,8 @@ package com.rays.algo.search;
 
 import java.util.NoSuchElementException;
 
+import com.ray.io.Out;
 import com.ray.util.RArrays;
-import com.ray.util.io.Out;
 
 /**
  * 基于红黑树实现的 2-3树结构的符号表<br/>

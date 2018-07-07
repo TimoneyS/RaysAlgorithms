@@ -11,8 +11,8 @@ import java.util.Deque;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import com.ray.util.io.In;
-import com.ray.util.io.Out;
+import com.ray.io.In;
+import com.ray.io.Out;
 
 @SuppressWarnings("serial")
 public class AStarContentPanel extends JPanel {

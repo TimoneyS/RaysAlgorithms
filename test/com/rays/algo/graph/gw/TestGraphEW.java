@@ -2,9 +2,9 @@ package com.rays.algo.graph.gw;
 
 import java.util.Scanner;
 
+import com.ray.io.In;
+import com.ray.io.Out;
 import com.ray.util.Timer;
-import com.ray.util.io.In;
-import com.ray.util.io.Out;
 import com.rays.algo.graph.Edge;
 import com.rays.algo.graph.EdgeWeightedGraph;
 import com.rays.algo.graph.gw.PrimMinSTLazy;

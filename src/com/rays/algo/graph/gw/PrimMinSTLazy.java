@@ -2,8 +2,8 @@ package com.rays.algo.graph.gw;
 
 import java.util.Arrays;
 
-import com.ray.common.collections.MinPQ;
-import com.ray.common.collections.RaysMinPQ;
+import com.ray.util.collections.MinPQ;
+import com.ray.util.collections.RaysMinPQ;
 import com.rays.algo.graph.Edge;
 import com.rays.algo.graph.EdgeWeightedGraph;
 

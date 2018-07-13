@@ -3,9 +3,9 @@ package com.rays.fun.astar;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import com.ray.common.collections.RaysIndexMinPQ;
 import com.ray.io.In;
 import com.ray.io.Out;
+import com.ray.util.collections.RaysIndexMinPQ;
 
 /**
  * A * 算法的搜索方法

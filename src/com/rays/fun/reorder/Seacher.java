@@ -3,11 +3,11 @@ package com.rays.fun.reorder;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.ray.common.collections.MinPQ;
-import com.ray.common.collections.RaysMinPQ;
-import com.ray.common.collections.RaysStack;
-import com.ray.common.collections.Stack;
 import com.ray.util.Timer;
+import com.ray.util.collections.MinPQ;
+import com.ray.util.collections.RaysMinPQ;
+import com.ray.util.collections.RaysStack;
+import com.ray.util.collections.Stack;
 
 /**
  * 用于寻找能够恢复面板顺序的路径

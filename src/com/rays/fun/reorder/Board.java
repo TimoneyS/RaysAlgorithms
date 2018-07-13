@@ -2,9 +2,9 @@ package com.rays.fun.reorder;
 
 import java.util.Random;
 
-import com.ray.common.collections.RaysStack;
-import com.ray.common.collections.Stack;
 import com.ray.util.TimeUnit;
+import com.ray.util.collections.RaysStack;
+import com.ray.util.collections.Stack;
 
 /** 
  * ±Ì æ√Ê∞Â                                                                                                           <br/>

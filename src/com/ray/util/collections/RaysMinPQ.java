@@ -1,4 +1,4 @@
-package com.ray.common.collections;
+package com.ray.util.collections;
 
 /**
  * 

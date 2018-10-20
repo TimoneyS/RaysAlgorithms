@@ -174,10 +174,9 @@ public class MatrixChain {
             t.stop();
         }
 
-        
 //        t.click();
 //        new MatrixChainMemorized(P);
-
+             
         
     }
     

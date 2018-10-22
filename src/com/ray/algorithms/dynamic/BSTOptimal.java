@@ -100,7 +100,6 @@ public class BSTOptimal {
             Out.p(suffix + rootNode.key);
             showTree(rootNode.left, deepth+1);            
             
-            
         }
         
     }

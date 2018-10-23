@@ -49,18 +49,6 @@ public class MatrixChain {
             
         }
         
-        private void partion(int l, int r) {
-            if (l == r) { 
-                Out.pt("A" + l);
-            } else { 
-               int mid = S[l][r];
-               Out.pt("(");
-               partion(l, mid);
-               partion(mid+1, r);
-               Out.pt(")");
-            }
-        }
-        
     }
     
     static class MatrixChainMemorized {
@@ -109,18 +97,6 @@ public class MatrixChain {
             }
             return A[i][j]; 
             
-        }
-        
-        private void partion(int l, int r) {
-            if (l == r) { 
-                Out.pt("A" + l);
-            } else { 
-               int mid = S[l][r];
-               Out.pt("(");
-               partion(l, mid);
-               partion(mid+1, r);
-               Out.pt(")");
-            }
         }
         
     }

@@ -2,7 +2,6 @@ package com.ray.algorithms.dynamic;
 
 import java.util.Random;
 
-import com.ray.io.Out;
 import com.ray.util.Timer;
 
 /**

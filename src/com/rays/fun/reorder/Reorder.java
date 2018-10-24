@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 
-import com.ray.gui.RFrame;
+import com.ray.gui.FrameUtil;
 
 public class Reorder {
 
@@ -14,12 +14,12 @@ public class Reorder {
 
 	public Reorder() {
         panel = new Panel();
-		frame = RFrame.commonFrame("ƴͼ");
+		frame = FrameUtil.commonFrame("ƴͼ");
 		frame.add(panel, BorderLayout.CENTER);
 		frame.addKeyListener(panel.getKeyListener());
 		
-		RFrame.showFrame(frame);
-		RFrame.refreshFrame(frame, 100, TimeUnit.MILLISECONDS);
+		FrameUtil.showFrame(frame);
+		FrameUtil.refreshFrame(frame, 100, TimeUnit.MILLISECONDS);
 	}
 	
 	public static void main(String[] args) {

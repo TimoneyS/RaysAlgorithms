@@ -1,7 +1,7 @@
 package com.rays.algo.search;
 
 import com.ray.io.Out;
-import com.ray.util.RArrays;
+import com.ray.util.ArrayUtil;
 
 public class TestRedBlackST {
     
@@ -32,8 +32,8 @@ public class TestRedBlackST {
     @SuppressWarnings("unused")
     private static RedBlackBinarySearchTree<Integer, Integer> getRedBlackST(int size, int seed) {
         Integer[] arr;
-        arr = RArrays.integerArr(size);
-        RArrays.shuffle(arr, 1);
+        arr = ArrayUtil.integerArr(size);
+        ArrayUtil.shuffle(arr, 1);
         return getRedBlackST(arr);
     }
     

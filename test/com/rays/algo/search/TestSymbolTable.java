@@ -1,7 +1,7 @@
 package com.rays.algo.search;
 
 import com.ray.io.Out;
-import com.ray.util.RArrays;
+import com.ray.util.ArrayUtil;
 import com.ray.util.Timer;
 
 public class TestSymbolTable {
@@ -14,7 +14,7 @@ public class TestSymbolTable {
         SymbolTable<Integer, Integer> st = new SequentialSearchST<>();
         Timer t = Timer.create();
         
-        Integer[] arr = RArrays.integerArr(size);
+        Integer[] arr = ArrayUtil.integerArr(size);
         t.click();
         for(Integer i : arr) st.put(i, i);
         Out.p(st.size());
@@ -29,7 +29,7 @@ public class TestSymbolTable {
     public static void testBinarySearchST() {
         int size = 10;
         SortedSymbolTable<Integer, Integer> st = new BinarySearchST<>(size);
-        Integer[] arr = RArrays.integerArr(size);
+        Integer[] arr = ArrayUtil.integerArr(size);
         
         for (Integer i : arr) {
             st.put(i, i);
@@ -48,7 +48,7 @@ public class TestSymbolTable {
     
     public static void testBinarySearchTree() {
 //        int size = 11;
-        //Integer[] arr = RArrays.integerArr(size);
+        //Integer[] arr = ArrayUtil.integerArr(size);
         Integer[] arr = new Integer[] {8, 10, 2, 6, 9, 11, 1, 3, 5, 7};
         BinarySearchTree<Integer, Integer> st = new BinarySearchTree<>();
         

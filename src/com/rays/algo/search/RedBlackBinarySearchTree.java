@@ -3,7 +3,7 @@ package com.rays.algo.search;
 import java.util.NoSuchElementException;
 
 import com.ray.io.Out;
-import com.ray.util.RArrays;
+import com.ray.util.ArrayUtil;
 
 /**
  * 基于红黑树实现的 2-3树结构的符号表<br/>
@@ -606,8 +606,8 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
         
         int size = 9;
         
-        arr = RArrays.integerArr(size);
-        RArrays.shuffle(arr, 1);
+        arr = ArrayUtil.integerArr(size);
+        ArrayUtil.shuffle(arr, 1);
         arr = new Integer[] {1,3,5,7,9}; 
         
         Out.p(arr);

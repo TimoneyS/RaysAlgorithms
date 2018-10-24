@@ -1,9 +1,9 @@
 package com.rays.algo.sort;
 
-import static com.ray.util.RArrays.checkSorted;
-import static com.ray.util.RArrays.integerArr;
+import static com.ray.util.ArrayUtil.checkSorted;
+import static com.ray.util.ArrayUtil.integerArr;
 
-import com.ray.util.RArrays;
+import com.ray.util.ArrayUtil;
 import com.ray.util.Timer;
 
 public class TestSort {
@@ -21,7 +21,7 @@ public class TestSort {
      */
     public static void testSelectionSort() {
         Integer[] arr = integerArr(40000);
-        RArrays.shuffle(arr);
+        ArrayUtil.shuffle(arr);
         testSort("选择排序", new SelectionSort<Integer>(), arr);
     }
 
@@ -30,7 +30,7 @@ public class TestSort {
      */
     public static void testInsertionSort() {
         Integer[] arr = integerArr(40000);
-        RArrays.shuffle(arr);
+        ArrayUtil.shuffle(arr);
         testSort("插入排序", new InsertionSort<Integer>(), arr);
     }
     
@@ -39,7 +39,7 @@ public class TestSort {
      */
     public static void testShellSort() {
         Integer[] arr = integerArr(200000);
-        RArrays.shuffle(arr);
+        ArrayUtil.shuffle(arr);
         testSort("希尔排序", new ShellSort<Integer>(), arr);
     }
     
@@ -48,7 +48,7 @@ public class TestSort {
      */
     public static void testMergeSortU2D() {
         Integer[] arr = integerArr(1000000);
-        RArrays.shuffle(arr);
+        ArrayUtil.shuffle(arr);
         testSort("自顶向下归并排序", new MergeSort.UpToDown<>(), arr);
     }
     
@@ -57,7 +57,7 @@ public class TestSort {
      */
     public static void testMergeSortD2U() {
         Integer[] arr = integerArr(1000000);
-        RArrays.shuffle(arr);
+        ArrayUtil.shuffle(arr);
         testSort("自底向上归并排序", new MergeSort.DownToUp<>(), arr);
     }
     
@@ -66,7 +66,7 @@ public class TestSort {
      */
     public static void testMergeSortD2UInsert() {
         Integer[] arr = integerArr(1000000);
-        RArrays.shuffle(arr);
+        ArrayUtil.shuffle(arr);
         testSort("小数组优化自底向上归并排序", new MergeSort.DownToUpInsert<>(), arr);
     }
     
@@ -75,7 +75,7 @@ public class TestSort {
      */
     public static void testQuickSort() {
         Integer[] arr = integerArr(2000000);
-        RArrays.shuffle(arr);
+        ArrayUtil.shuffle(arr);
         testSort("快速排序", new QuickSort<>(), arr);
     }
     

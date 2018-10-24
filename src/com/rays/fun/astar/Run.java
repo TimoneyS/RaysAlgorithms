@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 
-import com.ray.gui.RFrame;
+import com.ray.gui.FrameUtil;
 
 public class Run {
 	
@@ -13,13 +13,13 @@ public class Run {
 	private AStarContentPanel	contentPanel;    // ÄÚÈÝÃæ°å
 	
 	public Run() {
-	    frame = RFrame.commonFrame("A star show");
+	    frame = FrameUtil.commonFrame("A star show");
 	    frame.setLayout(new FlowLayout());
 	    
 	    loadContentPanel();
 	    
-	    RFrame.refreshFrame(frame, 20, TimeUnit.MILLISECONDS);
-	    RFrame.showFrame(frame);
+	    FrameUtil.refreshFrame(frame, 20, TimeUnit.MILLISECONDS);
+	    FrameUtil.showFrame(frame);
 	    
 	}
 	/**

@@ -1,7 +1,7 @@
 package com.ray.algorithms.dynamic;
 
 import com.ray.io.Out;
-import com.ray.util.RString;
+import com.ray.util.StringUtil;
 
 /**
  * 最优二叉搜索树问题
@@ -94,7 +94,7 @@ public class BSTOptimal {
             if (rootNode == null)
                 return;
             
-            String suffix = RString.multiString("  ", deepth);
+            String suffix = StringUtil.multiString("  ", deepth);
             
             showTree(rootNode.right, deepth+1);
             Out.p(suffix + rootNode.key);

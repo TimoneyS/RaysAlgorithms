@@ -1,5 +1,9 @@
 package com.ray.algorithms.dynamic;
 
+import java.awt.Color;
+
+import com.ray.gui.Picture;
+import com.ray.io.In;
 import com.ray.io.Out;
 
 /**
@@ -9,165 +13,202 @@ import com.ray.io.Out;
  */
 public class SeamCarving {
     
-    private static final char R = 'R';
-    private static final char G = 'G';
-    private static final char B = 'B';
-    private static final char N = ' ';
+    private int[][] energy;
+    private int[][] picture;
+    private int width;
+    private int height;
     
-    private int[][] memorized;
-    private int[][] seamPixe;   // 对应以 纵坐标 为 j 的像素 为首的 接缝，每一行像素的纵坐标
-    private int[] result;
-    private int[][] d;
-    private int m;
-    private int n;
-
-    public SeamCarving(char[][] pic) {
+    public SeamCarving(Picture picture) {
         
-        m = pic.length;
-        n = pic[0].length;
+        width = picture.width();
+        height = picture.height();
         
-        computePixPower(pic);
-        seamPixe = new int[m][n];
+        energy = new int[height][width];
+        this.picture = new int[height][width];
         
-        Out.pf("m=%s, n = %s\n", m, n);
-        result = new int[n];
-        
-        for (int c = 1; c < n-1; c ++) {
-            initMemorized();
-            result[c] = seamPower(c, m-2, c);
+        // 处理图片到 RGB 格式
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                this.picture[i][j] = picture.getRGB(j, i);
+            }
         }
         
-        printSeamPixe();
+        computeEnergy();
         
     }
-
-    private int seamPower(int start, int i, int j) {
+    
+    /**
+     * 垂直方向接缝裁剪
+     * @return
+     */
+    public int[] verticalSeamCarving() {
         
-        if (memorized[i][j] == -1) {
+        int[] seam = new int[height];
+        int[][] seamEnergy = new int[height][width];
+        int[][] pathTo = new int[height][width];
+        
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+//                if (i == 0)
+//                    seamEnergy[i][j] = energy[i][j];
+//                else
+                    seamEnergy[i][j] = -1;
+            }
+        }
+        
+        for (int j = 0; j < width; j ++) {
+            seamEnergy(0, j, seamEnergy, pathTo);
+        }
+        
+        int minIndex = 0;
+        for (int i = 0; i < width; i++) {
+            if (seamEnergy[0][minIndex] > seamEnergy[0][i]) {
+                minIndex = i;
+            }
+        }
+        
+        seam[0] = minIndex;
+        for (int i = 1; i < height; i ++) {
+            seam[i] = pathTo[i][seam[i-1]];
+        }
+        
+        return seam;
+    }
+    
+    public int[] horizontalSeamCarving() {
+        return null;
+    }
+    
+    public void showSeam(Picture pic, int[] seam) {
+        for (int j = 0; j < height; j++) {
+            int i = seam[j];
+            pic.set(i, j, Color.WHITE);
+        }
+    }
+
+    private int seamEnergy(int i, int j, int[][] seamEnergy, int[][] pathTo) {
+        
+        if (seamEnergy[i][j] == -1) { // 没有备忘
             
-            if (i <= 1) {
-                memorized[i][j] = d[i][j];
+            if (i == height-1) {
+                seamEnergy[i][j] = energy[i][j];
             } else {
-                int a = Integer.MAX_VALUE, b = Integer.MAX_VALUE, c = Integer.MAX_VALUE;
+                int a = 20000, b = 20000, c = 20000;
                 
-                if (j > 1)
-                    a = seamPower(start, i - 1, j - 1); 
-                b = seamPower(start, i-1, j);
-                if (j < n-2)
-                    c = seamPower(start, i - 1, j + 1);
+                if (j > 0)
+                    a = seamEnergy(i + 1, j - 1, seamEnergy, pathTo);
                 
-                if (a < b && a < c) {
-                    // a 最小
-                    seamPixe[i-1][start] = j-1;    
-                } else if (b < c && b < a) {
-                    // b 最小
-                    seamPixe[i-1][start] = j;
+                b = seamEnergy(i+1, j, seamEnergy, pathTo);
+                
+                if (j < width-1)
+                    c = seamEnergy(i + 1, j + 1, seamEnergy, pathTo);
+                
+                if (a <= b && a <= c) {
+                    // 左侧最小
+                    pathTo[i][j] = j-1;
+                    seamEnergy[i][j] = energy[i][j] + a;
+                } else if (b <= c && b <= a) {
+                    // 中间最小
+                    pathTo[i][j] = j;
+                    seamEnergy[i][j] = energy[i][j] + b;
                 } else {
-                    // c 最小
-                    seamPixe[i-1][start] = j+1;
+                    // 右侧最小
+                    pathTo[i][j] = j+1;
+                    seamEnergy[i][j] = energy[i][j] + c;
                 }
                 
-                memorized[i][j] = d[i][j] + Math.min(Math.min(a, b), c);
             }
         }
-        return memorized[i][j];
+        return seamEnergy[i][j];
     }
     
-    public void computePixPower(char[][] pic) {
-        d = new int[m][n];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                
-                if (i < 1 || j < 1 || i > m-2 || j > n-2) {
-                    d[i][j] = Integer.MAX_VALUE;
-                    continue;
-                }
-                char C = pic[i][j];
-                int e = 9;
-                
-                // 上下方两个像素
-                if (pic[i-1][j] == C) e --;
-                if (pic[i+1][j] == C) e --;
-                // 左右两个像素
-                if (pic[i][j-1] == C) e --;
-                if (pic[i][j+1] == C) e --;
-                
-                d[i][j] = e;
-            }
-        }
-    }
-    
-    public void showPixPower() {
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (d[i][j] == Integer.MAX_VALUE)
-                    Out.pt("N ");
-                else
-                    Out.pt(d[i][j] + " ");
-            }
-            Out.p();
-        }
-    }
-    
-    public void initMemorized() {
-        memorized = new int[m][n];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                memorized[i][j] = -1;
-            }
-        }
-    }
-    
-    public void printSeamPixe() {
+  public void removeVerticalSeam(int[] seam) {
         
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                Out.pt(seamPixe[i][j] + " ");
+        int min = Integer.MAX_VALUE;
+        int max = 0;
+
+        for (int i = 0; i < height; i++) {
+            if (seam[i] > max)
+                max = seam[i];
+            if (seam[i] < min)
+                min = seam[i];
+
+            for (int j = seam[i]; j < width - 1; j++) {
+                picture[i][j] = picture[i][j+1];
             }
-            Out.p();
         }
-        
-        int minIndex = 1;
-        for (int i = 1; i <= n-2; i++) {
-            if (result[i] < result[minIndex]) minIndex = i;
-        }
-        
-        Out.pf("delete( %s, %s)\n", m-2, minIndex);
-        for (int i = m - 3; i > 0; i --) {
-            int j = seamPixe[i][minIndex];
-            
-            Out.pf("delete( %s, %s)\n", i, j);
-            
+
+        width --;
+        if (min > 0)
+            min--;
+        if (max > height - 1)
+            max = height - 1;
+
+        for (int i = 0; i < height; i++) {
+            for (int j = min; j <= max; j++)
+                energy[i][j] = computePixelEnergy(i, j);
+            for (int j = max + 1; j < height - 1; j++)
+                energy[i][j] = energy[i][j+1];
         }
         
     }
     
-    public void showMemorized() {
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (memorized[i][j] == -1)
-                    Out.pt(" N ");
-                else
-                    Out.pf("%2s " , memorized[i][j]);
+    public void computeEnergy() {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                energy[i][j] = computePixelEnergy(i, j);
             }
-            Out.p();
         }
-        Out.sep();
+    }
+    
+    private int computePixelEnergy(int i, int j) {
+        if (i == 0 || j == 0 || i == height-1 || j == width - 1) {
+            return 1000;
+        }
+        
+        int rgbUp = picture[i][j - 1];
+        int rgbDown = picture[i][j + 1];
+        int rgbLeft = picture[i - 1][j];
+        int rgbRight = picture[i + 1][j];
+
+        int rx = Math.abs(((rgbLeft >> 16) & 0xFF) - ((rgbRight >> 16) & 0xFF));
+        int gx = Math.abs(((rgbLeft >> 8) & 0xFF) - ((rgbRight >> 8) & 0xFF));
+        int bx = Math.abs(((rgbLeft >> 0) & 0xFF) - ((rgbRight >> 0) & 0xFF));
+
+        int ry = Math.abs(((rgbUp >> 16) & 0xFF) - ((rgbDown >> 16) & 0xFF));
+        int gy = Math.abs(((rgbUp >> 8) & 0xFF) - ((rgbDown >> 8) & 0xFF));
+        int by = Math.abs(((rgbUp >> 0) & 0xFF) - ((rgbDown >> 0) & 0xFF));
+        
+        return rx + gx + bx + ry + gy + by;
+    }
+    
+    // current picture
+    public Picture picture() {
+        Picture pic = new Picture(width, height);
+        for (int i = 0; i < height; i++)
+            for (int j = 0; j < width; j++)
+                pic.setRGB(j, i, picture[i][j]);
+
+        return pic;
     }
     
     public static void main(String[] args) {
         
-        char[][] pic = {
-                { N, N, N, N, N, N, N, N, N },
-                { N, R, R, R, R, R, R, R, N },
-                { N, R, R, B, R, R, R, R, N },
-                { N, R, G, B, G, R, R, R, N },
-                { N, G, G, B, G, G, R, R, N },
-                { N, R, R, B, R, R, R, R, N },
-                { N, N, N, N, N, N, N, N, N }
-        };
+        Picture pic = new Picture(In.getClassPathResource(SeamCarving.class, "light.jpg"));
         
-        new SeamCarving(pic);
+        SeamCarving sc = new SeamCarving(pic);
+        
+        pic.show();
+        
+        for (int i = 0; i < 100; i++) {
+            Out.p(i);
+            int[] seam = sc.verticalSeamCarving();
+        
+            sc.removeVerticalSeam(seam);
+        
+        }
+        
+        sc.picture().show();
         
     }
     

@@ -162,6 +162,7 @@ public class SeamCarving {
     }
     
     private int computePixelEnergy(int i, int j) {
+        
         if (i == 0 || j == 0 || i == height-1 || j == width - 1) {
             return 1000;
         }

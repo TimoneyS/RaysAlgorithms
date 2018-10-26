@@ -1,4 +1,4 @@
-package com.rays.fun.astar;
+package com.rays.fun.astar.old;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,7 +19,7 @@ public class AStarContentPanel extends JPanel {
 	
     private Graph G;
     private GraphPatinter painter;
-    private Seacher seacher;
+    private AStarSeacher seacher;
     private Mouse mouse; 
     private long count = 0;
     private boolean mouseMoving;
@@ -47,7 +47,7 @@ public class AStarContentPanel extends JPanel {
 	}
 	
 	private void mouseMoveTo(int eRow, int eCol) {
-	    seacher = new Seacher(G, mouse.x(), mouse.y(), eRow, eCol);
+	    seacher = new AStarSeacher(G, mouse.x(), mouse.y(), eRow, eCol);
 	    mousePath = seacher.getPath(G, eRow, eCol);
 	    mouseMoving = true;
 	}

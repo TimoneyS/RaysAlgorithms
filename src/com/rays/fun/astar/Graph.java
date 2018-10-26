@@ -1,7 +1,5 @@
 package com.rays.fun.astar;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -11,33 +9,31 @@ import java.util.Scanner;
  */
 public class Graph {
     
-    private int         maxRow, maxCol;
-    private Cell[][]    map;
+    private int         width, height;
+    private int[][]     blocks;
     
     public Graph(Scanner in) {
-        maxRow    = in.nextInt();
-        maxCol    = in.nextInt();
-        map  = new Cell[maxRow][maxCol];
-        for (int i = 0; i < maxRow; i++) {
-            for (int j = 0; j < maxCol; j++)
-                map[i][j] = Cell.create(i, j, in.nextInt());
+        
+        width    = in.nextInt();
+        height    = in.nextInt();
+        
+        blocks  = new int[width][height];
+        for (int x = 0; x < height; x++) {
+            for (int y = 0; y < width; y++)
+                blocks[x][y] = in.nextInt();
         }
     }
     
-    public Cell[][] cells() {
-        return map;
+    public int weight(int x, int y) {
+        return blocks[x][y];
     }
     
-    public Cell getCell(int row, int col) {
-        return map[row][col];
+    public int width() {
+        return width;
     }
     
-    public int maxCol() {
-        return maxCol;
-    }
-    
-    public int maxRow() {
-        return maxRow;
+    public int height() {
+        return height;
     }
     
     /**
@@ -46,33 +42,30 @@ public class Graph {
      * @param col
      * @return
      */
-    public List<Cell> adj(int row, int col) {
-        List<Cell> chs = new LinkedList<Cell>();
+    public int[][] adj(int row, int col) {
+        
+        int[][] arr = new int[4][2];
+        int index = 0;
+        
         if (row > 0)
-            chs.add(map[row - 1][col]); // 上
-        if (row < maxRow - 1)
-            chs.add(map[row + 1][col]); // 下
+            arr[index++] = new int[]{row - 1, col}; // 上
+        if (row < width - 1)
+            arr[index++] = new int[]{row + 1, col}; // 下
         if (col > 0)
-            chs.add(map[row][col - 1]); // 左
-        if (col < maxCol - 1)
-            chs.add(map[row][col + 1]); // 右
+            arr[index++] = new int[]{row, col - 1}; // 左
+        if (col < height - 1)
+            arr[index++] = new int[]{row, col + 1}; // 右
+        
+        int[][] chs = new int[index][2];
+        
+        for (int i = 0; i < index; i++) {
+            chs[i] = arr[i];
+        }
         return chs;
     }
     
-    public int manhattan(int x1, int y1, int x2, int y2) {
-        return Math.abs(x2- x1) + Math.abs(y2-y1);
-    }
-    
-    public int toIndex(int x, int y) {
-        return x * maxRow + y;
-    }
-    
-    public int toX(int index) {
-        return index / maxRow;
-    }
-    
-    public int toY(int index) {
-        return index % maxCol;
+    public int manhattanDistance(int x1, int y1, int x2, int y2) {
+        return Math.abs(x2 - x1) + Math.abs(y2 - y1);
     }
     
 }

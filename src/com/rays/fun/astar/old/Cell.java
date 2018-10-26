@@ -1,4 +1,4 @@
-package com.rays.fun.astar;
+package com.rays.fun.astar.old;
 
 public class Cell implements Comparable<Cell> {
 

@@ -1,10 +1,10 @@
-package com.rays.fun.astar;
+package com.rays.fun.astar.old;
 
 import java.util.Deque;
 import java.util.LinkedList;
 
 import com.ray.io.In;
-import com.ray.io.Out;
+import com.ray.util.Timer;
 import com.ray.util.collections.RaysIndexMinPQ;
 
 /**
@@ -12,7 +12,7 @@ import com.ray.util.collections.RaysIndexMinPQ;
  * @author Ray
  * 
  */
-public class Seacher {
+public class AStarSeacher {
 	
     private RaysIndexMinPQ<Double> open;
     private int[]                  pathTo;
@@ -21,7 +21,7 @@ public class Seacher {
     private double[]               distToE;
     private double[]               costWith;
 	
-	public Seacher(Graph m, int startRow, int startCol, int endRow, int endCol) {
+	public AStarSeacher(Graph m, int startRow, int startCol, int endRow, int endCol) {
 	    
 	    int V = m.maxRow()*m.maxCol(); 
 	    
@@ -103,12 +103,21 @@ public class Seacher {
     }
 
     public static void main(String[] args) {
-        Graph m = new Graph(In.getProjectScanner(Global.MAP_PATH));
-        Seacher s = new Seacher(m, 0, 0, 4, 4);
-
-        for (Cell c : s.getPath(m, 4, 4)) {
-            Out.pf("[%d,%d] -> ", c.x(), c.y());
-        }
+        Graph m = new Graph(In.getClassPathScanner(AStarSeacher.class, "map.txt"));
+        
+        Timer t = Timer.create();
+        
+        t.click();
+        AStarSeacher s = new AStarSeacher(m, 0, 0, 26, 26);
+        s.getPath(m, 25, 25);
+        t.click();
+        
+        t.show();
+        
+        
+//        for (Cell c : s.getPath(m, 25, 25)) {
+//            Out.pf("[%d,%d] -> ", c.x(), c.y());
+//        }
 
     }
 	

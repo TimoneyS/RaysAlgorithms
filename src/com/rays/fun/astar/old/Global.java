@@ -1,4 +1,4 @@
-package com.rays.fun.astar;
+package com.rays.fun.astar.old;
 
 import java.awt.Color;
 import java.util.HashMap;
@@ -11,8 +11,6 @@ public class Global {
     
     public static int xPix = 1;
 	public static int yPix = 1;
-	
-	public static String MAP_PATH = "src/com/rays/fun/astar/map.txt";
 	
 	public static Map<CellType, Color> COLOR_MAP;
 	

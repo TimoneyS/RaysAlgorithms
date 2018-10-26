@@ -15,15 +15,23 @@ import com.ray.util.collections.RaysIndexMinPQ;
 public class AStarSeacher {
 	
     private RaysIndexMinPQ<Integer> open;
-    
     private int                     width;
     private int                     height;
     private int[][]                 distTo;
     private int[][]                 manhattanDist;
     private boolean[][]             isClose;
     private int[][][]               pathTo;
+    private int                     sX;
+    private int                     sY;
+    private int                     tX;
+    private int                     tY;
 	
 	public AStarSeacher(Graph G, int sX, int sY, int tX, int tY) {
+	    
+	    this.sX = sX;
+	    this.sY = sY;
+	    this.tX = tX;
+	    this.tY = tY;
 	    
 	    width = G.width();
 	    height = G.height();
@@ -43,9 +51,7 @@ public class AStarSeacher {
                 distTo[i][j] = -1;
             }
         }
-        
-	    search( G, sX, sY, tX, tY);
-	 
+	    search(G);
     }
 	
 	/**
@@ -56,7 +62,7 @@ public class AStarSeacher {
 	 * @param tX
 	 * @param tY
 	 */
-    private void search(Graph G, int sX, int sY, int tX, int tY) {
+    private void search(Graph G) {
         
         distTo[sX][sY] = 0;
         manhattanDist[sX][sY] = G.manhattanDistance(sX, sY, tX, tY);
@@ -91,7 +97,7 @@ public class AStarSeacher {
 
     }
 	
-	public Deque<int[]> getPath(Graph G, int tX, int tY) {
+	public Deque<int[]> getPath(Graph G) {
         Deque<int[]> stack = new LinkedList<int[]>();
         int x = tX;
         int y = tY;
@@ -110,6 +116,22 @@ public class AStarSeacher {
     	return stack;
     }
 
+    public int getsX() {
+        return sX;
+    }
+
+    public int getsY() {
+        return sY;
+    }
+
+    public int gettX() {
+        return tX;
+    }
+
+    public int gettY() {
+        return tY;
+    }
+
     private int toIndex(int x, int y) {
         return x * width + y;
     }
@@ -125,17 +147,24 @@ public class AStarSeacher {
     public static void main(String[] args) {
         Graph m = new Graph(In.getClassPathScanner(Graph.class, "map2.txt"));
         
+        Painter p = new Painter();
+        
         Timer t = Timer.create();
         
         t.click();
         AStarSeacher s = new AStarSeacher(m, 1, 0, 25, 25);
-        s.getPath(m, 25, 25);
+        s.getPath(m);
         t.click();
         
         t.show();
 //        for (int[] c : s.getPath(m, 25, 25)) {
 //            Out.pf("[%d,%d] -> ", c[0], c[1]);
 //        }
+        
+        p.bindGraph(m);
+        p.bindSeacher(s);
+        
+        p.paintPath();
 
     }
 	

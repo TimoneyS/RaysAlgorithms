@@ -1,16 +1,14 @@
 package com.rays.fun.reorder;
 
-import java.util.Random;
+import java.util.Scanner;
 
-import com.ray.util.TimeUnit;
-import com.ray.util.collections.RaysStack;
-import com.ray.util.collections.Stack;
+import com.ray.io.Out;
 
 /** 
  * 表示面板                                                                                                           <br/>
- * **** 面板实际可表示为一个二维数组,如尺寸为3的面板  ********* <br/>
+ * **** 面板实际可表示为一个二维数组,如宽度为 3 高度为 3 的面板  * <br/>
  * |---|-----------|                              <br/>
- * |x\y| 0 | 1 | 2 |                              <br/> 
+ * |y\x| 0 | 1 | 2 |                              <br/> 
  * |---|-----------|                              <br/>
  * | 0 | 0 | 1 | 2 |                              <br/>
  * |---|---|---|---|                              <br/>
@@ -18,97 +16,50 @@ import com.ray.util.collections.Stack;
  * |---|---|---|---|                              <br/>
  * | 2 | 6 | 7 | 8 |                              <br/>
  * |---|---|---|---|                              <br/>
- * **** 经过转换实际用一维数组即可*********************** <br/>
- * |---|-----------------------------------|      <br/>
- * | x | - - 0 - - | - - 1 - - | - - 2 - - |      <br/> 
- * |---|-----------------------------------|      <br/>
- * | y | 0 | 1 | 2 | 0 | 1 | 2 | 0 | 1 | 2 |      <br/>
- * |---|-----------------------------------|      <br/>
- * | N | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |      <br/>
- * |---|-----------------------------------|      <br/>
- * **** 具体关系如下  ******************************** <br/>
- * x = N / 3                                      <br/>
- * y = N % 3                                      <br/>
- * N = x * 3 + y                                  <br/>
  * @author Ray
  *
  */
 public class Board {
 	
-    private int                 size;              // 拼图的尺寸
-    private int[]               N;                 // 用一维数组表示的二维的图板
-    private int                 cursor;            // 当前元素的一维坐标
+    public static final int UP    = 0;
+    public static final int DOWN  = 1;
+    public static final int LEFT  = 2;
+    public static final int RIGHT = 3;
     
-    private Board() {}
+  
+    private int             width;
+    private int             height;
+    private int[][]         N;           // 二维的图板
+    private int             cursorX;     // 当前元素的一维坐标
+    private int             cursorY;     // 当前元素的一维坐标
     
-	public Board(int size) {
-		this.size = size;
-		N = new int[size * size];
+    private String          tag;
+    private int             weight;
+    
+	public Board(int w, int h) {
+	    width = w;
+	    height = h;
+		N = new int[height][width];
 		reset();
 	}
 	
 	/**
-	 * 重置
+	 * 重置面板
 	 */
-	public void reset() {
-		for (int i = 0; i < N.length; i++) N[i]=i;
-		cursor = N.length - 1;
-	}
-	
-	/**
-	 * 根据A*算法对面板重新排序
-	 */
-	public void reorder() {
-	    Seacher s = new Seacher(this);
+	public Board reset() {
+	    cursorY = height-1;
+	    cursorX = width-1;
 	    
-	    System.out.println("Search OK!!!");
-	    Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Start to reorder.");
-                Phase p = s.getPath();
-                Stack<Dir> stack = new RaysStack<>();
-                while (p.prev() != null) {
-                    stack.push(p.getDir());
-                    p = p.prev();
-                }
-                while (!stack.isEmpty()) {
-                    Dir dir = stack.pop();
-                    System.out.println("move " + dir);
-                    move(dir);
-                    TimeUnit.MILL_SECOND.sleep(200);
-                }
-  
-                System.out.println("Reorder OK!!!");
-            }
-	    });
-	    t.start();
+	    int n = 0;
+	    for (int i = 0; i < height; i++)
+            for (int j = 0; j < width; j++)
+                N[i][j] = n++;
+	    setWeight();
+	    setTag();
+	    return this;
 	}
 	
-	/**
-	 * 所有格子和其正确位置的曼哈顿距离之和
-	 * @return
-	 */
-	public int dist(){
-		int distSum = 0;
-		for(int i = 0; i < N.length; i ++) {
-			int num = N[i];
-			int dist = Math.abs(i / size - num / size) + Math.abs(i % size - num % size);
-			distSum += dist;
-		}
-		return distSum;
-	}
-	
-	public void show() {
-	    for (int i = 0; i< size; i++) {
-	        for (int j = 0; j < size; j++) {
-	            System.out.print(N[i*size+j] + " ");
-	        }
-	        System.out.println();
-	    }
-	}
-	
-	public void move(Dir dir) {
+	public void move(int dir) {
 	    switch(dir) {
 	        case UP    : moveUp();break;
 	        case DOWN  : moveDown();break;
@@ -117,53 +68,131 @@ public class Board {
 	    }
 	}
 	
-	private void moveUp()    { if ( cursor >= size)           swap(cursor, cursor -= size); }
-	private void moveDown()  { if ( cursor < N.length - size) swap(cursor, cursor += size); }
-	private void moveLeft()  { if ( cursor % size != 0)       swap(cursor, -- cursor); }
-	private void moveRight() { if ( cursor % size != size-1)  swap(cursor, ++ cursor); }
+	public Board moveUp()    {
+	    if (cursorX > 0) {
+	        swap(cursorX, cursorY, --cursorX, cursorY);
+	    }
+	    return this;
+    }
+	public Board moveDown()  {
+	    if (cursorX < height-1) {
+	        swap(cursorX, cursorY, ++cursorX, cursorY);
+	    }
+	    return this;
+    }
+	public Board moveLeft()  {
+	    if (cursorY > 0) {
+	        swap(cursorX, cursorY, cursorX, --cursorY);
+	    }
+	    return this;
+    }
+	public Board moveRight() {
+	    if (cursorY < width - 1) {
+	        swap(cursorX, cursorY, cursorX, ++cursorY);
+	    }
+	    return this;
+    }
 	
-    public int getNum(int i, int j) { return N[i * size + j]; }
-    public int[] getN() { return N; }
-    
-	private void swap(int i, int j){
-		int temp = N[i];
-		N[i] = N[j];
-		N[j] = temp;
+	private void setWeight() {
+        weight = 0;
+        for (int i = 0; i < height; i++)
+            for (int j = 0; j < width; j++)
+                weight += getWeight(i, j);
+	}
+	
+	private int getWeight(int i, int j) {
+	    return Math.abs(i - N[i][j]/ width) + Math.abs(j-N[i][j] % width);
+	}
+	
+	private void setTag() {
+	    StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                sb.append(N[i][j]);
+                sb.append(" ");
+            }
+        }
+        tag = sb.toString();
+	}
+	
+	public Board[] adj() {
+        Board boardUp    = clone().moveUp();
+        Board boardDown  = clone().moveDown();
+        Board boardLeft  = clone().moveLeft();
+        Board boardRight = clone().moveRight();
+        return new Board[]{ boardUp, boardDown, boardLeft, boardRight};
+	}
+	
+	/**
+	 * 从特征恢复
+	 * @param s
+	 */
+	public void restoreFromTag(String s) {
+	    Scanner sc = new Scanner(s);
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                N[i][j] = sc.nextInt();
+                if (N[i][j] == 0) {
+                    cursorX = i;
+                    cursorY = j;
+                }
+            }
+        }
+        sc.close();
+	}
+	
+	public String getTag() {
+        return tag;
+    }
+	
+	public int getWeight() {
+        return weight;
+    }
+	
+	private void swap(int x1, int y1, int x2, int y2){
+	    
+		int temp = N[x1][y1];
+		N[x1][y1] = N[x2][y2];
+		N[x2][y2] = temp;
+		
+		setWeight();
+		setTag();
+	}
+	
+	public void show() {
+	    Out.p(N, "%d ");
 	}
 	
 	@Override
 	protected Board clone() {
-	    Board b = new Board();
-	    b.N = new int[N.length];
-	    for (int i = 0; i < N.length; i++)
-	        b.N[i] = N[i];
-	    b.size = size;
-	    b.cursor = cursor;
+	    Board b = new Board(width, height);
+	    for (int i = 0; i < height; i++)
+	        for (int j = 0; j < width; j++)
+	            b.N[i][j] = N[i][j];
+	    b.cursorX = cursorX;
+	    b.cursorY = cursorY;
+	    b.tag = tag;
+	    b.weight = weight;
 	    return b;
 	}
 	
-    public void shuffe() {
-        Random r = new Random(42);
-        for (int i = 0; i < 1000; i++) {
-            int n = r.nextInt()%4;
-            switch (n) {
-                case 0 : move(Dir.UP);break;
-                case 1 : move(Dir.DOWN);break;
-                case 2 : move(Dir.LEFT);break;
-                case 3 : move(Dir.RIGHT);break;
-            };
-        }
-        
-    }
+	@Override
+	public boolean equals(Object obj) {
+	    if (obj instanceof Board) {
+    	    Board b = (Board)obj;
+            for (int i = 0; i < height; i++)
+                for (int j = 0; j < width; j++)
+                    if (b.N[i][j] != N[i][j])
+                        return false;
+            return true;
+	    }
+	    return false;
+	}
 	
     public static void main(String[] args) {
-        Board board = new Board(3);
-        board.moveUp();
-        board.show();
+        Board board = new Board(3, 3);
+        board.moveRight();
+        Out.p(board.N, "%s ");
     }
     
-}
-
-enum Dir {
-    UP, DOWN, LEFT, RIGHT
 }

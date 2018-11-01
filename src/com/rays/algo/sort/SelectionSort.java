@@ -20,7 +20,7 @@ public class SelectionSort<T extends Comparable<?>> extends Sort<T> {
     @Override
     public void sort(T[] arr, int lo, int hi) {
         for (int i = lo; i <= hi; i++) {
-            int minIndex = ArrayUtil.getIndexOfMin(arr, i, hi);
+            int minIndex = ArrayUtil.indexOfMin(arr, i, hi);
             ArrayUtil.swap(arr, i, minIndex);
         }
     }

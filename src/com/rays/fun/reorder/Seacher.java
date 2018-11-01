@@ -5,66 +5,106 @@ import java.util.Map;
 import java.util.Random;
 
 import com.ray.io.Out;
+import com.ray.util.ArrayUtil;
 import com.ray.util.Timer;
-import com.ray.util.collections.RaysIndexMinPQ;
+import com.ray.util.collections.MinPQ;
+import com.ray.util.collections.RaysMinPQ;
 import com.ray.util.collections.RaysStack;
 
 public class Seacher {
 
-    Map<String, Integer> tagToIndex = new HashMap<>();
+    static class Entry implements Comparable<Entry> {
+        
+        int index;
+        int dist;
+        int weight;
+        
+        public Entry(int index, int dist, int weight) {
+            this.index = index;
+            this.dist = dist;
+            this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(Entry o) {
+            return Integer.compare(dist+weight, o.dist+o.weight);
+        }
+        
+    }
+
+    boolean[]    closed;
+    boolean[]    opened;
+    int[]        pathTo;
+    int[]        dir;
+    Board[]      boards;
     
-    Map<Integer, Board>     boardList  = new HashMap<>();
-    Map<Integer, Integer>   distTo     = new HashMap<>();
-    Map<Integer, Integer>   operate    = new HashMap<>();
-    Map<Integer, Integer>   pathTo     = new HashMap<>();
-    
-    RaysIndexMinPQ<Integer> pq = new RaysIndexMinPQ<>(1000000);
-            
     int                  indexSeq   = 0;
-    Board terminal;
+    MinPQ<Entry>         PQ       = new RaysMinPQ<>();
+    Map<String, Integer> indexMap = new HashMap<>();
     
+    
+    Board terminal;
     
     public Seacher(Board board) {
 
-        terminal = board.clone().reset();
+        terminal = new Board(board.getWidth(), board.getHeight());
+        closed = new boolean[16];
+        opened = new boolean[16];
+        pathTo = new int[16];
+        dir    = new int[16];
+        boards = new Board[16];
         
         int index = getIndex(board);
         
-        pathTo.put(index, -1);
-        distTo.put(index, 0);
-        boardList.put(index, board);
-        pq.insert(index, 0 + board.getWeight());
+        PQ.insert(new Entry(index, 0, board.getWeight()));
         
-
+        pathTo[index] = -1;
+        opened[index] = true;
+        dir[index]    = -1;
+        boards[index] = board;
+        
         findPath();
         
     }
 
     public void findPath() {
         
-        while (!pq.isEmpty()) {
+        while (!PQ.isEmpty()) {
         
-            int index = pq.delMin();
+            Entry minEntry = PQ.delMin();
             
-            Board[] boards = boardList.get(index).adj();
+            int index = minEntry.index;
+            int dist = minEntry.dist;
+            closed[index] = true;
+            
+            Board[] adj = boards[index].adj();
                 
-            for (int i = 0; i < boards.length; i++) {
-                Board board = boards[i];
+            for (int i = 0; i < adj.length; i++) {
                 
-                int dist = distTo.get(index);
+                Board board = adj[i];
                 int adjIndex = getIndex(board);
                 
-                if (adjIndex == index)
-                    continue;
-                
-                Integer oldPath = pathTo.get(adjIndex);
-                
-                if (oldPath == null) {
-                    pathTo.put(adjIndex, index);
-                    operate.put(adjIndex, i);
-                    distTo.put(adjIndex, dist + 1);
-                    pq.insert(adjIndex, dist + 1 + board.getWeight());
+                if (adjIndex >= boards.length) {
+                    Board[] oldArr = boards;
+                    boards = new Board[boards.length*2];
+                    for (int j = 0; j < oldArr.length; j++) {
+                        boards[j] = oldArr[j];
+                    }
+                    dir = ArrayUtil.resize(dir);
+                    pathTo = ArrayUtil.resize(pathTo);
+                    opened = ArrayUtil.resize(opened);
+                    closed = ArrayUtil.resize(closed);                    
                 }
+                
+                if (closed[adjIndex] || opened[adjIndex]) continue;
+                
+                PQ.insert(new Entry(adjIndex, dist+1, board.getWeight()));
+                
+                pathTo[adjIndex] = index;
+                opened[index] = true;
+                dir[adjIndex]    = i;
+                boards[adjIndex] = board;
+                
                 if (board.equals(terminal)) return;
             }
         }
@@ -73,21 +113,20 @@ public class Seacher {
     public int getIndex(Board board) {
         String tag = board.getTag();
         
-        Integer index = tagToIndex.get(tag);
+        Integer index = indexMap.get(tag);
         if (index == null) {
             index = indexSeq++;
-            tagToIndex.put(tag, index);
-            boardList.put(index, board);
+            indexMap.put(tag, index);
         }
         return index;
 
     }
     
     public static void main(String[] args) {
-        Board b = new Board(3, 3);
+        Board b = new Board(4, 4);
         
         Random r = new Random(42);
-        int times = 10000;
+        int times = 122;
         
         for (int i = 0; i < times; i++) {
             b.move(r.nextInt(4));
@@ -104,27 +143,21 @@ public class Seacher {
         
         Out.p("tIndex = " +  index);
         
-        RaysStack<String> stack = new RaysStack<>();
+        RaysStack<Integer> stack = new RaysStack<>();
         while (index != 0) {
-            
-            int oper = s.operate.get(index);
-            
-            if (oper == 0) stack.push("ио");
-            if (oper == 1) stack.push("об");
-            if (oper == 2) stack.push("вС");
-            if (oper == 3) stack.push("ср");
-
-            index = s.pathTo.get(index);
-            
+            int dir = s.dir[index];
+            stack.push(dir);
+            index = s.pathTo[index];
         }
         
         int i = 0;
         while  (!stack.isEmpty()) {
             i ++;
-            stack.pop();
-//            Out.p(stack.pop());
+            b.move(stack.pop());
         }
         
+        
+        b.show();
         Out.p ("step = " + i);
         
     }

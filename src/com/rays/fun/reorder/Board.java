@@ -1,7 +1,5 @@
 package com.rays.fun.reorder;
 
-import java.util.Scanner;
-
 import com.ray.io.Out;
 
 /** 
@@ -25,14 +23,12 @@ public class Board {
     public static final int DOWN  = 1;
     public static final int LEFT  = 2;
     public static final int RIGHT = 3;
-    
   
+    private int[][]         N;           // 二维的图板
     private int             width;
     private int             height;
-    private int[][]         N;           // 二维的图板
     private int             cursorX;     // 当前元素的一维坐标
     private int             cursorY;     // 当前元素的一维坐标
-    
     private String          tag;
     private int             weight;
     
@@ -42,6 +38,13 @@ public class Board {
 		N = new int[height][width];
 		reset();
 	}
+	
+    public Board(int w, int h, boolean init) {
+        width = w;
+        height = h;
+        N = new int[height][width];
+        if (init) reset();
+    }
 	
 	/**
 	 * 重置面板
@@ -97,10 +100,10 @@ public class Board {
         weight = 0;
         for (int i = 0; i < height; i++)
             for (int j = 0; j < width; j++)
-                weight += getWeight(i, j);
+                weight += weight(i, j);
 	}
 	
-	private int getWeight(int i, int j) {
+	private int weight(int i, int j) {
 	    return Math.abs(i - N[i][j]/ width) + Math.abs(j-N[i][j] % width);
 	}
 	
@@ -123,24 +126,6 @@ public class Board {
         return new Board[]{ boardUp, boardDown, boardLeft, boardRight};
 	}
 	
-	/**
-	 * 从特征恢复
-	 * @param s
-	 */
-	public void restoreFromTag(String s) {
-	    Scanner sc = new Scanner(s);
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                N[i][j] = sc.nextInt();
-                if (N[i][j] == 0) {
-                    cursorX = i;
-                    cursorY = j;
-                }
-            }
-        }
-        sc.close();
-	}
-	
 	public String getTag() {
         return tag;
     }
@@ -160,12 +145,13 @@ public class Board {
 	}
 	
 	public void show() {
-	    Out.p(N, "%d ");
+	    int i = ((int)Math.log10(height*width-1)) + 1;
+	    Out.p(N, "%"+i+"d ");
 	}
 	
 	@Override
 	protected Board clone() {
-	    Board b = new Board(width, height);
+	    Board b = new Board(width, height, false);
 	    for (int i = 0; i < height; i++)
 	        for (int j = 0; j < width; j++)
 	            b.N[i][j] = N[i][j];
@@ -189,6 +175,14 @@ public class Board {
 	    return false;
 	}
 	
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public static void main(String[] args) {
         Board board = new Board(3, 3);
         board.moveRight();

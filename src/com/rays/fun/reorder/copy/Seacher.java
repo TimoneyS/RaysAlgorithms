@@ -91,8 +91,8 @@ public class Seacher {
     
     public static void main(String[] args) {
         
-        Board board = new Board(3);
-        board.shuffe();
+        Board board = new Board(4);
+        board.shuffe(130);
         board.show();
         
         Timer t = Timer.create();

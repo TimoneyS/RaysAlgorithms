@@ -142,9 +142,9 @@ public class Board {
 	    return b;
 	}
 	
-    public void shuffe() {
+    public void shuffe(int times) {
         Random r = new Random(42);
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < times; i++) {
             int n = r.nextInt(4);
             switch (n) {
                 case 0 : move(Dir.UP);break;

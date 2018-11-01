@@ -1,4 +1,4 @@
-package com.rays.fun.reorder.copy;
+package com.rays.fun.reorder;
 
 import java.awt.Color;
 import java.awt.Dimension;

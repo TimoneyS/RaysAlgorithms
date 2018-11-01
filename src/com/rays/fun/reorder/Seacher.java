@@ -2,164 +2,122 @@ package com.rays.fun.reorder;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
-import com.ray.io.Out;
-import com.ray.util.ArrayUtil;
 import com.ray.util.Timer;
 import com.ray.util.collections.MinPQ;
 import com.ray.util.collections.RaysMinPQ;
 import com.ray.util.collections.RaysStack;
+import com.ray.util.collections.Stack;
 
+/**
+ * 用于寻找能够恢复面板顺序的路径
+ * @author rays1
+ *
+ */
 public class Seacher {
-
-    static class Entry implements Comparable<Entry> {
-        
-        int index;
-        int dist;
-        int weight;
-        
-        public Entry(int index, int dist, int weight) {
-            this.index = index;
-            this.dist = dist;
-            this.weight = weight;
-        }
-
-        @Override
-        public int compareTo(Entry o) {
-            return Integer.compare(dist+weight, o.dist+o.weight);
-        }
-        
-    }
-
-    boolean[]    closed;
-    boolean[]    opened;
-    int[]        pathTo;
-    int[]        dir;
-    Board[]      boards;
     
-    int                  indexSeq   = 0;
-    MinPQ<Entry>         PQ       = new RaysMinPQ<>();
-    Map<String, Integer> indexMap = new HashMap<>();
-    
-    
-    Board terminal;
+    private int                  cursor = 0;
+    private Phase[]              phases;
+    private boolean[]            isClose;
+    private MinPQ<Phase>         open;         // open 列表
+    private Map<String, Integer> symbolToIndex;
+    private Phase                finalPhase;
     
     public Seacher(Board board) {
-
-        terminal = new Board(board.getWidth(), board.getHeight());
-        closed = new boolean[16];
-        opened = new boolean[16];
-        pathTo = new int[16];
-        dir    = new int[16];
-        boards = new Board[16];
         
-        int index = getIndex(board);
+        symbolToIndex = new HashMap<>();
+        open = new RaysMinPQ<>();
+        phases = new Phase[16];
+        isClose = new boolean[16];
         
-        PQ.insert(new Entry(index, 0, board.getWeight()));
+        Phase start = new Phase(board);
         
-        pathTo[index] = -1;
-        opened[index] = true;
-        dir[index]    = -1;
-        boards[index] = board;
+        phases[toIndex(start)] = start;
         
-        findPath();
-        
-    }
-
-    public void findPath() {
-        
-        while (!PQ.isEmpty()) {
-        
-            Entry minEntry = PQ.delMin();
+        open.insert(start);
+        while (!open.isEmpty()) {
+            Phase min = open.delMin();
+           
+            isClose[toIndex(min)] = true;
             
-            int index = minEntry.index;
-            int dist = minEntry.dist;
-            closed[index] = true;
-            
-            Board[] adj = boards[index].adj();
-                
-            for (int i = 0; i < adj.length; i++) {
-                
-                Board board = adj[i];
-                int adjIndex = getIndex(board);
-                
-                if (adjIndex >= boards.length) {
-                    Board[] oldArr = boards;
-                    boards = new Board[boards.length*2];
-                    for (int j = 0; j < oldArr.length; j++) {
-                        boards[j] = oldArr[j];
-                    }
-                    dir = ArrayUtil.resize(dir);
-                    pathTo = ArrayUtil.resize(pathTo);
-                    opened = ArrayUtil.resize(opened);
-                    closed = ArrayUtil.resize(closed);                    
-                }
-                
-                if (closed[adjIndex] || opened[adjIndex]) continue;
-                
-                PQ.insert(new Entry(adjIndex, dist+1, board.getWeight()));
-                
-                pathTo[adjIndex] = index;
-                opened[index] = true;
-                dir[adjIndex]    = i;
-                boards[adjIndex] = board;
-                
-                if (board.equals(terminal)) return;
+            if (min.isOrder()) {
+                finalPhase = min;
+                break;
             }
+            
+            for (Phase p : min.adj()) {
+                if (toIndex(p) >= phases.length)
+                    resize();
+                if (!isClose[toIndex(p)] && phases[toIndex(p)] == null) {
+                    phases[toIndex(p)] = p;
+                    open.insert(p);
+                }
+            }
+            
         }
-    }
-
-    public int getIndex(Board board) {
-        String tag = board.getTag();
         
-        Integer index = indexMap.get(tag);
+    }
+    
+    private void resize() {
+        
+        Phase[] tempPhases = new Phase[phases.length*2];
+        boolean[] tempIsClose = new boolean[phases.length*2];
+        
+        for (int i = 0; i < phases.length; i++) {
+            tempPhases[i] = phases[i];
+            tempIsClose[i] = isClose[i];
+        }
+        phases = tempPhases;
+        isClose = tempIsClose;
+    }
+    
+    private int toIndex(Phase phase) {
+        return toIndex(phase.symbol());
+    }
+    
+    private int toIndex(String symbol) {
+        Integer index = symbolToIndex.get(symbol);
         if (index == null) {
-            index = indexSeq++;
-            indexMap.put(tag, index);
+            index = new Integer(cursor++);
+            symbolToIndex.put(symbol, index);
         }
         return index;
-
+        
+    }
+    
+    public Phase getPath() {
+        return finalPhase;
     }
     
     public static void main(String[] args) {
-        Board b = new Board(4, 4);
         
-        Random r = new Random(42);
-        int times = 122;
+        Board board = new Board(4);
+        board.shuffe(122);
+        board.show();
         
-        for (int i = 0; i < times; i++) {
-            b.move(r.nextInt(4));
-        }
-        
-        b.show();
         Timer t = Timer.create();
         
         t.click();
-        Seacher s = new Seacher(b);
+        Seacher s = new Seacher(board);
         t.stop();
         
-        int index = s.getIndex(s.terminal);
-        
-        Out.p("tIndex = " +  index);
-        
-        RaysStack<Integer> stack = new RaysStack<>();
-        while (index != 0) {
-            int dir = s.dir[index];
-            stack.push(dir);
-            index = s.pathTo[index];
+        System.out.println("Start to reorder.");
+        Phase p = s.getPath();
+        Stack<Dir> stack = new RaysStack<>();
+        while (p.prev() != null) {
+            stack.push(p.getDir());
+            p = p.prev();
         }
-        
-        int i = 0;
-        while  (!stack.isEmpty()) {
-            i ++;
-            b.move(stack.pop());
+        int count = 1;
+        while (!stack.isEmpty()) {
+            Dir dir = stack.pop();
+            count ++;
+            board.move(dir);
         }
-        
-        
-        b.show();
-        Out.p ("step = " + i);
+        System.out.println("Reorder OK!!! Steps " + count);
+
+        board.show();
         
     }
-
+    
 }

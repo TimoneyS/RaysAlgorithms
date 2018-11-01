@@ -1,4 +1,4 @@
-package com.rays.fun.reorder.copy;
+package com.rays.fun.reorder;
 
 public class Config {
 	public static int WIDTH = 400;

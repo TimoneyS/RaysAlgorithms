@@ -1,4 +1,4 @@
-package com.rays.fun.reorder.copy;
+package com.rays.fun.reorder;
 
 import java.util.Arrays;
 import java.util.LinkedList;

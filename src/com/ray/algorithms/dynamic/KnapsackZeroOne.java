@@ -14,43 +14,43 @@ public class KnapsackZeroOne {
 
     private int[]     w;
     private int[]     p;
-    private int       n;
     private int[]     maxValue;
 
     public KnapsackZeroOne(int[] w, int[] p, int c) {
 
-        n = w.length;
         this.w = w;
         this.p = p;
-
-        maxValue = new int[n + 1];
-        for (int i = 0; i < n; i++) {
-            maxValue[i] = -1;
-        }
-        maxValue[n] = 0;
-
-        int v = maxValue(0, c);
-
-        Out.pt("choose : ");
-        for (int i = 0; i < n; i++) {
-            if (maxValue[i] != maxValue[i + 1])
-                Out.pt(i + " ");
-        }
-        Out.p();
-        Out.p("maxValue = " + v);
-
+        
+        maxValue = new int[w.length+1];
+        dynamic(0, c);
+        
+        show();
     }
 
-    public int maxValue(int i, int c) {
-        if (i >= n)
-            return 0;
+    /**
+     * 动态规划选择
+     * @param i 物品id
+     * @param c 背包可用容量
+     * @return
+     */
+    public int dynamic(int i, int c) {
+        if (i >= w.length) return 0;
         
-        int v1 = (w[i] <= c) ? p[i] + maxValue(i + 1, c - w[i]) : 0;
-        int v2 = maxValue(i + 1, c);
+        int v1 = (w[i] <= c) ? p[i] + dynamic(i + 1, c - w[i]) : 0; // 选择当前物品
+        int v2 = dynamic(i + 1, c);                                 // 不选择当前物品
 
         maxValue[i] = Math.max(v1, v2);
 
         return maxValue[i];
+    }
+    
+    public void show() {
+        Out.pt("choose : ");
+        for (int i = 0; i < w.length; i++) {
+            if (maxValue[i] != maxValue[i + 1])
+                Out.pt(i + " ");
+        }
+        Out.p("\nmaxValue = " + maxValue[w.length-1]);
     }
 
     public static void main(String[] args) {

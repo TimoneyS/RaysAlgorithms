@@ -109,7 +109,7 @@ public class HuffmanCode {
             sb.append((char)(r.nextInt(255)));
         }
         
-        HuffmanCode hc = new HuffmanCode(sb.toString());
+        new HuffmanCode(sb.toString());
         
     }
     

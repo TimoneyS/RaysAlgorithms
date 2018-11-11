@@ -5,7 +5,7 @@ package com.ray.LintCode;
  * @author rays1
  *
  */
-public class L_006_Merge_Sorted_Array {
+public class L_0006_Merge_Sorted_Array {
     
     static class Solution {
         /**

@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author rays1
  *
  */
-public class L_005_Kth_Largest_Element {
+public class L_0005_Kth_Largest_Element {
     
     static class Solution {
         /**

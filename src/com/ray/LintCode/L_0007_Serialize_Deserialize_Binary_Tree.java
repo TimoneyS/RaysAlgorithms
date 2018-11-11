@@ -24,7 +24,7 @@ import com.ray.io.Out;
  * @author rays1
  *
  */
-public class L_007_Serialize_Deserialize_Binary_Tree {
+public class L_0007_Serialize_Deserialize_Binary_Tree {
     
     static class TreeNode {
         public int      val;

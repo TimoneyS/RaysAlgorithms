@@ -16,7 +16,7 @@ import com.ray.io.Out;
  * @author rays1
  *
  */
-public class L_008_Rotate_String {
+public class L_0008_Rotate_String {
     
     static class Solution {
         /**

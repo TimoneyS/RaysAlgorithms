@@ -9,7 +9,7 @@ package com.ray.LintCode;
  * @author rays1
  *
  */
-public class L_003_Digit_Counts {
+public class L_0003_Digit_Counts {
     
     static class Solution {
         /**

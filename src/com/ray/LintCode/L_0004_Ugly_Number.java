@@ -8,7 +8,7 @@ package com.ray.LintCode;
  * @author rays1
  *
  */
-public class L_004_Ugly_Number {
+public class L_0004_Ugly_Number {
     
     static class Solution {
         /**

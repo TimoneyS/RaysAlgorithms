@@ -19,7 +19,7 @@ import com.ray.io.Out;
  * @author rays1
  *
  */
-public class L_011_Range_BST {
+public class L_0011_Range_BST {
     
     static class TreeNode {
         public int      val;

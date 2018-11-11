@@ -25,7 +25,7 @@ import java.util.List;
  * @author rays1
  *
  */
-public class L_009_Fizz_Buzz {
+public class L_0009_Fizz_Buzz {
 
     static class Solution {
         /**

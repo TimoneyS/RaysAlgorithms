@@ -9,7 +9,7 @@ package com.ray.LintCode;
  * @author rays1
  *
  */
-public class L_002_Trailing_Zeros {
+public class L_0002_Trailing_Zeros {
     static class Solution {
         /*
          * @param n: An integer

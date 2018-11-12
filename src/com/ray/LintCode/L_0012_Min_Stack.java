@@ -61,7 +61,7 @@ public class L_0012_Min_Stack {
                 expandInnerArray();
             inner[cursor++] = number;
             
-            int numIndex = cursor - 1;
+            int index = cursor - 1;
             
             if (minIndex == -1) {
                 minIndex = 0;
@@ -81,13 +81,13 @@ public class L_0012_Min_Stack {
                     // 在最小值左侧插入
                     r = minIndex;
                     l = leftOf[r];
-                    minIndex = numIndex;
+                    minIndex = index;
                 }
                 
-                if (l != -1) righOf[l] = numIndex;
-                if (r != -1) leftOf[r] = numIndex;
-                righOf[numIndex] = r;
-                leftOf[numIndex] = l;
+                if (l != -1) righOf[l] = index;
+                if (r != -1) leftOf[r] = index;
+                righOf[index] = r;
+                leftOf[index] = l;
                 
             }
             

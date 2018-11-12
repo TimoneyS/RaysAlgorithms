@@ -1,4 +1,4 @@
-package com.rays.algo.string.search;
+package com.rays.algo.string;
 
 import java.util.LinkedList;
 import java.util.Queue;

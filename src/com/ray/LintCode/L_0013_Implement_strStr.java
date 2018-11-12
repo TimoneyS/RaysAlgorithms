@@ -15,5 +15,22 @@ package com.ray.LintCode;
  *
  */
 public class L_0013_Implement_strStr {
-
+    
+    static class Solution {
+        
+        /**
+         * @param source: 
+         * @param target: 
+         * @return: return the index
+         */
+        public int strStr(String source, String target) {
+            // Write your code here
+            
+            
+            
+            return 0;
+        }
+        
+    }
+    
 }

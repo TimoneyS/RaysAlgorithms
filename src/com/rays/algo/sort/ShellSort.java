@@ -3,12 +3,12 @@ package com.rays.algo.sort;
 import com.ray.util.ArrayUtil;
 
 /**
- * <b>Ï£¶ûÅÅÐò</b>
+ * <b>å¸Œå°”æŽ’åº</b>
  * <p>
- * »ù±¾Ë¼Ïë :<br/>
- * Ê¹Êý×éÖÐËùÓÐÏà¸ôhµÄÔªËØÊÇÓÐÐòµÄ£¬¼´hÓÐÐò¡£<br/>
- * Ö®ºóÖð½¥ËõÐ¡h£¬´´Ôì¸üÐ¡hÓÐÐò¡£<br/>
- * µ±hËõÐ¡Îª1Ê±£¬±ãÊÇÊý×éÕûÌåÓÐÐò¡£<br/>
+ * åŸºæœ¬æ€æƒ³ :<br/>
+ * ä½¿æ•°ç»„ä¸­æ‰€æœ‰ç›¸éš”hçš„å…ƒç´ æ˜¯æœ‰åºçš„ï¼Œå³hæœ‰åºã€‚<br/>
+ * ä¹‹åŽé€æ¸ç¼©å°hï¼Œåˆ›é€ æ›´å°hæœ‰åºã€‚<br/>
+ * å½“hç¼©å°ä¸º1æ—¶ï¼Œä¾¿æ˜¯æ•°ç»„æ•´ä½“æœ‰åºã€‚<br/>
  * ...
  * <p>
  * @author rays1

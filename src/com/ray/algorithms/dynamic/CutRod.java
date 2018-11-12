@@ -6,10 +6,10 @@ import com.ray.io.Out;
 import com.ray.util.Timer;
 
 /**
- * Serling��˾���򳤸����������и�Ϊ�̸������ۡ��и����û�гɱ�֧������˾������ϣ��֪����ѵ��и����
- * �ٶ�����֪��Serling��˾����һ�γ�ΪiӢ��ĸ����ļ۸�Ϊpi(i=1,2,������λΪ��Ԫ)�������ĳ��Ⱦ�Ϊ��Ӣ�硣
+ * Serling公司购买长钢条，将其切割为短钢条出售。切割工序本身没有成本支出。公司管理层希望知道最佳的切割方案。
+ * 假定我们知道Serling公司出售一段长为i英寸的钢条的价格为pi(i=1,2,…，单位为美元)。钢条的长度均为整英寸。
  * 
- * һ���۸�����������£�
+ * 一个价格表的样例如下：
  * 
  * -----------------------------------
  *  i  | 1  2  3  4  5  6  7  8  9 10
@@ -17,10 +17,10 @@ import com.ray.util.Timer;
  *  Pi | 1  5  8  9 10 17 17 20 24 30
  * -----------------------------------
  * 
- * ���Ӧ������Ϊ Rn
+ * 设对应的收益为 Rn
  * 
- * ����������и��³���Ϊi��һ�Σ�Ȼ����Ҳ�ĸ��������и���ĸ������и
- * ���ʾ���Ž�Ĺ�ʽΪ
+ * 将钢条左侧切割下长度为i的一段，然后对右侧的钢条进行切割，左侧的钢条则不切割。
+ * 则表示最优解的公式为
  *  Rn = max{Pi + Rn-i}
  * 
  * @author rays1
@@ -29,14 +29,14 @@ import com.ray.util.Timer;
 public class CutRod {
     
     /**
-     * ���������Զ����µĶ�̬�滮�㷨
+     * 带备忘的自顶向下的动态规划算法
      * @author rays1
      *
      */
     static class CutRodMemorized {
 
-        int[] R;    // ��¼����Ϊ n �ĸ������и����󳤶�
-        int[] S;    // ��¼����Ϊ n �ĸ����Ӻδ���ʼ�и�
+        int[] R;    // 记录长度为 n 的钢铁可切割的最大长度
+        int[] S;    // 记录长度为 n 的钢条从何处开始切割
         
         public CutRodMemorized(int[] P) {
             
@@ -62,7 +62,7 @@ public class CutRod {
 
             for (int i = 1; i <= n; i++) {
 
-                if (R[n - i] == -1) // ������δ���
+                if (R[n - i] == -1) // 子问题未求解
                     R[n - i] = cut(n - i, P);
 
                 if (P[i - 1] + R[n - i] > R[n]) {
@@ -87,14 +87,14 @@ public class CutRod {
     }
     
     /**
-     * �Ե����ϵĶ�̬�滮�㷨
+     * 自底向上的动态规划算法
      * @author rays1
      *
      */
     static class CutRodBottomUp {
         
         int[] R;
-        int[] S;    // ��¼����Ϊ n �ĸ����Ӻδ���ʼ�и�
+        int[] S;    // 记录长度为 n 的钢条从何处开始切割
         
         public CutRodBottomUp(int[] P) {
 
@@ -131,7 +131,7 @@ public class CutRod {
     }
     
     int[] R;
-    int[] S;    // ��¼����Ϊ n �ĸ����Ӻδ���ʼ�и�
+    int[] S;    // 记录长度为 n 的钢条从何处开始切割
     
    
     public static void main(String[] args) {

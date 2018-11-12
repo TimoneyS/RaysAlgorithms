@@ -6,8 +6,8 @@ import com.rays.algo.graph.EdgeWeightedDigraph;
 
 /**
  * 
- * DijkstraËã·¨<br/>
- * ÓĞÏò¼ÓÈ¨Í¼£¬×î¶ÌÂ·¾¶ËÑË÷¡£<br/>
+ * Dijkstraç®—æ³•<br/>
+ * æœ‰å‘åŠ æƒå›¾ï¼Œæœ€çŸ­è·¯å¾„æœç´¢ã€‚<br/>
  * 
  * @author rays1
  *
@@ -26,11 +26,11 @@ public class DijkstraSP extends SP {
             distTo[i] = Double.POSITIVE_INFINITY;
         }
         
-        distTo[S] = 0;                                      // ³õÊ¼»¯Æğµã
-        pq.insert(S, 0d);                                   // ³õÊ¼»¯Æğµã
+        distTo[S] = 0;                                      // åˆå§‹åŒ–èµ·ç‚¹
+        pq.insert(S, 0d);                                   // åˆå§‹åŒ–èµ·ç‚¹
         
         while (!pq.isEmpty()) {
-            relax(G, pq.delMin());                          // ·ÅËÉ¾àÀëÊ÷×î½üµÄ¶¥µã
+            relax(G, pq.delMin());                          // æ”¾æ¾è·ç¦»æ ‘æœ€è¿‘çš„é¡¶ç‚¹
         }
         
     }
@@ -41,11 +41,11 @@ public class DijkstraSP extends SP {
         for (DirectedEdge e : G.adj(v)) {
             
             int w = e.to();
-            if (distTo[w] > distTo[v] + e.weighted()) {     // Èç¹û´Ó¸Ã¶¥µãµ½ÆäÁÚ½Óµã¸ü½ü
-                distTo[w] = distTo[v] + e.weighted();       // ¸üĞÂÁÚ½Óµã
-                edgeTo[w] = e;                              // ½«µ½ÁÚ½ÓµãµÄÂ·¾¶ÉèÎª¸Ãµã
+            if (distTo[w] > distTo[v] + e.weighted()) {     // å¦‚æœä»è¯¥é¡¶ç‚¹åˆ°å…¶é‚»æ¥ç‚¹æ›´è¿‘
+                distTo[w] = distTo[v] + e.weighted();       // æ›´æ–°é‚»æ¥ç‚¹
+                edgeTo[w] = e;                              // å°†åˆ°é‚»æ¥ç‚¹çš„è·¯å¾„è®¾ä¸ºè¯¥ç‚¹
 
-                // ½«¶¥µãÏàÁ¬µÄ±ß²åÈë¶ÓÁĞ»òÕß¸üĞÂ
+                // å°†é¡¶ç‚¹ç›¸è¿çš„è¾¹æ’å…¥é˜Ÿåˆ—æˆ–è€…æ›´æ–°
                 if (pq.contains(w))
                     pq.changeKey(w, distTo[w]);
                 else

@@ -7,7 +7,7 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * À­Á´·¨ÊµÏÖµÄÉ¢ÁĞ±í
+ * æ‹‰é“¾æ³•å®ç°çš„æ•£åˆ—è¡¨
  * @author rays1
  *
  * @param <Key>
@@ -15,8 +15,8 @@ import com.ray.io.Out;
  */
 public class ChainingHashST<Key, Value> implements SymbolTable<Key, Value> {
 
-    private int M;      // Í°µÄ´óĞ¡
-    private int size;   // ³ß´ç
+    private int M;      // æ¡¶çš„å¤§å°
+    private int size;   // å°ºå¯¸
     
     Node[] st;
     

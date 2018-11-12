@@ -8,7 +8,7 @@ import com.ray.util.Timer;
 import com.ray.util.collections.RaysIndexMinPQ;
 
 /**
- * A * Ëã·¨µÄËÑË÷·½·¨
+ * A * ç®—æ³•çš„æœç´¢æ–¹æ³•
  * @author Ray
  * 
  */
@@ -55,7 +55,7 @@ public class AStarSeacher {
     }
 	
 	/**
-	 * A*Ëã·¨£¬ËÑË÷Ëã·¨
+	 * A*ç®—æ³•ï¼Œæœç´¢ç®—æ³•
 	 * @param G
 	 * @param sX
 	 * @param sY
@@ -73,7 +73,7 @@ public class AStarSeacher {
             int minX = toX(min);
             int minY = toY(min);
             
-            for (int[] pos : G.adj(minX, minY)) {       // ½âÎö¿É´ï½Úµã
+            for (int[] pos : G.adj(minX, minY)) {       // è§£æå¯è¾¾èŠ‚ç‚¹
                 
                 int x = pos[0];
                 int y = pos[1];

@@ -5,8 +5,8 @@ import java.util.Random;
 import com.ray.util.Timer;
 
 /**
- *  ¾ØÕóÁ´³Ë·¨ÎÊÌâ
- *  Çó×îÓÅ¼ÓÀ¨ºÅ·½°¸£¬ÒÔµÃµ½×îĞ¡³Ë»ı´ÎÊı¡£
+ *  çŸ©é˜µé“¾ä¹˜æ³•é—®é¢˜
+ *  æ±‚æœ€ä¼˜åŠ æ‹¬å·æ–¹æ¡ˆï¼Œä»¥å¾—åˆ°æœ€å°ä¹˜ç§¯æ¬¡æ•°ã€‚
  * @author rays1
  *
  */
@@ -31,8 +31,8 @@ public class MatrixChain {
                 for (int i = 1; i <= n - l + 1; i++) {
                     int j = i + l - 1;
                     A[i][j] = Integer.MAX_VALUE;
-                    // ¶ÔÈÎÒâi¡¢j£¬kÔÚi¡¢jÖ®¼ä¡£A[i][j]Îª ËùÓĞ¿ÉÄÜµÄkÖĞ£¬
-                    // ¼ÆËã A[i][k] + A[k+1][j] + P[i-1]*P[k]*P[j] µÄ×îĞ¡Öµ
+                    // å¯¹ä»»æ„iã€jï¼Œkåœ¨iã€jä¹‹é—´ã€‚A[i][j]ä¸º æ‰€æœ‰å¯èƒ½çš„kä¸­ï¼Œ
+                    // è®¡ç®— A[i][k] + A[k+1][j] + P[i-1]*P[k]*P[j] çš„æœ€å°å€¼
                     for (int k = i; k <= j - 1; k++) {
                         int temp = A[i][k] + A[k+1][j] + P[i-1] * P[k] * P[j];
                         if (A[i][j] > temp) {
@@ -102,7 +102,7 @@ public class MatrixChain {
     
     
     /**
-     * ¾ØÕóÏà³ËµÄËã·¨
+     * çŸ©é˜µç›¸ä¹˜çš„ç®—æ³•
      * @param A
      * @param B
      * @return

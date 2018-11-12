@@ -2,34 +2,34 @@ package com.rays.algo.string.search;
 
 public interface StringST<Value> {
 
-    /** Ïò×Ö·û´®·ûºÅ±í²åÈë¼üÖµ¶Ô */
+    /** å‘å­—ç¬¦ä¸²ç¬¦å·è¡¨æ’å…¥é”®å€¼å¯¹ */
     void put(String key, Value val);
 
-    /** ¼ükey¶ÔÓ¦µÄÖµ */
+    /** é”®keyå¯¹åº”çš„å€¼ */
     Value get(String key);
 
-    /** É¾³ıkey */
+    /** åˆ é™¤key */
     void delete(String key);
 
-    /** ¼ì²é±íÖØÊÇ·ñ°üº¬key */
+    /** æ£€æŸ¥è¡¨é‡æ˜¯å¦åŒ…å«key */
     boolean contains(String key);
 
-    /** ±íÊÇ·ñÎª¿Õ */
+    /** è¡¨æ˜¯å¦ä¸ºç©º */
     boolean isEmpty();
 
-    /** sµÄÇ°×ºÖĞ×î³¤µÄ¼ü */
+    /** sçš„å‰ç¼€ä¸­æœ€é•¿çš„é”® */
     String longestPrefixOf(String s);
 
-    /** ËùÓĞÒÔsÎªÇ°×ºµÄ¼ü */
+    /** æ‰€æœ‰ä»¥sä¸ºå‰ç¼€çš„é”® */
     Iterable<String> keysWithPrefix(String s);
 
-    /** ËùÓĞºÍsÆ¥ÅäµÄ¼ü */
+    /** æ‰€æœ‰å’ŒsåŒ¹é…çš„é”® */
     Iterable<String> keysMatch(String s);
 
-    /** ·µ»Ø±íÖĞ¼üÖµ¶ÔµÄÊıÁ¿ */
+    /** è¿”å›è¡¨ä¸­é”®å€¼å¯¹çš„æ•°é‡ */
     int size();
 
-    /** ·µ»ØËùÓĞ¼ü */
+    /** è¿”å›æ‰€æœ‰é”® */
     Iterable<String> keys();
 
 }

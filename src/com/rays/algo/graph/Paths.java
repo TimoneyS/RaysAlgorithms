@@ -3,21 +3,21 @@ package com.rays.algo.graph;
 import java.util.Stack;
 
 /**
- * ËÑË÷Â·¾¶API
+ * æœç´¢è·¯å¾„API
  * @author rays1
  *
  */
 public interface Paths {
 	
 	/**
-	 * ¼ì²éÄ³µãÊÇ·ñ¿É´ï
+	 * æ£€æŸ¥æŸç‚¹æ˜¯å¦å¯è¾¾
 	 * @param v
 	 * @return
 	 */
 	public boolean hasPathTo(int v);
 	
 	/**
-	 * µ½Ä³µãµÄÂ·¾¶µãÁĞ±í
+	 * åˆ°æŸç‚¹çš„è·¯å¾„ç‚¹åˆ—è¡¨
 	 * @param v
 	 * @return
 	 */

@@ -1,7 +1,7 @@
 package com.rays.algo.sort;
 
 /**
- * <b>¶ÑÅÅĞò</b>
+ * <b>å †æ’åº</b>
  * @author rays1
  *
  * @param <T>
@@ -11,25 +11,25 @@ public class HeapSort<T extends Comparable<T>> extends Sort<T>  {
     @Override
     public void sort(T[] arr, int lo, int hi) {
         int N = arr.length;
-        for (int k = N/2; k >= 1; k --) sink(arr, k, N); // Ê¹Ô­Êı×é¶ÑÓĞĞò
+        for (int k = N/2; k >= 1; k --) sink(arr, k, N); // ä½¿åŸæ•°ç»„å †æœ‰åº
         while (N > 1) {
-            swap(arr, 1, N--);                           // ½«¸ù½Úµã·ÅÖÁÎ´ÅÅĞò²¿·ÖµÄÄ©Î²£¬ĞŞÕıÎ´ÅÅĞò²¿·ÖµÄ±ß½ç
-            sink(arr, 1, N);                             // Ê¹Î´ÅÅĞò²¿·Ö¶ÑÓĞĞò
+            swap(arr, 1, N--);                           // å°†æ ¹èŠ‚ç‚¹æ”¾è‡³æœªæ’åºéƒ¨åˆ†çš„æœ«å°¾ï¼Œä¿®æ­£æœªæ’åºéƒ¨åˆ†çš„è¾¹ç•Œ
+            sink(arr, 1, N);                             // ä½¿æœªæ’åºéƒ¨åˆ†å †æœ‰åº
         }
     }
     
     /**
-     * ÏÂ³Á²Ù×÷
+     * ä¸‹æ²‰æ“ä½œ
      * @param index
      */
     private void sink(T[] arr, int index, int N) {
-        while (index * 2 <= N) {                        // µ±Ç°Ë÷ÒıÎ´³¬¹ı±ß½ç
-            int j = index*2;                            // ×Ó½ÚµãË÷Òı
-            if(j < N && less(arr, j, j+1)) j ++;        // Ñ¡È¡½Ï´óµÄ×Ó½ÚµãµÄË÷Òı
-            if(less(arr, index, j)) {                   // ×Ó½Úµã¸ü´ó
+        while (index * 2 <= N) {                        // å½“å‰ç´¢å¼•æœªè¶…è¿‡è¾¹ç•Œ
+            int j = index*2;                            // å­èŠ‚ç‚¹ç´¢å¼•
+            if(j < N && less(arr, j, j+1)) j ++;        // é€‰å–è¾ƒå¤§çš„å­èŠ‚ç‚¹çš„ç´¢å¼•
+            if(less(arr, index, j)) {                   // å­èŠ‚ç‚¹æ›´å¤§
                 swap(arr, index, j);                      
                 index = j;
-            } else {                                    // µ±Ç°ÔªËØ´óÓÚ×Ó½Úµã
+            } else {                                    // å½“å‰å…ƒç´ å¤§äºå­èŠ‚ç‚¹
                 break;
             }
         }

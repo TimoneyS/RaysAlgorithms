@@ -7,7 +7,7 @@ import com.ray.util.collections.Stack;
 
 /**
  * 
- * ×î³¤¹«¹²×ÓĞòÁĞÎÊÌâ
+ * æœ€é•¿å…¬å…±å­åºåˆ—é—®é¢˜
  * 
  * @author rays1
  *
@@ -15,7 +15,7 @@ import com.ray.util.collections.Stack;
 public class LCS {
     
     /**
-     * ±í¸ñ¼ÆËã·¨ÇóÈ¡ LCS
+     * è¡¨æ ¼è®¡ç®—æ³•æ±‚å– LCS
      * @author rays1
      *
      * @param <T>
@@ -85,7 +85,7 @@ public class LCS {
     }
     
     /**
-     * µİ¹éÇóÈ¡ LCS
+     * é€’å½’æ±‚å– LCS
      * @author rays1
      *
      * @param <T>

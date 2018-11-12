@@ -14,7 +14,7 @@ public class Reorder {
 
 	public Reorder() {
         panel = new Panel();
-		frame = FrameUtil.commonFrame("ƴͼ");
+		frame = FrameUtil.commonFrame("拼图");
 		frame.add(panel, BorderLayout.CENTER);
 		frame.addKeyListener(panel.getKeyListener());
 		

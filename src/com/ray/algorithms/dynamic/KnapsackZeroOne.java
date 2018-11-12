@@ -3,9 +3,9 @@ package com.ray.algorithms.dynamic;
 import com.ray.io.Out;
 
 /**
- * 0/1 ±³°üÎÊÌâ
+ * 0/1 èƒŒåŒ…é—®é¢˜
  * <p>
- * ÖØÁ¿ wi µÄ ÎïÆ·£¬¼ÛÖµÎª pi¡£±³°üµÄ´óĞ¡Îª m £¬ Çó±³°ü¿É×°ÔØµÄÎïÆ·µÄ×î´ó¼ÛÖµ¡£
+ * é‡é‡ wi çš„ ç‰©å“ï¼Œä»·å€¼ä¸º piã€‚èƒŒåŒ…çš„å¤§å°ä¸º m ï¼Œ æ±‚èƒŒåŒ…å¯è£…è½½çš„ç‰©å“çš„æœ€å¤§ä»·å€¼ã€‚
  * 
  * @author rays1
  *
@@ -28,16 +28,16 @@ public class KnapsackZeroOne {
     }
 
     /**
-     * ¶¯Ì¬¹æ»®Ñ¡Ôñ
-     * @param i ÎïÆ·id
-     * @param c ±³°ü¿ÉÓÃÈİÁ¿
+     * åŠ¨æ€è§„åˆ’é€‰æ‹©
+     * @param i ç‰©å“id
+     * @param c èƒŒåŒ…å¯ç”¨å®¹é‡
      * @return
      */
     public int dynamic(int i, int c) {
         if (i >= w.length) return 0;
         
-        int v1 = (w[i] <= c) ? p[i] + dynamic(i + 1, c - w[i]) : 0; // Ñ¡Ôñµ±Ç°ÎïÆ·
-        int v2 = dynamic(i + 1, c);                                 // ²»Ñ¡Ôñµ±Ç°ÎïÆ·
+        int v1 = (w[i] <= c) ? p[i] + dynamic(i + 1, c - w[i]) : 0; // é€‰æ‹©å½“å‰ç‰©å“
+        int v2 = dynamic(i + 1, c);                                 // ä¸é€‰æ‹©å½“å‰ç‰©å“
 
         maxValue[i] = Math.max(v1, v2);
 

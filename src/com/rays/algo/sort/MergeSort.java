@@ -3,18 +3,18 @@ package com.rays.algo.sort;
 import static com.ray.util.ArrayUtil.*;
 
 /**
- * <b>¹é²¢ÅÅĞò</b>
+ * <b>å½’å¹¶æ’åº</b>
  * <p>
- * »ù±¾Ë¼Ïë£º<br/>
- * ¹é²¢²Ù×÷ - ½«Á½¸öÓĞĞòµÄÊı×éºÏ²¢ÎªÒ»¸ö¸ü´óµÄÓĞĞòÊı×é<br/>
- * ÔÚÅÅĞòÒ»¸öÊı×éÊ±£¬µİ¹éµÄ½«Æä²ğ½âÎªÁ½¸öÊı×éÅÅĞò£¬È»ºó½«Á½¸ö×ÓÊı×é¹é²¢ÆğÀ´¡£<br/>
- * </p>¡¤
+ * åŸºæœ¬æ€æƒ³ï¼š<br/>
+ * å½’å¹¶æ“ä½œ - å°†ä¸¤ä¸ªæœ‰åºçš„æ•°ç»„åˆå¹¶ä¸ºä¸€ä¸ªæ›´å¤§çš„æœ‰åºæ•°ç»„<br/>
+ * åœ¨æ’åºä¸€ä¸ªæ•°ç»„æ—¶ï¼Œé€’å½’çš„å°†å…¶æ‹†è§£ä¸ºä¸¤ä¸ªæ•°ç»„æ’åºï¼Œç„¶åå°†ä¸¤ä¸ªå­æ•°ç»„å½’å¹¶èµ·æ¥ã€‚<br/>
+ * </p>Â·
  * @author Ray
  */
 public class MergeSort {
 	
 	/**
-	 * ×Ô¶¥ÏòÏÂµÄµÄ¹é²¢ÅÅĞò<br/>
+	 * è‡ªé¡¶å‘ä¸‹çš„çš„å½’å¹¶æ’åº<br/>
 	 * @author Ray
 	 */
 	public static class UpToDown<T extends Comparable<?>> extends Sort<T> {
@@ -27,17 +27,17 @@ public class MergeSort {
         
         private void mergeSort(T[] arr, int lo, int hi, Comparable<?>[] temp) {
             if (lo < hi) {
-                int mid = (lo + hi) / 2;            // ¼ÆËãÖĞµã
-                mergeSort(arr, lo, mid, temp);      // ÅÅĞò×ó²à×ÓÊı×é
-                mergeSort(arr, mid + 1, hi, temp);  // ÅÅĞòÓÒ²à×ÓÊı×é
-                merge(arr, lo, mid, hi, temp);      // ¹é²¢
+                int mid = (lo + hi) / 2;            // è®¡ç®—ä¸­ç‚¹
+                mergeSort(arr, lo, mid, temp);      // æ’åºå·¦ä¾§å­æ•°ç»„
+                mergeSort(arr, mid + 1, hi, temp);  // æ’åºå³ä¾§å­æ•°ç»„
+                merge(arr, lo, mid, hi, temp);      // å½’å¹¶
             }
         }
 		
 	}
 	
 	/**
-	 * ×Ôµ×ÏòÉÏµÄ¹é²¢ÅÅĞò
+	 * è‡ªåº•å‘ä¸Šçš„å½’å¹¶æ’åº
 	 * @author rays1
 	 *
 	 * @param <T>
@@ -48,9 +48,9 @@ public class MergeSort {
         public void sort(T[] arr, int lo, int hi) {
             Comparable<?>[] temp = new Comparable<?>[hi-lo+1];
             int N = hi - lo + 1;
-            for (int size = 1; size < N; size *= 2) {                            // Ãİ´ÎµİÔöµÄ¹é²¢³ß´ç
-                for (int l = lo; l < N-size; l += size*2 ) {                     // Ñ­»·´¦ÀíÃ¿Ò»¶Ô´ı¹é²¢µÄ×ÓÊı×é
-                    merge(arr, l, (l+size-1), Math.min( l+size*2-1, hi), temp);  // ¹é²¢ÆğµãÎªl³¤¶ÈÎªsizeµÄÁ½¸öÏàÁÚµÄ×ÓÊı×é
+            for (int size = 1; size < N; size *= 2) {                            // å¹‚æ¬¡é€’å¢çš„å½’å¹¶å°ºå¯¸
+                for (int l = lo; l < N-size; l += size*2 ) {                     // å¾ªç¯å¤„ç†æ¯ä¸€å¯¹å¾…å½’å¹¶çš„å­æ•°ç»„
+                    merge(arr, l, (l+size-1), Math.min( l+size*2-1, hi), temp);  // å½’å¹¶èµ·ç‚¹ä¸ºlé•¿åº¦ä¸ºsizeçš„ä¸¤ä¸ªç›¸é‚»çš„å­æ•°ç»„
                 }
             }
         }
@@ -58,7 +58,7 @@ public class MergeSort {
 	}
 	
 	/**
-	 * Ğ¡Êı×é²ÉÓÃ²åÈëÅÅĞòµÄ×Ôµ×ÏòÉÏ¹é²¢ÅÅĞò
+	 * å°æ•°ç»„é‡‡ç”¨æ’å…¥æ’åºçš„è‡ªåº•å‘ä¸Šå½’å¹¶æ’åº
 	 * @author rays1
 	 *
 	 * @param <T>
@@ -68,43 +68,43 @@ public class MergeSort {
         public void sort(T[] arr, int lo, int hi) {
             Comparable<?>[] temp = new Comparable<?>[hi-lo+1];
             Sort<T> s = new InsertionSort<>();
-            int optiSize = 16;  // ÇĞ»»Ñ¡ÔñÅÅĞòºÍ¹é²¢ÅÅĞòµÄ³ß´ç
+            int optiSize = 16;  // åˆ‡æ¢é€‰æ‹©æ’åºå’Œå½’å¹¶æ’åºçš„å°ºå¯¸
             
             int N = hi - lo + 1;
             for (int i = 0; i < N-optiSize; i += optiSize)
                 s.sort(arr, i, Math.min(i+optiSize-1, hi));
 
-            for (int size = optiSize; size < N; size *= 2) {                     // Ãİ´ÎµİÔöµÄ¹é²¢³ß´ç
-                for (int l = lo; l < N-size; l += size*2 ) {                     // Ñ­»·´¦ÀíÃ¿Ò»¶Ô´ı¹é²¢µÄ×ÓÊı×é
-                    merge(arr, l, (l+size-1), Math.min( l+size*2-1, hi), temp);  // ¹é²¢ÆğµãÎªl³¤¶ÈÎªsizeµÄÁ½¸öÏàÁÚµÄ×ÓÊı×é
+            for (int size = optiSize; size < N; size *= 2) {                     // å¹‚æ¬¡é€’å¢çš„å½’å¹¶å°ºå¯¸
+                for (int l = lo; l < N-size; l += size*2 ) {                     // å¾ªç¯å¤„ç†æ¯ä¸€å¯¹å¾…å½’å¹¶çš„å­æ•°ç»„
+                    merge(arr, l, (l+size-1), Math.min( l+size*2-1, hi), temp);  // å½’å¹¶èµ·ç‚¹ä¸ºlé•¿åº¦ä¸ºsizeçš„ä¸¤ä¸ªç›¸é‚»çš„å­æ•°ç»„
                 }
             }
         }
 	}
 	
 	/**
-	 * ¹é²¢µÄ·½·¨<br>
-	 * arr[lo] ~ arr[mid] ÊÇÒÑ¾­ÅÅĞòµÄÊı×é1<br>
-	 * arr[mid+1] ~ arr[hi] ÊÇÒÑ¾­ÅÅĞòµÄÊı×é2<br>
-	 * ¹é²¢Ğ§¹ûµÈÍ¬´ÓÁ½¸ö¶ÀÁ¢ÅÅĞòµÄÊı×éÖĞÒÀ´Î»ñÈ¡½ÏĞ¡ÔªËØ£¬·ÅÈë´óÊı×éÖĞ¡£<br>
-	 * ¹é²¢Íê³Éºó£¬´óÊı×éÎª×ÔÈ»ÒÑÅÅĞò×´Ì¬¡£
-	 * @param arr   ´ıÅÅĞòÊı×é 
-	 * @param mid	ÖĞµã
-	 * @param hi	ÉÏ½ç
+	 * å½’å¹¶çš„æ–¹æ³•<br>
+	 * arr[lo] ~ arr[mid] æ˜¯å·²ç»æ’åºçš„æ•°ç»„1<br>
+	 * arr[mid+1] ~ arr[hi] æ˜¯å·²ç»æ’åºçš„æ•°ç»„2<br>
+	 * å½’å¹¶æ•ˆæœç­‰åŒä»ä¸¤ä¸ªç‹¬ç«‹æ’åºçš„æ•°ç»„ä¸­ä¾æ¬¡è·å–è¾ƒå°å…ƒç´ ï¼Œæ”¾å…¥å¤§æ•°ç»„ä¸­ã€‚<br>
+	 * å½’å¹¶å®Œæˆåï¼Œå¤§æ•°ç»„ä¸ºè‡ªç„¶å·²æ’åºçŠ¶æ€ã€‚
+	 * @param arr   å¾…æ’åºæ•°ç»„ 
+	 * @param mid	ä¸­ç‚¹
+	 * @param hi	ä¸Šç•Œ
 	 */
 	private static void merge(Comparable<?>[] arr, int lo, int mid, int hi, Comparable<?>[] temp){
 		
-	    for(int i = lo; i <= hi; i++) temp[i] = arr[i];    // »º´æ
+	    for(int i = lo; i <= hi; i++) temp[i] = arr[i];    // ç¼“å­˜
 		
-	    int i = lo,     // ´óÊı×éË÷Òı
-            l = lo,     // ×ó²à×ÓÊı×éË÷Òı
-            r = mid+1;  // ÓÒ²à×ÓÊı×éË÷Òı
+	    int i = lo,     // å¤§æ•°ç»„ç´¢å¼•
+            l = lo,     // å·¦ä¾§å­æ•°ç»„ç´¢å¼•
+            r = mid+1;  // å³ä¾§å­æ•°ç»„ç´¢å¼•
 		
 		while(l <= mid || r <= hi) {
-			if(l > mid) 				arr[i++] = temp[r++];    // ×ó²à×ÓÊı×éÒÑ¾­È«²¿Ìí¼Ó
-			else if(r > hi)  			arr[i++] = temp[l++];    // ÓÒ²à×ÓÊı×éÒÑ¾­È«²¿Ìí¼Ó
-			else if(less(temp, l, r)) 	arr[i++] = temp[l++];    // ×ó²àµÄ×ÓÊı×éµ±Ç°ÔªËØ¸üĞ¡
-			else  						arr[i++] = temp[r++];    // ÓÒ²àµÄ×ÓÊı×éµ±Ç°ÔªËØ¸üĞ¡
+			if(l > mid) 				arr[i++] = temp[r++];    // å·¦ä¾§å­æ•°ç»„å·²ç»å…¨éƒ¨æ·»åŠ 
+			else if(r > hi)  			arr[i++] = temp[l++];    // å³ä¾§å­æ•°ç»„å·²ç»å…¨éƒ¨æ·»åŠ 
+			else if(less(temp, l, r)) 	arr[i++] = temp[l++];    // å·¦ä¾§çš„å­æ•°ç»„å½“å‰å…ƒç´ æ›´å°
+			else  						arr[i++] = temp[r++];    // å³ä¾§çš„å­æ•°ç»„å½“å‰å…ƒç´ æ›´å°
 		}
 		
 	}

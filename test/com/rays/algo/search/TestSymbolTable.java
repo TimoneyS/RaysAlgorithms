@@ -7,7 +7,7 @@ import com.ray.util.Timer;
 public class TestSymbolTable {
 	
     /**
-     * ²âÊÔÁ´±íÊµÏÖµÄË³Ğò²éÕÒµÄ·ûºÅ±í
+     * æµ‹è¯•é“¾è¡¨å®ç°çš„é¡ºåºæŸ¥æ‰¾çš„ç¬¦å·è¡¨
      */
     public static void testSequentialSearchST() {
         int size = 10;
@@ -24,7 +24,7 @@ public class TestSymbolTable {
     }
     
     /**
-     * ²âÊÔ»ùÓÚÓĞĞòÊı×éµÄ¶ş·ÖËÑË÷·ûºÅ±í
+     * æµ‹è¯•åŸºäºæœ‰åºæ•°ç»„çš„äºŒåˆ†æœç´¢ç¬¦å·è¡¨
      */
     public static void testBinarySearchST() {
         int size = 10;

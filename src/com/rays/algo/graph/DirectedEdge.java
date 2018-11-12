@@ -1,15 +1,15 @@
 package com.rays.algo.graph;
 
 /**
- * ¼ÓÈ¨ÓĞÏòÍ¼±ß¶¨Òå
+ * åŠ æƒæœ‰å‘å›¾è¾¹å®šä¹‰
  * @author rays1
  *
  */
 public class DirectedEdge implements Comparable<DirectedEdge> {
     
-    private final int from;                 // Æğµã
-    private final int to;                   // ÖÕµã
-    private final double weighted;          // È¨ÖØ
+    private final int from;                 // èµ·ç‚¹
+    private final int to;                   // ç»ˆç‚¹
+    private final double weighted;          // æƒé‡
     
     public DirectedEdge(int from, int to, double weighted) {
         super();
@@ -36,7 +36,7 @@ public class DirectedEdge implements Comparable<DirectedEdge> {
     }
     
     /**
-     * Éî¸´ÖÆ
+     * æ·±å¤åˆ¶
      * @return
      */
     public DirectedEdge copy() {

@@ -1,7 +1,7 @@
 package com.rays.algo.search;
 
 /**
- * ¼üÎª¿ÉÅÅĞòÀàĞÍ£¬ÇÒ·ûºÅ±íÖĞ¼üÊÇÓĞĞòµÄ
+ * é”®ä¸ºå¯æ’åºç±»å‹ï¼Œä¸”ç¬¦å·è¡¨ä¸­é”®æ˜¯æœ‰åºçš„
  * @author rays1
  *
  * @param <Key>
@@ -9,57 +9,57 @@ package com.rays.algo.search;
  */
 public interface SortedSymbolTable <Key extends Comparable<Key>,Value> extends SymbolTable<Key, Value> {
     /**
-     * ×îĞ¡µÄ¼ü
+     * æœ€å°çš„é”®
      * @return
      */
     public Key min();
     
     /**
-     * ×î´óµÄ¼ü
+     * æœ€å¤§çš„é”®
      * @return
      */
     public Key max();
 
     /**
-     * É¾³ı×îĞ¡¼ü
+     * åˆ é™¤æœ€å°é”®
      */
     public void deleteMin();
     
     /**
-     * É¾³ı×î´ó¼ü
+     * åˆ é™¤æœ€å¤§é”®
      */
     public void deleteMax();
     
     /**
-     * Ğ¡ÓÚµÈÓÚkeyµÄ×î´ó¼ü
+     * å°äºç­‰äºkeyçš„æœ€å¤§é”®
      * @param key
      * @return
      */
     public Key floor(Key key);
     
     /**
-     * ´óÓÚµÈÓÚkeyµÄ×îĞ¡¼ü
+     * å¤§äºç­‰äºkeyçš„æœ€å°é”®
      * @param key
      * @return
      */
     public Key ceiling(Key key);
     
     /**
-     * Ğ¡ÓÚkeyµÄ¼üµÄÊıÁ¿
+     * å°äºkeyçš„é”®çš„æ•°é‡
      * @param key
      * @return
      */
     public int rank(Key key);
     
     /**
-     * ÅÅÃûÎªkµÄ¼ü
+     * æ’åä¸ºkçš„é”®
      * @param index
      * @return
      */
     public Key select(int k);
 
     /**
-     * loºÍhiÖ®¼äµÄËùÓĞ¼ü
+     * loå’Œhiä¹‹é—´çš„æ‰€æœ‰é”®
      * @param lo
      * @param hi
      * @return

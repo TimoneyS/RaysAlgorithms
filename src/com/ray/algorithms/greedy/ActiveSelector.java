@@ -3,12 +3,12 @@ package com.ray.algorithms.greedy;
 import com.ray.io.Out;
 
 /**
- * »î¶¯Ñ¡ÔñÎÊÌâ
+ * æ´»åŠ¨é€‰æ‹©é—®é¢˜
  * <p>
- * ¼Ù¶¨n¸ö»î¶¯µÄ¼¯ºÏ S = { a1, a2, ... , an }£¬Ã¿¸ö»î¶¯ ai ¶¼ÓĞÒ»¸ö¿ªÊ¼Ê±¼ä si ºÍ½áÊøÊ±¼ä fi <br>
- * »î¶¯¼æÈİ£º»î¶¯ ai ºÍ aj Èç¹û si ¡İ fj »òÕß  sj ¡İ fi,£¬Ôò³Æ»î¶¯ ai ºÍ aj ¼æÈİ
+ * å‡å®šnä¸ªæ´»åŠ¨çš„é›†åˆ S = { a1, a2, ... , an }ï¼Œæ¯ä¸ªæ´»åŠ¨ ai éƒ½æœ‰ä¸€ä¸ªå¼€å§‹æ—¶é—´ si å’Œç»“æŸæ—¶é—´ fi <br>
+ * æ´»åŠ¨å…¼å®¹ï¼šæ´»åŠ¨ ai å’Œ aj å¦‚æœ si â‰¥ fj æˆ–è€…  sj â‰¥ fi,ï¼Œåˆ™ç§°æ´»åŠ¨ ai å’Œ aj å…¼å®¹
  * <p>
- * ÇóSµÄ×î´ó¼æÈİ»î¶¯×Ó¼¯¡£
+ * æ±‚Sçš„æœ€å¤§å…¼å®¹æ´»åŠ¨å­é›†ã€‚
  * 
  * @author rays1
  *
@@ -30,7 +30,7 @@ public class ActiveSelector {
         Out.p(rs);
     }
     
-    // Ã¿´ÎÑ¡Ôñ½áÊøÊ±¼ä×îÔçµÄ»î¶¯£¬È»ºóÇó½â×ÓÎÊÌâ
+    // æ¯æ¬¡é€‰æ‹©ç»“æŸæ—¶é—´æœ€æ—©çš„æ´»åŠ¨ï¼Œç„¶åæ±‚è§£å­é—®é¢˜
     private int maxSelector(int i, int j) {
         marked[i] = true;
         for (int k = i; k <= j; k++)
@@ -38,7 +38,7 @@ public class ActiveSelector {
         return 0;
     }
 
-    // ½«»î¶¯°´½áÊøÊ±¼äÅÅĞò
+    // å°†æ´»åŠ¨æŒ‰ç»“æŸæ—¶é—´æ’åº
     private void sortActive() {
         for (int i = 0; i < s.length-1;  i++) {
             for (int j = 0; j < s.length-1;  j++) {

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * »ùÓÚÓĞĞòÊı×éµÄ¶ş·Ö²éÕÒËã·¨ÊµÏÖµÄ·ûºÅ±í
+ * åŸºäºæœ‰åºæ•°ç»„çš„äºŒåˆ†æŸ¥æ‰¾ç®—æ³•å®ç°çš„ç¬¦å·è¡¨
  * @author Ray
  * @param <Key>
  * @param <Value>
@@ -28,10 +28,10 @@ public class BinarySearchST <Key extends Comparable<Key>, Value> implements Sort
 
     public void put(Key key, Value value) {
         int rank = rank(key);
-        if (keys[rank] != null && keys[rank].equals(key)) {     // ĞÂ¼üÎª×î´ó¼ü
+        if (keys[rank] != null && keys[rank].equals(key)) {     // æ–°é”®ä¸ºæœ€å¤§é”®
             values[cursor] = value;
         } else {
-            for (int j = cursor; j >= rank; j--) {              // ĞÂ¼üĞèÒª²åÈë
+            for (int j = cursor; j >= rank; j--) {              // æ–°é”®éœ€è¦æ’å…¥
                 keys[j + 1] = keys[j];
                 values[j + 1] = values[j];
             }
@@ -45,7 +45,7 @@ public class BinarySearchST <Key extends Comparable<Key>, Value> implements Sort
     public void delete(Key key) {
         int rank = rank(key);
         if (keys[rank] != null && keys[rank].equals(key)) {
-            for (int j = rank; j < cursor; j ++) {              // rankÓÒ²àµÄ¼üÖµ¶Ô×óÒÆÒ»¸ñ
+            for (int j = rank; j < cursor; j ++) {              // rankå³ä¾§çš„é”®å€¼å¯¹å·¦ç§»ä¸€æ ¼
                 keys[j] = keys[j+1];
                 values[j] = values[j+1];
             }
@@ -72,7 +72,7 @@ public class BinarySearchST <Key extends Comparable<Key>, Value> implements Sort
 
     @Override
     public void deleteMin() {
-        for (int j = 0; j < cursor; j ++) {              // 0ÓÒ²àµÄ¼üÖµ¶Ô×óÒÆÒ»¸ñ
+        for (int j = 0; j < cursor; j ++) {              // 0å³ä¾§çš„é”®å€¼å¯¹å·¦ç§»ä¸€æ ¼
             keys[j] = keys[j+1];
             values[j] = values[j+1];
         }
@@ -101,31 +101,31 @@ public class BinarySearchST <Key extends Comparable<Key>, Value> implements Sort
     @Override
     public Key floor(Key key) {
         int index = rank(key);
-        if (key.equals(keys[index])) {      // keyºÍÆäÅÅÃûÒ»ÖÂ
+        if (key.equals(keys[index])) {      // keyå’Œå…¶æ’åä¸€è‡´
             return keys[rank(key)];
-        } else if (index == 0) {            // Ã»ÓĞĞ¡ÓÚkeyµÄ¼ü
+        } else if (index == 0) {            // æ²¡æœ‰å°äºkeyçš„é”®
             return null;
         }
-        return keys[index-1];               // È¡keyµÄÅÅÃû¼õÒ»µÄ¼ü
+        return keys[index-1];               // å–keyçš„æ’åå‡ä¸€çš„é”®
     }
 
     @Override
     public Key ceiling(Key key) {
-        return keys[rank(key)];             // ´óÓÚµÈÓÚkey'µÄ¼ü£¬¼´ÎªÆäÅÅÃûµÄ¼ü
+        return keys[rank(key)];             // å¤§äºç­‰äºkey'çš„é”®ï¼Œå³ä¸ºå…¶æ’åçš„é”®
     }
 
     @Override
     public int rank(Key key) {
-        int l = 0;                                       // µÍÎ»Ë÷Òı(low)
-        int h = cursor;                                  // ¸ßÎ»Ë÷Òı(high)
+        int l = 0;                                       // ä½ä½ç´¢å¼•(low)
+        int h = cursor;                                  // é«˜ä½ç´¢å¼•(high)
         while( l <= h) {
-            int mid = (l+h) / 2;                         // ÖĞµã
-            if (key.equals(keys[mid])) {                 // Ç¡ºÃÃüÖĞÖĞµã
+            int mid = (l+h) / 2;                         // ä¸­ç‚¹
+            if (key.equals(keys[mid])) {                 // æ°å¥½å‘½ä¸­ä¸­ç‚¹
                 l = mid;
                 break;
-            } else if (key.compareTo(keys[mid]) > 0 ) {  // Ä¿±êÔÚÓÒ°ë²à
+            } else if (key.compareTo(keys[mid]) > 0 ) {  // ç›®æ ‡åœ¨å³åŠä¾§
                 l = mid+1;
-            } else {                                     // Ä¿±êÔÚ×ó°ë²à
+            } else {                                     // ç›®æ ‡åœ¨å·¦åŠä¾§
                 h = mid-1;
             }
         }

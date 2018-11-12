@@ -8,7 +8,7 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * ¶ş²æ²éÕÒÊ÷
+ * äºŒå‰æŸ¥æ‰¾æ ‘
  * @author rays1
  *
  * @param <Key>
@@ -19,11 +19,11 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
 	private Node root;
 	
 	private final class Node {
-        Node  left;                             // ×ó½áµã
-        Node  right;                            // ÓÒ½áµã
-        Key   key;                              // ¼ü
-        Value value;                            // Öµ
-        int   size;                             // ÒÔ¸Ã½áµãÎª¸ùµÄ×ÓÊ÷×Ü½áµã¸öÊı
+        Node  left;                             // å·¦ç»“ç‚¹
+        Node  right;                            // å³ç»“ç‚¹
+        Key   key;                              // é”®
+        Value value;                            // å€¼
+        int   size;                             // ä»¥è¯¥ç»“ç‚¹ä¸ºæ ¹çš„å­æ ‘æ€»ç»“ç‚¹ä¸ªæ•°
 		public Node(Key key, Value value) {
 			this.key = key;
 			this.value = value;
@@ -37,7 +37,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
 	}
 	
 	/**
-	 * ÔÚ¸ù½áµãÎªnµÄÊ÷ÖĞ²åÈëĞÂ½áµã
+	 * åœ¨æ ¹ç»“ç‚¹ä¸ºnçš„æ ‘ä¸­æ’å…¥æ–°ç»“ç‚¹
 	 * @param n
 	 * @param key
 	 * @param value
@@ -46,11 +46,11 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
 	private Node put(Node n, Key key, Value value) {
 	    if (n == null) return new Node(key, value);
 	    int c =  n.key.compareTo(key);
-        if (c == 0)                                     // ÒÑ¾­´æÔÚ¼ü
+        if (c == 0)                                     // å·²ç»å­˜åœ¨é”®
             n.value = value;
-        else if ( c > 0)                                // ¸ù´óÓÚ¼ü£¬·ÅÈë×ó×ÓÊ÷
+        else if ( c > 0)                                // æ ¹å¤§äºé”®ï¼Œæ”¾å…¥å·¦å­æ ‘
             n.left = put(n.left, key, value);
-        else                                            // ¸ùĞ¡ÓÚ¼ü£¬·ÅÈëÓÒ×ÓÊ÷
+        else                                            // æ ¹å°äºé”®ï¼Œæ”¾å…¥å³å­æ ‘
             n.right = put(n.right, key, value);
         n.size = size(n.left) + size(n.right) + 1;
         return n;
@@ -62,7 +62,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
 	}
 	
 	/**
-	 * ÔÚnodeÎª¸ùµÄÊ÷ÖĞ²éÕÒkey
+	 * åœ¨nodeä¸ºæ ¹çš„æ ‘ä¸­æŸ¥æ‰¾key
 	 * @param node
 	 * @param key
 	 * @return
@@ -70,11 +70,11 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
 	private Node get(Node node, Key key) {
 	    if (node == null) return null;
 	    int c = node.key.compareTo(key);
-        if (c == 0)                         // ÃüÖĞ
+        if (c == 0)                         // å‘½ä¸­
             return node;
-        else if ( c > 0)                    // ¸ù´óÓÚ¼ü£¬ĞèÒªÔÚ×ó×ÓÊ÷ÖĞ²éÕÒ
+        else if ( c > 0)                    // æ ¹å¤§äºé”®ï¼Œéœ€è¦åœ¨å·¦å­æ ‘ä¸­æŸ¥æ‰¾
             return get(node.left, key);
-        else                                // ¸ùĞ¡ÓÚ¼ü£¬ĞèÒªÔÚÓÒ×ÓÊ÷ÖĞ²éÕÒ
+        else                                // æ ¹å°äºé”®ï¼Œéœ€è¦åœ¨å³å­æ ‘ä¸­æŸ¥æ‰¾
             return get(node.right, key);
 	}
 	
@@ -84,22 +84,22 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
     }
     
     /**
-     * ÔÚnodeÎª¸ùµÄ×ÓÊ÷ÖĞÉ¾³ıkey
+     * åœ¨nodeä¸ºæ ¹çš„å­æ ‘ä¸­åˆ é™¤key
      * @param key
      * @param n
      */
     private Node delete(Key key, Node node) {
         int c = key.compareTo(node.key);
-        if (c == 0) {                                   // ÃüÖĞ¸ù½áµã£¬É¾³ı¸ù½Úµã
-            if (node.left  == null) return node.right;  // ¸ù½áµã×ó×ÓÊıÎª¿Õ£¬½«¸ù½áµãÌæ»»ÎªÆäÓÒ½áµã
-            if (node.right == null) return node.left;   // ¸ù½áµãÓÒ×ÓÊ÷Îª¿Õ£¬½«¸ù½áµãÌæ»»ÎªÆä×ó½áµã
+        if (c == 0) {                                   // å‘½ä¸­æ ¹ç»“ç‚¹ï¼Œåˆ é™¤æ ¹èŠ‚ç‚¹
+            if (node.left  == null) return node.right;  // æ ¹ç»“ç‚¹å·¦å­æ•°ä¸ºç©ºï¼Œå°†æ ¹ç»“ç‚¹æ›¿æ¢ä¸ºå…¶å³ç»“ç‚¹
+            if (node.right == null) return node.left;   // æ ¹ç»“ç‚¹å³å­æ ‘ä¸ºç©ºï¼Œå°†æ ¹ç»“ç‚¹æ›¿æ¢ä¸ºå…¶å·¦ç»“ç‚¹
             Node t = node;
             node = min(t.right);
             node.right = deleteMin(t.right);
             node.left  = t.left;
-        } else if ( c > 0) {                            // ÃüÖĞÓÒ×ÓÊ÷
+        } else if ( c > 0) {                            // å‘½ä¸­å³å­æ ‘
             node.right = delete(key, node.right);
-        } else {                                        // ÃüÖĞ×ó×ÓÊ÷
+        } else {                                        // å‘½ä¸­å·¦å­æ ‘
             node.left = delete(key, node.left);
         }
         node.size = size(node.left) + size(node.right) + 1;
@@ -137,7 +137,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
     }
     
     /**
-     * ÔÚÒÔnodeÎª¸ùµÄ×ÓÊ÷ÖĞ²éÕÒ×îĞ¡½áµã
+     * åœ¨ä»¥nodeä¸ºæ ¹çš„å­æ ‘ä¸­æŸ¥æ‰¾æœ€å°ç»“ç‚¹
      * @param node
      * @return
      */
@@ -162,7 +162,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
     }
     
     /**
-     * É¾³ıÄ³¸ö½áµãÏÂµÄ×îĞ¡½áµã
+     * åˆ é™¤æŸä¸ªç»“ç‚¹ä¸‹çš„æœ€å°ç»“ç‚¹
      * @param node
      */
     private Node deleteMin(Node node) {
@@ -176,13 +176,13 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
     public void deleteMax() {
         Node n = root;
         Node bak_root = n.left;
-        while(n.right != null) {            // Ñ­»·ÕÒµ½×î´óµÄ½áµã n
+        while(n.right != null) {            // å¾ªç¯æ‰¾åˆ°æœ€å¤§çš„ç»“ç‚¹ n
             bak_root = n;
             n.size = n.size - 1;
             n = n.right;
         }
-        if (n == root) root = bak_root;     // É¾³ı¸ù½áµã£¨´ËÊ±¸ù½áµã±ØÈ»ÎŞÓÒ×ÓÊ÷£© - ½«ÆäÓÒ½áµãÉèÖÃÎªĞÂµÄ¸ù½áµã
-        else bak_root.right = n.left;       // É¾³ı×î´ó½áµã n - ½«nµÄ¸¸½ÚµãµÄÓÒ½áµã£¬ÉèÖÃÎªnµÄ×ó½áµã
+        if (n == root) root = bak_root;     // åˆ é™¤æ ¹ç»“ç‚¹ï¼ˆæ­¤æ—¶æ ¹ç»“ç‚¹å¿…ç„¶æ— å³å­æ ‘ï¼‰ - å°†å…¶å³ç»“ç‚¹è®¾ç½®ä¸ºæ–°çš„æ ¹ç»“ç‚¹
+        else bak_root.right = n.left;       // åˆ é™¤æœ€å¤§ç»“ç‚¹ n - å°†nçš„çˆ¶èŠ‚ç‚¹çš„å³ç»“ç‚¹ï¼Œè®¾ç½®ä¸ºnçš„å·¦ç»“ç‚¹
     }
 
     @Override
@@ -193,13 +193,13 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Sort
     private Key floor(Key key, Node node) {
         if (node == null) return null;
         int c = key.compareTo(node.key);
-        if (c == 0 ) {                                  // ÃüÖĞ¸ù½áµã
+        if (c == 0 ) {                                  // å‘½ä¸­æ ¹ç»“ç‚¹
             return node.key;
-        } else if (c > 0) {                             // ¸ù½áµã´óÓÚÄ¿±ê½áµã
-            Key rs = floor(key, node.right);            // ÔÚÓÒ×ÓÊ÷ÖĞ²éÕÒ
-            if (rs == null)                             // ÈôÓÒ×ÓÊ÷ÎŞ·ûºÏµÄ½áµãÔò·µ»Ø¸ù½áµã
+        } else if (c > 0) {                             // æ ¹ç»“ç‚¹å¤§äºç›®æ ‡ç»“ç‚¹
+            Key rs = floor(key, node.right);            // åœ¨å³å­æ ‘ä¸­æŸ¥æ‰¾
+            if (rs == null)                             // è‹¥å³å­æ ‘æ— ç¬¦åˆçš„ç»“ç‚¹åˆ™è¿”å›æ ¹ç»“ç‚¹
                 return node.key;
-            else                                        // ·ñÔò·µ»ØÓÒ×ÓÊ÷ÖĞµÄ½áµã
+            else                                        // å¦åˆ™è¿”å›å³å­æ ‘ä¸­çš„ç»“ç‚¹
                 return rs;
         } else {
             return floor(key, node.left);

@@ -5,18 +5,18 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * ÎŞÏòÍ¼
+ * æ— å‘å›¾
  * @author rays1
  *
  */
 public class Graph {
 	
-	private final int V;			// ¶¥µãÊı
-	private int E;					// ±ßÊı
-	private List<Integer>[] adj;	// ÄÚ²¿´æ´¢Êı¾İ½á¹¹£¬±£´æÃ¿¸ö¶¥µãµÄ¿É´ï¶¥µã
+	private final int V;			// é¡¶ç‚¹æ•°
+	private int E;					// è¾¹æ•°
+	private List<Integer>[] adj;	// å†…éƒ¨å­˜å‚¨æ•°æ®ç»“æ„ï¼Œä¿å­˜æ¯ä¸ªé¡¶ç‚¹çš„å¯è¾¾é¡¶ç‚¹
 	
 	/**
-	 * Ö¸¶¨¶¥µãÊı³õÊ¼»¯Í¼
+	 * æŒ‡å®šé¡¶ç‚¹æ•°åˆå§‹åŒ–å›¾
 	 * @param V
 	 */
 	@SuppressWarnings("unchecked")
@@ -29,7 +29,7 @@ public class Graph {
 	}
 	
 	/**
-	 * ´ÓÊäÈëÁ÷³õÊ¼»¯Í¼
+	 * ä»è¾“å…¥æµåˆå§‹åŒ–å›¾
 	 * @param in
 	 */
 	public Graph(Scanner in) {
@@ -37,7 +37,7 @@ public class Graph {
 	    while (in.hasNext()) {
 	        int v = in.nextInt();
 	        int w = in.nextInt();
-	        // ÅĞ¶ÏÊÇ·ñĞèÒªµ÷ÕûÊı×é´óĞ¡
+	        // åˆ¤æ–­æ˜¯å¦éœ€è¦è°ƒæ•´æ•°ç»„å¤§å°
             adjustArrayTo(Math.max(v, w) + 1);
             addEdge(v, w);
 	    }
@@ -46,7 +46,7 @@ public class Graph {
 	}
 	
 	/**
-	 * µ÷ÕûÊı×é´óĞ¡
+	 * è°ƒæ•´æ•°ç»„å¤§å°
 	 * @param size
 	 */
 	@SuppressWarnings("unchecked")
@@ -62,19 +62,19 @@ public class Graph {
 	}
 	
 	/**
-	 * Ìí¼ÓÒ»Ìõ±ß
+	 * æ·»åŠ ä¸€æ¡è¾¹
 	 * @param v
 	 * @param w
 	 */
 	public void addEdge(int v, int w) {
-	    if (v == w || hasEdge(v, w))return; // ²»ÔÊĞí³öÏÖ×Ô»·ºÍÆ½ĞĞ±ß
+	    if (v == w || hasEdge(v, w))return; // ä¸å…è®¸å‡ºç°è‡ªç¯å’Œå¹³è¡Œè¾¹
 		adj[v].add(w);
 		adj[w].add(v);
 		E ++;
 	}
 	
 	/**
-	 * ÅĞ¶ÏÄ³Ìõ±ßÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­æŸæ¡è¾¹æ˜¯å¦å­˜åœ¨
 	 * @param w
 	 * @param w
 	 * @return
@@ -87,7 +87,7 @@ public class Graph {
 	}
 	
 	/**
-	 * ºÍ¶¥µã v Á¬Í¨µÄ¶¥µã
+	 * å’Œé¡¶ç‚¹ v è¿é€šçš„é¡¶ç‚¹
 	 * @param v
 	 * @return
 	 */

@@ -7,17 +7,17 @@ import com.rays.algo.graph.DirectedEdge;
 import com.rays.algo.graph.EdgeWeightedDigraph;
 
 /**
- * Í¼µÄÍØÆËÅÅĞò
+ * å›¾çš„æ‹“æ‰‘æ’åº
  * 
  * @author rays1
  *
  */
 public class DiTopoLogical {
-    private boolean[]      marked;      // ±ê¼ÇÄ³¸ö¶¥µãÊÇ·ñÒÑ¾­±»·ÃÎÊ
-    private Stack<Integer> reverPost;   // ÄæºóĞòÅÅÁĞ
+    private boolean[]      marked;      // æ ‡è®°æŸä¸ªé¡¶ç‚¹æ˜¯å¦å·²ç»è¢«è®¿é—®
+    private Stack<Integer> reverPost;   // é€†ååºæ’åˆ—
 
     /**
-     * ÓĞÏòÍ¼ÍØÆËÅÅĞò
+     * æœ‰å‘å›¾æ‹“æ‰‘æ’åº
      * @param G
      */
     public DiTopoLogical(Digraph G) {
@@ -35,25 +35,25 @@ public class DiTopoLogical {
     }
 
     public void search(Digraph G, int v) {
-        marked[v] = true;                       // ½« v ±ê¼ÇÎªÒÑ¾­·ÃÎÊ
-        for (int w : G.adj(v))                  // ·ÃÎÊ v µÄÃ¿¸öÁÚ½Ó¶¥µã w
-            if (!marked[w]) search(G, w);       // ÈôÁÚ½Ó¶¥µãÎ´±»·ÃÎÊ£¬Ôò·ÃÎÊÆäÁÚ½Ó¶¥µã
-        reverPost.push(v);                      // Íê³ÉºóµÄ¶¥µã¼ÓÈëÕ»£¬ºóÍê³ÉµÄ¶¥µãÔÚÕ»¶¥
+        marked[v] = true;                       // å°† v æ ‡è®°ä¸ºå·²ç»è®¿é—®
+        for (int w : G.adj(v))                  // è®¿é—® v çš„æ¯ä¸ªé‚»æ¥é¡¶ç‚¹ w
+            if (!marked[w]) search(G, w);       // è‹¥é‚»æ¥é¡¶ç‚¹æœªè¢«è®¿é—®ï¼Œåˆ™è®¿é—®å…¶é‚»æ¥é¡¶ç‚¹
+        reverPost.push(v);                      // å®Œæˆåçš„é¡¶ç‚¹åŠ å…¥æ ˆï¼Œåå®Œæˆçš„é¡¶ç‚¹åœ¨æ ˆé¡¶
     }
     
     /**
-     * ÍØÆËÅÅĞòËÑË÷
+     * æ‹“æ‰‘æ’åºæœç´¢
      * @param G
      * @param v
      */
     private void search(EdgeWeightedDigraph G, int v) {
-        marked[v] = true;                       // ½« v ±ê¼ÇÎªÒÑ¾­·ÃÎÊ
-        for (DirectedEdge e : G.adj(v)) {       // ·ÃÎÊ v µÄÃ¿ÌõÁÚ±ß e
-            int w = e.to();                     // ÁÚ±ß e µÄÖÕµã
-            if (!marked[w])                     // ÈôÁÚ±ßÎ´±»·ÃÎÊ
-                search(G, w);                   // ·ÃÎÊÆäÁÚ±ß
+        marked[v] = true;                       // å°† v æ ‡è®°ä¸ºå·²ç»è®¿é—®
+        for (DirectedEdge e : G.adj(v)) {       // è®¿é—® v çš„æ¯æ¡é‚»è¾¹ e
+            int w = e.to();                     // é‚»è¾¹ e çš„ç»ˆç‚¹
+            if (!marked[w])                     // è‹¥é‚»è¾¹æœªè¢«è®¿é—®
+                search(G, w);                   // è®¿é—®å…¶é‚»è¾¹
         }
-        reverPost.push(v);                      // Íê³ÉºóµÄ¶¥µã¼ÓÈëÕ»£¬ºóÍê³ÉµÄ¶¥µãÔÚÕ»¶¥
+        reverPost.push(v);                      // å®Œæˆåçš„é¡¶ç‚¹åŠ å…¥æ ˆï¼Œåå®Œæˆçš„é¡¶ç‚¹åœ¨æ ˆé¡¶
     }
     
     public Stack<Integer> order() {

@@ -3,9 +3,9 @@ package com.rays.algo.graph.gw;
 import com.rays.algo.graph.Edge;
 
 /**
- * ¼ÓÈ¨Í¼µÄ×îĞ¡Éú³ÉÊ÷
+ * åŠ æƒå›¾çš„æœ€å°ç”Ÿæˆæ ‘
  * @author rays1
- * º¬ÓĞËùÓĞ¶¥µãµÄ£¬±ßµÄÈ¨ÖµºÍ×îĞ¡µÄ£¬ÎŞ»·Á¬Í¨×ÓÍ¼
+ * å«æœ‰æ‰€æœ‰é¡¶ç‚¹çš„ï¼Œè¾¹çš„æƒå€¼å’Œæœ€å°çš„ï¼Œæ— ç¯è¿é€šå­å›¾
  */
 public interface MinST {
     

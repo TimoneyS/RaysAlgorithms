@@ -8,7 +8,7 @@ import com.rays.algo.graph.Edge;
 import com.rays.algo.graph.EdgeWeightedGraph;
 
 /**
- * ÑÓ³ÙÉ¾³ı·ÏÆúµÄ±ßµÄPrimËã·¨
+ * å»¶è¿Ÿåˆ é™¤åºŸå¼ƒçš„è¾¹çš„Primç®—æ³•
  * 
  * @author rays1
  *
@@ -42,7 +42,7 @@ public class PrimMinSTLazy implements MinST {
             
         }
         
-        // ¼ÆËãÉú³ÉÊ÷È¨ÖØ
+        // è®¡ç®—ç”Ÿæˆæ ‘æƒé‡
         weight = 0;
         for (Edge edge : edgeTo) {
             if (edge!= null)
@@ -52,14 +52,14 @@ public class PrimMinSTLazy implements MinST {
     }
     
     /**
-     * ·ÃÎÊÒ»¸ö¶¥µã£¨½«¶¥µã±ê¼ÇÎªÒÔ·ÃÎÊ£¬½«ºÍ¶¥µãÁ¬½ÓµÄÎ´Ê§Ğ§µÄ±ß¼ÓÈë¶ÓÁĞ£©
+     * è®¿é—®ä¸€ä¸ªé¡¶ç‚¹ï¼ˆå°†é¡¶ç‚¹æ ‡è®°ä¸ºä»¥è®¿é—®ï¼Œå°†å’Œé¡¶ç‚¹è¿æ¥çš„æœªå¤±æ•ˆçš„è¾¹åŠ å…¥é˜Ÿåˆ—ï¼‰
      * @param G
      * @param v
      */
     public void visit(EdgeWeightedGraph G, int v) {
         marked[v] = true;
         for (Edge e : G.adj(v)) {
-            if (marked[e.other(v)]) continue;   // Ê§Ğ§µÄ±ß
+            if (marked[e.other(v)]) continue;   // å¤±æ•ˆçš„è¾¹
             PQ.insert(e);
         }
     }

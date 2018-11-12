@@ -14,7 +14,7 @@ import com.rays.algo.graph.g.CC;
 import com.rays.algo.graph.g.DeepthFirstPaths;
 
 /**
- * ²âÊÔÎŞÏòÍ¼
+ * æµ‹è¯•æ— å‘å›¾
  * @author rays1
  *
  */
@@ -25,11 +25,11 @@ public class TestGraph {
 	}
 	
 	/**
-	 * ²âÊÔ·ûºÅÍ¼¹ã¶ÈÓÅÏÈËÑË÷
+	 * æµ‹è¯•ç¬¦å·å›¾å¹¿åº¦ä¼˜å…ˆæœç´¢
 	 */
 	public static void testSymbolGraphBFS() {
-	    String s = "Ğ¡ºì";
-	    String e = "Ğ¡»¨";
+	    String s = "å°çº¢";
+	    String e = "å°èŠ±";
 	    
 	    String res = "test/com/rays/algo/graph/g/graphSymbol.txt";
         String deli = "  ";
@@ -45,7 +45,7 @@ public class TestGraph {
 	}
 	
 	/**
-	 * ²âÊÔ»ñÈ¡Á¬Í¨·ÖÁ¿
+	 * æµ‹è¯•è·å–è¿é€šåˆ†é‡
 	 */
 	public static void testCC() {
 	    Graph G = initGraph("graphCC.txt");
@@ -57,7 +57,7 @@ public class TestGraph {
 	}
 	
     /**
-     * ²âÊÔÉî¶ÈÓÅÏÈËÑË÷
+     * æµ‹è¯•æ·±åº¦ä¼˜å…ˆæœç´¢
      */
     public static void testDeepFirstPaths() {
         Graph G = initGraph("graphTiny.txt");
@@ -65,7 +65,7 @@ public class TestGraph {
     }
     
     /**
-     * ²âÊÔ¹ã¶ÈÓÅÏÈËÑË÷
+     * æµ‹è¯•å¹¿åº¦ä¼˜å…ˆæœç´¢
      */
     public static void testBreadthFirstPaths() {
         Graph G = initGraph("graphTiny.txt");
@@ -73,7 +73,7 @@ public class TestGraph {
     }
     
     /**
-     * Í¨ÓÃ·½·¨
+     * é€šç”¨æ–¹æ³•
      * @param s
      */
     private static void testPaths(Graph G, Paths s) {

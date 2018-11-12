@@ -1,15 +1,15 @@
 package com.rays.algo.graph;
 
 /**
- * ¼ÓÈ¨±ß
+ * åŠ æƒè¾¹
  * @author rays1
  *
  */
 public class Edge implements Comparable<Edge> {
     
-    private final int v;                    // ¶¥µãÒ»
-    private final int w;                    // ¶¥µã¶ş
-    private final double weighted;          // È¨ÖØ
+    private final int v;                    // é¡¶ç‚¹ä¸€
+    private final int w;                    // é¡¶ç‚¹äºŒ
+    private final double weighted;          // æƒé‡
     
     public Edge(int v, int w, double weighted) {
         super();
@@ -21,18 +21,18 @@ public class Edge implements Comparable<Edge> {
     public int either() { return v; }
     
     /**
-     * ·µ»Ø±ßµÄÁíÒ»¸ö¶¥µã
+     * è¿”å›è¾¹çš„å¦ä¸€ä¸ªé¡¶ç‚¹
      * @param vertex
      * @return
      */
     public int other(int vertex) {
         if (vertex == v) return w;
         else if (vertex == w) return v;
-        else throw new RuntimeException("½âÎö±ß´íÎó");
+        else throw new RuntimeException("è§£æè¾¹é”™è¯¯");
     }
 
     /**
-     * Ä¿±ê±ß±Èµ±Ç°±äÈ¨ÖØ´óµÄ·µ»ØÕıÊı
+     * ç›®æ ‡è¾¹æ¯”å½“å‰å˜æƒé‡å¤§çš„è¿”å›æ­£æ•°
      */
     public int compareTo(Edge e) {
         return Double.compare(weighted, e.getWeighted());

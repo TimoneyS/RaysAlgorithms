@@ -6,42 +6,42 @@ import com.ray.io.Out;
 import com.rays.algo.graph.Digraph;
 
 /**
- * ËÑË÷ÓÐÏòÍ¼µÄÇ¿Á¬Í¨·ÖÁ¿<br/>
- * KosarajuËã·¨<br/>
- * 1.Ê¹ÓÃDiDFOrder¼ÆËãÆä·´ÏòÍ¼µÄÄæºóÐòÅÅÁÐ<br/>
- * 2.Ê¹ÓÃ¼ÆËãµÃµ½µÄË³Ðò£¬¶ÔÍ¼½øÐÐÉî¶ÈÓÅÏÈËÑË÷<br/>
- * 3.ËùÓÐ±»Í¬Ò»¸ödfs·ÃÎÊµ½µÄ¶¥µã£¬¶¼ÔÚÍ¬Ò»¸öÇ¿Á¬Í¨·ÖÁ¿
+ * æœç´¢æœ‰å‘å›¾çš„å¼ºè¿žé€šåˆ†é‡<br/>
+ * Kosarajuç®—æ³•<br/>
+ * 1.ä½¿ç”¨DiDFOrderè®¡ç®—å…¶åå‘å›¾çš„é€†åŽåºæŽ’åˆ—<br/>
+ * 2.ä½¿ç”¨è®¡ç®—å¾—åˆ°çš„é¡ºåºï¼Œå¯¹å›¾è¿›è¡Œæ·±åº¦ä¼˜å…ˆæœç´¢<br/>
+ * 3.æ‰€æœ‰è¢«åŒä¸€ä¸ªdfsè®¿é—®åˆ°çš„é¡¶ç‚¹ï¼Œéƒ½åœ¨åŒä¸€ä¸ªå¼ºè¿žé€šåˆ†é‡
  * @author rays1
- * @Ö¤Ã÷
- *  ÒÑÖª£º°´ÕÕÄæºóÐødfs(S)·ÃÎÊµ½dfs(V)<br/>
- *  ÍÆÂÛ1 £º S -> V ÓÐÂ·¾¶<br/>
- *  ÍÆÂÛ2 £º·´ÏòÍ¼µÄÉî¶ÈÓÅÏÈËÑË÷Ê±£¬V±ÈSÏÈÍê³É<br/>
- *  ÓÉÍÆÂÛ2¿ÉµÃÁ½ÖÖÇé¿ö£º<br/>
- *      Çé¿ö1,ÏÈdfs(V)£¬Íê³ÉºóÔÙdfs(S)<br/>
- *      Çé¿ö2,ÏÈdfs(S)£¬Î´Íê³É¾Í½øÐÐdfs(V)<br/>
+ * @è¯æ˜Ž
+ *  å·²çŸ¥ï¼šæŒ‰ç…§é€†åŽç»­dfs(S)è®¿é—®åˆ°dfs(V)<br/>
+ *  æŽ¨è®º1 ï¼š S -> V æœ‰è·¯å¾„<br/>
+ *  æŽ¨è®º2 ï¼šåå‘å›¾çš„æ·±åº¦ä¼˜å…ˆæœç´¢æ—¶ï¼ŒVæ¯”Så…ˆå®Œæˆ<br/>
+ *  ç”±æŽ¨è®º2å¯å¾—ä¸¤ç§æƒ…å†µï¼š<br/>
+ *      æƒ…å†µ1,å…ˆdfs(V)ï¼Œå®ŒæˆåŽå†dfs(S)<br/>
+ *      æƒ…å†µ2,å…ˆdfs(S)ï¼Œæœªå®Œæˆå°±è¿›è¡Œdfs(V)<br/>
  *<br/>
- *      Çé¿ö1£ºÒòÎªÔ­Í¼ S -> V ÓÐÂ·¾¶£¬Ôò·´ÏòÍ¼V -> SÓÐÂ·¾¶;<br/>
- *              Èô´ËÊ±SÎ´±»·ÃÎÊµ½£¬dfs(V)±ØÈ»·ÃÎÊµ½S£¬ÔòS±ÈVÏÈÍê³É£¬Ã¬¶Ü<br/>
- *              Èô´ËÊ±SÒÑ¾­±»·ÃÎÊ£¬ÒòÎªV±ÈSÏÈÍê³É£¬ËùÒÔ dfs(S)±ØÈ»»á·ÃÎÊµ½dfs(V)£¬ÔòºÍÇé¿ö2Ò»ÖÂ<br/>
- *      Çé¿ö2£ºËµÃ÷S -> V ÓÐÂ·¾¶£¬·´ÍÆ¿ÉµÃÔ­Í¼ V -> S ÓÐÂ·¾¶<br/>
+ *      æƒ…å†µ1ï¼šå› ä¸ºåŽŸå›¾ S -> V æœ‰è·¯å¾„ï¼Œåˆ™åå‘å›¾V -> Sæœ‰è·¯å¾„;<br/>
+ *              è‹¥æ­¤æ—¶Sæœªè¢«è®¿é—®åˆ°ï¼Œdfs(V)å¿…ç„¶è®¿é—®åˆ°Sï¼Œåˆ™Sæ¯”Vå…ˆå®Œæˆï¼ŒçŸ›ç›¾<br/>
+ *              è‹¥æ­¤æ—¶Så·²ç»è¢«è®¿é—®ï¼Œå› ä¸ºVæ¯”Så…ˆå®Œæˆï¼Œæ‰€ä»¥ dfs(S)å¿…ç„¶ä¼šè®¿é—®åˆ°dfs(V)ï¼Œåˆ™å’Œæƒ…å†µ2ä¸€è‡´<br/>
+ *      æƒ…å†µ2ï¼šè¯´æ˜ŽS -> V æœ‰è·¯å¾„ï¼ŒåæŽ¨å¯å¾—åŽŸå›¾ V -> S æœ‰è·¯å¾„<br/>
  *<br/>
- *      S -> V ÓÐÂ·¾¶ && V -> S ÓÐÂ·¾¶ => S ºÍ V ÊÇÇ¿Á¬Í¨·ÖÁ¿<br/>
+ *      S -> V æœ‰è·¯å¾„ && V -> S æœ‰è·¯å¾„ => S å’Œ V æ˜¯å¼ºè¿žé€šåˆ†é‡<br/>
  */
 public class DiSCC {
     
-    private boolean[] marked;           // ±ê¼ÇÄ³¸ö¶¥µãÊÇ·ñÒÑ¾­±»·ÃÎÊ
-    private Stack<Integer> reverPost;   // ÄæºóÐòÅÅÁÐ
+    private boolean[] marked;           // æ ‡è®°æŸä¸ªé¡¶ç‚¹æ˜¯å¦å·²ç»è¢«è®¿é—®
+    private Stack<Integer> reverPost;   // é€†åŽåºæŽ’åˆ—
     private int[] id;
     private int count;
     
     public DiSCC(Digraph G) {
-        // ³õÊ¼»¯
+        // åˆå§‹åŒ–
         marked = new boolean[G.V()];
         reverPost = new Stack<Integer>();
         id = new int[G.V()];
-        // ¼ÆËãÄæºóÐòÅÅÁÐ
+        // è®¡ç®—é€†åŽåºæŽ’åˆ—
         Digraph Gr = G.reverse();
-        Out.p("·´ÏòÍ¼£º");
+        Out.p("åå‘å›¾ï¼š");
         Out.p(Gr.toString());
         for (int i = 0 ; i < Gr.V(); i++)
             if (!marked[i]) search(Gr, i);
@@ -49,7 +49,7 @@ public class DiSCC {
         for (int i = 0; i < marked.length; i++) {
             marked[i] = false;
         }
-        // Éî¶ÈÓÅÏÈËÑË÷
+        // æ·±åº¦ä¼˜å…ˆæœç´¢
         while (!reverPost.isEmpty()) {
             int v = reverPost.pop();
             Out.pt(v + " ");
@@ -62,7 +62,7 @@ public class DiSCC {
     }
     
     /**
-     * ÅÐ¶Ï¶¥µãÊÇ·ñÊÇÇ¿Á¬Í¨
+     * åˆ¤æ–­é¡¶ç‚¹æ˜¯å¦æ˜¯å¼ºè¿žé€š
      * @param v
      * @param w
      * @return
@@ -72,7 +72,7 @@ public class DiSCC {
     }
     
     /**
-     * ·µ»ØÇ¿Á¬Í¨·ÖÁ¿µÄ¸öÊý
+     * è¿”å›žå¼ºè¿žé€šåˆ†é‡çš„ä¸ªæ•°
      * @return
      */
     public int count() {
@@ -80,7 +80,7 @@ public class DiSCC {
     }
     
     /**
-     * ·µ»Ø¶¥µãËùÔÚÁ¬Í¨·ÖÁ¿µÄ±êÊ¶·û
+     * è¿”å›žé¡¶ç‚¹æ‰€åœ¨è¿žé€šåˆ†é‡çš„æ ‡è¯†ç¬¦
      * @return
      */
     public int[] id() {
@@ -88,7 +88,7 @@ public class DiSCC {
     }
     
     /**
-     * ËÑË÷Ëã·¨
+     * æœç´¢ç®—æ³•
      * 
      * @param G
      * @param v
@@ -102,9 +102,9 @@ public class DiSCC {
         reverPost.push(v);
     }
     
-    public void dfs(Digraph g, int s) {       // Éî¶ÈÓÅÏÈËÑË÷Ëã·¨
+    public void dfs(Digraph g, int s) {       // æ·±åº¦ä¼˜å…ˆæœç´¢ç®—æ³•
         marked[s] = true;
-        id[s]     = count;                    // idÓÃÓÚ¼ÇÂ¼¸Ã¶¥µãÊôÓÚÄÄÒ»¸öÁ¬Í¨·ÖÁ¿
+        id[s]     = count;                    // idç”¨äºŽè®°å½•è¯¥é¡¶ç‚¹å±žäºŽå“ªä¸€ä¸ªè¿žé€šåˆ†é‡
         for (int v : g.adj(s)) {
             if (!marked[v]) {
                 dfs(g, v);

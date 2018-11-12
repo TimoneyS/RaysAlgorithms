@@ -22,11 +22,11 @@ import com.ray.io.Out;
 public class L_0012_Min_Stack {
     
     /**
-     * ÓÃÒ»¸öÊı×é±£´æÕ»ÔªËØ£¬cursor±íÊ¾Õ»Ö¸Õë
-     * Í¬Ê±Ôö¼Ó
-     *  minIndex ×îĞ¡ÔªËØÖ¸Õë
-     *  righOf   Êı×é£¬±£´æ´óÓÚ¸ÃÔªËØµÄÏÂÒ»¸öÔªËØË÷Òı
-     *  leftOf   Êı×é£¬±£´æĞ¡ÓÚ¸ÃÔªËØµÄÏÂÒ»¸öÔªËØË÷Òı
+     * ç”¨ä¸€ä¸ªæ•°ç»„ä¿å­˜æ ˆå…ƒç´ ï¼Œcursorè¡¨ç¤ºæ ˆæŒ‡é’ˆ
+     * åŒæ—¶å¢åŠ 
+     *  minIndex æœ€å°å…ƒç´ æŒ‡é’ˆ
+     *  righOf   æ•°ç»„ï¼Œä¿å­˜å¤§äºè¯¥å…ƒç´ çš„ä¸‹ä¸€ä¸ªå…ƒç´ ç´¢å¼•
+     *  leftOf   æ•°ç»„ï¼Œä¿å­˜å°äºè¯¥å…ƒç´ çš„ä¸‹ä¸€ä¸ªå…ƒç´ ç´¢å¼•
      * @author rays1
      *
      */
@@ -70,7 +70,7 @@ public class L_0012_Min_Stack {
                 int l = -1,r = -1;
                 
                 if (number > inner[minIndex]) {
-                    // ÔÚ×îĞ¡ÖµÓÒ²à²åÈë
+                    // åœ¨æœ€å°å€¼å³ä¾§æ’å…¥
                     l = minIndex;
                     for (int i = minIndex; i < cursor && i >= 0; i = righOf[i]) {
                         if (number < inner[i]) break;
@@ -78,7 +78,7 @@ public class L_0012_Min_Stack {
                     }
                     r = righOf[l];
                 } else {
-                    // ÔÚ×îĞ¡Öµ×ó²à²åÈë
+                    // åœ¨æœ€å°å€¼å·¦ä¾§æ’å…¥
                     r = minIndex;
                     l = leftOf[r];
                     minIndex = index;

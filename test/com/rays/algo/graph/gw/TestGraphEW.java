@@ -11,7 +11,7 @@ import com.rays.algo.graph.gw.PrimMinSTLazy;
 import com.rays.algo.graph.gw.PrimMinST;
 
 /**
- * ²âÊÔÎŞÏòÍ¼
+ * æµ‹è¯•æ— å‘å›¾
  * 
  * @author rays1
  *
@@ -36,21 +36,21 @@ public class TestGraphEW {
         KruskalMinST kruskalMinST = new KruskalMinST(G);
         t.stop();
 
-        Out.p(" ====== ´òÓ¡×îĞ¡Éú³ÉÊ÷ primMSTLazy ======");
+        Out.p(" ====== æ‰“å°æœ€å°ç”Ÿæˆæ ‘ primMSTLazy ======");
         for (Edge e : primMSTLazy.edges()) {
             if (e != null)
                 Out.p(e.toString());
         }
         Out.p();
         
-        Out.p(" ====== ´òÓ¡×îĞ¡Éú³ÉÊ÷ primMST ======");
+        Out.p(" ====== æ‰“å°æœ€å°ç”Ÿæˆæ ‘ primMST ======");
         for (Edge e : primMST.edges()) {
             if (e != null)
                 Out.p(e.toString());
         }
         Out.p();
         
-        Out.p(" ====== ´òÓ¡×îĞ¡Éú³ÉÊ÷ kruskalMinST ======");
+        Out.p(" ====== æ‰“å°æœ€å°ç”Ÿæˆæ ‘ kruskalMinST ======");
         for (Edge e : kruskalMinST.edges()) {
             if (e != null)
                 Out.p(e.toString());
@@ -60,7 +60,7 @@ public class TestGraphEW {
     }
 
     private static EdgeWeightedGraph getGraph(String fileName) {
-        Timer t = Timer.create("¹¹½¨Í¼");
+        Timer t = Timer.create("æ„å»ºå›¾");
         
         t.click();
         Scanner in = In.getClassPathScanner(TestGraphEW.class, fileName);

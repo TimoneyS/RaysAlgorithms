@@ -9,7 +9,7 @@ import com.ray.io.In;
 import com.ray.io.Out;
 
 /**
- * ¼üË÷Òı¼ÆÊıÅÅĞò
+ * é”®ç´¢å¼•è®¡æ•°æ’åº
  * @author rays1
  *
  */
@@ -34,23 +34,23 @@ public class KeyIndexSort {
     public void sort(Element<?>[] a, int R) {
         int[] counts = new int[R+1];
         
-        // ÆµÂÊÍ³¼Æ
+        // é¢‘ç‡ç»Ÿè®¡
         for (int i = 0; i < a.length; i++) {
             counts[a[i].key + 1]++; 
         }
         
-        // ÆµÂÊ×ª»»ÎªË÷Òı
+        // é¢‘ç‡è½¬æ¢ä¸ºç´¢å¼•
         for (int i = 0; i < R; i++) {
             counts[i + 1]+= counts[i];
         }
         
-        // Êı¾İ·ÖÀà
+        // æ•°æ®åˆ†ç±»
         Element<?>[] aux = new Element[a.length];
         for (int i = 0; i < a.length; i++) {
             aux[counts[a[i].key]++] = a[i];
         }
         
-        // Êı¾İ»ØÌî
+        // æ•°æ®å›å¡«
         for (int i = 0; i < aux.length; i++) {
             a[i] = aux[i];
         }

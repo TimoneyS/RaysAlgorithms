@@ -1,11 +1,11 @@
 package com.rays.algo.search;
 
 /**
- * ·ûºÅ±í API<br/>
- * Ò»ÖÖ´æ´¢¼üÖµ¶ÔµÄÊı¾İ½á¹¹£¬¿ÉÒÔ¸ù¾İ¼ü´ÓÖĞÈ¡³ö¶ÔÓ¦µÄÖµ£¬ÆäÖĞÒ»Ğ©Ô¼¶¨ÈçÏÂ :</p>
- *  1.¼ü²»ÄÜÎª null<br>
- *  2.Öµ²»ÄÜÎª null<br>
- *  3.¼ü²»ÄÜÖØ¸´<br>
+ * ç¬¦å·è¡¨ API<br/>
+ * ä¸€ç§å­˜å‚¨é”®å€¼å¯¹çš„æ•°æ®ç»“æ„ï¼Œå¯ä»¥æ ¹æ®é”®ä»ä¸­å–å‡ºå¯¹åº”çš„å€¼ï¼Œå…¶ä¸­ä¸€äº›çº¦å®šå¦‚ä¸‹ :</p>
+ *  1.é”®ä¸èƒ½ä¸º null<br>
+ *  2.å€¼ä¸èƒ½ä¸º null<br>
+ *  3.é”®ä¸èƒ½é‡å¤<br>
  *  
  * @author rays1
  *
@@ -15,46 +15,46 @@ package com.rays.algo.search;
 public interface SymbolTable <Key, Value> {
     
     /**
-     * »ñÈ¡Öµ
+     * è·å–å€¼
      * @param key
      * @return
      */
     public Value get(Key key);
 
     /**
-     * ²åÈë¼üÖµ¶Ô
+     * æ’å…¥é”®å€¼å¯¹
      * @param key
      * @param value
      */
     public void put(Key key, Value value);
     
     /**
-     * É¾³ı¼üÖµ¶Ô
+     * åˆ é™¤é”®å€¼å¯¹
      * @param key
      */
     public void delete(Key key);
     
     /**
-     * ·ûºÅ±íÊÇ·ñÎª¿Õ
+     * ç¬¦å·è¡¨æ˜¯å¦ä¸ºç©º
      * @return
      */
     public boolean isEmpty();
     
     /**
-     * ÊÇ·ñ°üº¬Ä³¸ö¼üÖµ¶Ô
+     * æ˜¯å¦åŒ…å«æŸä¸ªé”®å€¼å¯¹
      * @param key
      * @return
      */
     public boolean contains(Key key);
     
     /**
-     * ¼üÖµ¶Ô¸öÊı
+     * é”®å€¼å¯¹ä¸ªæ•°
      * @return
      */
     public int size();
     
     /**
-     * »ñÈ¡ËùÓĞ¼ü
+     * è·å–æ‰€æœ‰é”®
      * @return
      */
     public Iterable<Key> keys();

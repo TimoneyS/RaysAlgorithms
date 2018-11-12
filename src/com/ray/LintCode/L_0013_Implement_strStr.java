@@ -10,7 +10,7 @@ package com.ray.LintCode;
  * <li>If source = "source" and target = "target", return -1.
  * <li>If source = "abcdabcdefg" and target = "bcd", return 1.
  * <p>
- * Challenge : O(n²) is acceptable. Can you implement an O(n) algorithm? (hint: KMP)
+ * Challenge : O(n虏) is acceptable. Can you implement an O(n) algorithm? (hint: KMP)
  * @author rays1
  *
  */

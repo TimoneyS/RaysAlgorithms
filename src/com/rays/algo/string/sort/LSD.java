@@ -8,9 +8,9 @@ import com.ray.io.In;
 import com.ray.io.Out;
 
 /**
- * ��λ�����ַ�������<br>
- * �㷨�ĺ������ڼ������������������ȶ���<br>
- * ������������У���ֵ��ȵ�Ԫ�ص����λ���ǲ���ġ�
+ * 低位优先字符串排序<br>
+ * 算法的核心在于键索引计数的排序是稳定的<br>
+ * 即在排序过程中，键值相等的元素的相对位置是不变的。
  * @author rays1
  *
  */
@@ -22,28 +22,28 @@ public class LSD {
         int w = keys[0].length();
         int R = 256;
         
-        // �Ӷ�λ����λ��ѭ��w�֣�ÿ�ְ���ָ����λ�������ַ�������
+        // 从定位到高位共循环w轮，每轮按照指定的位对所有字符串排序。
         for (int i = w-1; i >= 0; i--) {
         
             int[] counts = new int[R+1];
             
-            // Ƶ��ͳ��
+            // 频率统计
             for (int j = 0; j < N; j ++) {
                 counts[keys[j].charAt(i) + 1] += 1;
             }
             
-            // Ƶ��ת��Ϊ����
+            // 频率转换为索引
             for (int j = 0; j < R; j++) {
                 counts[j + 1]+= counts[j];
             }
             
-            // ���ݷ���
+            // 数据分类
             String[] aux = new String[N];
             for (int j = 0; j < N; j++) {
                 aux[counts[keys[j].charAt(i)]++] = keys[j];
             }
             
-            // ��д
+            // 回写
             for (int j = 0; j < aux.length; j++) {
                 keys[j] = aux[j];
             }

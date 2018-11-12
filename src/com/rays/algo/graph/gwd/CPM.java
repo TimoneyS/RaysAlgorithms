@@ -8,7 +8,7 @@ import com.rays.algo.graph.DirectedEdge;
 import com.rays.algo.graph.EdgeWeightedDigraph;
 
 /**
- * Æ½ÐÐÈÎÎñµ÷¶ÈËã·¨
+ * å¹³è¡Œä»»åŠ¡è°ƒåº¦ç®—æ³•
  * @author rays1
  *
  */
@@ -29,16 +29,16 @@ Out.p(N + " " + S + " " + T);
             int v1 = v + N;
             double weight =  Double.valueOf(arr[1]);
             
-            // Ìí¼Ó  v  -> v'
+            // æ·»åŠ   v  -> v'
             G.addEdge(v, v1, weight);
-            // Ìí¼Ó  v' -> t
+            // æ·»åŠ   v' -> t
             G.addEdge(v1, T, 0);
-            // Ìí¼Ó  s  -> v
+            // æ·»åŠ   s  -> v
             G.addEdge(S, v, 0);
             
             if (arr.length > 2) {
                 for (int j = 2; j < arr.length; j ++) {
-                    // Ìí¼Ó  v' -> w
+                    // æ·»åŠ   v' -> w
                     G.addEdge(v1, Integer.valueOf(arr[j]), 0);
                 }
             }

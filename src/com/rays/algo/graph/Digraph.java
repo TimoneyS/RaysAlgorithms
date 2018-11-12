@@ -5,40 +5,40 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * ÓĞÏòÍ¼
+ * æœ‰å‘å›¾
  * @author rays1
  *
  */
 public class Digraph {
     
-    private int V;                  // ¶¥µãÊı
-    private int E;                  // ±ßÊı
-    private List<Integer>[] adj;    // ÄÚ²¿´æ´¢Êı¾İ½á¹¹£¬±£´æÃ¿¸ö¶¥µãµÄÁÚ½Ó¶¥µã
+    private int V;                  // é¡¶ç‚¹æ•°
+    private int E;                  // è¾¹æ•°
+    private List<Integer>[] adj;    // å†…éƒ¨å­˜å‚¨æ•°æ®ç»“æ„ï¼Œä¿å­˜æ¯ä¸ªé¡¶ç‚¹çš„é‚»æ¥é¡¶ç‚¹
     
     /**
-     * Ö¸¶¨¶¥µãÊı³õÊ¼»¯Í¼
+     * æŒ‡å®šé¡¶ç‚¹æ•°åˆå§‹åŒ–å›¾
      * @param V
      */
     @SuppressWarnings("unchecked")
     public Digraph(int V) {
         this.V = V;
         this.E = 0;
-        adj = (List<Integer>[]) new LinkedList[V];            // ³õÊ¼»¯adj
+        adj = (List<Integer>[]) new LinkedList[V];            // åˆå§‹åŒ–adj
         for (int v = 0; v < V;  v ++)
             adj[v] = new LinkedList<Integer>();
     }
     
     /**
-     * ´ÓÊäÈëÁ÷³õÊ¼»¯Í¼
+     * ä»è¾“å…¥æµåˆå§‹åŒ–å›¾
      * @param in
      */
     public Digraph(Scanner in) {
         while (in.hasNext()) {
             int v = in.nextInt();
             int w = in.nextInt();
-            // ÅĞ¶ÏÊÇ·ñĞèÒªµ÷ÕûÊı×é´óĞ¡
+            // åˆ¤æ–­æ˜¯å¦éœ€è¦è°ƒæ•´æ•°ç»„å¤§å°
             adjustArrayTo(Math.max(v, w) + 1);
-            if (v == w || hasEdge(v, w)) // ²»ÔÊĞí³öÏÖ×Ô»·
+            if (v == w || hasEdge(v, w)) // ä¸å…è®¸å‡ºç°è‡ªç¯
                 continue;
             addEdge(v, w);
         }
@@ -48,18 +48,18 @@ public class Digraph {
     }
     
     /**
-     * Ìí¼ÓÒ»Ìõ±ß
+     * æ·»åŠ ä¸€æ¡è¾¹
      * @param v
      * @param w
      */
     public void addEdge(int v, int w) {
-        if (v == w || hasEdge(v, w)) return; // ²»ÔÊĞí³öÏÖ×Ô»·ºÍÆ½ĞĞ±ß
+        if (v == w || hasEdge(v, w)) return; // ä¸å…è®¸å‡ºç°è‡ªç¯å’Œå¹³è¡Œè¾¹
         adj[v].add(w);
         E ++;
     }
     
     /**
-     * ·µ»Ø¶¥µãµÄÁÚ½Ó¶¥µã
+     * è¿”å›é¡¶ç‚¹çš„é‚»æ¥é¡¶ç‚¹
      * @param v
      * @return
      */
@@ -68,7 +68,7 @@ public class Digraph {
     }
     
     /**
-     * ·µ»Ø¸ÃÍ¼µÄ·´ÏòÍ¼
+     * è¿”å›è¯¥å›¾çš„åå‘å›¾
      * @return
      */
     public Digraph reverse() {
@@ -81,7 +81,7 @@ public class Digraph {
     }
     
     /**
-     * ÅĞ¶ÏÄ³Ìõ±ßÊÇ·ñ´æÔÚ
+     * åˆ¤æ–­æŸæ¡è¾¹æ˜¯å¦å­˜åœ¨
      * @param w
      * @param w
      * @return
@@ -94,7 +94,7 @@ public class Digraph {
     }
     
     /**
-     * ÅĞ¶ÏÊÇ·ñĞèÒªµ÷ÕûÊı×é´óĞ¡
+     * åˆ¤æ–­æ˜¯å¦éœ€è¦è°ƒæ•´æ•°ç»„å¤§å°
      * @param size
      */
     @SuppressWarnings("unchecked")

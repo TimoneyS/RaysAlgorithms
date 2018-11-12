@@ -9,7 +9,7 @@ import com.rays.algo.graph.Digraph;
 import com.rays.algo.graph.Paths;
 
 /**
- * ²âÊÔÓĞÏòÍ¼
+ * æµ‹è¯•æœ‰å‘å›¾
  * @author rays1
  *
  */
@@ -20,14 +20,14 @@ public class TestDigraph {
 	}
 	
 	/**
-	 * ²âÊÔÇ¿Á¬Í¨·ÖÁ¿
+	 * æµ‹è¯•å¼ºè¿é€šåˆ†é‡
 	 */
 	public static void testSCC() {
 	    Digraph G = getDigraph("graphCC2.txt");
 	    DiSCC scc = new DiSCC(G);
 	    
 	    for (int i = 0; i < scc.count(); i ++) {
-	        Out.pf("Á¬Í¨·ÖÁ¿ : %d\n[", i);
+	        Out.pf("è¿é€šåˆ†é‡ : %d\n[", i);
 	        for (int j = 0; j < scc.id().length; j ++) {
 	            if (scc.id()[j] == i) Out.pt(" " + j);
 	        }
@@ -37,7 +37,7 @@ public class TestDigraph {
 	}
 	
 	/**
-	 * ²âÊÔÍØÆËÅÅĞò
+	 * æµ‹è¯•æ‹“æ‰‘æ’åº
 	 * @return
 	 */
 	public static void testDiDFOrder() {
@@ -50,12 +50,12 @@ public class TestDigraph {
 	}
 	
 	/**
-	 * ²âÊÔÓĞÏòÍ¼£¬Ñ°ÕÒ»·
+	 * æµ‹è¯•æœ‰å‘å›¾ï¼Œå¯»æ‰¾ç¯
 	 */
 	public static void testDiCycle() {
 	    Digraph G = getDigraph("digraphCycle.txt");
 	    DiCycle diCycle = new DiCycle(G, 0);
-	    Out.p( (diCycle.hasCycle() ? "" : "²»") + "´æÔÚ»·");
+	    Out.p( (diCycle.hasCycle() ? "" : "ä¸") + "å­˜åœ¨ç¯");
 	    
 	    while (!diCycle.getCycle().isEmpty())
 	        Out.pt(diCycle.getCycle().pop() + " -> ");
@@ -63,7 +63,7 @@ public class TestDigraph {
 	}
 	
 	 /**
-     * ²âÊÔÓĞÏòÍ¼µÄ¹ã¶ÈÓÅÏÈÂ·¾¶
+     * æµ‹è¯•æœ‰å‘å›¾çš„å¹¿åº¦ä¼˜å…ˆè·¯å¾„
      */
     public static void testDiBFP() {
         Digraph G = getDigraph("digraph.txt");
@@ -81,7 +81,7 @@ public class TestDigraph {
     }
 	
 	/**
-	 * ²âÊÔÓĞÏòÍ¼µÄÉî¶ÈÓÅÏÈÂ·¾¶
+	 * æµ‹è¯•æœ‰å‘å›¾çš„æ·±åº¦ä¼˜å…ˆè·¯å¾„
 	 */
 	public static void testDiDFP() {
 	    Digraph G = getDigraph("digraph.txt");

@@ -9,18 +9,18 @@ import com.rays.algo.graph.Graph;
 import com.rays.algo.graph.Paths;
 
 /**
- * ¹ã¶ÈÓÅÏÈËÑË÷<br>
- *  Ñ­»··ÃÎÊ¶ÓÁĞËùÓĞ¶¥µã£¬ÔÚ·ÃÎÊÆäÖĞÒ»¸ö¶¥µãÊ±<br>
- *    1.»ñÈ¡ÆäËùÓĞÎ´±»±ê¼ÇµÄ¶¥µã<br>
- *    2.½«·ûºÏµÄÏàÁÚµÄ¶¥µã¼ÓÈë¶ÓÁĞ²¢±ê¼Ç<br>
+ * å¹¿åº¦ä¼˜å…ˆæœç´¢<br>
+ *  å¾ªç¯è®¿é—®é˜Ÿåˆ—æ‰€æœ‰é¡¶ç‚¹ï¼Œåœ¨è®¿é—®å…¶ä¸­ä¸€ä¸ªé¡¶ç‚¹æ—¶<br>
+ *    1.è·å–å…¶æ‰€æœ‰æœªè¢«æ ‡è®°çš„é¡¶ç‚¹<br>
+ *    2.å°†ç¬¦åˆçš„ç›¸é‚»çš„é¡¶ç‚¹åŠ å…¥é˜Ÿåˆ—å¹¶æ ‡è®°<br>
  * @author rays1
  *
  */
 public class BreadthFirstPaths implements Paths {
 
-    private boolean[]           marked;     // ±ê¼ÇÄ³¸ö¶¥µãËÑË÷Ê±ÊÇ·ñÒÑ¾­±»·ÃÎÊ
-    private int[]               edgeTo;     // ´æ·ÅÖÁÄ³µãµÄÒ»¸öÁÚ½Óµã
-    private int                 start;      // Æğµã
+    private boolean[]           marked;     // æ ‡è®°æŸä¸ªé¡¶ç‚¹æœç´¢æ—¶æ˜¯å¦å·²ç»è¢«è®¿é—®
+    private int[]               edgeTo;     // å­˜æ”¾è‡³æŸç‚¹çš„ä¸€ä¸ªé‚»æ¥ç‚¹
+    private int                 start;      // èµ·ç‚¹
     private Queue<Integer>      queue;
     
     private BreadthFirstPaths(int V, int s) {
@@ -35,7 +35,7 @@ public class BreadthFirstPaths implements Paths {
     }
     
     /**
-     * ÎŞÏòÍ¼¹ã¶ÈÓÅÏÈ
+     * æ— å‘å›¾å¹¿åº¦ä¼˜å…ˆ
      * @param G
      * @param s
      */
@@ -45,7 +45,7 @@ public class BreadthFirstPaths implements Paths {
     }
     
     /**
-     * ÓĞÏòÍ¼¹ã¶ÈÓÅÏÈ
+     * æœ‰å‘å›¾å¹¿åº¦ä¼˜å…ˆ
      * @param G
      * @param s
      */

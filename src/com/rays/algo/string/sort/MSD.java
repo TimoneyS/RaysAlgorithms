@@ -8,17 +8,17 @@ import com.ray.io.In;
 import com.ray.io.Out;
 
 /**
- * ¸ßÎ»ÓÅÏÈµÄ×Ö·û´®ÅÅĞò
+ * é«˜ä½ä¼˜å…ˆçš„å­—ç¬¦ä¸²æ’åº
  * @author rays1
  *
  */
 public class MSD {
     
-    private static int      R = 256; // »ùÊı
-    private static String[] aux;     // »º´æÊı×é
+    private static int      R = 256; // åŸºæ•°
+    private static String[] aux;     // ç¼“å­˜æ•°ç»„
 
     /**
-     * ·â×°»ñÈ¡×Ö·û´®µÄ×Ö·û·½·¨£¬×Ö·û´®Î²²¿·µ»Ø-1
+     * å°è£…è·å–å­—ç¬¦ä¸²çš„å­—ç¬¦æ–¹æ³•ï¼Œå­—ç¬¦ä¸²å°¾éƒ¨è¿”å›-1
      * @param s
      * @param i
      * @return
@@ -48,7 +48,7 @@ public class MSD {
         
         int[] counts = new int[R + 2];
         
-        // ¼üË÷ÒıÅÅĞò
+        // é”®ç´¢å¼•æ’åº
         for (int i = lo; i <= hi; i++) {
             counts[getChar(a[i], d) + 2] ++;
         }
@@ -63,7 +63,7 @@ public class MSD {
             a[i] = aux[i-lo];
         }
         
-        // ±¾´ÎÅÅĞòÍ¬Ò»×ÖÄ¸¿ªÊ¼µÄ×Ö·û´®£¬ÇĞ·ÖÎª×ÓÊı×éµİ¹éÅÅĞò
+        // æœ¬æ¬¡æ’åºåŒä¸€å­—æ¯å¼€å§‹çš„å­—ç¬¦ä¸²ï¼Œåˆ‡åˆ†ä¸ºå­æ•°ç»„é€’å½’æ’åº
         for (int i = 0; i < R; i++) {
             keyIndexSord(a, lo+counts[i], lo+counts[i+1]-1, d+1);
         }

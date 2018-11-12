@@ -6,7 +6,7 @@ import com.ray.io.Out;
 import com.ray.util.Timer;
 
 /**
- * 最长回文子序列
+ * 鏈�闀垮洖鏂囧瓙搴忓垪
  * @author rays1
  *
  */

@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * ¼ÓÈ¨ÓĞÏòÍ¼(²»ÔÊĞí×Ô»·ºÍÆ½ĞĞ±ß)
+ * åŠ æƒæœ‰å‘å›¾(ä¸å…è®¸è‡ªç¯å’Œå¹³è¡Œè¾¹)
  * @author rays1
  *
  */
 public class EdgeWeightedDigraph {
     
-    private final int   V;              // ¶¥µãÊı
-    private int         E;              // ±ßÊı
-    private List<DirectedEdge>[] adj;    // ÄÚ²¿´æ´¢Êı¾İ½á¹¹£¬±£´æÃ¿¸ö¶¥µãµÄ¿É´ï±ß
+    private final int   V;              // é¡¶ç‚¹æ•°
+    private int         E;              // è¾¹æ•°
+    private List<DirectedEdge>[] adj;    // å†…éƒ¨å­˜å‚¨æ•°æ®ç»“æ„ï¼Œä¿å­˜æ¯ä¸ªé¡¶ç‚¹çš„å¯è¾¾è¾¹
     
     @SuppressWarnings("unchecked")
     public EdgeWeightedDigraph(int V) {
@@ -25,7 +25,7 @@ public class EdgeWeightedDigraph {
     }
     
     /**
-     * ´ÓÊäÈëÁ÷³õÊ¼»¯Í¼
+     * ä»è¾“å…¥æµåˆå§‹åŒ–å›¾
      * @param in
      */
     public EdgeWeightedDigraph(Scanner in) {
@@ -40,7 +40,7 @@ public class EdgeWeightedDigraph {
     }
     
     /**
-     * µ÷ÕûÊı×é´óĞ¡
+     * è°ƒæ•´æ•°ç»„å¤§å°
      * @param size
      */
     @SuppressWarnings("unchecked")
@@ -57,7 +57,7 @@ public class EdgeWeightedDigraph {
     
     
     /**
-     * ·µ»ØÓĞÏòÍ¼µÄËùÓĞ±ß
+     * è¿”å›æœ‰å‘å›¾çš„æ‰€æœ‰è¾¹
      * @return
      */
     public Iterable<DirectedEdge> edges() {
@@ -72,20 +72,20 @@ public class EdgeWeightedDigraph {
     }
     
     /**
-     * Ìí¼ÓÒ»Ìõ±ß
+     * æ·»åŠ ä¸€æ¡è¾¹
      * @param v
      * @param w
      */
     public void addEdge(DirectedEdge e) {
         int from = e.from();
         int to = e.to();
-        if (from == to || hasEdge(from, to)) return;  // ²»ÔÊĞí³öÏÖ×Ô»·
+        if (from == to || hasEdge(from, to)) return;  // ä¸å…è®¸å‡ºç°è‡ªç¯
         adj[from].add(e);
         E ++;
     }
     
     /**
-     * Ìí¼ÓÒ»Ìõ±ß
+     * æ·»åŠ ä¸€æ¡è¾¹
      * @param v
      * @param w
      */
@@ -94,7 +94,7 @@ public class EdgeWeightedDigraph {
     }
     
     /**
-     * ÅĞ¶ÏÄ³Ìõ±ßÊÇ·ñ´æÔÚ
+     * åˆ¤æ–­æŸæ¡è¾¹æ˜¯å¦å­˜åœ¨
      * @param w
      * @param w
      * @return
@@ -105,7 +105,7 @@ public class EdgeWeightedDigraph {
     }
     
     /**
-     * ºÍ¶¥µã v Á¬Í¨µÄ¶¥µã
+     * å’Œé¡¶ç‚¹ v è¿é€šçš„é¡¶ç‚¹
      * @param v
      * @return
      */
@@ -114,7 +114,7 @@ public class EdgeWeightedDigraph {
     }
     
     /**
-     * ´òÓ¡Í¼
+     * æ‰“å°å›¾
      */
     public String toString() {
         String s = V + " vertices, " + E + " Edges\n";
@@ -128,7 +128,7 @@ public class EdgeWeightedDigraph {
     }
     
     /**
-     * Éî¸´ÖÆ
+     * æ·±å¤åˆ¶
      * @return
      */
     public EdgeWeightedDigraph copy() {

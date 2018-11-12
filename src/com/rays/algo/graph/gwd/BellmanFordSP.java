@@ -8,11 +8,11 @@ import com.rays.algo.graph.DirectedEdge;
 import com.rays.algo.graph.EdgeWeightedDigraph;
 
 /**
- * BellmanFordËã·¨<br/>
- * ÔÚÈÎÒâº¬ÓÐV¸ö¶¥µãµÄ¼ÓÈ¨ÓÐÏòÍ¼ÖÐ¸ø¶¨Æðµãs£¬
- * ´ÓsÎÞ·¨µ½´ïÈÎºÎ¸ºÈ¨ÖØ»·£¬ÔòËã·¨ÈçÏÂ£º<br/><br/>
- * ½« distTo[s] ³õÊ¼»¯Îª0£¬ÆäËû distTo[] ÔªËØ³õÊ¼»¯ÎªÕýÎÞÇî<br/>
- * ÒÔÈÎÒâË³Ðò·ÅËÉÓÐÏòÍ¼µÄËùÓÐ±ß£¬ÖØ¸´ V ÂÖ¡£
+ * BellmanFordç®—æ³•<br/>
+ * åœ¨ä»»æ„å«æœ‰Vä¸ªé¡¶ç‚¹çš„åŠ æƒæœ‰å‘å›¾ä¸­ç»™å®šèµ·ç‚¹sï¼Œ
+ * ä»Žsæ— æ³•åˆ°è¾¾ä»»ä½•è´Ÿæƒé‡çŽ¯ï¼Œåˆ™ç®—æ³•å¦‚ä¸‹ï¼š<br/><br/>
+ * å°† distTo[s] åˆå§‹åŒ–ä¸º0ï¼Œå…¶ä»– distTo[] å…ƒç´ åˆå§‹åŒ–ä¸ºæ­£æ— ç©·<br/>
+ * ä»¥ä»»æ„é¡ºåºæ”¾æ¾æœ‰å‘å›¾çš„æ‰€æœ‰è¾¹ï¼Œé‡å¤ V è½®ã€‚
  * 
  * @author rays1
  *
@@ -46,7 +46,7 @@ public class BellmanFordSP extends SP {
     @Override
     protected void relax(EdgeWeightedDigraph G, int v) {
         
-        Out.pf("·ÅËÉ%s:\n", v);
+        Out.pf("æ”¾æ¾%s:\n", v);
         onQ[v] = false;
         for (DirectedEdge e : G.adj(v)) {
             
@@ -55,18 +55,18 @@ public class BellmanFordSP extends SP {
                 distTo[w] = distTo[v] + e.weighted();
                 edgeTo[w] = e;
                 
-                Out.pf("  ¶¥µã%s - ±ß %s -> %s ¼ÓÈë×î¶ÌÂ·¾¶£¬", w, v, w);
+                Out.pf("  é¡¶ç‚¹%s - è¾¹ %s -> %s åŠ å…¥æœ€çŸ­è·¯å¾„ï¼Œ", w, v, w);
                 
                 if (onQ[w] == false) {
-                    Out.pf("¶¥µã¼ÓÈë¶ÓÁÐ\n", w);
+                    Out.pf("é¡¶ç‚¹åŠ å…¥é˜Ÿåˆ—\n", w);
                     queue.add(w);
                     onQ[w] = true;
                 } else {
-                    Out.pf("¶¥µãÒÑ¾­ÔÚ¶ÓÁÐ\n", w);
+                    Out.pf("é¡¶ç‚¹å·²ç»åœ¨é˜Ÿåˆ—\n", w);
                 }
                 
             } else {
-                Out.pf("  ¶¥µã%s - ±ß %s -> %s ·ÏÆú\n", w, v, w);
+                Out.pf("  é¡¶ç‚¹%s - è¾¹ %s -> %s åºŸå¼ƒ\n", w, v, w);
             }
             
         }
@@ -75,7 +75,7 @@ public class BellmanFordSP extends SP {
         
     }
     
-    /*// ¼òµ¥ÊµÏÖ·½Ê½ ÐèÒª Ö´ÐÐV * E ´Î£¬ÆäÖÐÓÐÐí¶àÎÞÓÃµÄ·ÅËÉ²Ù×÷
+    /*// ç®€å•å®žçŽ°æ–¹å¼ éœ€è¦ æ‰§è¡ŒV * E æ¬¡ï¼Œå…¶ä¸­æœ‰è®¸å¤šæ— ç”¨çš„æ”¾æ¾æ“ä½œ
     public BellmanFordSP(EdgeWeightedDigraph G, int s) {
         
         distTo = new double[G.V()];

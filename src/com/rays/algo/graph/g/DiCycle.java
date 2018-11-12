@@ -5,7 +5,7 @@ import java.util.Stack;
 import com.rays.algo.graph.Digraph;
 
 /**
- * 检测有向环
+ * 妫�娴嬫湁鍚戠幆
  * @author rays1
  *
  */
@@ -36,9 +36,9 @@ public class DiCycle {
                 search(G, w);
             } else if (onStack[w]) {
                 cycle = new Stack<Integer>();
-                cycle.push(w);  // 终点是w
+                cycle.push(w);  // 缁堢偣鏄痺
                 for (int i = v; i != w; i = pathTo[i]) cycle.push(i);
-                cycle.push(w);  // 起点是w
+                cycle.push(w);  // 璧风偣鏄痺
             }
             
         }

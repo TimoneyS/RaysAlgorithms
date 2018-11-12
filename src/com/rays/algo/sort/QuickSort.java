@@ -4,12 +4,12 @@ import static com.ray.util.ArrayUtil.less;
 import static com.ray.util.ArrayUtil.swap;
 
 /**
- * <b>��������</b>
+ * <b>快速排序</b>
  * <p>
- * ����˼�룺<br>
- * ���ٵ�����Ҳ�ǽ����黮��Ϊ������Ȼ�������㷨�ĺ�������Ѱ�ҷָ�㡣<br>
- * �ָ���������һ��Ԫ�أ�������Ԫ��С�������Ҳ��Ԫ�ش�����<br>
- * Ȼ�����շָ�㻮�������飬�����������Ӧ�÷ָ����ҡ�
+ * 基本思想：<br>
+ * 快速的排序也是将数组划分为子数组然后排序，算法的核心在于寻找分割点。<br>
+ * 分割点是数组的一个元素，其左侧的元素小于它，右侧的元素大于它<br>
+ * 然后依照分割点划分子数组，对子数组继续应用分割点查找。
  * <br>
  * @author Ray
  *
@@ -25,22 +25,22 @@ public class QuickSort<T extends Comparable<?>> extends Sort<T> {
     }
     
     /**
-     * �зַ���
+     * 切分方法
      * @param arr
      * @param lo
      * @param hi
      * @return
      */
     private int partition(T[] arr, int lo, int hi) {
-        int l = lo + 1;                                 // �������
-        int r = hi;                                     // �Ҳ�����
+        int l = lo + 1;                                 // 左侧索引
+        int r = hi;                                     // 右侧索引
         while (true) {
-            while (less(arr, lo, r) && r > lo) r --;    // ���Ҳ�Ѱ��һ��������arr[lo]��Ԫ��
-            while (less(arr, l, lo) && l < hi) l ++;    // �����Ѱ��һ����С��arr[lo]��Ԫ��
-            if (r > l) swap(arr, r, l);                 // �����Ҳ಻����������Ԫ���໥����
+            while (less(arr, lo, r) && r > lo) r --;    // 从右侧寻找一个不大于arr[lo]的元素
+            while (less(arr, l, lo) && l < hi) l ++;    // 从左侧寻找一个不小于arr[lo]的元素
+            if (r > l) swap(arr, r, l);                 // 将左右侧不符合条件的元素相互交换
             else break;
         }
-        swap(arr, r, lo);                               // r����λ�ü�Ϊ�е㣬��arr[lo]�����е�
+        swap(arr, r, lo);                               // r所在位置即为切点，将arr[lo]放至切点
         return r;
     }
 	

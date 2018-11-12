@@ -40,7 +40,7 @@ public class RaysStringST<Value> implements StringST<Value> {
     }
     
     /**
-     * ·Çµİ¹éµÄÌí¼Ó·½Ê½
+     * éé€’å½’çš„æ·»åŠ æ–¹å¼
      * @param key
      * @param val
      * @param dummyTag
@@ -71,7 +71,7 @@ public class RaysStringST<Value> implements StringST<Value> {
     
     
     /**
-     * µİ¹éµÄÌí¼ÓµÄ·½Ê½
+     * é€’å½’çš„æ·»åŠ çš„æ–¹å¼
      * @param node
      * @param key
      * @param val

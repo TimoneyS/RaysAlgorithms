@@ -7,7 +7,7 @@ import java.util.Stack;
 import com.rays.algo.graph.Digraph;
 
 /**
- * 深度优先过程中，几种顶点排序方式
+ * 娣卞害浼樺厛杩囩▼涓紝鍑犵椤剁偣鎺掑簭鏂瑰紡
  * @author rays1
  *
  */

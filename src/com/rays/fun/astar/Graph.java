@@ -3,7 +3,7 @@ package com.rays.fun.astar;
 import java.util.Scanner;
 
 /**
- * µØÍ¼µÄ³éÏó¶ÔÏó
+ * åœ°å›¾çš„æŠ½è±¡å¯¹è±¡
  * @author rays1
  *
  */
@@ -37,7 +37,7 @@ public class Graph {
     }
     
     /**
-     * »ñÈ¡ÁÚ½Óµã
+     * èŽ·å–é‚»æŽ¥ç‚¹
      * @param row
      * @param col
      * @return
@@ -48,13 +48,13 @@ public class Graph {
         int index = 0;
         
         if (row > 0)
-            arr[index++] = new int[]{row - 1, col}; // ÉÏ
+            arr[index++] = new int[]{row - 1, col}; // ä¸Š
         if (row < width - 1)
-            arr[index++] = new int[]{row + 1, col}; // ÏÂ
+            arr[index++] = new int[]{row + 1, col}; // ä¸‹
         if (col > 0)
-            arr[index++] = new int[]{row, col - 1}; // ×ó
+            arr[index++] = new int[]{row, col - 1}; // å·¦
         if (col < height - 1)
-            arr[index++] = new int[]{row, col + 1}; // ÓÒ
+            arr[index++] = new int[]{row, col + 1}; // å³
         
         int[][] chs = new int[index][2];
         

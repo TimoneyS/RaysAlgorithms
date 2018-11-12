@@ -11,8 +11,8 @@ public class KruskalMinST implements MinST {
     
     private Edge[]      edges;
     private MinPQ<Edge> pq;
-    private int[]       group;      // ±£´æÁªÍ¨·ÖÁ¿µÄ·Ö×é
-    private int         id;         // ÁªÍ¨·ÖÁ¿·Ö×éID
+    private int[]       group;      // ä¿å­˜è”é€šåˆ†é‡çš„åˆ†ç»„
+    private int         id;         // è”é€šåˆ†é‡åˆ†ç»„ID
     private double      weight;
     
     public KruskalMinST(EdgeWeightedGraph G) {
@@ -39,22 +39,22 @@ public class KruskalMinST implements MinST {
             int v = e.either();
             int w = e.other(v);
             
-            // Á½¸ö¶¥µãÊôÓÚÍ¬Ò»¸ö×ÓÊ÷£¬Èç¼ÓÈë»á³É»·£¬Òò´Ë¸Ã±ßÊôÓÚ·ÏÆú±ß£¬Ìø¹ı
+            // ä¸¤ä¸ªé¡¶ç‚¹å±äºåŒä¸€ä¸ªå­æ ‘ï¼Œå¦‚åŠ å…¥ä¼šæˆç¯ï¼Œå› æ­¤è¯¥è¾¹å±äºåºŸå¼ƒè¾¹ï¼Œè·³è¿‡
             if (group[v] == group[w] && group[v] != -1) {
                 continue;
             }
             
             if (group[v] == group[w] && group[v] == -1) {
-                // Á½¸ö¶¥µã¶¼ÊÇ¶ÀÁ¢¶¥µã
+                // ä¸¤ä¸ªé¡¶ç‚¹éƒ½æ˜¯ç‹¬ç«‹é¡¶ç‚¹
                 group[v] = id;
                 group[w] = id;
                 id++;
-            } else if (group[v] == -1) { // v ÊÇ¶ÀÁ¢¶¥µã£¬½«v¼ÓÈëwËùÔÚµÄ×ÓÊı
+            } else if (group[v] == -1) { // v æ˜¯ç‹¬ç«‹é¡¶ç‚¹ï¼Œå°†våŠ å…¥wæ‰€åœ¨çš„å­æ•°
                 group[v] = group[w];
-            } else if (group[w] == -1) { // w ÊÇ¶ÀÁ¢¶¥µã£¬½«w¼ÓÈëwËùÔÚµÄ×ÓÊ÷
+            } else if (group[w] == -1) { // w æ˜¯ç‹¬ç«‹é¡¶ç‚¹ï¼Œå°†wåŠ å…¥wæ‰€åœ¨çš„å­æ ‘
                 group[w] = group[v];
             } else {
-                // v w·Ö±ğÊôÓÚ¶ÀÁ¢µÄ×ÓÊ÷£¬Á½¸ö×ÓÊ÷ºÏ²¢
+                // v wåˆ†åˆ«å±äºç‹¬ç«‹çš„å­æ ‘ï¼Œä¸¤ä¸ªå­æ ‘åˆå¹¶
                 int temp = group[w];
                 for (int i = 0; i < group.length; i++) {
                     if (group[i] == temp)

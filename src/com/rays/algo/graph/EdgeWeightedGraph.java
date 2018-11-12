@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * ¼ÓÈ¨ÎŞÏòÍ¼(²»ÔÊĞí×Ô»·ºÍÆ½ĞĞ±ß)
+ * åŠ æƒæ— å‘å›¾(ä¸å…è®¸è‡ªç¯å’Œå¹³è¡Œè¾¹)
  * @author rays1
  *
  */
 public class EdgeWeightedGraph {
     
-    private final int       V;   // ¶¥µãÊı
-    private int             E;   // ±ßÊı
-    private List<Edge>[]  adj; // ÄÚ²¿´æ´¢Êı¾İ½á¹¹£¬±£´æÃ¿¸ö¶¥µãµÄ¿É´ï±ß
+    private final int       V;   // é¡¶ç‚¹æ•°
+    private int             E;   // è¾¹æ•°
+    private List<Edge>[]  adj; // å†…éƒ¨å­˜å‚¨æ•°æ®ç»“æ„ï¼Œä¿å­˜æ¯ä¸ªé¡¶ç‚¹çš„å¯è¾¾è¾¹
     
     /**
-     * ´ÓÊäÈëÁ÷³õÊ¼»¯Í¼
+     * ä»è¾“å…¥æµåˆå§‹åŒ–å›¾
      * @param in
      */
     public EdgeWeightedGraph(Scanner in) {
@@ -32,7 +32,7 @@ public class EdgeWeightedGraph {
     }
     
     /**
-     * µ÷ÕûÊı×é´óĞ¡
+     * è°ƒæ•´æ•°ç»„å¤§å°
      * @param size
      */
     @SuppressWarnings("unchecked")
@@ -48,21 +48,21 @@ public class EdgeWeightedGraph {
     }
     
     /**
-     * Ìí¼ÓÒ»Ìõ±ß
+     * æ·»åŠ ä¸€æ¡è¾¹
      * @param v
      * @param w
      */
     public void addEdge(Edge e) {
         int v = e.either();
         int w = e.other(v);
-        if (v == w || hasEdge(v, w)) return; // ²»ÔÊĞí³öÏÖ×Ô»·
+        if (v == w || hasEdge(v, w)) return; // ä¸å…è®¸å‡ºç°è‡ªç¯
         adj[v].add(e);
         adj[w].add(e);        
         E ++;
     }
     
     /**
-     * ÅĞ¶ÏÄ³Ìõ±ßÊÇ·ñ´æÔÚ
+     * åˆ¤æ–­æŸæ¡è¾¹æ˜¯å¦å­˜åœ¨
      * @param w
      * @param w
      * @return
@@ -73,7 +73,7 @@ public class EdgeWeightedGraph {
     }
     
     /**
-     * ºÍ¶¥µã v Á¬Í¨µÄ¶¥µã
+     * å’Œé¡¶ç‚¹ v è¿é€šçš„é¡¶ç‚¹
      * @param v
      * @return
      */
@@ -82,7 +82,7 @@ public class EdgeWeightedGraph {
     }
     
     /**
-     * ´òÓ¡Í¼
+     * æ‰“å°å›¾
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -98,7 +98,7 @@ public class EdgeWeightedGraph {
         return sb.toString();
     }
     /**
-     * »ñÈ¡ËùÓĞ±ß
+     * è·å–æ‰€æœ‰è¾¹
      * @return
      */
     public Iterable<Edge> edges() {
@@ -120,13 +120,13 @@ public class EdgeWeightedGraph {
     }
     
     /**
-     * ¶¥µãÊı
+     * é¡¶ç‚¹æ•°
      * @return
      */
     public int V() { return V; }
     
     /**
-     * ±ßÊ÷
+     * è¾¹æ ‘
      * @return
      */
     public int E() { return E; }

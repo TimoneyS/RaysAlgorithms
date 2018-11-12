@@ -17,70 +17,70 @@ public class TestSort {
     }
 
     /**
-     * ²âÊÔÑ¡ÔñÅÅĞò
+     * æµ‹è¯•é€‰æ‹©æ’åº
      */
     public static void testSelectionSort() {
         Integer[] arr = integerArr(40000);
         ArrayUtil.shuffle(arr);
-        testSort("Ñ¡ÔñÅÅĞò", new SelectionSort<Integer>(), arr);
+        testSort("é€‰æ‹©æ’åº", new SelectionSort<Integer>(), arr);
     }
 
     /**
-     * ²âÊÔ²åÈëÅÅĞò
+     * æµ‹è¯•æ’å…¥æ’åº
      */
     public static void testInsertionSort() {
         Integer[] arr = integerArr(40000);
         ArrayUtil.shuffle(arr);
-        testSort("²åÈëÅÅĞò", new InsertionSort<Integer>(), arr);
+        testSort("æ’å…¥æ’åº", new InsertionSort<Integer>(), arr);
     }
     
     /**
-     * ²âÊÔÏ£¶ûÅÅĞò
+     * æµ‹è¯•å¸Œå°”æ’åº
      */
     public static void testShellSort() {
         Integer[] arr = integerArr(200000);
         ArrayUtil.shuffle(arr);
-        testSort("Ï£¶ûÅÅĞò", new ShellSort<Integer>(), arr);
+        testSort("å¸Œå°”æ’åº", new ShellSort<Integer>(), arr);
     }
     
     /**
-     * ²âÊÔ×Ô¶¥ÏòÏÂµÄ¹é²¢ÅÅĞò
+     * æµ‹è¯•è‡ªé¡¶å‘ä¸‹çš„å½’å¹¶æ’åº
      */
     public static void testMergeSortU2D() {
         Integer[] arr = integerArr(1000000);
         ArrayUtil.shuffle(arr);
-        testSort("×Ô¶¥ÏòÏÂ¹é²¢ÅÅĞò", new MergeSort.UpToDown<>(), arr);
+        testSort("è‡ªé¡¶å‘ä¸‹å½’å¹¶æ’åº", new MergeSort.UpToDown<>(), arr);
     }
     
     /**
-     * ²âÊÔ×Ôµ×ÏòÉÏµÄ¹é²¢ÅÅĞò
+     * æµ‹è¯•è‡ªåº•å‘ä¸Šçš„å½’å¹¶æ’åº
      */
     public static void testMergeSortD2U() {
         Integer[] arr = integerArr(1000000);
         ArrayUtil.shuffle(arr);
-        testSort("×Ôµ×ÏòÉÏ¹é²¢ÅÅĞò", new MergeSort.DownToUp<>(), arr);
+        testSort("è‡ªåº•å‘ä¸Šå½’å¹¶æ’åº", new MergeSort.DownToUp<>(), arr);
     }
     
     /**
-     * ²âÊÔĞ¡Êı×éÓÅ»¯ºóµÄ×Ôµ×ÏòÉÏµÄ¹é²¢ÅÅĞò
+     * æµ‹è¯•å°æ•°ç»„ä¼˜åŒ–åçš„è‡ªåº•å‘ä¸Šçš„å½’å¹¶æ’åº
      */
     public static void testMergeSortD2UInsert() {
         Integer[] arr = integerArr(1000000);
         ArrayUtil.shuffle(arr);
-        testSort("Ğ¡Êı×éÓÅ»¯×Ôµ×ÏòÉÏ¹é²¢ÅÅĞò", new MergeSort.DownToUpInsert<>(), arr);
+        testSort("å°æ•°ç»„ä¼˜åŒ–è‡ªåº•å‘ä¸Šå½’å¹¶æ’åº", new MergeSort.DownToUpInsert<>(), arr);
     }
     
     /**
-     * ²âÊÔ¿ìËÙÅÅĞò
+     * æµ‹è¯•å¿«é€Ÿæ’åº
      */
     public static void testQuickSort() {
         Integer[] arr = integerArr(2000000);
         ArrayUtil.shuffle(arr);
-        testSort("¿ìËÙÅÅĞò", new QuickSort<>(), arr);
+        testSort("å¿«é€Ÿæ’åº", new QuickSort<>(), arr);
     }
     
     /**
-     * ²âÊÔ¶ÑÅÅĞò
+     * æµ‹è¯•å †æ’åº
      */
     public static void testHeapSort() {
         //Integer[] arr = integerArr(10);
@@ -89,7 +89,7 @@ public class TestSort {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = s.charAt(i);
         }
-        testSort("¶ÑÅÅĞò", new HeapSort<>(), arr);
+        testSort("å †æ’åº", new HeapSort<>(), arr);
     }
     
     public static void main(String[] args) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <b>Á´±íÊµÏÖµÄ·ûºÅ±í£¬²éÕÒËã·¨ÎªË³Ğò²éÕÒ</b>
+ * <b>é“¾è¡¨å®ç°çš„ç¬¦å·è¡¨ï¼ŒæŸ¥æ‰¾ç®—æ³•ä¸ºé¡ºåºæŸ¥æ‰¾</b>
  * @author Ray
  *
  */
@@ -14,7 +14,7 @@ public class SequentialSearchST <Key extends Comparable<Key>,Value> implements S
     private int size;
 	
     /**
-     * ÄÚ²¿½ÚµãÀà
+     * å†…éƒ¨èŠ‚ç‚¹ç±»
      * @author rays1
      *
      */
@@ -38,10 +38,10 @@ public class SequentialSearchST <Key extends Comparable<Key>,Value> implements S
     public Value get(Key key) {
         for (Node n = head; n != null; n = n.next) {
             if (n.key.equals(key)) {
-                return n.value;             // ¼ü´æÔÚ£¬·µ»ØÖµ
+                return n.value;             // é”®å­˜åœ¨ï¼Œè¿”å›å€¼
             }
         }
-        return null;                        // ²»´æÔÚ£¬·µ»Ø¿Õ
+        return null;                        // ä¸å­˜åœ¨ï¼Œè¿”å›ç©º
     }
 
     @Override
@@ -49,18 +49,18 @@ public class SequentialSearchST <Key extends Comparable<Key>,Value> implements S
         for (Node n = head; n != null; n = n.next) {
             if (n.key.equals(key)) {
                 n.value = value;
-                return;                     // ¼üÒÑ¾­´æÔÚ£¬Ö»¸üĞÂ²¢·µ»Ø 
+                return;                     // é”®å·²ç»å­˜åœ¨ï¼Œåªæ›´æ–°å¹¶è¿”å› 
             }
         }
         size ++;
-        head = new Node(head, key, value);  // ĞÂµÄ¼üÖµ¶Ô£¬²åÈëÁ´±íµÚÒ»Î»
+        head = new Node(head, key, value);  // æ–°çš„é”®å€¼å¯¹ï¼Œæ’å…¥é“¾è¡¨ç¬¬ä¸€ä½
     }
 
     @Override
     public void delete(Key key) {
         for (Node n = head; n != null && n.next != null; n = n.next) {
             if (n.next.key.equals(key)) {
-                n.next = n.next.next;      // É¾³ınµÄÏÂÒ»¸ö½Úµã£¬½«ÏÂÒ»¸ö½ÚµãÖ¸ÏòÁÚ½Ó½ÚµãµÄÁÚ½Ó½Úµã
+                n.next = n.next.next;      // åˆ é™¤nçš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ï¼Œå°†ä¸‹ä¸€ä¸ªèŠ‚ç‚¹æŒ‡å‘é‚»æ¥èŠ‚ç‚¹çš„é‚»æ¥èŠ‚ç‚¹
                 size --;
             }
         }

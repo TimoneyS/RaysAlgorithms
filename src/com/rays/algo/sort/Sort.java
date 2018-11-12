@@ -3,7 +3,7 @@ package com.rays.algo.sort;
 public abstract class Sort<T extends Comparable<?>> {
     
     /**
-     * ÅÅĞòÊı×é
+     * æ’åºæ•°ç»„
      * @param arr
      */
     public void sort(T[] arr) {
@@ -11,10 +11,10 @@ public abstract class Sort<T extends Comparable<?>> {
     }
     
     /**
-     * ÅÅĞòÊı×é¾Ö²¿
-     * @param arr   ´ıÅÅĞòÊı×é
-     * @param lo    ¾Ö²¿ÏÂ½ç
-     * @param hi    ¾Ö²¿ÉÏ½ç
+     * æ’åºæ•°ç»„å±€éƒ¨
+     * @param arr   å¾…æ’åºæ•°ç»„
+     * @param lo    å±€éƒ¨ä¸‹ç•Œ
+     * @param hi    å±€éƒ¨ä¸Šç•Œ
      */
     public abstract void sort(T[] arr, int lo, int hi);
     

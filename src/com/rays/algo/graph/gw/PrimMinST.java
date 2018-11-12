@@ -7,18 +7,18 @@ import com.rays.algo.graph.Edge;
 import com.rays.algo.graph.EdgeWeightedGraph;
 
 /**
- * Prim ¼´Ê±Ëã·¨
+ * Prim å³æ—¶ç®—æ³•
  * 
- * ÔÚÌí¼Ó±ßµ½¶ÓÁĞÊ±£¬¶ÔÓÚÃ¿¸ö¶¥µãÖ»»á±£´æÆäºÍÊ÷Á¬½ÓµÄËùÓĞ±ßÖĞÈ¨ÖØ×îĞ¡µÄÒ»Ìõ
+ * åœ¨æ·»åŠ è¾¹åˆ°é˜Ÿåˆ—æ—¶ï¼Œå¯¹äºæ¯ä¸ªé¡¶ç‚¹åªä¼šä¿å­˜å…¶å’Œæ ‘è¿æ¥çš„æ‰€æœ‰è¾¹ä¸­æƒé‡æœ€å°çš„ä¸€æ¡
  * 
  * @author rays1
  *
  */
 public class PrimMinST implements MinST {
     
-    private Edge[]                 edgeTo; // ´ÓÉú³ÉÊ÷µ½Ä³¸ö¶¥µãµÄÂ·¾¶
-    private RaysIndexMinPQ<Double> PQ;     // ±£´æ×îĞ¡È¨ÖØµÄ±ßµÄË÷Òı
-    private boolean[]              marked; // ±ê¼Ç¶¥µãÊÇ·ñÒÑ¾­ÔÚÊ÷ÖÖ
+    private Edge[]                 edgeTo; // ä»ç”Ÿæˆæ ‘åˆ°æŸä¸ªé¡¶ç‚¹çš„è·¯å¾„
+    private RaysIndexMinPQ<Double> PQ;     // ä¿å­˜æœ€å°æƒé‡çš„è¾¹çš„ç´¢å¼•
+    private boolean[]              marked; // æ ‡è®°é¡¶ç‚¹æ˜¯å¦å·²ç»åœ¨æ ‘ç§
     private double                 weight;
 
     public PrimMinST(EdgeWeightedGraph G) {
@@ -32,7 +32,7 @@ public class PrimMinST implements MinST {
             visit(G, PQ.delMin());
         }
         
-        // ¼ÆËãÉú³ÉÊ÷È¨ÖØ
+        // è®¡ç®—ç”Ÿæˆæ ‘æƒé‡
         weight = 0;
         for (Edge edge : edgeTo) {
             if (edge!= null)
@@ -42,7 +42,7 @@ public class PrimMinST implements MinST {
     }
     
     /**
-     * ·ÃÎÊÒ»¸ö¶¥µã£¨½«¶¥µã±ê¼ÇÎªÒÑ·ÃÎÊ£¬½«ºÍ¶¥µãÁ¬½ÓµÄÎ´Ê§Ğ§µÄ±ß¼ÓÈë¶ÓÁĞ£©
+     * è®¿é—®ä¸€ä¸ªé¡¶ç‚¹ï¼ˆå°†é¡¶ç‚¹æ ‡è®°ä¸ºå·²è®¿é—®ï¼Œå°†å’Œé¡¶ç‚¹è¿æ¥çš„æœªå¤±æ•ˆçš„è¾¹åŠ å…¥é˜Ÿåˆ—ï¼‰
      * @param G
      * @param v
      */
@@ -54,7 +54,7 @@ public class PrimMinST implements MinST {
             int w = e.other(v);
             
             if (marked[w]) {
-                continue;    // ·ÏÆúµÄ±ß
+                continue;    // åºŸå¼ƒçš„è¾¹
             }
             
             if (PQ.contains(w)) {

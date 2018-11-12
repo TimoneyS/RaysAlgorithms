@@ -4,7 +4,7 @@ import com.ray.io.Out;
 import com.ray.util.StringUtil;
 
 /**
- * 最优二叉搜索树问题
+ * 鏈�浼樹簩鍙夋悳绱㈡爲闂
  * @author rays1
  *
  */

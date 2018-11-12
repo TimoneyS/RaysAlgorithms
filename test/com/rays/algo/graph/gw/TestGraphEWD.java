@@ -14,7 +14,7 @@ import com.rays.algo.graph.gwd.CPM;
 import com.rays.algo.graph.gwd.DijkstraSP;
 import com.rays.algo.graph.gwd.SP;
 /**
- * ²âÊÔÎŞÏòÍ¼
+ * æµ‹è¯•æ— å‘å›¾
  * @author rays1
  *
  */
@@ -25,7 +25,7 @@ public class TestGraphEWD {
     }
     
     /**
-     * Bellman-FordËã·¨
+     * Bellman-Fordç®—æ³•
      */
     public static void testBellmanFord() {
         EdgeWeightedDigraph G = getDigraph("EWDTinyN.txt");
@@ -47,7 +47,7 @@ public class TestGraphEWD {
     }
  
     /**
-     * ÎŞ»·ÓĞÏòÍ¼£¬×î³¤Â·¾¶
+     * æ— ç¯æœ‰å‘å›¾ï¼Œæœ€é•¿è·¯å¾„
      */
     public static void testAcycliLP() {
         EdgeWeightedDigraph G = getDigraph("EWDTinyA.txt");
@@ -58,7 +58,7 @@ public class TestGraphEWD {
     }
     
     /**
-     * ÎŞ»·ÓĞÏòÍ¼£¬×î¶ÌÂ·¾¶
+     * æ— ç¯æœ‰å‘å›¾ï¼Œæœ€çŸ­è·¯å¾„
      */
     public static void testAcycliSP() {
         EdgeWeightedDigraph G = getDigraph("EWDTinyA.txt");
@@ -69,7 +69,7 @@ public class TestGraphEWD {
     }
     
     /**
-     * Dijkstra Ëã·¨ ×î¶ÌÂ·¾¶
+     * Dijkstra ç®—æ³• æœ€çŸ­è·¯å¾„
      */
     public static void testDijkstraSP() {
         EdgeWeightedDigraph G = getDigraph("EWDTemp.txt");

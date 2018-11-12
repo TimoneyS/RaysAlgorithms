@@ -7,7 +7,7 @@ import com.ray.io.In;
 import com.ray.io.Out;
 
 /**
- * »ùÓÚ½Ó·ì²Ã¼ôµÄÍ¼ÏñÑ¹Ëõ
+ * åŸºäºæ¥ç¼è£å‰ªçš„å›¾åƒå‹ç¼©
  * @author rays1
  *
  */
@@ -29,13 +29,13 @@ public class SeamCarving {
         energy = new int[width][height];
         this.picture = new int[width][height];
         
-        // ´¦ÀíÍ¼Æ¬µ½ RGB ¸ñÊ½
+        // å¤„ç†å›¾ç‰‡åˆ° RGB æ ¼å¼
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 this.picture[i][j] = picture.getRGB(i, j);
             }
         }
-        // ¼ÆËãÄÜÁ¿
+        // è®¡ç®—èƒ½é‡
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 energy[i][j] = computePixelEnergy(i, j);
@@ -45,7 +45,7 @@ public class SeamCarving {
     }
     
     /**
-     * ´¹Ö±·½Ïò½Ó·ì²Ã¼ô
+     * å‚ç›´æ–¹å‘æ¥ç¼è£å‰ª
      * @return
      */
     public int[] verticalSeamCarving() {
@@ -87,9 +87,9 @@ public class SeamCarving {
         
         if (i < 0 || i >= width) return maxSeamEnergy;
         
-        if (seamEnergy[i][j] == -1) { // Ã»ÓĞ±¸Íü
+        if (seamEnergy[i][j] == -1) { // æ²¡æœ‰å¤‡å¿˜
             
-            if (j == height-1) { // ×îºóÒ»ĞĞ
+            if (j == height-1) { // æœ€åä¸€è¡Œ
                 seamEnergy[i][j] = energy[i][j];
             } else {
                 
@@ -97,13 +97,13 @@ public class SeamCarving {
                 int b = seamEnergy(    i, j + 1, seamEnergy, pathTo);
                 int c = seamEnergy(i + 1, j + 1, seamEnergy, pathTo);
                 
-                if (a <= b && a <= c) { // ×ó²à×îĞ¡
+                if (a <= b && a <= c) { // å·¦ä¾§æœ€å°
                     pathTo[i][j] = i - 1;
                     seamEnergy[i][j] = energy[i][j] + a;
-                } else if (b <= c && b <= a) { // ÖĞ¼ä×îĞ¡
+                } else if (b <= c && b <= a) { // ä¸­é—´æœ€å°
                     pathTo[i][j] = i;
                     seamEnergy[i][j] = energy[i][j] + b;
-                } else { // ÓÒ²à×îĞ¡
+                } else { // å³ä¾§æœ€å°
                     pathTo[i][j] = i + 1;
                     seamEnergy[i][j] = energy[i][j] + c;
                 }
@@ -122,7 +122,7 @@ public class SeamCarving {
     }
     
     /**
-     * ²Ã¼ô½Ó·ì
+     * è£å‰ªæ¥ç¼
      * @param seam
      */
     public void removeVerticalSeam(int[] seam) {

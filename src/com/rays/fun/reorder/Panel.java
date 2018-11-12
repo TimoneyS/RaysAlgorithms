@@ -11,7 +11,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 /**
- * 主要负责处理界面的类
+ * 涓昏璐熻矗澶勭悊鐣岄潰鐨勭被
  * @author Ray
  *
  */
@@ -26,7 +26,7 @@ public class Panel extends JPanel {
 	public Panel() {
 		size = Config.SIZE;
 		cell_width = Config.CELL_WIDTH;
-		currFont = new Font("微软雅黑", Font.BOLD, size * 10);
+		currFont = new Font("寰蒋闆呴粦", Font.BOLD, size * 10);
 		board = new Board(size);
 		
 		requestFocusInWindow();
@@ -68,7 +68,7 @@ public class Panel extends JPanel {
 	public KeyListener getKeyListener(){
 		return new KeyAdapter(){
 			public void keyPressed(KeyEvent e) { 
-				// 定义一些键盘事件对应的操作
+				// 瀹氫箟涓�浜涢敭鐩樹簨浠跺搴旂殑鎿嶄綔
 				switch(e.getKeyCode()){
     				case KeyEvent.VK_W   : board.move(Dir.UP);break;
     				case KeyEvent.VK_S   : board.move(Dir.DOWN);break;

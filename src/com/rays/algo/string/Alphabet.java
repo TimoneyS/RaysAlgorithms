@@ -5,78 +5,78 @@ import com.ray.io.Out;
 public class Alphabet {
     
     /**
-     *  ¶ş½øÖÆ×Ö·û¼¯ { 0, 1 }.
+     *  äºŒè¿›åˆ¶å­—ç¬¦é›† { 0, 1 }.
      */
     public static final Alphabet BINARY = new Alphabet("01");
 
     /**
-     *  °Ë½øÖÆ×Ö·û¼¯ { 0, 1, 2, 3, 4, 5, 6, 7 }.
+     *  å…«è¿›åˆ¶å­—ç¬¦é›† { 0, 1, 2, 3, 4, 5, 6, 7 }.
      */
     public static final Alphabet OCTAL = new Alphabet("01234567");
 
     /**
-     *  Ê®½øÖÆ×Ö·û¼¯ { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }.
+     *  åè¿›åˆ¶å­—ç¬¦é›† { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }.
      */
     public static final Alphabet DECIMAL = new Alphabet("0123456789");
 
     /**
-     *  Ê®Áù½øÖÆ×Ö·û¼¯ { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F }.
+     *  åå…­è¿›åˆ¶å­—ç¬¦é›† { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F }.
      */
     public static final Alphabet HEXADECIMAL = new Alphabet("0123456789ABCDEF");
 
     /**
-     *  DNA×Ö·û¼¯ { A, C, T, G }.
+     *  DNAå­—ç¬¦é›† { A, C, T, G }.
      */
     public static final Alphabet DNA = new Alphabet("ACGT");
 
     /**
-     *  Ğ¡Ğ´×Ö·û¼¯ { a, b, c, ..., z }.
+     *  å°å†™å­—ç¬¦é›† { a, b, c, ..., z }.
      */
     public static final Alphabet LOWERCASE = new Alphabet("abcdefghijklmnopqrstuvwxyz");
 
     /**
-     *  ´óĞ´×Ö·û¼¯ { A, B, C, ..., Z }.
+     *  å¤§å†™å­—ç¬¦é›† { A, B, C, ..., Z }.
      */
 
     public static final Alphabet UPPERCASE = new Alphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
     /**
-     *  µ°°×ÖÊ×Ö·û¼¯ { A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y }.
+     *  è›‹ç™½è´¨å­—ç¬¦é›† { A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y }.
      */
     public static final Alphabet PROTEIN = new Alphabet("ACDEFGHIKLMNPQRSTVWY");
 
     /**
-     *  Base64×Ö·û¼¯ (64 characters).
+     *  Base64å­—ç¬¦é›† (64 characters).
      */
     public static final Alphabet BASE64 = new Alphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
 
     /**
-     *  ASCII×Ö·û¼¯ (0-127).
+     *  ASCIIå­—ç¬¦é›† (0-127).
      */
     public static final Alphabet ASCII = new Alphabet(128);
 
     /**
-     *  À©Õ¹µÄASCII×Ö·û¼¯ (0-255).
+     *  æ‰©å±•çš„ASCIIå­—ç¬¦é›† (0-255).
      */
     public static final Alphabet EXTENDED_ASCII = new Alphabet(256);
 
     /**
-     *  Unicode-16×Ö·û¼¯ (0-65,535).
+     *  Unicode-16å­—ç¬¦é›† (0-65,535).
      */
     public static final Alphabet UNICODE16      = new Alphabet(65536);
 
-    private char[]      alphabet;       // ×Ö·û±íÖĞµÄËùÓĞ×Ö·û
-    private int[]       inverse;        // ×Ö·û¶ÔÓ¦µÄË÷Òı
-    private final int   R;              // ×Ö·û¼¯µÄ·¶Î§
+    private char[]      alphabet;       // å­—ç¬¦è¡¨ä¸­çš„æ‰€æœ‰å­—ç¬¦
+    private int[]       inverse;        // å­—ç¬¦å¯¹åº”çš„ç´¢å¼•
+    private final int   R;              // å­—ç¬¦é›†çš„èŒƒå›´
 
     /**
-     * ´Ó¸ø¶¨µÄ×Ö·û´®ÖĞ³õÊ¼»¯Ò»¸ö×Ö·û¼¯
+     * ä»ç»™å®šçš„å­—ç¬¦ä¸²ä¸­åˆå§‹åŒ–ä¸€ä¸ªå­—ç¬¦é›†
      *
      * @param alpha the set of characters
      */
     public Alphabet(String alpha) {
 
-        // ¸ø¶¨µÄ×Ö·û´®ÖĞ²»ÄÜÓĞÖØ¸´µÄ×ÖÄ¸
+        // ç»™å®šçš„å­—ç¬¦ä¸²ä¸­ä¸èƒ½æœ‰é‡å¤çš„å­—æ¯
         boolean[] unicode = new boolean[Character.MAX_VALUE];
         for (int i = 0; i < alpha.length(); i++) {
             char c = alpha.charAt(i);
@@ -97,9 +97,9 @@ public class Alphabet {
     }
 
     /**
-     * Ê¹ÓÃ0µ½R-1µÄ×ÖÄ¸³õÊ¼»¯Ò»¸ö×Ö·û¼¯
+     * ä½¿ç”¨0åˆ°R-1çš„å­—æ¯åˆå§‹åŒ–ä¸€ä¸ªå­—ç¬¦é›†
      *
-     * @param radix ×Ö·û¼¯ÖĞ×ÖÄ¸µÄÊıÄ¿
+     * @param radix å­—ç¬¦é›†ä¸­å­—æ¯çš„æ•°ç›®
      */
     private Alphabet(int radix) {
         this.R = radix;
@@ -114,14 +114,14 @@ public class Alphabet {
     }
 
     /**
-     * Ê¹ÓÃ0-255µÄ×Ö·û³õÊ¼»¯×Ö·û¼¯
+     * ä½¿ç”¨0-255çš„å­—ç¬¦åˆå§‹åŒ–å­—ç¬¦é›†
      */
     public Alphabet() {
         this(256);
     }
 
     /**
-     * Èç¹û×ÖÄ¸ÔÚ×Ö·û¼¯ÖĞ·µ»Øtrue
+     * å¦‚æœå­—æ¯åœ¨å­—ç¬¦é›†ä¸­è¿”å›true
      *
      * @param  c the character
      * @return {@code true} if {@code c} is a character in this alphabet;
@@ -132,7 +132,7 @@ public class Alphabet {
     }
 
     /**
-     * ·µ»Ø×Ö·û¼¯ÖĞ×ÖÄ¸µÄÊıÁ¿
+     * è¿”å›å­—ç¬¦é›†ä¸­å­—æ¯çš„æ•°é‡
      * 
      * @return the number of characters in this alphabet
      */
@@ -141,7 +141,7 @@ public class Alphabet {
     }
 
     /**
-     * ·µ»Ø×Ö·û¼¯×ÜÊıµÄ2µÄÃİÊı£¨Ë÷ÒıĞèÒª¶àÉÙÎ»£©
+     * è¿”å›å­—ç¬¦é›†æ€»æ•°çš„2çš„å¹‚æ•°ï¼ˆç´¢å¼•éœ€è¦å¤šå°‘ä½ï¼‰
      * 
      * @return the binary logarithm (rounded up) of the number of characters in this alphabet
      */
@@ -153,7 +153,7 @@ public class Alphabet {
     }
 
     /**
-     * ·µ»Ø×Ö·û¶ÔÓ¦µÄË÷Òı
+     * è¿”å›å­—ç¬¦å¯¹åº”çš„ç´¢å¼•
      * 
      * @param  c the character
      * @return the index corresponding to the character {@code c}
@@ -167,7 +167,7 @@ public class Alphabet {
     }
 
     /**
-     * ·µ»Ø×Ö·û´®¶ÔÓ¦µÄË÷Òı
+     * è¿”å›å­—ç¬¦ä¸²å¯¹åº”çš„ç´¢å¼•
      * 
      * @param  s the characters
      * @return the indices corresponding to the characters {@code s}
@@ -183,7 +183,7 @@ public class Alphabet {
     }
 
     /**
-     * ·µ»ØË÷Òı¶ÔÓ¦µÄ×Ö·û
+     * è¿”å›ç´¢å¼•å¯¹åº”çš„å­—ç¬¦
      * 
      * @param  index the index
      * @return the character corresponding to the index {@code index}
@@ -197,7 +197,7 @@ public class Alphabet {
     }
 
     /**
-     * ·µ»ØË÷Òı¶ÔÓ¦µÄ×Ö·û´®
+     * è¿”å›ç´¢å¼•å¯¹åº”çš„å­—ç¬¦ä¸²
      * 
      * @param  indices the indices
      * @return the characters corresponding to the indices {@code indices}

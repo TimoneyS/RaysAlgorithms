@@ -8,38 +8,38 @@ import com.ray.io.In;
 import com.ray.io.Out;
 
 /**
- * ·ûºÅÍ¼
+ * ç¬¦å·å›¾
  * @author rays1
  *
  */
 public class SymbolGraph {
     
-    private Map<String, Integer> st; // ·ûºÅ±í£¬·ûºÅÃû -> Ë÷Òı
-    private String[] keys;           // ·ûºÅ±í·´Ïò½Ó¿Ú£¬Ë÷Òı -> ·ûºÅÃû
-    private Graph G;                 // ÎŞÏòÍ¼
+    private Map<String, Integer> st; // ç¬¦å·è¡¨ï¼Œç¬¦å·å -> ç´¢å¼•
+    private String[] keys;           // ç¬¦å·è¡¨åå‘æ¥å£ï¼Œç´¢å¼• -> ç¬¦å·å
+    private Graph G;                 // æ— å‘å›¾
     
     public SymbolGraph(String res, String delimiter) {
         st = new HashMap<String, Integer>();
         
         Scanner in = In.getProjectScanner(res);
-        while (in.hasNextLine()) {                          // ¹¹ÔìË÷Òı
+        while (in.hasNextLine()) {                          // æ„é€ ç´¢å¼•
             String[] arr = in.nextLine().split(delimiter);
             Out.p(arr);
             for (int i = 0; i < arr.length; i++) {          
-                if (!st.containsKey(arr[i]))                // ²»Í¬µÄ×Ö·û´®¹ØÁªÍ¬Ò»¸öË÷Òı
+                if (!st.containsKey(arr[i]))                // ä¸åŒçš„å­—ç¬¦ä¸²å…³è”åŒä¸€ä¸ªç´¢å¼•
                     st.put(arr[i], st.size());
             }
         }
 
-        keys = new String[st.size()];                       // ·´ÏòË÷Òı
+        keys = new String[st.size()];                       // åå‘ç´¢å¼•
         for (String name : st.keySet()) {
             keys[st.get(name)] = name;
         }
         
         G = new Graph(st.size());
         in = In.getProjectScanner(res);
-        while (in.hasNextLine()) {                          // ¹¹ÔìÍ¼
-            String[] arr = in.nextLine().split(delimiter);  // Ã¿Ò»ĞĞµÄ¶¥µãºÍ¸ÃĞĞµÄÆäËû¶¥µãÏàÁ¬
+        while (in.hasNextLine()) {                          // æ„é€ å›¾
+            String[] arr = in.nextLine().split(delimiter);  // æ¯ä¸€è¡Œçš„é¡¶ç‚¹å’Œè¯¥è¡Œçš„å…¶ä»–é¡¶ç‚¹ç›¸è¿
             int v = index(arr[0]);
             for (int i = 1; i < arr.length; i++)
                 G.addEdge(v, index(arr[i]));

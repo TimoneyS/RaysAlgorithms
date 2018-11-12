@@ -6,35 +6,35 @@ import com.rays.algo.graph.DirectedEdge;
 import com.rays.algo.graph.EdgeWeightedDigraph;
 
 /**
- * �����Ȩͼ�����·��
+ * 有向加权图的最短路径
  * @author rays1
  *
  */
 public abstract class SP {
 
     /**
-     * �������·��������ı�
+     * 保存最短路径到顶点的边
      */
     protected DirectedEdge[]    edgeTo;
     /**
-     * ����㵽�ö�����ľ���
+     * 从起点到该顶顶点的距离
      */
     protected double[]          distTo;
     
     /**
-     * �ߵ��ɳ�
+     * 边的松弛
      * @param e
      */
     protected void relax(DirectedEdge e) {
-        int v = e.from(), w = e.to();                       // �ߵ������յ�
-        if (distTo[w] > distTo[v] + e.weighted()) {         // ���������� w �ľ��룬�ȴӸñ���㵽 w ҪԶ
-            edgeTo[w] = e;                                  // ���� w �ı�����Ϊ�ñ�
-            distTo[w] = distTo[v] + e.weighted();           // ���� w �ľ�����Ϊ�Ӹñߵ� w �ľ���
+        int v = e.from(), w = e.to();                       // 边的起点和终点
+        if (distTo[w] > distTo[v] + e.weighted()) {         // 从生成树到 w 的距离，比从该边起点到 w 要远
+            edgeTo[w] = e;                                  // 将到 w 的边设置为该边
+            distTo[w] = distTo[v] + e.weighted();           // 将到 w 的距离设为从该边到 w 的距离
         }
     }
     
     /**
-     * �ɳڶ��� �����ɳںͶ������ӵ����еıߣ�
+     * 松弛顶点 （即松弛和顶点连接的所有的边）
      * @param G
      * @param v
      */

@@ -10,7 +10,7 @@ import com.ray.util.collections.RaysStack;
 import com.ray.util.collections.Stack;
 
 /**
- * ÓÃÓÚÑ°ÕÒÄÜ¹»»Ö¸´Ãæ°åË³ĞòµÄÂ·¾¶
+ * ç”¨äºå¯»æ‰¾èƒ½å¤Ÿæ¢å¤é¢æ¿é¡ºåºçš„è·¯å¾„
  * @author rays1
  *
  */
@@ -19,7 +19,7 @@ public class Seacher {
     private int                  cursor = 0;
     private Phase[]              phases;
     private boolean[]            isClose;
-    private MinPQ<Phase>         open;         // open ÁĞ±í
+    private MinPQ<Phase>         open;         // open åˆ—è¡¨
     private Map<String, Integer> symbolToIndex;
     private Phase                finalPhase;
     

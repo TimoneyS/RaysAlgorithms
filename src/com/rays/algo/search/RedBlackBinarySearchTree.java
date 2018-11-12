@@ -6,13 +6,13 @@ import com.ray.io.Out;
 import com.ray.util.ArrayUtil;
 
 /**
- * »ùÓÚºìºÚÊ÷ÊµÏÖµÄ 2-3Ê÷½á¹¹µÄ·ûºÅ±í<br/>
- * ºìºÚÊ÷ÊÇÒ»ÖÖÆ½ºâÊ÷£¬Ê÷ÖĞÖ÷Òª°üº¬Á½ÖÖÁ´½Ó - ºìÁ´½ÓºÍºÚÁ´½Ó¡£½áµã×ó×ÓÊ÷¾ùĞ¡ÓÚ½áµã£¬ÓÒ×ÓÊ÷¾ù´óÓÚ½áµã¡£<br/>
- * ºìÁ´½ÓÊÇÎªÁË±£Ö¤Ê÷Æ½ºâµÄÒ»ÖÖÊÖ¶Î£¬Êµ¼ÊÊµ¼ÊÉÏÊÇ2-3Ê÷ÖĞ3½áµãµÄÒ»ÖÖ±äĞÎ¡£<br/>
- * ºìºÚÊ÷ÌØÕ÷:<br/>
- *  1.ºìÁ´½Ó¾ùÎª×óÁ´½Ó<br/>
- *  2.½áµã²»ÄÜÍ¬Ê±´æÔÚÁ½ÌõºìÁ´½Ó<br/>
- *  3.Ê÷ÊÇÍêÃÀÆ½ºâµÄ£¬¼´ÈÎÒâ¿ÕÁ´½Óµ½¸ù½áµãµÄÂ·¾¶ÉÏµÄºÚÁ´½ÓÊıÁ¿ÏàÍ¬<br/>
+ * åŸºäºçº¢é»‘æ ‘å®ç°çš„ 2-3æ ‘ç»“æ„çš„ç¬¦å·è¡¨<br/>
+ * çº¢é»‘æ ‘æ˜¯ä¸€ç§å¹³è¡¡æ ‘ï¼Œæ ‘ä¸­ä¸»è¦åŒ…å«ä¸¤ç§é“¾æ¥ - çº¢é“¾æ¥å’Œé»‘é“¾æ¥ã€‚ç»“ç‚¹å·¦å­æ ‘å‡å°äºç»“ç‚¹ï¼Œå³å­æ ‘å‡å¤§äºç»“ç‚¹ã€‚<br/>
+ * çº¢é“¾æ¥æ˜¯ä¸ºäº†ä¿è¯æ ‘å¹³è¡¡çš„ä¸€ç§æ‰‹æ®µï¼Œå®é™…å®é™…ä¸Šæ˜¯2-3æ ‘ä¸­3ç»“ç‚¹çš„ä¸€ç§å˜å½¢ã€‚<br/>
+ * çº¢é»‘æ ‘ç‰¹å¾:<br/>
+ *  1.çº¢é“¾æ¥å‡ä¸ºå·¦é“¾æ¥<br/>
+ *  2.ç»“ç‚¹ä¸èƒ½åŒæ—¶å­˜åœ¨ä¸¤æ¡çº¢é“¾æ¥<br/>
+ *  3.æ ‘æ˜¯å®Œç¾å¹³è¡¡çš„ï¼Œå³ä»»æ„ç©ºé“¾æ¥åˆ°æ ¹ç»“ç‚¹çš„è·¯å¾„ä¸Šçš„é»‘é“¾æ¥æ•°é‡ç›¸åŒ<br/>
  * @author Ray
  *
  * @param <Key>
@@ -26,15 +26,15 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     Node root;
     
     /**
-     * ºìºÚÊ÷½áµã
+     * çº¢é»‘æ ‘ç»“ç‚¹
      * @author rays1
      *
      */
     private class Node {
-        boolean color;      // ½ÚµãÑÕÉ«
-        Node right;         // ÓÒ½áµã
-        Node left;          // ×ó½áµã
-        int  N;             // ×Ó½áµãÊıÁ¿
+        boolean color;      // èŠ‚ç‚¹é¢œè‰²
+        Node right;         // å³ç»“ç‚¹
+        Node left;          // å·¦ç»“ç‚¹
+        int  N;             // å­ç»“ç‚¹æ•°é‡
         Key key;
         Value value;
         public Node(Key k, Value v, boolean c) {
@@ -54,11 +54,11 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     private Node get(Node node, Key key) {
         if (node == null) return null;
         int cmp = node.key.compareTo(key);
-        if (cmp == 0)                         // ÃüÖĞ
+        if (cmp == 0)                         // å‘½ä¸­
             return node;
-        else if ( cmp > 0)                    // ¸ù´óÓÚ¼ü£¬ĞèÒªÔÚ×ó×ÓÊ÷ÖĞ²éÕÒ
+        else if ( cmp > 0)                    // æ ¹å¤§äºé”®ï¼Œéœ€è¦åœ¨å·¦å­æ ‘ä¸­æŸ¥æ‰¾
             return get(node.left, key);
-        else                                  // ¸ùĞ¡ÓÚ¼ü£¬ĞèÒªÔÚÓÒ×ÓÊ÷ÖĞ²éÕÒ
+        else                                  // æ ¹å°äºé”®ï¼Œéœ€è¦åœ¨å³å­æ ‘ä¸­æŸ¥æ‰¾
             return get(node.right, key);
     }
 
@@ -69,7 +69,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * Ïò¸ù½ÚµãÎªnodeµÄ×ÓÊ÷²åÈëĞÂ½áµã,·µ»ØÖµÎª×ÓÊ÷µÄĞÂ¸ù½áµã<br/>
+     * å‘æ ¹èŠ‚ç‚¹ä¸ºnodeçš„å­æ ‘æ’å…¥æ–°ç»“ç‚¹,è¿”å›å€¼ä¸ºå­æ ‘çš„æ–°æ ¹ç»“ç‚¹<br/>
      * </p>
      * @param key
      * @param value
@@ -80,13 +80,13 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
         
         int cmp = key.compareTo(node.key);
         
-        if (cmp == 0)       node.value = value;                         // ÃüÖĞ½áµã
-        else if (cmp > 0)   node.right = put(key, value, node.right);   // ·ÅÈëÓÒ×ÓÊ÷
-        else                node.left  = put(key, value, node.left);    // ·ÅÈë×ó×ÓÊ÷
+        if (cmp == 0)       node.value = value;                         // å‘½ä¸­ç»“ç‚¹
+        else if (cmp > 0)   node.right = put(key, value, node.right);   // æ”¾å…¥å³å­æ ‘
+        else                node.left  = put(key, value, node.left);    // æ”¾å…¥å·¦å­æ ‘
         
-        if (!isRed(node.left) && isRed(node.right))      node = rotateLeft(node);   // ÊÇ·ñĞèÒª×óĞı×ª
-        if ( isRed(node.left) && isRed(node.left.left))  node = rotateRight(node);  // ÊÇ·ñĞèÒªÓÒĞı×ª
-        if ( isRed(node.left) && isRed(node.right))      flipColors(node);          // ÊÇ·ñĞèÒª·­×ªÑÕÉ«
+        if (!isRed(node.left) && isRed(node.right))      node = rotateLeft(node);   // æ˜¯å¦éœ€è¦å·¦æ—‹è½¬
+        if ( isRed(node.left) && isRed(node.left.left))  node = rotateRight(node);  // æ˜¯å¦éœ€è¦å³æ—‹è½¬
+        if ( isRed(node.left) && isRed(node.right))      flipColors(node);          // æ˜¯å¦éœ€è¦ç¿»è½¬é¢œè‰²
         
         node.N = 1 + size(node.left) + size(node.right);
         
@@ -108,7 +108,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
 //    /**
-//     * ´Ó×ó²àÉ¾³ıµÄ·½·¨
+//     * ä»å·¦ä¾§åˆ é™¤çš„æ–¹æ³•
 //     * @param h
 //     * @param key
 //     * @return
@@ -135,7 +135,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 
     
     /**
-     * ´ÓÓÒ²àÉ¾³ıµÄ·½·¨
+     * ä»å³ä¾§åˆ é™¤çš„æ–¹æ³•
      * @param h
      * @param key
      * @return
@@ -152,7 +152,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
                 if (!isRed(h.right) && !isRed(h.right.left))
                     h = moveRedRight(h);
             }
-            // É¾³ıµ±Ç°½áµã»òÓÒÁ´½ÓÖĞÉ¾³ı
+            // åˆ é™¤å½“å‰ç»“ç‚¹æˆ–å³é“¾æ¥ä¸­åˆ é™¤
             if (key.compareTo(h.key) == 0) {
                 Node x = min(h.right);
                 h.key = x.key;
@@ -165,7 +165,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * »ñÈ¡×îĞ¡½áµã
+     * è·å–æœ€å°ç»“ç‚¹
      * @param right
      * @return
      */
@@ -175,7 +175,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * »ñÈ¡×î´ó½áµã
+     * è·å–æœ€å¤§ç»“ç‚¹
      * @param h
      * @return
      */
@@ -208,18 +208,18 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 
     @Override
     public void deleteMin() {
-        if (!isRed(root.left) && !isRed(root.right))    // ¸ù½áµãÎª2-½áµãÔò½«ÆäÖÃºìÉ«£¬Ä¿µÄÊÇÎªÁËÈÃ¸ù½áµãºÍÑØ×óÁ´½ÓÏòÏÂµÄÂß¼­Ò»ÖÂ
+        if (!isRed(root.left) && !isRed(root.right))    // æ ¹ç»“ç‚¹ä¸º2-ç»“ç‚¹åˆ™å°†å…¶ç½®çº¢è‰²ï¼Œç›®çš„æ˜¯ä¸ºäº†è®©æ ¹ç»“ç‚¹å’Œæ²¿å·¦é“¾æ¥å‘ä¸‹çš„é€»è¾‘ä¸€è‡´
            root.color = RED;
         root = deleteMin(root);
         if (!isEmpty()) root.color = BLACK;
     }
  
     private Node deleteMin(Node h) {
-        if (h.left == null) return null;    // µ±Ç°½áµã¼´Îª×îĞ¡½áµã
+        if (h.left == null) return null;    // å½“å‰ç»“ç‚¹å³ä¸ºæœ€å°ç»“ç‚¹
         
-        // ×ÔÉÏ¶øÏÂµÄ±ä»»£¬×ó×Ó½ÚµãÎª 2-½áµã£¬ÔòÈ·±£×ó½áµãÎª·Ç2-½áµã
+        // è‡ªä¸Šè€Œä¸‹çš„å˜æ¢ï¼Œå·¦å­èŠ‚ç‚¹ä¸º 2-ç»“ç‚¹ï¼Œåˆ™ç¡®ä¿å·¦ç»“ç‚¹ä¸ºé2-ç»“ç‚¹
         if (!isRed(h.left) && !isRed(h.left.left)) {
-            // È·ÈÏµ±Ç°½áµãÎª2-£¬µ±Ç°½áµãµÄ×ó½áµãÎª2-£¬·ñÔòÖ±½ÓÏòÏÂµİ¹é¼´¿É
+            // ç¡®è®¤å½“å‰ç»“ç‚¹ä¸º2-ï¼Œå½“å‰ç»“ç‚¹çš„å·¦ç»“ç‚¹ä¸º2-ï¼Œå¦åˆ™ç›´æ¥å‘ä¸‹é€’å½’å³å¯
             h = moveRedLeft(h);
         }
         
@@ -230,7 +230,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 
     @Override
     public void deleteMax() {
-        // ¸ù½áµãÎª2-½áµãÔò½«ÆäÖÃºìÉ«£¬ºìºÚÊ÷ÖĞÆäÊµ¿ÉÒÔ²»ĞèÒª!isRed(root.right)
+        // æ ¹ç»“ç‚¹ä¸º2-ç»“ç‚¹åˆ™å°†å…¶ç½®çº¢è‰²ï¼Œçº¢é»‘æ ‘ä¸­å…¶å®å¯ä»¥ä¸éœ€è¦!isRed(root.right)
         if (!isRed(root.left) && !isRed(root.right))
             root.color = RED;
         root = deleteMax(root);
@@ -238,19 +238,19 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * É¾³ı×î´ó½áµãµÄ¸¨Öú·½·¨
+     * åˆ é™¤æœ€å¤§ç»“ç‚¹çš„è¾…åŠ©æ–¹æ³•
      * @param h
      * @return
      */
     private Node deleteMax(Node h) {
         
-        // µ±Ç°½áµãÎª3-½áµã£¬Ö±½ÓÓÒĞı×ªÈ»ºóÏòÏÂµİ¹é¼´¿É
+        // å½“å‰ç»“ç‚¹ä¸º3-ç»“ç‚¹ï¼Œç›´æ¥å³æ—‹è½¬ç„¶åå‘ä¸‹é€’å½’å³å¯
         if (isRed(h.left)) h = rotateRight(h);
         
         if (h.right == null) return null;
         
-        // ÒòÎªÉÏÒ»²½µÄrotateRight£¬ËùÒÔÅĞ¶ÏhÊÇ·ñÎª2-½áµãµÄÌõ¼ş±äÎª!isRed(h.right)
-        // µ±Ç°ÊÇ2-£¬ÓÒ½áµãÎª2-£¬ĞèÒª´¦Àí
+        // å› ä¸ºä¸Šä¸€æ­¥çš„rotateRightï¼Œæ‰€ä»¥åˆ¤æ–­hæ˜¯å¦ä¸º2-ç»“ç‚¹çš„æ¡ä»¶å˜ä¸º!isRed(h.right)
+        // å½“å‰æ˜¯2-ï¼Œå³ç»“ç‚¹ä¸º2-ï¼Œéœ€è¦å¤„ç†
         if (!isRed(h.right) && !isRed(h.right.left))   
             h = moveRedRight(h);
         
@@ -261,13 +261,13 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
 
     @Override
     public Key floor(Key key) {
-        // Ğ¡ÓÚµÈÓÚkeyµÄ×î´ó¼ü
+        // å°äºç­‰äºkeyçš„æœ€å¤§é”®
         Node n = floor(root, key);
         return (n == null) ? null : n.key;
     }
     
     /**
-     * Ğ¡ÓÚµÈÓÚ keyµÄ×î´ó½áµã
+     * å°äºç­‰äº keyçš„æœ€å¤§ç»“ç‚¹
      * @param node
      * @param key
      * @return
@@ -299,10 +299,10 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * »ñÈ¡rank<br/>
-     * key >  node.key  ×ó½áµãsize+ÔÚÓÒ×ÓÊ÷µÄrank<br/>
-     * key >= node.key  ×ó½áµãsize+ÔÚÓÒ×ÓÊ÷µÄrank+1<br/>
-     * key <  node.key  ÔÚ×ó×ÓÊ÷µÄrank<br/>
+     * è·å–rank<br/>
+     * key >  node.key  å·¦ç»“ç‚¹size+åœ¨å³å­æ ‘çš„rank<br/>
+     * key >= node.key  å·¦ç»“ç‚¹size+åœ¨å³å­æ ‘çš„rank+1<br/>
+     * key <  node.key  åœ¨å·¦å­æ ‘çš„rank<br/>
      * @param key
      * @param node
      * @return
@@ -327,7 +327,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * ´Ó½áµãÖĞ»ñÈ¡ÅÅÃûÎªkµÄ½áµã
+     * ä»ç»“ç‚¹ä¸­è·å–æ’åä¸ºkçš„ç»“ç‚¹
      * @param node
      * @param k
      * @return
@@ -362,7 +362,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
 
     /**
-     * ×óĞı×ª<br/>
+     * å·¦æ—‹è½¬<br/>
      * 
      *      h                      x
      *    /   \\                //   \
@@ -388,7 +388,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * ÓÒĞı×ª<br/>
+     * å³æ—‹è½¬<br/>
      * 
      *         h                            x         
      *      //   \     routeRight(h)     //   \\      
@@ -414,7 +414,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * ·´×ªÑÕÉ«£¬Á½¸ö×ÓºìÁ´½Ó±äÎªºÚÁ´½Ó£¬È»ºó½«ÖĞ¼ä¸¸Á¬½Ó±äÎªºìÁ´½Ó
+     * åè½¬é¢œè‰²ï¼Œä¸¤ä¸ªå­çº¢é“¾æ¥å˜ä¸ºé»‘é“¾æ¥ï¼Œç„¶åå°†ä¸­é—´çˆ¶è¿æ¥å˜ä¸ºçº¢é“¾æ¥
      * 
      *       /                  //
      *      n                   n
@@ -435,7 +435,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
 
     /**
-     * ¸¨Öú·½·¨£¬ÅĞ¶Ï½áµãÊÇ·ñÊÇºìÁ´½Ó
+     * è¾…åŠ©æ–¹æ³•ï¼Œåˆ¤æ–­ç»“ç‚¹æ˜¯å¦æ˜¯çº¢é“¾æ¥
      * @param x
      * @return
      */
@@ -446,7 +446,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     
     /**
      * 
-     * ½«hµÄ×ó×ÓÊ÷»ò×ó×ÓÊ÷µÄ×Ó½áµãÖ®Ò»±äÎªºìÁ´½Ó<br/>
+     * å°†hçš„å·¦å­æ ‘æˆ–å·¦å­æ ‘çš„å­ç»“ç‚¹ä¹‹ä¸€å˜ä¸ºçº¢é“¾æ¥<br/>
      *
      *     //        
      *     h         
@@ -468,13 +468,13 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
      * @return
      */
     private Node moveRedLeft(Node h) {
-        // Ö´ĞĞ´Î·½·¨Ê±£¬µÄÏÈ¾öÌõ¼şÊÇ¸Ä½áµãµÄ×ó½áµã
+        // æ‰§è¡Œæ¬¡æ–¹æ³•æ—¶ï¼Œçš„å…ˆå†³æ¡ä»¶æ˜¯æ”¹ç»“ç‚¹çš„å·¦ç»“ç‚¹
         assert isRed(h);
         assert !isRed(h.left);
         assert !isRed(h.left.left);
         flipColors(h);
         if (isRed(h.right.left)) {
-            // ÓÒ×ÓÊ÷Îª·Ç  2-½áµã
+            // å³å­æ ‘ä¸ºé  2-ç»“ç‚¹
             h.right = rotateRight(h.right);
             h = rotateLeft(h);
             flipColors(h);
@@ -483,7 +483,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * ½«hµÄÓÒ×ÓÊ÷»òÓÒ×ÓÊ÷µÄ×Ó½áµãÖ®Ò»±äÎªºìÁ´½Ó<br/>
+     * å°†hçš„å³å­æ ‘æˆ–å³å­æ ‘çš„å­ç»“ç‚¹ä¹‹ä¸€å˜ä¸ºçº¢é“¾æ¥<br/>
      * 
      *      //             /  
      *      h             h   
@@ -507,7 +507,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     private Node moveRedRight(Node h) {
         flipColors(h);
         
-        // ×ó½áµãÎª·Ç2-£¬ĞèÒªÒÆ¶¯Ò»¸ö½áµãµ½ÓÒ½áµã
+        // å·¦ç»“ç‚¹ä¸ºé2-ï¼Œéœ€è¦ç§»åŠ¨ä¸€ä¸ªç»“ç‚¹åˆ°å³ç»“ç‚¹
         if (isRed(h.left.left)) {
             h = rotateRight(h);
             flipColors(h);        
@@ -516,8 +516,8 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * Æ½ºâ½áµã<br/>
-     * Ïû³ıºìÉ«µÄÓÒÁ´½Ó¡¢Á¬ĞøµÄºìÉ«×óÁ´½ÓºÍ4-½áµã
+     * å¹³è¡¡ç»“ç‚¹<br/>
+     * æ¶ˆé™¤çº¢è‰²çš„å³é“¾æ¥ã€è¿ç»­çš„çº¢è‰²å·¦é“¾æ¥å’Œ4-ç»“ç‚¹
      * @param h
      * @return
      */
@@ -532,7 +532,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * ´òÓ¡Ê÷
+     * æ‰“å°æ ‘
      */
     public void show() {
         Out.p("============= tree =============");
@@ -540,7 +540,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * ´òÓ¡½áµã
+     * æ‰“å°ç»“ç‚¹
      */
     public void show(Node node) {
         int l = height()*2;
@@ -555,7 +555,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     }
     
     /**
-     * »ñÈ¡Ê÷¸ß¶È
+     * è·å–æ ‘é«˜åº¦
      * @return
      */
     private int height() {
@@ -580,7 +580,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
         String arrow = "";
         int    diff = 0;
         if (side == 0) {
-            arrow = node.color == RED ? "¡Î" : "|";
+            arrow = node.color == RED ? "âˆ¥" : "|";
             diff = 0;
         } else if (side > 0) {
             arrow = "\\";

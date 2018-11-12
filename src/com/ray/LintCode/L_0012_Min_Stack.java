@@ -56,41 +56,46 @@ public class L_0012_Min_Stack {
          */
         public void push(int number) {
             // write your code here
-            if (cursor >= inner.length) expandInnerArray();
+            
+            if (cursor >= inner.length)
+                expandInnerArray();
             inner[cursor++] = number;
             
             int numIndex = cursor - 1;
             
             if (minIndex == -1) {
-                // 新插入
                 minIndex = 0;
             } else {
                
+                int l = -1,r = -1;
+                
                 if (number > inner[minIndex]) {
                     // 在最小值右侧插入
-                    int l = -1;
+                    l = minIndex;
                     for (int i = minIndex; i < cursor && i >= 0; i = righOf[i]) {
                         if (number < inner[i]) break;
                         l = i;
                     }
-                    int r = righOf[l];
-                    
-                    righOf[l] = numIndex;
-                    if (r != -1) leftOf[r] = numIndex;
-                    
-                    righOf[numIndex] = r;
-                    leftOf[numIndex] = l;                    
+                    r = righOf[l];
                 } else {
                     // 在最小值左侧插入
-                    righOf[numIndex] = minIndex;
-                    leftOf[minIndex] = numIndex;
+                    r = minIndex;
+                    l = leftOf[r];
                     minIndex = numIndex;
                 }
+                
+                if (l != -1) righOf[l] = numIndex;
+                if (r != -1) leftOf[r] = numIndex;
+                righOf[numIndex] = r;
+                leftOf[numIndex] = l;
+                
             }
             
         }
 
         private void expandInnerArray() {
+            
+            // expand
             int[] temp = new int[inner.length * 2];
             int[] ltemp = new int[inner.length * 2];
             int[] rtemp = new int[inner.length * 2];
@@ -101,7 +106,7 @@ public class L_0012_Min_Stack {
                 rtemp[i] = -1;
             }
             
-            // expand
+            // copy
             for (int i = 0; i < cursor; i ++) {
                 temp[i] = inner[i];
                 ltemp[i] = leftOf[i];
@@ -110,8 +115,6 @@ public class L_0012_Min_Stack {
             inner = temp;
             leftOf = ltemp;
             righOf = rtemp;
-            
-       
 
         }
 
@@ -120,28 +123,19 @@ public class L_0012_Min_Stack {
          */
         public int pop() {
             
-            int numIndex = -- cursor;
-            int r = righOf[numIndex];
+            int index = -- cursor;
+            int r = righOf[index];
+            int l = leftOf[index];
             
-            if (numIndex == minIndex) {
-                // 弹出了最小值
-                if (r != -1) {
-                    // 最小值不是最后一个元素
-                    leftOf[r] = -1;
-                }
-                minIndex = r;
-            } else {
-                // 弹出了非最小值
-                int l = leftOf[numIndex];
-                righOf[l] = r;
-                if (r != -1)
-                    leftOf[r] = l;
-            }
+            if (index == minIndex) minIndex = r;
             
-            righOf[numIndex] = -1;
-            leftOf[numIndex] = -1;
+            if (l != -1) righOf[l] = r;
+            if (r != -1) leftOf[r] = l;
             
-            return inner[numIndex];
+            righOf[index] = -1;
+            leftOf[index] = -1;
+            
+            return inner[index];
         }
 
         /*
@@ -171,33 +165,30 @@ public class L_0012_Min_Stack {
     public static void main(String[] args) {
         MinStack stack = new MinStack();
 
-        stack.push(1);
-        stack.pop();
-        stack.show();
-        stack.push(2);
-        stack.show();
-        stack.push(3);
-        stack.min();
-        stack.push(1);
-        stack.min();
-        
-        
-        
-//        stack.push(-100);
-//        stack.push(-101);
-//        stack.push(-99);
-//        Out.p(stack.min());
-//        stack.push(100);
-//        Out.p(stack.min());
-//        stack.push(50);
-//        Out.p(stack.min());
-//        Out.p(stack.pop());
-//        Out.p(stack.pop());
-//        Out.p(stack.pop());
-//        Out.p(stack.pop());
-//        Out.p(stack.pop());
-//        stack.push(0);
-//        Out.p(stack.min());
+        stack.push(-100);
+        stack.push(-101);
+        stack.push(-99);
+        Out.p(stack.min());
+        stack.push(100);
+        Out.p(stack.min());
+        stack.push(50);
+        Out.p(stack.min());
+        Out.p(stack.pop());
+        Out.p(stack.pop());
+        Out.p(stack.pop());
+        Out.p(stack.pop());
+        Out.p(stack.pop());
+        stack.push(0);
+        Out.p(stack.min());
+//        -101
+//        -101
+//        -101
+//        50
+//        100
+//        -99
+//        -101
+//        -100
+//        0
         
     }
     

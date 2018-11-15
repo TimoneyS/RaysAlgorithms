@@ -24,11 +24,21 @@ public class L_0013_Implement_strStr {
          * @return: return the index
          */
         public int strStr(String source, String target) {
-            // Write your code here
+            int j,M = target.length();
+            int i,N = source.length();
             
-            
-            
-            return 0;
+            for (i = 0, j = 0; i < N && j < M; i ++) {
+                
+                if (source.charAt(i) == target.charAt(j)) {
+                    j ++;
+                } else {
+                    // 回退本次查找
+                    i -= j;
+                    j = 0;
+                }
+            }
+            if (j == M) return i - M;
+            else        return -1;
         }
         
     }

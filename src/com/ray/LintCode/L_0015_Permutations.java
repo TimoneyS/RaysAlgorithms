@@ -1,10 +1,7 @@
 package com.ray.LintCode;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-
-import com.ray.io.Out;
 
 /**
  * Given a list of numbers, return all possible permutations.
@@ -34,42 +31,42 @@ public class L_0015_Permutations {
          * @return: A list of permutations.
          */
         public List<List<Integer>> permute(int[] nums) {
-            // write your code here
-            int N = nums.length;
             
-            Integer[][] arr = new Integer[N*N-N][N];
+            List<List<Integer>> rs = new LinkedList<List<Integer>>();
             
-            for (int k = 1; k < N; k++) {
-                // k is the deviation
-                for (int i = 0; i < N; i++) {
-                    int deviation = k * i + k;
-                    for (int j = 0; j < N; j++) {
-                        arr[j + k * N - N][i] = nums[ (j + deviation)%N];
-                    }
-                }
+            permute(rs, new LinkedList<>(), nums);
+            
+            return rs;
+        }
+        
+        public void permute(List<List<Integer>> rs, List<Integer> base, int [] nums) {
+            
+            if (nums.length == 0) {
+                rs.add(base);
+                return;
             }
             
-            List<List<Integer>> list = new LinkedList<>();
-            
-            if (nums.length == 0)
-                list.add(new LinkedList<Integer>());
-            else if (nums.length == 1)
-                list.add(Arrays.asList(new Integer[]{nums[0]}));
-            else    
-                for (Integer[] temp : arr) {
-                    list.add(Arrays.asList(temp));
+            for (int num : nums ) {
+                int[] newNum = new int[nums.length - 1];
+                int index = 0;
+                for (int j : nums) {
+                    if (j != num)
+                        newNum[index++] = j;
                 }
+                List<Integer> newBase = new LinkedList<Integer>(base);
+                newBase.add(num);
+                permute(rs, newBase, newNum);
+            }
             
-            Out.p(arr, "%s");
-            
-            return list;
         }
+        
     }
     
     public static void main(String[] args) {
-        int[] nums = {5,4,6,2};
+        int[] nums = {1,2,3,4};
         
         new Solution().permute(nums);
+        
     }
     
 }

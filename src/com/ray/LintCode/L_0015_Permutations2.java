@@ -118,7 +118,7 @@ public class L_0015_Permutations2 {
     public static void main(String[] args) {
         int[] nums = {1,2,3,4};
         
-        for (List<Integer> list : new Solution().permute(nums))
+        for (List<Integer> list : new Solution().permuteUnique(nums))
             Out.p(list);
     }
     

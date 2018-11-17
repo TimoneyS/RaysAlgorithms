@@ -21,7 +21,7 @@ import com.ray.io.Out;
  * @author rays1
  *
  */
-public class L_387_Smallest_Difference {
+public class L_0387_Smallest_Difference {
     
     static class Solution {
         /**

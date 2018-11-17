@@ -24,7 +24,7 @@ import com.ray.io.Out;
  * @author rays1
  *
  */
-public class L_0015_Permutations2 {
+public class L_0016_Permutations2 {
     
     /**
      * <b>字典序全排列</b>

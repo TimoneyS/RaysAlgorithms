@@ -12,6 +12,7 @@ import com.ray.io.Out;
  * <b>Example</b><br>
  * If S = [1,2,3], a solution is:
  * <li> [
+ * <li>  [],
  * <li>  [1],[2],[3],
  * <li>  [1,2],[2,3],[1,3],
  * <li>  [1,2,3]

@@ -56,7 +56,7 @@ public class L_0015_Permutations2 {
          * @param nums: A list of integers.
          * @return: A list of permutations.
          */
-        public List<List<Integer>> permute(int[] nums) {
+        public List<List<Integer>> permuteUnique(int[] nums) {
             
             Arrays.sort(nums);
             

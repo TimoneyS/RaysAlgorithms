@@ -149,7 +149,7 @@ public class AStarSeacher {
         
         Painter p = new Painter();
         
-        Timer t = Timer.create();
+        Timer t = Timer.create("");
         
         t.click();
         AStarSeacher s = new AStarSeacher(m, 1, 0, 25, 25);

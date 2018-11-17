@@ -143,7 +143,7 @@ public class MatrixChain {
         }
         
         for (int i = 0; i < 10; i++) {
-            Timer t = Timer.create();
+            Timer t = Timer.create("");
             t.click();
             new MatrixChainBottomUp(P);
             t.stop();

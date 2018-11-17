@@ -95,7 +95,7 @@ public class Seacher {
         board.shuffe(122);
         board.show();
         
-        Timer t = Timer.create();
+        Timer t = Timer.create("");
         
         t.click();
         Seacher s = new Seacher(board);

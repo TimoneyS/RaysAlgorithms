@@ -93,7 +93,7 @@ public class MaxPalindrome {
         
         String s = sb.toString();
         
-        Timer t = Timer.create();
+        Timer t = Timer.create("");
         
         t.click();
         MaxPalindrome m = new MaxPalindrome(s);

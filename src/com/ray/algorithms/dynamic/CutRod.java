@@ -151,7 +151,7 @@ public class CutRod {
       }
       Out.p(P);
       
-      Timer t = Timer.create();
+      Timer t = Timer.create("");
       
       t.click();
       new CutRodMemorized(P);

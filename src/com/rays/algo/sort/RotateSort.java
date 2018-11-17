@@ -49,7 +49,7 @@ public class RotateSort {
 		int size = 20000;
 		
 		Integer[] arr = intArrRotate(size, size/3);
-		Timer t = Timer.create();
+		Timer t = Timer.create("");
 		t.click();
 		sortLargeSpace(arr);
 		t.stop();

@@ -12,15 +12,14 @@ public class TestSymbolTable {
     public static void testSequentialSearchST() {
         int size = 10;
         SymbolTable<Integer, Integer> st = new SequentialSearchST<>();
-        Timer t = Timer.create();
         
         Integer[] arr = ArrayUtil.integerArr(size);
-        t.click();
+        Timer.CLICK();
         for(Integer i : arr) st.put(i, i);
         Out.p(st.size());
-        t.click();
+        Timer.CLICK();
         for(Integer i = size; i > 0; i--) st.get(i);
-        t.stop();
+        Timer.STOP();
     }
     
     /**

@@ -144,7 +144,7 @@ public class LCS {
 //        
 //        RArrays.shuffle(A, 1);
         
-        Timer t = Timer.create();
+        Timer t = Timer.create("");
         
         t.click();
         new LCSMemorized<>(A, B);

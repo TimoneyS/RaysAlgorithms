@@ -26,7 +26,7 @@ public class TestGraphEW {
 
         EdgeWeightedGraph G = getGraph("EWGTiny.txt");
         
-        Timer t = Timer.create();
+        Timer t = Timer.create("DEF");
         
         t.click();
         PrimMinST primMST = new PrimMinST(G);

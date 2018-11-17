@@ -89,7 +89,8 @@ public class L_0015_Permutations2 {
             // 2. 寻找 l
             int l = -1;
             for (int i = k+1; i < nums.length; i++) {
-                if (nums[i] > nums[k] && (l == -1 || nums[l] > nums[i])) {
+                // 注意 这里的判断如果是 nums[l] > nums[i]，则重复元素的情况会有误
+                if (nums[i] > nums[k] && (l == -1 || nums[l] >= nums[i])) {
                     l = i;
                 }
             }
@@ -116,7 +117,7 @@ public class L_0015_Permutations2 {
     }
     
     public static void main(String[] args) {
-        int[] nums = {1,2,3,4};
+        int[] nums = {1,2,2};
         
         for (List<Integer> list : new Solution().permuteUnique(nums))
             Out.p(list);

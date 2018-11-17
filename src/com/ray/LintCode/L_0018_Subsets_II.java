@@ -46,17 +46,17 @@ public class L_0018_Subsets_II {
             
             build(nums, newNums, count);
             
-            int k = 1;
+            int power = 1;
             for (int i = 0; i < count.length; i++) {
-                k *= (count[i] + 1);
+                power *= (count[i] + 1);
             }
             
-            for (int i = 0; i < k; i++) {
+            for (int i = 0; i < power; i++) {
                 Out.p(marked);
                 
                 List<Integer> l = new LinkedList<Integer>();
                 for (int j = 0; j < n; j++) {
-                    for (int j2 = 0; j2 < marked[j]; j2++) {
+                    for (int k = 0; k < marked[j]; k++) {
                         l.add(newNums[j]);
                     }
                 }

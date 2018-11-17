@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.ray.io.In;
-import com.ray.io.Out;
 import com.ray.util.Timer;
 
 /**
@@ -49,9 +48,7 @@ public class L_0022_Flatten_List {
             LinkedList<Integer> rs = new LinkedList<>();            
             LinkedList<NestedInteger> stack = new LinkedList<>();
             
-            for (NestedInteger nestedInteger : nestedList) {
-                stack.push(nestedInteger);
-            }
+            stack.addAll(nestedList);
             
             while (stack.size() != 0) {
                 NestedInteger ni = stack.pop();
@@ -144,10 +141,10 @@ public class L_0022_Flatten_List {
         t.click();
         build(ni, sb.toString(), 1);
         t.click();
-        List<Integer> li = new Solution().flatten(ni.innerList);
+        new Solution().flatten(ni.innerList);
         t.stop();
         
-        Out.p(li);
+//        Out.p(li);
         
     }
     

@@ -93,24 +93,28 @@ public class L_0024_LFU_Cache {
                 }
                 
                 // make space for new cache
-                makeSpace(cursor, index);
+                insertToNew(cursor, index, key, value, 1);
                 
-                indexKeyMap.put(key, index);
-                innerK[index] = key;
-                innerV[index] = value;
-                freqOf[index] = 1;
             }
         }
         
         // make space for new cache
-        private void makeSpace(int begin, int end) {
-            for (int i = begin; i > end; i --) {
-                if (i == capacity) continue;
-                indexKeyMap.put(innerK[i-1], i);
-                moveTo(innerK, i-1, i);
-                moveTo(innerV, i-1, i);
-                moveTo(freqOf, i-1, i);
-             }
+        private void insertToNew(int envictIndex, int newIndex, int k, int v, int freq) {
+
+            for (int i = envictIndex; i > newIndex; i--) {
+                if (i == capacity)
+                    continue;
+                indexKeyMap.put(innerK[i - 1], i);
+                moveTo(innerK, i - 1, i);
+                moveTo(innerV, i - 1, i);
+                moveTo(freqOf, i - 1, i);
+            }
+
+            indexKeyMap.put(k, newIndex);
+            innerK[newIndex] = k;
+            innerV[newIndex] = v;
+            freqOf[newIndex] = freq;
+
         }
         
         private void moveTo(int[] arr, int i, int j) {
@@ -145,17 +149,8 @@ public class L_0024_LFU_Cache {
         private void addFreqOf(int index) {
             int freq = freqOf[index] + 1; 
             freqOf[index] = freq;
-            
-            int key = innerK[index]; 
-            int value = innerV[index];
             int newIndex = firstIndexOfFreqIs(freq);
-            makeSpace(index, newIndex);
-            
-            indexKeyMap.put(key, newIndex);
-            innerK[newIndex] = key;
-            innerV[newIndex] = value;
-            freqOf[newIndex] = freq;
-            
+            insertToNew(index, newIndex, innerK[index], innerV[index], freq);
         }
         
     }
@@ -168,26 +163,20 @@ public class L_0024_LFU_Cache {
         cache.set(1, 10);
         cache.set(2, 20);
         cache.set(3, 30);
-        
-Out.p(cache.innerK);        
         Out.p(cache.get(1));
-Out.p(cache.innerK);         
         cache.set(4, 40);
-Out.p(cache.innerK);
         Out.p(cache.get(4));
         Out.p(cache.get(3));
-
+        Out.p(cache.get(2));
+        Out.p(cache.get(1));
         
-//        Out.p(cache.get(2));
-//        Out.p(cache.get(1));
-//        
-//        cache.set(5, 50);
-//        
-//        Out.p(cache.get(1));
-//        Out.p(cache.get(2));
-//        Out.p(cache.get(3));
-//        Out.p(cache.get(4));
-//        Out.p(cache.get(5));
+        cache.set(5, 50);
+        
+        Out.p(cache.get(1));
+        Out.p(cache.get(2));
+        Out.p(cache.get(3));
+        Out.p(cache.get(4));
+        Out.p(cache.get(5));
         
     }
     

@@ -20,7 +20,8 @@ public class L_0029_Interleaving_String {
     static class Solution {
         
         String s1, s2, s3;
-        int l1, l2, l3;
+        int l1, l2;
+        int[][] A;
         
         /**
          * @param s1: A string
@@ -37,14 +38,13 @@ public class L_0029_Interleaving_String {
             
             l1 = s1.length();
             l2 = s2.length();
-            l3 = s3.length();
             
             A = new int[l1+1][l2+1];
-            if (l1 + l2 != l3) return false;
+            if (l1 + l2 != s3.length()) return false;
             
             return isInterleave(0, 0);
         }
-        int[][] A;
+        
         
         public boolean isInterleave(int i, int j) {
             if (i == l1 && j == l2) return true;

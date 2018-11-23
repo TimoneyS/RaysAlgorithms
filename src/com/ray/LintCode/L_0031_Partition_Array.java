@@ -1,7 +1,6 @@
 package com.ray.LintCode;
 
 import com.ray.io.Out;
-import com.ray.util.ArrayUtil;
 
 /**
  * 
@@ -16,6 +15,18 @@ import com.ray.util.ArrayUtil;
  *
  */
 public class L_0031_Partition_Array {
+    
+    
+    /**
+     * 单从题目要求，更简单的解法是一次遍历。
+     * 
+     * int index = 0;
+     * for (int i : nums) if (i < k) index ++;
+     * return index;
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
         
         /**

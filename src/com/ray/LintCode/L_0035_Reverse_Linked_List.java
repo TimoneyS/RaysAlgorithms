@@ -11,7 +11,7 @@ import com.ray.io.Out;
  * @author rays1
  *
  */
-public class L_035_Reverse_linked_list {
+public class L_0035_Reverse_Linked_List {
     
     private static class ListNode {
         int val;

@@ -13,9 +13,22 @@ import com.ray.io.Out;
  *
  */
 public class L_0038_Search_2D_Matrix_II {
-    
+
+    /**
+     * 每次搜索将矩阵分割为9个区域   其中 2 4 5 6 8 为 中点所在区域。
+     *    1 | 2 | 3
+     *   ---|---|---
+     *    4 | 5 | 6
+     *   ---|---|---
+     *    7 | 8 | 9
+     * 区域 5 即为中点
+     * 若 中点大于或小于目标，则可以过滤一些区域
+     * 在剩下的区域中继续搜索
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
-        
         
         int m;
         int n;
@@ -54,12 +67,6 @@ public class L_0038_Search_2D_Matrix_II {
             } else if (rows == rowt && cols == colt) {
                 rs = c == 0 ? 1 : 0;
             } else if (rows <= rowt && cols <= colt) {
-                
-                //   1 | 2 | 3
-                //  ---|---|---
-                //   4 | 5 | 6
-                //  ---|---|---
-                //   7 | 8 | 9
                 
                 rs += search(level+1, rows, colm+1, rowm-1, colt);   // area 3
                 rs += search(level+1, rowm+1, cols,   rowt, colm-1); // area 7

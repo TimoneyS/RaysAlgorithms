@@ -1,5 +1,7 @@
 package com.ray.LintCode;
 
+import java.util.Stack;
+
 /**
  * As the title described, you should only use two stacks to implement a queue's
  * actions.
@@ -24,9 +26,16 @@ package com.ray.LintCode;
  *
  */
 public class L_0040_Implement_Queue_by_Two_Stacks {
+    
     static class MyQueue {
+        
+        Stack<Integer> s1;
+        Stack<Integer> s2;
+        
         public MyQueue() {
             // do intialization if necessary
+            s1 = new Stack<>();
+            s2 = new Stack<>();
         }
 
         /*
@@ -35,24 +44,25 @@ public class L_0040_Implement_Queue_by_Two_Stacks {
          */
         public void push(int element) {
             // write your code here
+            while (!s1.empty()) s2.push(s1.pop());
+            s1.push(element);
+            while (!s2.empty()) s1.push(s2.pop());
         }
 
         /*
          * @return: An integer
          */
         public int pop() {
-            return 0;
-            // write your code here
+            return s1.pop();
         }
 
         /*
          * @return: An integer
          */
         public int top() {
-            return 0;
             // write your code here
+            return s1.peek();
         }
     }
-    
     
 }

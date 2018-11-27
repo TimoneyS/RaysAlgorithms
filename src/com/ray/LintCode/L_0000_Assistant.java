@@ -11,6 +11,13 @@ import com.ray.io.Out;
 
 public class L_0000_Assistant {
     
+    public static void main(String[] args) {
+        
+        String title = "43. Maximum Subarray III";
+        
+        createJavaFileFromTitle(title);
+    }
+    
     private static String getFileName(String title) {
         
         Pattern p = Pattern.compile("^(\\d+)\\.\\s+(.*\\S)\\s*$");
@@ -53,13 +60,6 @@ public class L_0000_Assistant {
         String javaString = javaString(filename);
         writeToFile(filename, javaString);
         Out.p(javaString);
-    }
-
-    public static void main(String[] args) {
-        
-        String title = "42. Maximum Subarray II";
-        
-        createJavaFileFromTitle(title);
     }
     
 }

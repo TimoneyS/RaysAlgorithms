@@ -21,7 +21,7 @@ import com.ray.io.Out;
  * @author rays1
  *
  */
-public class L0042_Maximum_Subarray_II {
+public class L_0042_Maximum_Subarray_II {
     
     static class Solution {
         

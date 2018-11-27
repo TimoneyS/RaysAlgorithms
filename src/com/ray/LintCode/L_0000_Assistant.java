@@ -27,7 +27,7 @@ public class L_0000_Assistant {
         int id = Integer.valueOf(m.group(1));
         String prob = m.group(2).replaceAll(" ", "_");        
         
-        return String.format("L%04d_%s", id, prob);
+        return String.format("L_%04d_%s", id, prob);
     }
     
     private static String javaString(String filename) {

@@ -27,17 +27,16 @@ public class L_0044_Minimum_Subarray {
         
         private int minSubArray(Integer[] nums) {
             int N = nums.length;
-            int[] left = new int[N];
+            int[] leftMin = new int[N];
             
-            int sum = nums[0];
-            left[0] = nums[0];
+            int minSum = nums[0];
+            leftMin[0] = nums[0];
             for (int i = 1; i < N; i++) {
-                sum += nums[i];
-                sum = Math.min(sum, nums[i]);
-                left[i] = Math.min(sum, left[i-1]);
+                minSum = Math.min(nums[i], minSum + nums[i]);
+                leftMin[i] = Math.min(minSum, leftMin[i-1]);
             }
             
-            return left[N-1];
+            return leftMin[N-1];
         }
         
     }
@@ -56,7 +55,6 @@ public class L_0044_Minimum_Subarray {
                 minSum = Math.min(minSum, sum - maxSum);
                 maxSum = Math.max(maxSum, sum);
             }
-            
             return minSum;
         }
     }
@@ -64,10 +62,10 @@ public class L_0044_Minimum_Subarray {
     
     public static void main(String[] args) {
         
-        List<Integer> nums = Arrays.asList(new Integer[] {1, -1, -2, 1});
-        
+        List<Integer> nums = Arrays.asList(new Integer[] {1, 2, -3, 1});
         
         Out.p(new Solution().minSubArray(nums));
+        Out.sep();
         Out.p(new Solution1().minSubArray(nums));
         
     }

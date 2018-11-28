@@ -1,5 +1,6 @@
 package com.ray.LintCode;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.ray.io.Out;
@@ -41,9 +42,33 @@ public class L_0044_Minimum_Subarray {
         
     }
     
+    static class Solution1 {
+        /*
+         * @param nums: a list of integers
+         * @return: A integer indicate the sum of minimum subarray
+         */
+        public int minSubArray(List<Integer> nums) {
+            if (nums == null || nums.size() == 0) return 0;
+            
+            int minSum = Integer.MAX_VALUE, maxSum = 0, sum = 0;
+            for (int i = 0; i < nums.size(); i++) {
+                sum += nums.get(i);
+                minSum = Math.min(minSum, sum - maxSum);
+                maxSum = Math.max(maxSum, sum);
+            }
+            
+            return minSum;
+        }
+    }
+    
+    
     public static void main(String[] args) {
         
-        Out.p(new Solution().minSubArray(new Integer[] {1, -1, -2, 1}));
+        List<Integer> nums = Arrays.asList(new Integer[] {1, -1, -2, 1});
+        
+        
+        Out.p(new Solution().minSubArray(nums));
+        Out.p(new Solution1().minSubArray(nums));
         
     }
 

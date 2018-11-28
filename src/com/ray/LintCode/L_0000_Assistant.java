@@ -13,7 +13,7 @@ public class L_0000_Assistant {
     
     public static void main(String[] args) {
         
-        String title = "43. Maximum Subarray III";
+        String title = "47. Majority Element II";
         
         createJavaFileFromTitle(title);
     }
@@ -34,7 +34,13 @@ public class L_0000_Assistant {
         StringBuilder sb = new StringBuilder();
         
         sb.append("package com.ray.LintCode;\r\n");
-        sb.append("\r\n");        
+        sb.append("\r\n");
+        sb.append("/**\r\n");
+        sb.append(" *\r\n");
+        sb.append(" *\r\n");
+        sb.append(" * @author rays1\r\n");
+        sb.append(" *\r\n");
+        sb.append(" */\r\n");
         sb.append("public class ").append(filename).append(" {\r\n");
         sb.append("\r\n");
         sb.append("\r\n");

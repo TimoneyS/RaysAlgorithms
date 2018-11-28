@@ -67,10 +67,10 @@ public class L_0048_Majority_Number_III {
                     }
                 }
                 
-//                Out.p(num);
-//                Out.p(rs, "%4s ");
-//                Out.p(ct, "%4s ");
-//                Out.sep();
+                Out.p(num);
+                Out.p(rs, "%4s ");
+                Out.p(ct, "%4s ");
+                Out.sep();
                 
             }
 

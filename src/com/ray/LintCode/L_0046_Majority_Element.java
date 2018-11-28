@@ -25,7 +25,6 @@ public class L_0046_Majority_Element {
         public int majorityNumber(List<Integer> nums) {
             Integer num = null;
             int ct = 0;
-            
             for (Integer i : nums) {
                 if (ct == 0) num = i;
                 if (i.equals(num)) ct ++;
@@ -33,11 +32,12 @@ public class L_0046_Majority_Element {
             }
             return num;
         }
+        
     }
     
     public static void main(String[] args) {
         
-        List<Integer> nums = Arrays.asList(new Integer[] {2,1,1,2,1,2,1,2,1});
+        List<Integer> nums = Arrays.asList(new Integer[] {1,1,1,1,2,2,3});
         
         Out.p(new Solution().majorityNumber(nums));
     }

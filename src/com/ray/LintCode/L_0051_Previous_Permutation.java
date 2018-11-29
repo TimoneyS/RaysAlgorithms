@@ -28,44 +28,41 @@ public class L_0051_Previous_Permutation {
         }
         
         /**
-         * 序列的下一个字典序列
+         * 序列的上一个字典序列
          * <p>
-         * 
-         * <li> 1. 在 序列中 找到所有满足 a[k] < a[k+1] 最大的 k 值，如果找不到，则说明当前排列是字典序最大者（逆序）。 
-         * <li> 2. 在a[k+1..n]中，找到所有满足 a[l] > a[k] 的最小的 a[l]。
-         * <li> 3. 交换a[l]与a[k].
-         * <li> 4. 反转区间a[k+1..n]内元素的顺序。
-         * <br>
-         * 这样就得到了a[1...n]在字典序中的下一个排列。
+         * 1. 从右往左 找到第一个 a[k] > a[k+1]
+         * 2. 反转 a[k+1..n]
+         * 3. 从 k 向右找到，第一个 a[l] < a[k]
+         * 4. 交换 a[l] a[k]
          * @param nums
          */
         public void next(List<Integer> nums) {
             
-            // 1. 寻找 k
+            // 从右往左 找到第一个 a[k] > a[k+1]
             int k = -1;
-            for (int i = 0; i < nums.size()-1; i++) {
-                if (nums.get(i) < nums.get(i+1) && k < i) k = i;
-            }
-            
-            if (k == -1) {
-                reverse(nums, 0, nums.size()-1);
-                return;
-            };
-            
-            // 2. 寻找 l
-            int l = -1;
-            for (int i = k+1; i < nums.size(); i++) {
-                // 注意 这里的判断如果是 nums[l] > nums[i]，则重复元素的情况会有误
-                if (nums.get(i) > nums.get(k) && (l == -1 || nums.get(l) >= nums.get(i))) {
-                    l = i;
+            for (int i = nums.size()-2; i >= 0; i--) {
+                if (nums.get(i) > nums.get(i+1)) {
+                    k = i;
+                    break;
                 }
             }
             
-            // 3. 交换 nums[k] nums[l]
+            // 反转 a[k+1..n]
+            reverse(nums, k+1, nums.size()-1);
+
+            if (k == -1 ) return ;
+            
+            // 从 k 向右找到，第一个 a[l] < a[k]
+            int l = -1;
+            for (int i = k+1; i < nums.size(); i++) {
+                if (nums.get(i) < nums.get(k)) {
+                    l = i;
+                    break;
+                }
+            }
+            // 交换 a[l] a[k]
             swap(nums, k, l);
             
-            // 4. 翻转 nums[k+1..n]
-            reverse(nums, k+1, nums.size()-1);
         }
         
         // 交换
@@ -83,7 +80,11 @@ public class L_0051_Previous_Permutation {
     }
     
     public static void main(String[] args) {
-        Integer[] arr = {1,3,2,3};
+        
+        // For [1,3,2,3], the previous permutation is [1,2,3,3]
+        // For [1,2,3,4], the previous permutation is [4,3,2,1]
+        
+        Integer[] arr = {1,2,3,4};
         
         List<Integer> nums = Arrays.asList(arr);
         

@@ -36,7 +36,7 @@ public class L_0016_Permutations_II {
      * <p>
      * <b>如何求序列的下一个序列</b>
      * <p>
-     * <li> 1. 在a[1..n]找到满足 a[k] < a[k+1] 的 k 的最大值，如果找不到，则说明当前排列是字典序最大者。 
+     * <li> 1. 从右侧寻找满足 a[k] < a[k+1] 第一个 k，如果找不到，则说明当前排列是字典序最大者。 
      * <li> 2. 在a[k+1..n]中，寻找 a[l] > a[k] 的最小的 a[l]。
      * <li> 3. 交换a[l]与a[k].
      * <li> 4. 对于a[k+1..n]，反转该区间内元素的顺序。这样就得到了a[1...n]在字典序中的下一个排列。
@@ -88,13 +88,22 @@ public class L_0016_Permutations_II {
             
             if (k == -1) return -1;
             
-            // 2. 寻找 l
+            // 2. 寻找 l,从右侧找到第一个大于 nums[l] > nums[k] 的 l 
             int l = -1;
-            for (int i = k+1; i < nums.length; i++) {
+            for (int i = nums.length-1; i > k; i--) {
                 if (nums[i] > nums[k]) {
                     l = i;
+                    break;
                 }
             }
+            
+            // 2. 寻找 l，从右侧找到大于 nums[k] 的最小的 nums[l]
+//            int l = -1;
+//            
+//            for (int i = k+1; i < nums.length; i++) {
+//                if (nums[i] > nums[k] && (l == -1 || nums[l] > nums[i]))
+//                    l = i;
+//            }
             
             // 3. 交换 nums[k] nums[l]
             swap(nums, k, l);
@@ -118,7 +127,7 @@ public class L_0016_Permutations_II {
     }
     
     public static void main(String[] args) {
-        int[] nums = {1,2,3};
+        int[] nums = {1,2,3,4,5};
         
         for (List<Integer> list : new Solution().permuteUnique(nums))
             Out.p(list);

@@ -11,9 +11,17 @@ import com.ray.io.Out;
 
 public class L_0000_Assistant {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
-        String title = "47. Majority Element II";
+        byte[] bytes = new byte[100];
+        System.in.read(bytes);
+        
+        int i = 0;
+        for (byte b : bytes) {
+            i ++;
+            if (b == 13) break;
+        }
+        String title = new String(bytes, 0, i+1);
         
         createJavaFileFromTitle(title);
     }

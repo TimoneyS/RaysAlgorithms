@@ -1,6 +1,8 @@
 package com.ray.LintCode;
 
-import com.ray.io.Out;
+import java.util.Random;
+
+import com.ray.util.Timer;
 
 /**
  * Given an input string, reverse the string word by word.
@@ -53,8 +55,6 @@ public class L_0053_Reverse_Words_in_a_String {
             
             int index = findOrder(arr, newOrder);
             
-            Out.p(newOrder);
-            
             int  curr, prev;
             char tc1, tc2;
             for (int i = 0; i < newOrder.length; i++) {
@@ -76,7 +76,6 @@ public class L_0053_Reverse_Words_in_a_String {
                 if (arr[i--] != ' ') break;
             }
             
-            Out.p(arr);
             return new String(arr, 0, index);
         }
 
@@ -110,13 +109,33 @@ public class L_0053_Reverse_Words_in_a_String {
         
     }
     
+    static String createString(int n) {
+        char[] chars = new char[n];
+        Random r = new Random(47);
+        for (int i = 0; i < chars.length; i++) {
+            int size = r.nextInt(5);
+            if (size+i >= chars.length)
+                size = chars.length - i - 1; 
+            for (int j = 0; j < size; j++) {
+                chars[j+i] = (char)(r.nextInt(26) + 97);
+            }
+            chars[i+size] = ' ';
+            i += size;
+        }
+        
+        return new String(chars);
+    }
+    
     public static void main(String[] args) {
+
+        int n = 10000000;
         
-        String s = "  the    sky  ";
-        
-        s = new Solution1().reverseWords(s);
-        
-        Out.p(s);
+        String s = createString(n);
+        Timer.CLICK();
+        new Solution1().reverseWords(s);
+        Timer.CLICK();
+        new Solution().reverseWords(s);
+        Timer.STOP();
     }
 
 }

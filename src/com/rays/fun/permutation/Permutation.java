@@ -50,6 +50,9 @@ public class Permutation {
     }
     
     public void drawArray(int[] nums) {
+        if (StdDraw.hasNextKeyTyped()) {
+            StdDraw.nextKeyTyped();
+        }
         StdDraw.clear();
         int N = nums.length;
         Color c = StdDraw.getPenColor();
@@ -64,9 +67,11 @@ public class Permutation {
             double x = 0.1 + i * 2*rad + rad / 2;
             double y = 0.1 * nums[i]/2;
             StdDraw.filledRectangle( x, y, rad/2, 0.1 * nums[i]/2);
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.text(x, y, nums[i] + "");
         }
         StdDraw.setPenColor(c);
-        TimeUnit.MILL_SECOND.sleep(10);
+        TimeUnit.MILL_SECOND.sleep(100);
     }
     
     public static void main(String[] args) {

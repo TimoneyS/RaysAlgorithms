@@ -48,9 +48,14 @@ public class L_0056_Two_Sum {
     
     public static void main(String[] args) {
         
-        int n = 1000000;
+        int n = 10;
         int[] numbers = ArrayUtil.intArr(n);
-        int target = 2  * n - 3 ;
+        int target = 2  * n - 1 ;
+        
+//        int[] numbers = {1,2,3,5};
+//        int target = 7;
+        
+        Out.p(numbers);
         
         Timer.CLICK();
         Out.p(new Solution().twoSum(numbers, target));

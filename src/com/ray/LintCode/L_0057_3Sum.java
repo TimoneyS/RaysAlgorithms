@@ -37,7 +37,7 @@ public class L_0057_3Sum {
             for (int i = 0; i < numbers.length; i++) {
                 if (marked.containsKey(numbers[i])) continue;
                 
-                rs.addAll(twoSum(numbers, i+1, 0-numbers[i], marked));
+                twoSum(numbers, i+1, 0-numbers[i], marked, rs);
                 
                 marked.put(numbers[i], true);
             }
@@ -45,9 +45,8 @@ public class L_0057_3Sum {
             return rs;
         }
         
-        private List<List<Integer>> twoSum(int[] numbers, int start, int target, Map<Integer, Boolean> basemarked) {
+        private void twoSum(int[] numbers, int start, int target, Map<Integer, Boolean> basemarked, List<List<Integer>> rs) {
             
-            List<List<Integer>>   rs = new ArrayList<List<Integer>>();
             Map<Integer, Boolean> marked = new HashMap<Integer, Boolean>();
             Map<Integer, Integer> remain = new HashMap<>();
             
@@ -73,7 +72,6 @@ public class L_0057_3Sum {
                 
             }
             
-            return rs;
         }
         
     }

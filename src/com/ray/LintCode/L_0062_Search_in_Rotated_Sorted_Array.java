@@ -31,11 +31,10 @@ public class L_0062_Search_in_Rotated_Sorted_Array {
             while (l<=r)  {
                 int m = (l+r)/2;
                 if (A[m] == target) return m;
-                
-                if (A[0] > target == A[m] >= A[0] == A[m] > target) {    // 目标 和 中点 在同一个区域，并且中点在目标右侧
-                    l = m+1;
-                } else {                                // 目标 和 中点 在不同区域，或目标和中点在同区域但是中点在目标左侧
-                    r = m-1;
+                if ((A[0] > target) ^ (A[m] >= A[0]) ^ (A[m] > target)) { 
+                    l = m + 1;
+                } else {
+                    r = m - 1;
                 }
                 
             }
@@ -47,8 +46,16 @@ public class L_0062_Search_in_Rotated_Sorted_Array {
 
     public static void main(String[] args) {
         
-        int[] A = {6,8,9,1};
-        int target = 1;
+//        Integer[] arr = ArrayUtil.intArrRotate(20, 10);
+//        
+//        int[] A = new int[arr.length];
+//        for (int i = 0; i < A.length; i++) {
+//            A[i] = arr[i];
+//        }
+        
+        int[] A = {1,2,3,4,5};
+        int target = 4;
+        Out.p(A);
         
        Out.p( new Solution().search(A, target));
         

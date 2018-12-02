@@ -25,33 +25,15 @@ public class L_0060_Search_Insert_Position {
          * @return: An integer
          */
         public int searchInsert(int[] A, int target) {
-            
             int l = 0,r = A.length-1;
-            
             if (r==-1) return 0;
-            
             while (l<r) {
-                
                 int m = (l+r)/2;
-                
-                if (target > A[m]) {
-                    l = m+1;
-                } else if (target < A[m]) {
-                    r = m-1;
-                } else {
-                    return m;
-                }
-                
+                if (target == A[m]) return m;
+                if (target > A[m])      l = m+1;
+                else if (target < A[m]) r = m-1;
             }
-            
-            if (l > r) {
-                return l;
-            } else if (A[r] >= target) {
-                return r;
-            } else {
-                return r + 1;
-            }
-            
+            return (l>r) ? l : (A[r] >= target) ? r : r+1;
         }
         
     }

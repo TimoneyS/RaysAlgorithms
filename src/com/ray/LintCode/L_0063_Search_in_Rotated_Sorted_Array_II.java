@@ -1,6 +1,5 @@
 package com.ray.LintCode;
 
-import com.ray.LintCode.L_0062_Search_in_Rotated_Sorted_Array.Solution;
 import com.ray.io.Out;
 
 /**

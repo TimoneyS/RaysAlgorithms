@@ -43,12 +43,9 @@ public class L_0061_Search_for_a_Range {
             if (r==-1) return 0;
             while (l<r) {
                 int m = (l+r)/2;
-                
                 // target 其实表示 位于 target-1 和 target 之间的数字
-                if (A[m] <= target - 1)
-                    l = m+1;
-                else
-                    r = m-1;
+                if (A[m] <= target - 1) l = m+1;
+                else r = m-1;
             }
             return (l>r) ? l : (A[r] >= target) ? r : r+1;
         }

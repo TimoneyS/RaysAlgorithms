@@ -1,5 +1,7 @@
 package com.ray.LintCode;
 
+import java.util.Arrays;
+
 import com.ray.io.Out;
 
 /**
@@ -22,13 +24,16 @@ public class L_0059_3Sum_Closest {
          */
         public int threeSumClosest(int[] numbers, int target) {
             
+            Arrays.sort(numbers);
+            
             int cl = numbers[0] + numbers[1] + numbers[2];
             
             for (int i = 0; i < numbers.length-2; i++) {
                 for (int j = i+1; j < numbers.length-1; j++) {
                     for (int k = j+1; k < numbers.length; k++) {
+                        int t = numbers[i]+numbers[j] + numbers[k];
                         if (Math.abs(cl-target) > Math.abs(numbers[i]+numbers[j] + numbers[k]-target))
-                            cl = numbers[j] + numbers[j] + numbers[k];
+                            cl = t;
                     }
                 }
             }
@@ -38,6 +43,38 @@ public class L_0059_3Sum_Closest {
         
     }
     
+    static class Solution1 {
+        /**
+         * @param numbers: Give an array numbers of n integer
+         * @param target : An integer
+         * @return : return the sum of the three integers, the sum closest target.
+         */
+        public int threeSumClosest(int[] numbers, int target) {
+            if (numbers == null || numbers.length < 3) {
+                return -1;
+            }
+            
+            Arrays.sort(numbers);
+            int cl = numbers[0] + numbers[1] + numbers[2];
+            for (int i = 0; i < numbers.length; i++) {
+                int j = i + 1, k = numbers.length - 1;
+                while (j < k) {
+                    int t = numbers[i] + numbers[j] + numbers[k];
+                    if (Math.abs(target - t) < Math.abs(target - cl)) {
+                        cl = t;
+                    }
+                    if (t < target) {
+                        j++;
+                    } else {
+                        k--;
+                    }
+                }
+            }
+            
+            return cl;
+        }
+    }
+    
     public static void main(String[] args) {
         
         int[] numbers = {-1, 2, 1, -4};
@@ -45,7 +82,7 @@ public class L_0059_3Sum_Closest {
         
         Out.p(new Solution().threeSumClosest(numbers, target));
      
-        
+        Out.p(new Solution1().threeSumClosest(numbers, target));
     }
     
 }

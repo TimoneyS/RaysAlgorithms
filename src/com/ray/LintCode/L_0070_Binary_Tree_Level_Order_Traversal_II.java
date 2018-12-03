@@ -7,20 +7,19 @@ import com.ray.io.Out;
 
 /**
  *
- * Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
  *
  * @author rays1
  *
  */
-public class L_0069_Binary_Tree_Level_Order_Traversal {
-    
+public class L_0070_Binary_Tree_Level_Order_Traversal_II {
+
     static class Solution {
         
         /**
          * @param root: A Tree
          * @return: Level order a list of lists of integer
          */
-        public List<List<Integer>> levelOrder(TreeNode root) {
+        public List<List<Integer>> levelOrderBottom(TreeNode root) {
             List<List<Integer>> rs = new ArrayList<>();
             if (root != null)
                 tree(root, 0, rs);
@@ -37,9 +36,9 @@ public class L_0069_Binary_Tree_Level_Order_Traversal {
             List<Integer> list = null;
             if (level >= rs.size()) {
                 list = new ArrayList<Integer>();
-                rs.add(level, list);
+                rs.add(0, list);
             } else {
-                list = rs.get(level);
+                list = rs.get(rs.size() - level - 1);
             }
             list.add(node.val);
         }
@@ -61,7 +60,7 @@ public class L_0069_Binary_Tree_Level_Order_Traversal {
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
         
-        Out.p(new Solution().levelOrder(root));
+        Out.p(new Solution().levelOrderBottom(root));
         
     }
 

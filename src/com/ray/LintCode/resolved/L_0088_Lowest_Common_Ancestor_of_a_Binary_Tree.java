@@ -15,15 +15,6 @@ import com.ray.io.Out;
  */
 public class L_0088_Lowest_Common_Ancestor_of_a_Binary_Tree {
 
-    static class TreeNode {
-        public int val;
-        public TreeNode left, right;
-        public TreeNode(int val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-    }
-    
     /**
      * 将每个节点的搜索结果作为路径，如果找不到则没有路径
      * 寻找路径上最后一个相同的节点即可

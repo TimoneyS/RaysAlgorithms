@@ -26,16 +26,6 @@ import com.ray.io.Out;
  */
 public class L_0007_Serialize_Deserialize_Binary_Tree {
     
-    static class TreeNode {
-        public int      val;
-        public TreeNode left, right;
-
-        public TreeNode(int val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-    }
-    
     static class Solution {
         /**
          * This method will be invoked first, you should design your own algorithm 
@@ -125,8 +115,6 @@ public class L_0007_Serialize_Deserialize_Binary_Tree {
             }
             return root;
         }
-        
-  
         
     }
     

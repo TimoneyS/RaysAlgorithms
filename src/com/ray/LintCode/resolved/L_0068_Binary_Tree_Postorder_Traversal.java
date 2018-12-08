@@ -32,13 +32,4 @@ public class L_0068_Binary_Tree_Postorder_Traversal {
         
     }
 
-    static class TreeNode {
-        public int val;
-        public TreeNode left, right;
-        public TreeNode(int val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-    }
-    
 }

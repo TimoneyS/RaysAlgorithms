@@ -8,16 +8,6 @@ package com.ray.LintCode.resolved;
  */
 public class L_0087_Remove_Node_in_Binary_Search_Tree {
 
-    static class TreeNode {
-        public int      val;
-        public TreeNode left, right;
-
-        public TreeNode(int val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-    }
-    
     static class Solution {
         /*
          * @param root: The root of the binary search tree.

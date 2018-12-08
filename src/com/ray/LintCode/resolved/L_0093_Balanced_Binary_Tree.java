@@ -41,32 +41,12 @@ public class L_0093_Balanced_Binary_Tree {
         }
         
     }
-
-    static class TreeNode {
-        
-        public int      val;
-        public TreeNode left, right;
-
-        public TreeNode(int val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-        
-    }
     
     public static void main(String[] args) {
         
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.left.right = new TreeNode(3);
-        root.left.right.left = new TreeNode(4);
-        root.left.right.right = new TreeNode(5);
-        root.left.right.right.left = new TreeNode(6);
-        root.left.right.right.right = new TreeNode(7);
-        root.left.right.right.left.left = new TreeNode(8);
-        root.left.right.right.left.right = new TreeNode(9);
+        TreeNode root = TreeNode.deserialize("{1,#,3,4,#,5}");
         
-        Out.p(new Solution().maxDeep(root.left.right.right.left));
+        Out.p(new Solution().maxDeep(root));
         
         
     }

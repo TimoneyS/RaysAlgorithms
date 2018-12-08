@@ -41,16 +41,6 @@ public class L_0066_Binary_Tree_Preorder_Traversal {
         }
     }
     
-    static class TreeNode {
-        public int val;
-        public TreeNode left, right;
-        public TreeNode(int val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-    }
-    
-    
     public static void main(String[] args) {
         
         TreeNode root = new TreeNode(1);

@@ -15,16 +15,6 @@ import com.ray.io.Out;
  */
 public class L_0086_Binary_Search_Tree_Iterator {
     
-    static class TreeNode {
-        public int      val;
-        public TreeNode left, right;
-
-        public TreeNode(int val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-    }
-
     static class BSTIterator {
         
         Stack<TreeNode> stack = new Stack<TreeNode>();

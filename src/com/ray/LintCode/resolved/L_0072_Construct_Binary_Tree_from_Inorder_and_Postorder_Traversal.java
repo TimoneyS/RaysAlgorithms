@@ -55,15 +55,6 @@ public class L_0072_Construct_Binary_Tree_from_Inorder_and_Postorder_Traversal {
         tree(root.left,  level+1);        
     }
     
-    static class TreeNode {
-        public int val;
-        public TreeNode left, right;
-        public TreeNode(int val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-    }
-    
     public static void main(String[] args) {
         
         int[] inorder   = {1, 2, 3};

@@ -45,15 +45,6 @@ public class L_0070_Binary_Tree_Level_Order_Traversal_II {
         
     }
     
-    static class TreeNode {
-        public int val;
-        public TreeNode left, right;
-        public TreeNode(int val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-    }
-    
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         

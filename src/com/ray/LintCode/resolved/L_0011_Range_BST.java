@@ -21,16 +21,6 @@ import com.ray.io.Out;
  */
 public class L_0011_Range_BST {
     
-    static class TreeNode {
-        public int      val;
-        public TreeNode left, right;
-
-        public TreeNode(int val) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-    }
-
     static class Solution {
         /**
          * @param root: param root: The root of the binary search tree

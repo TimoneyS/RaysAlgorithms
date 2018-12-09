@@ -5,9 +5,13 @@ import java.util.Scanner;
 import com.ray.io.Out;
 
 public class ListNode {
+    public static int ID_GEN = 0;
+    public int id;
     public int val;
     public ListNode next;
+
     public ListNode(int x) {
+        id = ID_GEN ++;
         val = x;
         next = null;
     }

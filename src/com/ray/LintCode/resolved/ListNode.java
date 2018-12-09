@@ -36,6 +36,25 @@ public class ListNode {
         Out.p(head.toString());
     }
     
+    public ListNode next(int step) {
+        ListNode n = this;
+        while (step > 0) {
+            n = n.next;
+            step --;
+            if (n == null) break;
+        }
+        return n;
+    }
+    
+    public ListNode nextVal(int val) {
+        ListNode n = this;
+        while (n != null) {
+            if (n.val == val) break;
+            n = n.next;
+        }
+        return n;
+    }
+    
     public static ListNode generate(String str) {
         Scanner sc = new Scanner(str);
         sc.useDelimiter("[,\\{\\}]");

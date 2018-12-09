@@ -12,12 +12,24 @@ public class ListNode {
         next = null;
     }
     
-    public static void show(ListNode head) {
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        ListNode head = this;
         while (head.next != null) {
-            Out.pt(head.val + " -> ");
+            sb.append(head.val + " -> ");
             head = head.next;
         }
-        Out.p(head.val);
+        sb.append(head.val);
+        return sb.toString();
+    }
+    
+    public static void show(ListNode head) {
+        if (head == null) {
+            Out.p("{}");
+            return;
+        }
+        Out.p(head.toString());
     }
     
     public static ListNode generate(String str) {

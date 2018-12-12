@@ -21,7 +21,6 @@ public class L_0110_Minimum_Path_Sum {
             int h = grid.length;
             int w = grid[0].length;
             
-            
             for (int i = 1; i < h; i++) grid[i][0] += grid[i-1][0];
             for (int i = 1; i < w; i++) grid[0][i] += grid[0][i-1];
             for (int i = 1; i < h; i++)

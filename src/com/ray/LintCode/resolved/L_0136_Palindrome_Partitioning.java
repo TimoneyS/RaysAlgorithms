@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import com.ray.io.Out;
+import com.ray.util.Timer;
 
 /**
  * Given a string s, partition s such that every substring of the partition is a palindrome.
@@ -46,8 +46,8 @@ public class L_0136_Palindrome_Partitioning {
             
             for (int i = 0; i < s.length()-1; i++) {
                 String subL = s.substring(0, i+1);
-                String subR = s.substring(i+1);
                 if (!isPalindrom(subL)) continue;
+                String subR = s.substring(i+1);
                 
                 List<List<String>> rsR = partition(subR);      
                 
@@ -75,11 +75,15 @@ public class L_0136_Palindrome_Partitioning {
     
     public static void main(String[] args) {
         
-        String s = "aaba";
+        String s = "aabbbccccdddddccccbbbaa";
         
-        for (List<String> l : new Solution().partition(s)) {
-            Out.p(l);
-        }
+        Timer.CLICK();
+        new Solution().partition(s);
+        Timer.STOP();
+        
+//        for (List<String> l : new Solution().partition(s)) {
+//            Out.p(l);
+//        }
         
     }
     

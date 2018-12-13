@@ -24,6 +24,11 @@ import com.ray.io.Out;
  */
 public class L_0121_Word_Ladder_II {
 
+    /**
+     * 方法时间复杂度较高，考虑如何优化
+     * @author rays1
+     *
+     */
     static class Solution {
         
         public List<List<String>> findLadders(String start, String end, Set<String> dict) {

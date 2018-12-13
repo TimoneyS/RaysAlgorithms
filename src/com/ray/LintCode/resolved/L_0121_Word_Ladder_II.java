@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.resolved;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -39,6 +39,8 @@ public class L_0121_Word_Ladder_II {
             Queue<String> queue1 = new ArrayDeque<>();
             Queue<String> queue2 = new ArrayDeque<>();
             List<List<String>> rs =  new ArrayList<List<String>>();
+            
+            
             
             queue1.add(start);
             while (!queue1.isEmpty()) {

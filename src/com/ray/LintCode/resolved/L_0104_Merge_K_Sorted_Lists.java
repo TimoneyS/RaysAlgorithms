@@ -61,11 +61,11 @@ public class L_0104_Merge_K_Sorted_Lists {
         
         List<ListNode> lists = new ArrayList<ListNode>();
         
-        lists.add(ListNode.generate("{1,4,6,8,10,12}"));
-        lists.add(ListNode.generate("{}"));
-        lists.add(ListNode.generate("{2,5,7,9}"));
-        lists.add(ListNode.generate("{1,6,7,9}"));
-        lists.add(ListNode.generate("{2,5}"));
+        lists.add(ListNode.parse("{1,4,6,8,10,12}"));
+        lists.add(ListNode.parse("{}"));
+        lists.add(ListNode.parse("{2,5,7,9}"));
+        lists.add(ListNode.parse("{1,6,7,9}"));
+        lists.add(ListNode.parse("{2,5}"));
         
         Out.p(new Solution().mergeKLists(lists));
     }

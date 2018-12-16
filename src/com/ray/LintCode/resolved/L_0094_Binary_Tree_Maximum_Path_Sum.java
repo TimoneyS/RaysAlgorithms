@@ -45,7 +45,7 @@ public class L_0094_Binary_Tree_Maximum_Path_Sum {
     
     public static void main(String[] args) {
         
-        TreeNode r = TreeNode.deserialize("{-2,-1,-3}");
+        TreeNode r = TreeNode.parse("{-2,-1,-3}");
         TreeNode.show(r);
         
         Out.p(new Solution().maxPathSum(r));

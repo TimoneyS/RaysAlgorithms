@@ -52,7 +52,7 @@ public class L_0096_Partition_List {
         }
         
         public static void main(String[] args) {
-            ListNode head = ListNode.generate("{1,4,3,2,5,2}");
+            ListNode head = ListNode.parse("{1,4,3,2,5,2}");
             int x = 3;
             
             ListNode.show(new Solution().partition(head, x));

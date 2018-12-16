@@ -33,7 +33,7 @@ public class L_0112_Remove_Duplicates_from_Sorted_List {
     }
     
     public static void main(String[] args) {
-        ListNode head = ListNode.generate("{}");
+        ListNode head = ListNode.parse("{}");
         ListNode.show(head);
         head = new Solution().deleteDuplicates(head);
         ListNode.show(head);

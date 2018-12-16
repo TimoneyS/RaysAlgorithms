@@ -29,7 +29,7 @@ public class L_0102_Linked_List_Cycle {
     }
     
     public static void main(String[] args) {
-        ListNode head = ListNode.generate("{1,2,3}");
+        ListNode head = ListNode.parse("{1,2,3}");
         
         Out.p(new Solution().hasCycle(head));
     }

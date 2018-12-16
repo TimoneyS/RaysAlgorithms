@@ -53,7 +53,7 @@ public class L_0099_Reorder_List {
 
     public static void main(String[] args) {
         
-        ListNode head = ListNode.generate("{1,2,3,4,5,6}");
+        ListNode head = ListNode.parse("{1,2,3,4,5,6}");
         
         new Solution().reorderList(head);
         

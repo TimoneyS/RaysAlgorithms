@@ -70,7 +70,7 @@ public class L_0098_Sort_List {
     
     public static void main(String[] args) {
         
-        ListNode head = ListNode.generate("{5,2,6,4,1,7}");
+        ListNode head = ListNode.parse("{5,2,6,4,1,7}");
         
         ListNode rs = new Solution().sortList(head);
         ListNode.show(rs);

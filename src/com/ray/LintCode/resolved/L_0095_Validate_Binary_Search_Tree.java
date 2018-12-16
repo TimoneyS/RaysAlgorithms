@@ -37,7 +37,7 @@ public class L_0095_Validate_Binary_Search_Tree {
     
     public static void main(String[] args) {
         
-        TreeNode root = TreeNode.deserialize("{10,5,#,1,6}");        
+        TreeNode root = TreeNode.parse("{10,5,#,1,6}");        
         TreeNode.show(root);
         
         Out.p(new Solution().isValidBST(root));

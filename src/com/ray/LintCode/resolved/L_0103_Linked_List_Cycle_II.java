@@ -66,7 +66,7 @@ public class L_0103_Linked_List_Cycle_II {
     
     public static void main(String[] args) {
         
-        ListNode head = ListNode.generate("{1,1,1,2,3,4,5,6}");
+        ListNode head = ListNode.parse("{1,1,1,2,3,4,5,6}");
         head.nextVal(6).next = head.nextVal(2);
         
         Out.p(new Solution().detectCycle(head).val);

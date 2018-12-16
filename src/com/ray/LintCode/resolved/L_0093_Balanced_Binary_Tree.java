@@ -44,7 +44,7 @@ public class L_0093_Balanced_Binary_Tree {
     
     public static void main(String[] args) {
         
-        TreeNode root = TreeNode.deserialize("{1,#,3,4,#,5}");
+        TreeNode root = TreeNode.parse("{1,#,3,4,#,5}");
         
         Out.p(new Solution().maxDeep(root));
         

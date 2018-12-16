@@ -66,7 +66,7 @@ public class TreeNode {
      * designed by yourself, and deserialize it here as you serialize it in 
      * "serialize" method.
      */
-    public static TreeNode deserialize(String data) {
+    public static TreeNode parse(String data) {
         // write your code here
         if (data.equals("{}"))  return null;
         
@@ -122,7 +122,7 @@ public class TreeNode {
     
     public static void main(String[] args) {
         
-        TreeNode root = TreeNode.deserialize("{1,2,3,#,4,5,6,7,8}");
+        TreeNode root = TreeNode.parse("{1,2,3,#,4,5,6,7,8}");
         
         TreeNode.show(root);
         

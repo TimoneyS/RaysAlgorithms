@@ -49,7 +49,7 @@ public class L_0106_Convert_Sorted_List_to_Binary_Search_Tree {
     
     public static void main(String[] args) {
         
-        ListNode head = ListNode.generate("{1,2,3,4,5,6,7,8,9}");
+        ListNode head = ListNode.parse("{1,2,3,4,5,6,7,8,9}");
         TreeNode root = new Solution().sortedListToBST(head);
         
         TreeNode.show(root);

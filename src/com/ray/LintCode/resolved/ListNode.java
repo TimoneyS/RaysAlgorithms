@@ -55,7 +55,7 @@ public class ListNode {
         return n;
     }
     
-    public static ListNode generate(String str) {
+    public static ListNode parse(String str) {
         Scanner sc = new Scanner(str);
         sc.useDelimiter("[,\\{\\}]");
         ListNode pile = new ListNode(-1);
@@ -69,7 +69,7 @@ public class ListNode {
     }
     
     public static void main(String[] args) {
-        ListNode head = ListNode.generate("{1,2,3,4,5,6}");
+        ListNode head = ListNode.parse("{1,2,3,4,5,6}");
         
         ListNode.show(head);
     }

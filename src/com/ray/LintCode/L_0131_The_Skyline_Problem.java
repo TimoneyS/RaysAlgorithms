@@ -1,5 +1,7 @@
 package com.ray.LintCode;
 
+import static com.ray.util.ArrayUtil.less;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.Scanner;
 import com.ray.io.In;
 import com.ray.io.Out;
 import com.ray.util.Timer;
+import com.rays.algo.sort.Sort;
 
 /**
  * Given N buildings in a x-axis，each building is a rectangle and can be represented by a triple (start, end, height)，
@@ -37,49 +40,70 @@ import com.ray.util.Timer;
 public class L_0131_The_Skyline_Problem {
 
     static class Solution {
-        /**
-         * @param buildings: A list of lists of integers
-         * @return: Find the outline of those buildings
-         */
+        
         public List<List<Integer>> buildingOutline(int[][] buildings) {
             
-            List<List<Integer>> rs = new ArrayList<>();
+            int start = Integer.MAX_VALUE;
+            int end = Integer.MIN_VALUE;
             
-            int start = Integer.MAX_VALUE, end = Integer.MIN_VALUE;
-            for (int[] building : buildings) {
-                start = Math.min(start, building[0]);
-                end = Math.max(end, building[1]);
+            for (int[] b : buildings) {
+                start = Math.min(start, b[0]);
+                end   = Math.max(end,   b[1]);
             }
-            int height;
-            for (int i = start; i <= end; i++) {
-                height = 0;
-                for (int j = 0; j < buildings.length; j++) {
-                    if (buildings[j][0] > i)
-                        break;
-                    if (buildings[j][0] <= i && buildings[j][1] > i)
-                        height = Math.max(height, buildings[j][2]);
+            int[] heights = new int[end-start+1];
+             
+            sort(buildings, 0, buildings.length-1);
+            
+            Timer.CLICK();
+            List<List<Integer>> rs = new ArrayList<>();
+            for (int[] b : buildings) {
+                for (int i = b[0]; i < b[1]; i++) {
+                    heights[i-start] = b[2];
                 }
-//                Out.pf("add (%s,%s) \n", i, height);
-                if (height != 0)
-                    addOutLine(rs, i, height);
             }
+            Timer.STOP();
+            int t = 0;
+            for (int i = 0; i < heights.length; i++) {
+//                if (i == heights.length-1 || heights[i] != heights[i+1]) {
+//                    if (heights[i] != 0)
+//                        addOutLine(rs, start+t, start+i+1, heights[i]);
+//                    t = i+1;
+//                }
+            }
+            
             
             return rs;
         }
-
-        private void addOutLine(List<List<Integer>> rs, int start, int height) {
-            if (rs.size() < 1) {
-                List<Integer> l = Arrays.asList(new Integer[] {start, start+1, height});
-                rs.add(l);
-            } else {
-                List<Integer> prev = rs.get(rs.size()-1);
-                if (prev.get(1) ==  start && prev.get(2) == height) {
-                    prev.set(1, prev.get(1) + 1);
-                } else {
-                    List<Integer> l = Arrays.asList(new Integer[] {start, start+1, height});
-                    rs.add(l);
+   
+        public void sort(int[][] arr, int lo, int hi) {
+            int[][] temp = new int[hi-lo+1][3];
+            int N = hi - lo + 1;
+            for (int size = 1; size < N; size *= 2) {                            // 幂次递增的归并尺寸
+                for (int l = lo; l < N-size; l += size*2 ) {                     // 循环处理每一对待归并的子数组
+                    merge(arr, l, (l+size-1), Math.min( l+size*2-1, hi), temp);  // 归并起点为l长度为size的两个相邻的子数组
                 }
             }
+        }
+        
+        private static void merge(int[][] arr, int lo, int mid, int hi, int[][] temp){
+            for(int i = lo; i <= hi; i++) temp[i] = arr[i];    // 缓存
+            int i = lo,     // 大数组索引
+                l = lo,     // 左侧子数组索引
+                r = mid+1;  // 右侧子数组索引
+            while(l <= mid || r <= hi) {
+                if(l > mid)                 arr[i++] = temp[r++];    // 左侧子数组已经全部添加
+                else if(r > hi)             arr[i++] = temp[l++];    // 右侧子数组已经全部添加
+                else if(temp[l][2] < temp[r][2])   arr[i++] = temp[l++];    // 左侧的子数组当前元素更小
+                else                        arr[i++] = temp[r++];    // 右侧的子数组当前元素更小
+            }
+        }
+
+        private void addOutLine(List<List<Integer>> rs, int start, int end, int height) {
+            List<Integer> l = new ArrayList<>();
+            l.add(start);
+            l.add(end);
+            l.add(height);
+            rs.add(l);
         }
     }
 
@@ -87,7 +111,6 @@ public class L_0131_The_Skyline_Problem {
         
         Scanner sc1 = In.getClassPathScanner(L_0131_The_Skyline_Problem.class, "L_0131_The_Skyline_Problem.in");
         String[] arr = sc1.next().split("\\],\\[");
-        
         
         int[][] buildings = new int[arr.length][3];
         
@@ -101,17 +124,23 @@ public class L_0131_The_Skyline_Problem {
         Out.p(buildings.length);
         
 //        int[][] buildings = {
-//                {1,10,3},
-//                {2,5,8},
-//                {7,9,8},
+//                {1,8,3},
+//                {2,4,6},
+//                {3,5,8},
+//                {4,7,5},
+//                {9,14,4},
+//                {12,15,6},
 //        };
-        Timer.CLICK();
+        Solution sol = new Solution();
+        
+//        sol.sort(buildings, 0, buildings.length-1);
         List<List<Integer>> rs = new Solution().buildingOutline(buildings);
-        Timer.STOP();
+        
+        Out.p(rs.size());
 //        for (List<Integer> outline : rs) {
 //            Out.p(outline);
 //        }
-        
+//        
     }
     
 }

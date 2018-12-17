@@ -38,22 +38,30 @@ import com.ray.util.Timer;
 public class L_0131_The_Skyline_Problem {
 
     static class Solution {
+        public List<List<Integer>> buildingOutline(int[][] buildings) {
+            List<List<Integer>> rs = new ArrayList<>();
+            
+            
+            
+            return rs;
+        }
+    }
+    
+    static class Solution1 {
         
         public List<List<Integer>> buildingOutline(int[][] buildings) {
             
-            int start = Integer.MAX_VALUE;
-            int end = Integer.MIN_VALUE;
-            for (int[] b : buildings) {
-                start = Math.min(start, b[0]);
-                end   = Math.max(end,   b[1]);
-            }
-             
+            Timer.CLICK();
             sort(buildings, 0, buildings.length-1);
+            
+            Timer.CLICK();
             
             List<List<Integer>> rs = new ArrayList<>();
             for (int[] b : buildings) {
                 addOutline(rs, b[0], b[1], b[2]);
             }
+            
+            Timer.CLICK();
             
             List<Integer> prev = null;
             for (Iterator<List<Integer>> iterator = rs.iterator(); iterator.hasNext();) {
@@ -65,6 +73,8 @@ public class L_0131_The_Skyline_Problem {
                     prev = curr;
                 }
             }
+            
+            Timer.STOP();
             
             return rs;
         }
@@ -151,10 +161,8 @@ public class L_0131_The_Skyline_Problem {
 //                {8,9,2},
 //                {3,4,2}
 //            };
-        Solution sol = new Solution();
-        Timer.CLICK();
-        List<List<Integer>> rs = new Solution().buildingOutline(buildings);
-        Timer.STOP();
+        Solution1 sol = new Solution1();
+        List<List<Integer>> rs = sol.buildingOutline(buildings);
 //        Out.p(buildings, "%s ");
 //        Out.p(rs.size());
 //        for (List<Integer> outline : rs) {

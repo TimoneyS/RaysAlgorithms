@@ -3,7 +3,6 @@ package com.ray.LintCode.resolved;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -121,15 +120,14 @@ public class L_0131_The_Skyline_Problem {
     static class Solution1 {
         private static final int UP = 0;
         private static final int DOWN = 1;
-        private class Pair implements Comparable {
+        private class Pair implements Comparable<Pair> {
             int index, height, status;
             public Pair(int index, int height, int status) {
                 this.index = index;
                 this.height = height;
                 this.status = status;
             }
-            public int compareTo(Object o) {
-                Pair p = (Pair)o;
+            public int compareTo(Pair p) {
                 if (this.index == p.index) {
                     if (this.status == p.status) {
                         return this.height - p.height;

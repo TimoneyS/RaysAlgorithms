@@ -21,38 +21,28 @@ public class KMP {
         this.dfa = new int[R][pat.length()];
         
         int x = 0;
-        
-        dfa[0][0] = 1;
+        dfa[pat.charAt(0)][0] = 1;
         for (int j = 1; j < pat.length(); j++) {
             for (int c = 0; c < R; c++) {
                 dfa[c][j] = dfa[c][x];
             }
-            dfa[pat.charAt(j)-65][j] = j+1;
-            
-            x = dfa[pat.charAt(j)-65][x];
+            dfa[pat.charAt(j)][j] = j+1;
+            x = dfa[pat.charAt(j)][x];
         }
         
     }
     
     public int seach(String s) {
-        
-        int N = s.length();
-        
         int i, j;
-        for (i = 0, j = 0; i < N && j < M; i++)
-            j = dfa[s.charAt(i)-65][j];
-        
-        if (j == M)
-            return i - M;
-        else
-            return N;
+        for (i = 0, j = 0; i < s.length() && j < M; i++)
+            j = dfa[s.charAt(i)][j];
+        return j == M ? i - M : -1;
     }
     
     public static void main(String[] args) {
-        KMP s = new KMP("ABABAC", 3);
+        KMP s = new KMP("ab");
 
-        Out.p(s.dfa, "%2d ");
-        String str = "AAAABAAAAABABACACABAAAABBC";
+        String str = "aab";
         
         Out.p(s.seach(str));
     }

@@ -13,6 +13,7 @@ package com.rays.algo.string;
  */
 public class RabinKarp {
     
+    @SuppressWarnings("unused")
     private String pat;         // 模式字符串
     private long   patHash;     // 模式散列值
     private int    M;           // 模式长度
@@ -32,7 +33,6 @@ public class RabinKarp {
     }
     
     public int search(String txt) {
-        int N = txt.length();
         long txtHash = hash(txt, M);
         if (patHash == txtHash && check(0)) return 0;
         

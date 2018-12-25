@@ -9,9 +9,6 @@ import com.ray.io.Out;
 import com.rays.algo.graph.Graph;
 import com.rays.algo.graph.Paths;
 import com.rays.algo.graph.SymbolGraph;
-import com.rays.algo.graph.g.BreadthFirstPaths;
-import com.rays.algo.graph.g.CC;
-import com.rays.algo.graph.g.DirectedDFS;
 
 /**
  * 测试无向图
@@ -61,7 +58,7 @@ public class TestGraph {
      */
     public static void testDeepFirstPaths() {
         Graph G = initGraph("graphTiny.txt");
-        testPaths(G, new DirectedDFS(G, 0));
+        testPaths(G, new DFS(G, 0));
     }
     
     /**

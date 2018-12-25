@@ -3,6 +3,7 @@ package com.rays.algo.graph.g;
 import java.util.Stack;
 
 import com.rays.algo.graph.Digraph;
+import com.rays.algo.graph.Graph;
 import com.rays.algo.graph.Paths;
 
 /**
@@ -14,16 +15,21 @@ import com.rays.algo.graph.Paths;
  * @author rays1
  *
  */
-public class DirectedDFS implements Paths {
+public class DFS implements Paths {
     
     private boolean[] marked; // 标记某个顶点是否已经被访问
     private int[]     edgeTo; // 存放至某点的一个邻接点
     private int       start;      // 起点
 
-    private DirectedDFS(int V, int s) {
+    private DFS(int V, int s) {
         marked = new boolean[V];
         edgeTo = new int[V];
         start = s;
+    }
+    
+    public DFS(Graph G, int s) {
+        this(G.V(), s);
+        search(G, s);
     }
     
     /**
@@ -31,7 +37,7 @@ public class DirectedDFS implements Paths {
      * @param G
      * @param s
      */
-    public DirectedDFS(Digraph G, int s) {
+    public DFS(Digraph G, int s) {
         this(G.V(), s);
         search(G, s);
     }
@@ -50,7 +56,23 @@ public class DirectedDFS implements Paths {
             }
         }
     }
-    
+
+    /**
+     * 搜索算法
+     * 
+     * @param G
+     * @param v
+     */
+    public void search(Graph G, int v) {
+        marked[v] = true;
+        for (int w : G.adj(v)) {
+            if (!marked[w]) {
+                edgeTo[w] = v;
+                search(G, w);
+            }
+        }
+    }
+
     @Override
     public boolean hasPathTo(int v) {
         return marked[v];

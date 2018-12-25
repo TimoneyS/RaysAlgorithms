@@ -33,7 +33,14 @@ public class DirectedDFS implements Paths {
      */
     public DirectedDFS(Digraph G, int s) {
         this(G.V(), s);
-        search(G, s);
+        dfs(G, s);
+    }
+    
+    public DirectedDFS(Digraph G, Iterable<Integer> sources) {
+        marked = new boolean[G.V()];
+        for (int v : sources) {
+            if (!marked[v]) dfs(G, v);
+        }
     }
     
     /**
@@ -41,12 +48,12 @@ public class DirectedDFS implements Paths {
      * @param G
      * @param v
      */
-    private void search(Digraph G, int v) {
+    private void dfs(Digraph G, int v) {
         marked[v] = true;
         for (int w : G.adj(v)) {
             if (!marked[w]) {
                 edgeTo[w] = v;
-                search(G, w);
+                dfs(G, w);
             }
         }
     }

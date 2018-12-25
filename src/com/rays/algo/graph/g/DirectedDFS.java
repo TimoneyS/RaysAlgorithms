@@ -15,19 +15,19 @@ import com.rays.algo.graph.Paths;
  * @author rays1
  *
  */
-public class DeepthFirstPaths implements Paths {
+public class DirectedDFS implements Paths {
     
     private boolean[] marked; // 标记某个顶点是否已经被访问
     private int[]     edgeTo; // 存放至某点的一个邻接点
     private int       start;      // 起点
 
-    private DeepthFirstPaths(int V, int s) {
+    private DirectedDFS(int V, int s) {
         marked = new boolean[V];
         edgeTo = new int[V];
         start = s;
     }
     
-    public DeepthFirstPaths(Graph G, int s) {
+    public DirectedDFS(Graph G, int s) {
         this(G.V(), s);
         search(G, s);
     }
@@ -37,7 +37,7 @@ public class DeepthFirstPaths implements Paths {
      * @param G
      * @param s
      */
-    public DeepthFirstPaths(Digraph G, int s) {
+    public DirectedDFS(Digraph G, int s) {
         this(G.V(), s);
         search(G, s);
     }

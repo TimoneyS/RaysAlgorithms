@@ -1,9 +1,6 @@
 package com.rays.algo.graph.g;
 
-import java.util.Stack;
-
 import com.rays.algo.graph.Digraph;
-import com.rays.algo.graph.Paths;
 
 /**
  * 深度优先搜索<br>
@@ -14,33 +11,24 @@ import com.rays.algo.graph.Paths;
  * @author rays1
  *
  */
-public class DirectedDFS implements Paths {
+public class DirectedDFS {
     
     private boolean[] marked; // 标记某个顶点是否已经被访问
-    private int[]     edgeTo; // 存放至某点的一个邻接点
-    private int       start;      // 起点
 
-    private DirectedDFS(int V, int s) {
-        marked = new boolean[V];
-        edgeTo = new int[V];
-        start = s;
-    }
-    
     /**
      * 有向图深度优先
      * @param G
      * @param s
      */
     public DirectedDFS(Digraph G, int s) {
-        this(G.V(), s);
+        init(G.V());
         dfs(G, s);
     }
     
     public DirectedDFS(Digraph G, Iterable<Integer> sources) {
-        marked = new boolean[G.V()];
-        for (int v : sources) {
+        init(G.V());
+        for (int v : sources)
             if (!marked[v]) dfs(G, v);
-        }
     }
     
     /**
@@ -50,29 +38,16 @@ public class DirectedDFS implements Paths {
      */
     private void dfs(Digraph G, int v) {
         marked[v] = true;
-        for (int w : G.adj(v)) {
-            if (!marked[w]) {
-                edgeTo[w] = v;
-                dfs(G, w);
-            }
-        }
+        for (int w : G.adj(v))
+            if (!marked[w]) dfs(G, w);
     }
     
-    @Override
-    public boolean hasPathTo(int v) {
-        return marked[v];
+    private void init(int V) {
+        marked = new boolean[V];
     }
-
-    @Override
-    public Stack<Integer> pathTo(int v) {
-        if (!hasPathTo(v)) return null;
-        
-        Stack<Integer> stack = new Stack<Integer>();
-        for (int x = v; x != start; x = edgeTo[x]) {
-            stack.push(x);
-        }
-        stack.push(start);
-        return stack;
+    
+    public boolean marked(int v) {
+        return marked[v];
     }
 
 }

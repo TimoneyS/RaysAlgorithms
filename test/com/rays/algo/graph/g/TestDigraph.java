@@ -89,7 +89,7 @@ public class TestDigraph {
 	    int s = 0;
 	    int e = 6;
 	    
-	    Paths dfp = new DirectedDFS(G, s);
+	    Paths dfp = new DirectedDFP(G, s);
 	    
 	    Stack<Integer> stack = dfp.pathTo(e);
 	    

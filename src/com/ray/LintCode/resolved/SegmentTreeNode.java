@@ -6,7 +6,7 @@ import com.ray.io.Out;
 import com.ray.util.StringUtil;
 
 public class SegmentTreeNode {
-    public int start, end, max;
+    public int start, end, max, count;
     public SegmentTreeNode left, right;
     public SegmentTreeNode(int start, int end) {
         this.start = start;
@@ -17,6 +17,7 @@ public class SegmentTreeNode {
         this.start = start;
         this.end = end;
         this.max = max;
+        this.count = max;
         this.left = this.right = null;
     }
     

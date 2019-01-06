@@ -23,13 +23,9 @@ public class L_0202_Segment_Tree_Query {
          * @return: The maximum number in the interval [start, end]
          */
         public int query(SegmentTreeNode root, int start, int end) {
-            
             start   = Math.max(root.start, start);
             end     = Math.min(root.end, end);
-            
-            if (start > end)
-                return 0;
-            
+            if (start > end) return 0;
             if (root.start == start && root.end == end) {
                 return root.max;
             } else {

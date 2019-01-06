@@ -24,19 +24,6 @@ import com.ray.io.Out;
  */
 public class L_0030_Insert_Interval {
     
-    static class Interval {
-        int start, end;
-        Interval(int start, int end) {
-            this.start = start;
-            this.end = end;
-        }
-        @Override
-        public String toString() {
-            return String.format("[%s, %s]", start, end);
-        }
-        
-    }
-    
     /**
      * 一个显然的改进是，先用二分搜索找到区间开始的结束的位置，然后插入区间
      * @author rays1

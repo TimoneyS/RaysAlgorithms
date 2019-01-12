@@ -32,11 +32,11 @@ public class SegmentTreeNode {
         tree(node.right, 1, deepth+1);
         String suffix = StringUtil.multiString(' ', deepth * 5);
         if (type == 0) {
-            Out.pf("%s--[%s, %s, %s]\n", suffix, node.start, node.end, node.max);
+            Out.pf("%s--[%s-%s](%s,%s)\n", suffix, node.start, node.end, node.count, node.max);
         } else if (type > 0) {
-            Out.pf("%s /[%s, %s, %s]\n", suffix, node.start, node.end, node.max);
+            Out.pf("%s /[%s-%s](%s,%s)\n", suffix, node.start, node.end, node.count, node.max);
         } else {
-            Out.pf("%s \\[%s, %s, %s]\n", suffix, node.start, node.end, node.max);
+            Out.pf("%s \\[%s-%s](%s,%s)\n", suffix, node.start, node.end, node.count, node.max);
         }
         tree(node.left, -1, deepth+1);
     }

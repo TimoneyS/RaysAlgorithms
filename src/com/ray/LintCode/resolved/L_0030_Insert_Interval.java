@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.ray.LintCode.help.Interval;
+import com.ray.LintCode.util.Interval;
 import com.ray.io.Out;
 
 /**

@@ -1,6 +1,6 @@
 package com.ray.LintCode.resolved;
 
-import com.ray.LintCode.help.ListNode;
+import com.ray.LintCode.util.ListNode;
 
 /**
  * 插入排序，排序链表

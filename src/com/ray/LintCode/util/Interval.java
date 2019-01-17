@@ -1,4 +1,4 @@
-package com.ray.LintCode.help;
+package com.ray.LintCode.util;
 
 public class Interval {
     public int start, end;

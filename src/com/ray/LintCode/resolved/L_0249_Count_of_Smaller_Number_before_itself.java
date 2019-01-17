@@ -3,7 +3,7 @@ package com.ray.LintCode.resolved;
 import java.util.Arrays;
 import java.util.List;
 
-import com.ray.LintCode.help.SegmentTreeNode;
+import com.ray.LintCode.util.SegmentTreeNode;
 import com.ray.io.Out;
 import com.ray.util.Timer;
 

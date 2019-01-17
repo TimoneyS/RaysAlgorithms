@@ -1,6 +1,6 @@
 package com.ray.LintCode.resolved;
 
-import com.ray.LintCode.help.TreeNode;
+import com.ray.LintCode.util.TreeNode;
 
 /**
  * Given a sorted (increasing order) array, Convert it to create a binary tree with minimal height.

@@ -2,7 +2,7 @@ package com.ray.LintCode.resolved;
 
 import java.util.LinkedList;
 
-import com.ray.LintCode.help.TreeNode;
+import com.ray.LintCode.util.TreeNode;
 import com.ray.io.Out;
 
 /**

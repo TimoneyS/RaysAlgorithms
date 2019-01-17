@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.ray.LintCode.help.Point;
+import com.ray.LintCode.util.Point;
 import com.ray.io.Out;
 
 /**

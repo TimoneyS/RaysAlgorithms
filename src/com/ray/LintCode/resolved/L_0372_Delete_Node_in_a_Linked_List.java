@@ -1,6 +1,6 @@
 package com.ray.LintCode.resolved;
 
-import com.ray.LintCode.help.ListNode;
+import com.ray.LintCode.util.ListNode;
 
 /**
  * 继承方法删除单链表中的结点

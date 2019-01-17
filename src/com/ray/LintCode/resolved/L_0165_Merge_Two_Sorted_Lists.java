@@ -1,6 +1,6 @@
 package com.ray.LintCode.resolved;
 
-import com.ray.LintCode.help.ListNode;
+import com.ray.LintCode.util.ListNode;
 
 /**
  * Merge two sorted (ascending) linked lists and return it as a new sorted list.

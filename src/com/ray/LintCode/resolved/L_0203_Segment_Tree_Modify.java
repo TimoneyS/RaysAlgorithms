@@ -1,6 +1,6 @@
 package com.ray.LintCode.resolved;
 
-import com.ray.LintCode.help.SegmentTreeNode;
+import com.ray.LintCode.util.SegmentTreeNode;
 
 /**
  * For a Maximum Segment Tree, which each node has an extra value max to store the maximum value in this node's interval.

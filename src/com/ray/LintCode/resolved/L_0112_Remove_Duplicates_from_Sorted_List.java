@@ -1,6 +1,6 @@
 package com.ray.LintCode.resolved;
 
-import com.ray.LintCode.help.ListNode;
+import com.ray.LintCode.util.ListNode;
 
 /**
  * Given a sorted linked list, delete all duplicates such that each element appear only once.

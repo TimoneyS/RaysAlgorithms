@@ -1,6 +1,6 @@
 package com.ray.LintCode.resolved;
 
-import com.ray.LintCode.help.ListNode;
+import com.ray.LintCode.util.ListNode;
 
 /**
  * 一个哈希表 size=3, capacity=4，结构如下：

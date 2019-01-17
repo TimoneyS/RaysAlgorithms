@@ -1,4 +1,4 @@
-package com.ray.LintCode.help;
+package com.ray.LintCode.resolved;
 
 import com.ray.io.Out;
 

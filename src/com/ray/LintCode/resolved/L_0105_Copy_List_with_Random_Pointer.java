@@ -2,7 +2,7 @@ package com.ray.LintCode.resolved;
 
 import java.util.HashMap;
 
-import com.ray.LintCode.help.RandomListNode;
+import com.ray.LintCode.util.RandomListNode;
 
 /**
  * A linked list is given such that each node contains an additional random

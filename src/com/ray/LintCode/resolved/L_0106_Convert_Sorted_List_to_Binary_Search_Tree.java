@@ -1,7 +1,7 @@
 package com.ray.LintCode.resolved;
 
-import com.ray.LintCode.help.ListNode;
-import com.ray.LintCode.help.TreeNode;
+import com.ray.LintCode.util.ListNode;
+import com.ray.LintCode.util.TreeNode;
 
 /**
  * Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.

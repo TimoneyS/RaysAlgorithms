@@ -1,6 +1,6 @@
 package com.ray.LintCode.resolved;
 
-import com.ray.LintCode.help.TreeNode;
+import com.ray.LintCode.util.TreeNode;
 import com.ray.io.Out;
 import com.ray.util.StringUtil;
 

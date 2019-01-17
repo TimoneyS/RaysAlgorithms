@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-import com.ray.LintCode.help.UndirectedGraphNode;
+import com.ray.LintCode.util.UndirectedGraphNode;
 import com.ray.io.Out;
 
 /**

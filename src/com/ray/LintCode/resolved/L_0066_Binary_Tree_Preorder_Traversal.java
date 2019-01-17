@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import com.ray.LintCode.help.TreeNode;
+import com.ray.LintCode.util.TreeNode;
 import com.ray.io.Out;
 
 /**

@@ -3,8 +3,8 @@ package com.ray.LintCode.resolved;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ray.LintCode.help.Interval;
-import com.ray.LintCode.help.SegmentTreeNode;
+import com.ray.LintCode.util.Interval;
+import com.ray.LintCode.util.SegmentTreeNode;
 import com.ray.io.Out;
 
 /**

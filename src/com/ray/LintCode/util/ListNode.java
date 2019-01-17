@@ -1,4 +1,4 @@
-package com.ray.LintCode.help;
+package com.ray.LintCode.util;
 
 import java.util.Scanner;
 

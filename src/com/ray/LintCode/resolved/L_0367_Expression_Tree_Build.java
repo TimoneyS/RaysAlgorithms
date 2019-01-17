@@ -2,7 +2,7 @@ package com.ray.LintCode.resolved;
 
 import java.util.Stack;
 
-import com.ray.LintCode.help.ExpressionTreeNode;
+import com.ray.LintCode.util.ExpressionTreeNode;
 
 /**
  * 表达式树是用于计算实际的表达式的一种二叉树结构。

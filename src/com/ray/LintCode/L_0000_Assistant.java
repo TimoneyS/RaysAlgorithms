@@ -1,8 +1,10 @@
 package com.ray.LintCode;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,20 +13,8 @@ import com.ray.io.Out;
 
 public class L_0000_Assistant {
     
-    public static void main(String[] args) throws IOException {
-        
-        byte[] bytes = new byte[100];
-        System.in.read(bytes);
-        
-        int i = 0;
-        for (byte b : bytes) {
-            i ++;
-            if (b == 13) break;
-        }
-        String title = new String(bytes, 0, i+1);
-        
-        createJavaFileFromTitle(title);
-    }
+    static String dir = Dir.getSourcePath(L_0000_Assistant.class);
+    static String place_class_name = "Lintcode_name";
     
     private static String getFileName(String title) {
         
@@ -39,27 +29,27 @@ public class L_0000_Assistant {
     }
     
     private static String javaString(String filename) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = readFromFile("model.ini");
         
-        sb.append("package com.ray.LintCode;\r\n");
-        sb.append("\r\n");
-        sb.append("/**\r\n");
-        sb.append(" *\r\n");
-        sb.append(" *\r\n");
-        sb.append(" * @author rays1\r\n");
-        sb.append(" *\r\n");
-        sb.append(" */\r\n");
-        sb.append("public class ").append(filename).append(" {\r\n");
-        sb.append("\r\n");
-        sb.append("\r\n");
-        sb.append("\r\n");
-        sb.append("}\r\n");
+        int start = sb.indexOf(place_class_name);
+        sb.replace(start, start + place_class_name.length(), filename);
         
         return sb.toString();
     }
     
+    private static StringBuilder readFromFile(String filename) {
+        StringBuilder sb = new StringBuilder();
+        try (Scanner sc = new Scanner(new File(dir + filename))) {
+            while (sc.hasNextLine()) {
+                sb.append(sc.nextLine()).append("\r\n");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return sb;
+    }
+    
     private static void writeToFile(String filename, String javaString) {
-        String dir = Dir.getSourcePath(L_0000_Assistant.class);
         File f = new File(dir + filename + ".java");
         if (f.exists()) return;
         try (FileWriter fw = new FileWriter(f)) {
@@ -74,6 +64,21 @@ public class L_0000_Assistant {
         String javaString = javaString(filename);
         writeToFile(filename, javaString);
         Out.p(javaString);
+    }
+    
+    public static void main(String[] args) throws IOException {
+        
+        byte[] bytes = new byte[100];
+        System.in.read(bytes);
+        
+        int i = 0;
+        for (byte b : bytes) {
+            i ++;
+            if (b == 13) break;
+        }
+        String title = new String(bytes, 0, i+1);
+        
+        createJavaFileFromTitle(title);
     }
     
 }

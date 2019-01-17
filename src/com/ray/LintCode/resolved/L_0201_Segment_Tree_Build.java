@@ -1,5 +1,7 @@
 package com.ray.LintCode.resolved;
 
+import com.ray.LintCode.help.SegmentTreeNode;
+
 /**
  * 段树是一种二叉树结构，没个结点包含start和end两个属性，表示一个段或者区间。
  * start和end 都是整数，规则如下：

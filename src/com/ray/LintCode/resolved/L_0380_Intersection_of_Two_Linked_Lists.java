@@ -1,5 +1,7 @@
 package com.ray.LintCode.resolved;
 
+import com.ray.LintCode.help.ListNode;
+
 /**
  * 编写程序以找到两个单链表的交汇结点
  *

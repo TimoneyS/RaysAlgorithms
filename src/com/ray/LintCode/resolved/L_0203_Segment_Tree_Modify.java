@@ -1,5 +1,7 @@
 package com.ray.LintCode.resolved;
 
+import com.ray.LintCode.help.SegmentTreeNode;
+
 /**
  * For a Maximum Segment Tree, which each node has an extra value max to store the maximum value in this node's interval.
 I* mplement a modify function with three parameter root, index and value to change the node's value with [start, end] = [index, index] to the new given value. Make sure after this change, every node in segment tree still has the max attribute with the correct value.

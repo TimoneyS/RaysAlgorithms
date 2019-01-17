@@ -1,5 +1,7 @@
 package com.ray.LintCode.resolved;
 
+import com.ray.LintCode.help.TreeNode;
+
 /**
  * 深拷贝二叉树
  *

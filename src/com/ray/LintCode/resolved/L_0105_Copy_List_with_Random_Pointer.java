@@ -2,6 +2,8 @@ package com.ray.LintCode.resolved;
 
 import java.util.HashMap;
 
+import com.ray.LintCode.help.RandomListNode;
+
 /**
  * A linked list is given such that each node contains an additional random
  * pointer which could point to any node in the list or null.

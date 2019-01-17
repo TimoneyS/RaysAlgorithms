@@ -3,6 +3,8 @@ package com.ray.LintCode.resolved;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ray.LintCode.help.Interval;
+
 /**
  *
  *

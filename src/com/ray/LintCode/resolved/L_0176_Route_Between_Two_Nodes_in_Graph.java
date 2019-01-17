@@ -3,6 +3,8 @@ package com.ray.LintCode.resolved;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import com.ray.LintCode.help.DirectedGraphNode;
+
 /**
  * Given a directed graph, design an algorithm to find out whether there is a route between two nodes.
  *

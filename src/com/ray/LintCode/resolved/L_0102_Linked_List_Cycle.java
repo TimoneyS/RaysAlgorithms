@@ -1,5 +1,6 @@
 package com.ray.LintCode.resolved;
 
+import com.ray.LintCode.help.ListNode;
 import com.ray.io.Out;
 
 /**

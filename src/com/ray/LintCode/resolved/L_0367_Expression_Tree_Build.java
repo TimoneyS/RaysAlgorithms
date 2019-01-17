@@ -2,6 +2,8 @@ package com.ray.LintCode.resolved;
 
 import java.util.Stack;
 
+import com.ray.LintCode.help.ExpressionTreeNode;
+
 /**
  * 表达式树是用于计算实际的表达式的一种二叉树结构。
  * 所有的叶子结点都是数字，所有的非叶子结点的值都是操作符

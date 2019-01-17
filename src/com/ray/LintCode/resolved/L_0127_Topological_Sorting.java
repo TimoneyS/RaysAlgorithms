@@ -2,6 +2,7 @@ package com.ray.LintCode.resolved;
 
 import java.util.ArrayList;
 
+import com.ray.LintCode.help.DirectedGraphNode;
 import com.ray.io.Out;
 
 /**

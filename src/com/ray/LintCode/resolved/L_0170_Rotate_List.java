@@ -1,5 +1,7 @@
 package com.ray.LintCode.resolved;
 
+import com.ray.LintCode.help.ListNode;
+
 /**
  * 将一个 list 右旋转 k 位，k是正数
  * 

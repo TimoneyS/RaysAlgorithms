@@ -1,5 +1,7 @@
 package com.ray.LintCode.resolved;
 
+import com.ray.LintCode.help.ListNode;
+
 /**
  * 
  * Given a singly linked list L: L0 → L1 → … → Ln-1 → Ln

@@ -1,5 +1,7 @@
 package com.ray.LintCode.resolved;
 
+import com.ray.LintCode.help.ListNode;
+
 /**
  * Sort a linked list in O(n log n) time using constant space complexity.
  * 

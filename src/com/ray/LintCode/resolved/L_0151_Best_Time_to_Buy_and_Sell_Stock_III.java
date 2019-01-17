@@ -13,27 +13,40 @@ import com.ray.io.Out;
 public class L_0151_Best_Time_to_Buy_and_Sell_Stock_III {
 
     static class Solution {
+        
         public int maxProfit(int[] prices) {
-            int max = 0;
-            int secMax = 0;
+  
+            // 在第 i 天前卖出的最大利润
+            int[] maxProfitSellAt = new int[prices.length];
+            // 在第 i 天前卖出的最大利润
+            int[] maxProfitBuyAt  = new int[prices.length];
+            
             int sum = 0;
             for (int i = 1; i < prices.length; i++) {
-                int d = prices[i] - prices[i-1];
-                sum += d;
+                sum += prices[i] - prices[i-1];
                 if (sum < 0) sum = 0;
-                if (sum >= max) {
-                    secMax = max;
-                    max = sum;
-                }
-                max = Math.max(max, sum);
+                maxProfitSellAt[i] = Math.max(maxProfitSellAt[i-1], sum);
             }
-            return max + secMax;
+            
+            sum = 0;
+            for (int i = prices.length - 2; i >= 0; i--) {
+                sum += prices[i+1] - prices[i];
+                if (sum < 0) sum = 0;
+                maxProfitBuyAt[i] = Math.max(maxProfitBuyAt[i+1], sum);
+            }
+            
+            int max = 0;
+            for (int i = 0; i < maxProfitBuyAt.length; i++) {
+                max = Math.max(max, maxProfitBuyAt[i] + maxProfitSellAt[i]);
+            }
+            
+            return max;
         }
     }
     
     public static void main(String[] args) {
         
-        int[] prices = {1,2,4,7};
+        int[] prices = {1,2,1,2,1,2};
         Out.p(new Solution().maxProfit(prices));
     }
 

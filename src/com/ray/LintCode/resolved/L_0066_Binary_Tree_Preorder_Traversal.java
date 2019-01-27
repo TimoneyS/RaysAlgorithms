@@ -31,11 +31,9 @@ public class L_0066_Binary_Tree_Preorder_Traversal {
             while(!stack.isEmpty()) {
                 TreeNode node = stack.pop();
                 if (node == null) continue;
-                
                 rs.add(node.val);
                 stack.push(node.right);
                 stack.push(node.left);
-                
             }
             
             return rs;

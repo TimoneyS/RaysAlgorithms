@@ -24,7 +24,7 @@ public class L_0476_Stone_Game {
      * 先计算出 所有位置的和，复杂度为 O(n^2)
      * score(i, j) = min { score(i, k) + score(k+1, j) + sum(i,j) } ( i <= k < j)
      * 
-     * 具体的非动态规划的方法以后研究
+     * 具体的非动态规划的方法以后研究（也许不会再研究 哈哈）
      * 
      */
     static class Solution {

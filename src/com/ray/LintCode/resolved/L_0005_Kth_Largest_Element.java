@@ -20,10 +20,8 @@ public class L_0005_Kth_Largest_Element {
             return quickSelect(nums, nums.length-n, 0, nums.length-1);
         }
         
-        public int quickSelect(int[] nums, int n, int s, int t) {
-            
-            int l = s + 1;
-            int r = t;
+        public int quickSelect(int[] nums, int rank, int s, int t) {
+            int l = s + 1, r = t;
             while (true) {
                 while (r > s && nums[s] < nums[r]) r --;
                 while (l < t && nums[l] < nums[s]) l ++;
@@ -32,12 +30,12 @@ public class L_0005_Kth_Largest_Element {
             }
             swap(nums, r, s);
             
-            if (r == n)
+            if (r == rank)
                 return nums[r];
-            else if (r > n)
-                return quickSelect(nums, n, s, r-1);
+            else if (r > rank)
+                return quickSelect(nums, rank, s, r-1);
             else 
-                return quickSelect(nums, n, r+1, t);
+                return quickSelect(nums, rank, r+1, t);
         }
         
         private void swap(int[] nums, int i, int j) {

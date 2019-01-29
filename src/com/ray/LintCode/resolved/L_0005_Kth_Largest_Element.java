@@ -23,7 +23,7 @@ public class L_0005_Kth_Largest_Element {
         public int quickSelect(int[] nums, int rank, int s, int t) {
             int l = s + 1, r = t;
             while (true) {
-                while (r > s && nums[s] < nums[r]) r --;
+                while (r > s && nums[s] <= nums[r]) r --;
                 while (l < t && nums[l] < nums[s]) l ++;
                 if (r > l) swap(nums, r, l);
                 else break;
@@ -66,10 +66,11 @@ public class L_0005_Kth_Largest_Element {
 //        }
 
         
-        int[] nums = {4,5,1,3,7,6,9};
-        int n = 2;
+        int[] nums = {1, 5, 1, 1, 6, 4};
+        int n = 3;
         
         Out.p(new Solution().kthLargestElement(n, nums));
+        Out.p(nums);
         
     }
     

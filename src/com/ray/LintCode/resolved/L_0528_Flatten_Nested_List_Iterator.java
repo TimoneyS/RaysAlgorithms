@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.resolved;
 
 import java.util.Iterator;
 import java.util.List;

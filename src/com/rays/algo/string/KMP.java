@@ -40,9 +40,9 @@ public class KMP {
     }
     
     public static void main(String[] args) {
-        KMP s = new KMP("ab");
+        KMP s = new KMP("bcd");
 
-        String str = "aab";
+        String str = "abcdef";
         
         Out.p(s.seach(str));
     }

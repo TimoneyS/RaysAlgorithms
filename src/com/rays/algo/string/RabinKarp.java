@@ -13,8 +13,6 @@ package com.rays.algo.string;
  */
 public class RabinKarp {
     
-    @SuppressWarnings("unused")
-    private String pat;         // 模式字符串
     private long   patHash;     // 模式散列值
     private int    M;           // 模式长度
     private long   Q;           // 大素数
@@ -22,7 +20,6 @@ public class RabinKarp {
     private long   RM;          // R ^ (M-1) % Q
     
     public RabinKarp(String pat) {
-        this.pat = pat;
         this.M = pat.length();
         Q =  997;//longRandomPrime();
         RM = 1;

@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.resolved;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -40,20 +40,13 @@ public class L_0602_Russian_Doll_Envelopes {
             });
             
             
-            int[] cache = new int[envelopes.length+1];
-            Arrays.fill(cache, -1);
-            cache[envelopes.length] = 0;
-            
+            int dp[] = new int[envelopes.length];
             int rs = 0;
-            for (int i = envelopes.length - 1; i >= 0; i -- ) {
-                int max = envelopes.length;
-                for (int j = i; j < envelopes.length; j++) {
-                    if (envelopes[j][0] > envelopes[i][0] && envelopes[j][1] > envelopes[i][1] && cache[j] > cache[max]) {
-                        max = j;
-                    }
-                }
-                cache[i] = cache[max] + 1;
-                rs = Math.max(cache[i], rs);
+            for(int[] envelope : envelopes){
+                int index = Arrays.binarySearch(dp, 0, rs, envelope[1]);
+                if(index < 0) index = -index - 1;
+                dp[index] = envelope[1];
+                if (index == rs) rs++;
             }
             
             return rs;

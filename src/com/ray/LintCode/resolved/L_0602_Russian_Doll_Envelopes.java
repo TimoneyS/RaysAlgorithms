@@ -39,7 +39,6 @@ public class L_0602_Russian_Doll_Envelopes {
                 }
             });
             
-            
             int dp[] = new int[envelopes.length];
             int rs = 0;
             for(int[] envelope : envelopes){

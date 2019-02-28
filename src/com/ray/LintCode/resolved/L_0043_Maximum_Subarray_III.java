@@ -3,15 +3,12 @@ package com.ray.LintCode.resolved;
 import com.ray.io.Out;
 
 /**
+ * 给定一个整数数组和数字 k 寻找 k 个独立的子数组，这些子数组的和最大。返回最大的和。
  * 
- * Given an array of integers and a number k, find k non-overlapping subarrays
- * which have the largest sum.
+ * 例如：
  * 
- * The number in each subarray should be contiguous.
- * 
- * Return the largest sum.
- * <p>
- * Example : Given [-1,4,-2,3,-2,3], k=2, return 8
+ *      数组 [-1,4,-2,3,-2,3], k=2,
+ *      返回  8
  *
  */
 public class L_0043_Maximum_Subarray_III {
@@ -35,11 +32,6 @@ public class L_0043_Maximum_Subarray_III {
         private int N;
         private int[][] maxMemmorized;
         
-        /**
-         * @param nums: A list of integers
-         * @param k: An integer denote to find k non-overlapping subarrays
-         * @return: An integer denote the sum of max k non-overlapping subarrays
-         */
         public int maxSubArray(int[] nums, int k) {
             this.nums = nums;
             N = nums.length;

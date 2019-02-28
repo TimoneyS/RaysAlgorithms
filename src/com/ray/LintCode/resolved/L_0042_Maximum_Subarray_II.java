@@ -6,17 +6,14 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * Given an array of integers, find two non-overlapping subarrays which have the
- * largest sum. The number in each subarray should be contiguous. Return the
- * largest sum.
+ * 给定一个整数数组，寻找两个互不覆盖的子数组，两个字符组有用最大和。返回最大和。
  * 
- * <p>
- * Example
- * <p>
- * For given [1, 3, -1, 2, -1, 2],
- *  the two subarrays are [1, 3] and [2, -1, 2] 
- *      or [1, 3, -1, 2] and [2],
- * they both have the largest sum 7.
+ * 例如：
+ *      数组[1, 3, -1, 2, -1, 2],
+ *      子数组为 [1, 3] 和 [2, -1, 2] 
+ *      或者  [1, 3, -1, 2] 和 [2],
+ *      
+ *      两种子数组之和均为 7
  * 
  * @author rays1
  *
@@ -25,10 +22,6 @@ public class L_0042_Maximum_Subarray_II {
     
     static class Solution {
         
-        /*
-         * @param nums: A list of integers
-         * @return: An integer denotes the sum of max two non-overlapping subarrays
-         */
         public int maxTwoSubArrays(List<Integer> nums) {
             
             int N = nums.size();
@@ -69,7 +62,6 @@ public class L_0042_Maximum_Subarray_II {
         
         Integer[] nums = {0,-1};
         List<Integer> numsL = Arrays.asList(nums);
-        
         
         int max = new Solution().maxTwoSubArrays(numsL);
         

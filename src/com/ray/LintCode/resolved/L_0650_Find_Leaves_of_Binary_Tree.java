@@ -33,25 +33,25 @@ public class L_0650_Find_Leaves_of_Binary_Tree {
      * 
      * 遍历结束后，按照map中存储的距离信息，拼出结果数组。
      * 
+     * 更进一步的可以直接用List保存信息，距离就是结果索引，因为必然先计算完距离近的
+     * 保证结果中索引是从小到大计算完毕。
+     * 
      * @author rays1
      *
      */
     static class Solution {
     
         public List<List<Integer>> findLeaves(TreeNode root) {
-            Map<Integer, List<Integer>> map = new HashMap<>();
             List<List<Integer>> rs = new ArrayList<>();
-            walk(root, map);
-            for (int i = 0; i < map.size(); i++)
-                rs.add(map.get(i));
+            walk(root, rs);
             return rs;
         }
         
-        int walk(TreeNode root, Map<Integer, List<Integer>> map) {
+        int walk(TreeNode root, List<List<Integer>> rs) {
             if (root == null) return -1;
-            int d = Math.max(walk(root.left, map), walk(root.right, map))+1;
-            map.putIfAbsent(d, new ArrayList<>());
-            map.get(d).add(root.val);
+            int d = Math.max(walk(root.left, rs), walk(root.right, rs))+1;
+            if (d >= rs.size()) rs.add(new ArrayList<Integer>());
+            rs.get(d).add(root.val);
             return d;
         }
         

@@ -26,22 +26,17 @@ public class L_0662_Guess_Number_Higher_or_Lower {
     
     static class Solution extends GuessGame {
         public int guessNumber(int n) {
-            int l = 1, r = n;
-            
             if (n == 2147483647 && guess(n) == 0) return n;
             else n--;
-            
+            int l = 1, r = n;
             while (true) {
                 int m = (l+r)/2;
-                
                 switch(guess(m)) {
                     case  1 : l = m + 1;break;
                     case -1 : r = m - 1;break;
                     default : return m;
                 }
-                
             }
-            
         }
     }
     

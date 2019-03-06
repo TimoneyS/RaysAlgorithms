@@ -28,8 +28,8 @@ public class L_0681_First_Missing_Prime_Number {
         public int firstMissingPrime(int[] nums) {
             int p = 2;
             for (int n : nums) {
-                p = nextPrime(p+1);
                 if (p != n) break;
+                p = nextPrime(p+1);
             }
             return p;
         }

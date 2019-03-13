@@ -27,6 +27,7 @@ import com.ray.io.Out;
  * 
  * 
  * @author rays1
+ * @url    https://www.lintcode.com/problem/tree-longest-path-with-same-value/description
  *
  */
 public class L_0717_Tree_Longest_Path_With_Same_Value {

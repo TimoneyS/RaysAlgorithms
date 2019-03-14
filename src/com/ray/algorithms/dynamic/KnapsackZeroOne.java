@@ -12,19 +12,9 @@ import com.ray.io.Out;
  */
 public class KnapsackZeroOne {
 
-    private int[]     w;
-    private int[]     p;
-    private int[]     maxValue;
-
     public KnapsackZeroOne(int[] w, int[] p, int c) {
-
-        this.w = w;
-        this.p = p;
-        
-        maxValue = new int[w.length+1];
-        dynamic(0, c);
-        
-        show();
+        int rs = helper(0, c, w, p);
+        Out.p(rs);
     }
 
     /**
@@ -33,31 +23,20 @@ public class KnapsackZeroOne {
      * @param c 背包可用容量
      * @return
      */
-    public int dynamic(int i, int c) {
+    public int helper(int i, int c, int[] w, int[] p) {
         if (i >= w.length) return 0;
         
-        int v1 = (w[i] <= c) ? p[i] + dynamic(i + 1, c - w[i]) : 0; // 选择当前物品
-        int v2 = dynamic(i + 1, c);                                 // 不选择当前物品
+        int v1 = (w[i] <= c) ? p[i] + helper(i + 1, c - w[i], w, p) : 0; // 选择当前物品
+        int v2 = helper(i + 1, c, w, p);                                 // 不选择当前物品
 
-        maxValue[i] = Math.max(v1, v2);
-
-        return maxValue[i];
+        return Math.max(v1, v2);
     }
     
-    public void show() {
-        Out.pt("choose : ");
-        for (int i = 0; i < w.length; i++) {
-            if (maxValue[i] != maxValue[i + 1])
-                Out.pt(i + " ");
-        }
-        Out.p("\nmaxValue = " + maxValue[w.length-1]);
-    }
-
     public static void main(String[] args) {
 
-        int c = 5;
-        int[] w = { 1, 2, 3, 4, 5 };
-        int[] p = { 2, 2, 3, 4, 5 };
+        int c = 11;
+        int[] w = { 1, 6, 11, 5 };
+        int[] p = { 1, 6, 11, 5 };
 
         new KnapsackZeroOne(w, p, c);
 

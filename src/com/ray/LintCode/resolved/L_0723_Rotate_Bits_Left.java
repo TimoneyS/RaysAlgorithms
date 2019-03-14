@@ -22,6 +22,12 @@ import com.ray.io.Out;
  */
 public class L_0723_Rotate_Bits_Left {
 
+    /**
+     * 左旋转就是从将数字从左数一定位数，然后将这个位置左右的数字的两部分交换。
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
     
         // 恶趣味的方法
@@ -29,6 +35,7 @@ public class L_0723_Rotate_Bits_Left {
             return (((n & (-1 << 32 - d)) >> 32 - d) | (n << d));
         }
         
+        // 正常写法
         public int leftRotateOld(int n, int d) {
             // 参数
             int bit = 32, mask = 0;

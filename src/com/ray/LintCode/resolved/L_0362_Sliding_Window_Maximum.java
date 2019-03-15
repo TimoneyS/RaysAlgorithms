@@ -19,7 +19,6 @@ public class L_0362_Sliding_Window_Maximum {
     /**
      * 队列中只保存大于当前元素的元素
      * 
-     * 
      * @author rays1
      *
      */

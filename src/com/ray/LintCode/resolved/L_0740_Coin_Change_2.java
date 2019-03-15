@@ -15,6 +15,9 @@ public class L_0740_Coin_Change_2 {
      * 
      * dp[i][j] = dp[i-1][j] + dp[i][j-v[i]]
      * 
+     * dp[i][j] 的组合 包含 dp[i-1][j] 的所有组合
+     * dp[i][j] 的组合 包含 dp[i][j-v[i]] 的每个组合加上一个 v[i] 后的组合，
+     * 
      * @author rays1
      *
      */

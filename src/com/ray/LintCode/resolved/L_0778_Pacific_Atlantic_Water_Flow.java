@@ -46,8 +46,7 @@ public class L_0778_Pacific_Atlantic_Water_Flow {
     
         public List<List<Integer>> pacificAtlantic(int[][] matrix) {
             int n = matrix.length, m = matrix[0].length;
-            boolean[][] marked1 = new boolean[n][m];
-            boolean[][] marked2 = new boolean[n][m];
+            boolean[][] marked1 = new boolean[n][m], marked2 = new boolean[n][m];
             
             for (int i = 0; i < n; i++) {
                 dfs(matrix, marked1, i, 0);
@@ -57,12 +56,6 @@ public class L_0778_Pacific_Atlantic_Water_Flow {
                 dfs(matrix, marked1, 0, j);
                 dfs(matrix, marked2, n-1, j);
             }
-            
-            for (boolean[] row : marked1)
-                Out.p(row);
-            
-            for (boolean[] row : marked2)
-                Out.p(row);
             
             List<List<Integer>> rs = new ArrayList<>();
             for (int i = 0; i < n; i++)

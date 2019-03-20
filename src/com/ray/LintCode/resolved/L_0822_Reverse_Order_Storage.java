@@ -27,8 +27,8 @@ public class L_0822_Reverse_Order_Storage {
         }
         
         List<Integer> helper(List<Integer> rs, ListNode head) {
-            if (head.next != null)
-                helper(rs, head);
+            if (head != null)
+                helper(rs, head.next);
             rs.add(head.val);
             return rs;
         }

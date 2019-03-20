@@ -140,8 +140,6 @@ public class L_0804_Number_of_Distinct_Islands_II {
         
         Out.p(new Solution().new Shape(l1).equals(new Solution().new Shape(l2)));
         
-        
-        
         int[][] grid =
             {
                 {0,0,0,0,1,0,1,1,0,0,1,0,1,1,0,1,1,1,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,1,1,1,1,1,1,0,1,1},

@@ -1,0 +1,44 @@
+package com.ray.LintCode.resolved;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ray.LintCode.util.ListNode;
+import com.ray.io.Out;
+
+/**
+ *
+ * Give a linked list, and store the values of linked list in reverse order into an array.
+ *
+ * @author rays1
+ *
+ */
+public class L_0822_Reverse_Order_Storage {
+
+    /**
+     * 首递归,自动处理栈关系
+     * @author rays1
+     *
+     */
+    static class Solution {
+    
+        public List<Integer> reverseStore(ListNode head) {
+            return helper(new ArrayList<Integer>(), head);
+        }
+        
+        List<Integer> helper(List<Integer> rs, ListNode head) {
+            if (head.next != null)
+                helper(rs, head);
+            rs.add(head.val);
+            return rs;
+        }
+    
+    }
+    
+    public static void main(String[] args) {
+        
+        Out.p(new Solution());
+        
+    }
+
+}

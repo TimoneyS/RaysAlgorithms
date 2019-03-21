@@ -8,6 +8,7 @@ import com.ray.io.Out;
 import com.ray.util.StringUtil;
 
 public class TreeNode {
+    
     public int      val;
     public TreeNode left, right;
 
@@ -119,6 +120,12 @@ public class TreeNode {
         }
         tree(node.left, -1, deepth+1);
     }
+    
+    @Override
+    public String toString() {
+        return val+"";
+    }
+    
     
     public static void main(String[] args) {
         

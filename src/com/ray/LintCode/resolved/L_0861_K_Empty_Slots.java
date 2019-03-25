@@ -14,7 +14,7 @@ import com.ray.io.Out;
  * 
  * 数组范围在 [1, 20000] 之间
  * @author rays1
- * @url    
+ * @url    https://www.lintcode.com/problem/k-empty-slots/
  */
 public class L_0861_K_Empty_Slots {
 

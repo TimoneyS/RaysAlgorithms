@@ -35,6 +35,7 @@ public class L_0878_Boundary_of_Binary_Tree {
         List<Integer> rs;
         public List<Integer> boundaryOfBinaryTree(TreeNode root) {
             rs = new ArrayList<>();
+            if (root == null) return rs;
             rs.add(root.val);
             dfs(root.left, true, false);
             dfs(root.right, false, true);            

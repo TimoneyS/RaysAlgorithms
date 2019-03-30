@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,6 +17,7 @@ public class L_0000_Assistant {
     
     static String dir = Dir.getSourcePath(L_0000_Assistant.class);
     static String place_class_name = "Lintcode_name";
+    static String place_data_string = "Date_String";
     
     private static String getFileName(String title) {
         
@@ -33,6 +36,9 @@ public class L_0000_Assistant {
         
         int start = sb.indexOf(place_class_name);
         sb.replace(start, start + place_class_name.length(), filename);
+        
+        start = sb.indexOf(place_data_string);
+        sb.replace(start, start + place_data_string.length(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         
         return sb.toString();
     }

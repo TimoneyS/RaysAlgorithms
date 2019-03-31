@@ -11,9 +11,9 @@ import java.util.Scanner;
  */
 public class EdgeWeightedDigraph {
     
-    private final int   V;              // 顶点数
-    private int         E;              // 边数
-    private List<DirectedEdge>[] adj;    // 内部存储数据结构，保存每个顶点的可达边
+    private final int            V;   // 顶点数
+    private int                  E;   // 边数
+    private List<DirectedEdge>[] adj; // 内部存储数据结构，保存每个顶点的可达边
     
     @SuppressWarnings("unchecked")
     public EdgeWeightedDigraph(int V) {

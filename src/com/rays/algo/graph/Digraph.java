@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * 有向图
+ * 有向图数据结构
  * @author rays1
  *
  */

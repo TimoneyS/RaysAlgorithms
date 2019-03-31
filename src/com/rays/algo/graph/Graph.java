@@ -11,9 +11,9 @@ import java.util.Scanner;
  */
 public class Graph {
 	
-	private final int V;			// 顶点数
-	private int E;					// 边数
-	private List<Integer>[] adj;	// 内部存储数据结构，保存每个顶点的可达顶点
+    private final int       V;   // 顶点数
+    private int             E;   // 边数
+    private List<Integer>[] adj; // 内部存储数据结构，保存每个顶点的可达顶点
 	
 	/**
 	 * 指定顶点数初始化图

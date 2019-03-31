@@ -7,9 +7,9 @@ package com.rays.algo.graph;
  */
 public class Edge implements Comparable<Edge> {
     
-    private final int v;                    // 顶点一
-    private final int w;                    // 顶点二
-    private final double weighted;          // 权重
+    private final int    v;        // 顶点一
+    private final int    w;        // 顶点二
+    private final double weighted; // 权重
     
     public Edge(int v, int w, double weighted) {
         super();

@@ -7,12 +7,11 @@ package com.rays.algo.graph;
  */
 public class DirectedEdge implements Comparable<DirectedEdge> {
     
-    private final int from;                 // 起点
-    private final int to;                   // 终点
-    private final double weighted;          // 权重
+    private final int    from;     // 起点
+    private final int    to;       // 终点
+    private final double weighted; // 权重
     
     public DirectedEdge(int from, int to, double weighted) {
-        super();
         this.from = from;
         this.to = to;
         this.weighted = weighted;

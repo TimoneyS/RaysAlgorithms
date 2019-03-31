@@ -14,9 +14,9 @@ import com.ray.io.Out;
  */
 public class SymbolGraph {
     
-    private Map<String, Integer> st; // 符号表，符号名 -> 索引
-    private String[] keys;           // 符号表反向接口，索引 -> 符号名
-    private Graph G;                 // 无向图
+    private Map<String, Integer> st;   // 符号表，符号名 -> 索引
+    private String[]             keys; // 符号表反向接口，索引 -> 符号名
+    private Graph                G;    // 无向图
     
     public SymbolGraph(String res, String delimiter) {
         st = new HashMap<String, Integer>();

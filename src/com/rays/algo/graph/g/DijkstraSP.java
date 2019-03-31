@@ -1,4 +1,4 @@
-package com.rays.algo.graph.gwd;
+package com.rays.algo.graph.g;
 
 import com.ray.util.collections.RaysIndexMinPQ;
 import com.rays.algo.graph.DirectedEdge;

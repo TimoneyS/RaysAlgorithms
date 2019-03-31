@@ -1,10 +1,9 @@
-package com.rays.algo.graph.gwd;
+package com.rays.algo.graph.g;
 
 import java.util.Stack;
 
 import com.rays.algo.graph.DirectedEdge;
 import com.rays.algo.graph.EdgeWeightedDigraph;
-import com.rays.algo.graph.g.DiTopoLogical;
 
 /**
  * 无环加权有向图最长路径搜索方法<br>

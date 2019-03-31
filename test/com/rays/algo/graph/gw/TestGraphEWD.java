@@ -7,12 +7,12 @@ import com.ray.io.In;
 import com.ray.io.Out;
 import com.rays.algo.graph.DirectedEdge;
 import com.rays.algo.graph.EdgeWeightedDigraph;
-import com.rays.algo.graph.gwd.AcycliLP;
-import com.rays.algo.graph.gwd.AcycliSP;
-import com.rays.algo.graph.gwd.BellmanFordSP;
-import com.rays.algo.graph.gwd.CPM;
-import com.rays.algo.graph.gwd.DijkstraSP;
-import com.rays.algo.graph.gwd.SP;
+import com.rays.algo.graph.g.AcycliLP;
+import com.rays.algo.graph.g.AcycliSP;
+import com.rays.algo.graph.g.BellmanFordSP;
+import com.rays.algo.graph.g.CPM;
+import com.rays.algo.graph.g.DijkstraSP;
+import com.rays.algo.graph.g.SP;
 /**
  * 测试无向图
  * @author rays1

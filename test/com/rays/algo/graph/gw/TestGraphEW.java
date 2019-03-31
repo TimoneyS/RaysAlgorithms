@@ -7,8 +7,9 @@ import com.ray.io.Out;
 import com.ray.util.Timer;
 import com.rays.algo.graph.Edge;
 import com.rays.algo.graph.EdgeWeightedGraph;
-import com.rays.algo.graph.gw.PrimMinSTLazy;
-import com.rays.algo.graph.gw.PrimMinST;
+import com.rays.algo.graph.g.KruskalMinST;
+import com.rays.algo.graph.g.PrimMinST;
+import com.rays.algo.graph.g.PrimMinSTLazy;
 
 /**
  * 测试无向图

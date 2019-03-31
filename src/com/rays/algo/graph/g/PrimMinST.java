@@ -1,4 +1,4 @@
-package com.rays.algo.graph.gw;
+package com.rays.algo.graph.g;
 
 import java.util.Arrays;
 

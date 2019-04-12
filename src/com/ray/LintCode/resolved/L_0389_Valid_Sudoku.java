@@ -21,7 +21,7 @@ public class L_0389_Valid_Sudoku {
     
         public boolean isValidSudoku(char[][] board) {
             
-            int[] count = new int[9];
+            int[] count;
             
             // 验证每一列
             for (int row = 0; row < 9; row++) {

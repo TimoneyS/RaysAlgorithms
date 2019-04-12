@@ -7,31 +7,25 @@ import com.ray.io.Out;
  * Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
  *
  * @author rays1
- * @url    
+ * @url    https://www.lintcode.com/problem/closest-binary-search-tree-value/description
  * @date   2019-04-12 10:29:13
  */
 public class L_0900_Closest_Binary_Search_Tree_Value {
 
     static class Solution {
-    
-        public int closestValue(TreeNode root, double target) {
-            int c1 = closestValue(root.left, target, root.val);
-            c1 = closestValue(root.right, target, c1);
-            return c1;
-        }
         
-        public int closestValue(TreeNode root, double target, int curr) {
+        Integer curr = null;
+        
+        public int closestValue(TreeNode root, double target) {
             if (root == null) return curr;
-            curr = maxDist(curr, root.val, target);
-            curr = closestValue(root.left, target, curr);
-            curr = closestValue(root.right, target, curr);
+            curr = (curr == null) ? root.val : maxDist(curr, root.val, target);
+            if (root.val > target) closestValue(root.left, target);
+            if (root.val < target) closestValue(root.right, target);
             return curr;
         }
         
         private int maxDist(int n1, int n2, double target) {
-            if ( Math.abs(target - n1) > Math.abs(target - n2)) {
-                return n2;
-            }
+            if ( Math.abs(target - n1) > Math.abs(target - n2)) return n2;
             return n1;
         }
     

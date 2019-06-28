@@ -6,9 +6,14 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * Given an array of integers, find the subarray with smallest sum.
  * 
+ * 
+ * Given an array of integers, find the subarray with smallest sum.
  * Return the sum of the subarray.
+ * 
+ * ******************************************************************
+ * 
+ * 给定一个整数数组，寻找和最小的子数组。
  * 
  * @author rays1
  *
@@ -62,7 +67,7 @@ public class L_0044_Minimum_Subarray {
     
     public static void main(String[] args) {
         
-        List<Integer> nums = Arrays.asList(new Integer[] {1, 2, -3, 1});
+        List<Integer> nums = Arrays.asList(new Integer[] {1, 2, 2, 2});
         
         Out.p(new Solution().minSubArray(nums));
         Out.sep();

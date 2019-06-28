@@ -84,6 +84,8 @@ public class L_0000_Assistant {
         }
         String title = new String(bytes, 0, i+1);
         
+        title = title.replaceAll("[\\(\\)]", "");
+        
         createJavaFileFromTitle(title);
     }
     

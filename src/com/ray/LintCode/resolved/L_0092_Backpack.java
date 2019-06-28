@@ -19,11 +19,6 @@ public class L_0092_Backpack {
 
     static class Solution {
         
-        /**
-         * @param m: An integer m denotes the size of a backpack
-         * @param A: Given n items with size A[i]
-         * @return: The maximum size
-         */
         public int backPack(int m, int[] A) {
             int[] mem = new int[m+1];    
             for (int p : A) {
@@ -38,7 +33,7 @@ public class L_0092_Backpack {
     
     public static void main(String[] args) {
         
-        int[] A = {3,4,8,5};
+        int[] A = {2,4,7,5};
         int m = 10;
         
         Out.p(new Solution().backPack(m, A));

@@ -1,62 +1,91 @@
 package com.ray.LintCode;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.ray.io.Dir;
+import com.ray.io.In;
 import com.ray.io.Out;
+import com.ray.net.http.HttpsUtil;
 
 public class L_0000_Assistant {
     
-    static String dir = Dir.getSourcePath(L_0000_Assistant.class);
-    static String place_class_name = "Lintcode_name";
-    static String place_data_string = "Date_String";
+    static String MODEL_FILENAME = "model.ini";
+    static String BASE_DIR = Dir.getSourcePath(L_0000_Assistant.class);
     
-    private static String getFileName(String title) {
+    
+    // 定义返回的json中各个域的主键
+    private static String QI_ID             = "id";
+    private static String QI_TITLE          = "title";
+    private static String QI_BASEURL        = "baseurl";
+    private static String QI_DESC           = "description";
+    private static String QI_EXAMP          = "example";
+    private static String QI_NOTICE         = "notice";
+    private static String QI_CHAL           = "challenge";
+
+    private static String PH_CLASS          = "%QUESTION_CLASS%";
+    private static String PH_BASEURL        = "%BASE_URL%";
+    private static String PH_DESC           = "%DESCRIPTION_STRING%";
+    private static String PH_EXAMP          = "%EXAMPLE_STRING%";
+    private static String PH_CHAL           = "%CHALLENGE_STRING%";
+    private static String PH_DATESTRING     = "%DATE_STRING%";
+   
+    
+    private static String replaceHoder(StringBuilder modelString, String className, Map<String, String> questionInfo) {
         
-        Pattern p = Pattern.compile("^(\\d+)\\.\\s+(.*\\S)\\s*$");
-        Matcher m = p.matcher(title);
-        m.find();
+        int start = 0;
         
-        int id = Integer.valueOf(m.group(1));
-        String prob = m.group(2).replaceAll(" ", "_");        
+        // 替换描述信息
+        start = modelString.indexOf(PH_DESC);
+        modelString.replace(start, start + PH_DESC.length(), questionInfo.get(QI_DESC));
         
-        return String.format("L_%04d_%s", id, prob);
+        // 替换用例信息
+        start = modelString.indexOf(PH_EXAMP);
+        modelString.replace(start, start + PH_EXAMP.length(), questionInfo.get(QI_EXAMP));
+        
+        // 替换挑战信息
+        start = modelString.indexOf(PH_CHAL);
+        modelString.replace(start, start + PH_CHAL.length(), questionInfo.get(QI_CHAL));
+        
+        // 替换基础URL
+        start = modelString.indexOf(PH_BASEURL);
+        modelString.replace(start, start + PH_BASEURL.length(), questionInfo.get(QI_BASEURL));
+        
+        // 替换时间戳
+        start = modelString.indexOf(PH_DATESTRING);
+        modelString.replace(start, start + PH_DATESTRING.length(),
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        
+        // 替换类名
+        start = modelString.indexOf(PH_CLASS);
+        modelString.replace(start, start + PH_CLASS.length(), className);
+        
+        return modelString.toString();
     }
     
-    private static String javaString(String filename) {
-        StringBuilder sb = readFromFile("model.ini");
-        
-        int start = sb.indexOf(place_class_name);
-        sb.replace(start, start + place_class_name.length(), filename);
-        
-        start = sb.indexOf(place_data_string);
-        sb.replace(start, start + place_data_string.length(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        
-        return sb.toString();
-    }
-    
-    private static StringBuilder readFromFile(String filename) {
+    private static StringBuilder readModelFromFile(String filename) {
         StringBuilder sb = new StringBuilder();
-        try (Scanner sc = new Scanner(new File(dir + filename))) {
+        try (Scanner sc = In.getClassPathScanner(L_0000_Assistant.class, filename)) {
             while (sc.hasNextLine()) {
                 sb.append(sc.nextLine()).append("\r\n");
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
         return sb;
     }
     
     private static void writeToFile(String filename, String javaString) {
-        File f = new File(dir + filename + ".java");
+        File f = new File(BASE_DIR + filename + ".java");
         if (f.exists()) return;
         try (FileWriter fw = new FileWriter(f)) {
             fw.write(javaString);
@@ -65,14 +94,59 @@ public class L_0000_Assistant {
         } 
     }
     
-    public static void createJavaFileFromTitle(String title) {
-        String filename = getFileName(title);
-        String javaString = javaString(filename);
-        writeToFile(filename, javaString);
+    public static void createJavaFileFromWeb(String url) throws Exception {
+        Map<String, String> questionInfo = getQuestionInfoFromWeb(url);
+        String className          = String.format("L_%S_%s", questionInfo.get(QI_ID), questionInfo.get(QI_TITLE).replaceAll(" ", "_"));
+        StringBuilder modelString = readModelFromFile(MODEL_FILENAME);
+        String javaString = replaceHoder(modelString, className, questionInfo);
+        writeToFile(className, javaString);
         Out.p(javaString);
     }
     
-    public static void main(String[] args) throws IOException {
+    private static Map<String, String> getQuestionInfoFromWeb(String url) throws Exception {
+        Map<String, String> map = new HashMap<>();
+        
+        // 提取 url 中的 问题标题信息
+        String title = url.substring(url.indexOf("problem") + "problem".length() + 1, url.indexOf("description") - 1);
+        
+        // 根据标题获取问题的唯一信息如 ID 等
+        String uniqueUrl =  "https://www.lintcode.cn/api/problems/detail/?unique_name_or_alias=%title%&_format=detail";
+        uniqueUrl = uniqueUrl.replace("%title%", title);
+        Out.p(uniqueUrl);
+        Map<String, String> head = new HashMap<String, String>();
+        head.put("accept", "application/json, text/plain, */*");
+        byte[] rs = HttpsUtil.doGet(uniqueUrl, head);
+        int id = new JSONObject(new String(rs)).getInt("id");
+        Out.p(new String(rs));
+        
+        // 根据问题的ID获取问题的详细信息
+        String idUrl = "https://www.lintcode.cn/api/translations/?id="+id;
+        Out.p(idUrl);
+        head.put("accept", "application/json, text/plain, */*");
+        rs = HttpsUtil.doGet(idUrl, head);
+        Out.p(new String(rs));
+        JSONArray arr = new JSONArray(new String(rs));
+        
+        // 解析信息到 map
+        map.put(QI_BASEURL, url);
+        map.put(QI_ID, String.format("%04d", id));
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject json = arr.getJSONObject(i);
+            String key = json.getString("field");
+            StringBuilder sb = new StringBuilder();
+            for (String line : json.getString("default").split("\r\n")) {
+                sb.append(" *   ").append(line).append("\r\n");
+            }
+            
+            String value = sb.substring(" *   ".length(), sb.length()-2).toString();
+            map.put(key, value);
+        }
+        
+        return map;
+    }
+    
+    public static void main(String[] args) throws Exception {
+        Out.p("please input url:");
         
         byte[] bytes = new byte[100];
         System.in.read(bytes);
@@ -82,11 +156,10 @@ public class L_0000_Assistant {
             i ++;
             if (b == 13) break;
         }
-        String title = new String(bytes, 0, i+1);
+        String url = new String(bytes, 0, i+1);
         
-        title = title.replaceAll("[\\(\\)]", "");
+        createJavaFileFromWeb(url);
         
-        createJavaFileFromTitle(title);
     }
     
 }

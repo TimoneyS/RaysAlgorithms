@@ -50,19 +50,11 @@ public class L_0843_Digital_Flip {
     static class Solution {
     
         public int flipDigit(int[] nums) {
-            
-            int f0 = 0, f1 = 0;
-            if (nums[0] == 0) {
-                f1 = 1;
-            } else {
-                f0 = 1;
-            }
-            
+            int f0 = nums[0], f1 = 1-nums[0];
             for (int i = 1; i < nums.length; i++) {
                 f0 = Math.min(f0, f1) + nums[i];
                 f1 = f1 + 1 - nums[i];
             }
-      
             return Math.min(f0, f1);
         }
         

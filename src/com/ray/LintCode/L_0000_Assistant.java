@@ -8,8 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,7 +29,6 @@ public class L_0000_Assistant {
     private static String QI_BASEURL        = "baseurl";
     private static String QI_DESC           = "description";
     private static String QI_EXAMP          = "example";
-    private static String QI_NOTICE         = "notice";
     private static String QI_CHAL           = "challenge";
 
     private static String PH_CLASS          = "%QUESTION_CLASS%";

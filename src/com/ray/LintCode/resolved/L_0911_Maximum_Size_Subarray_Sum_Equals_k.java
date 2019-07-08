@@ -62,10 +62,9 @@ public class L_0911_Maximum_Size_Subarray_Sum_Equals_k {
             
             int rs = 0;
             for (int r = nums.length-1; r >= 0; r--) {
-                if (map.containsKey(nums[r]-k)) {
-                    for (int l : map.get(nums[r]-k)) {
-                        if (l < r) rs = Math.max(rs, r-l);
-                    }
+                if (!map.containsKey(nums[r]-k)) continue;
+                for (int l : map.get(nums[r]-k)) {
+                    if (l < r) rs = Math.max(rs, r-l);
                 }
             }
             

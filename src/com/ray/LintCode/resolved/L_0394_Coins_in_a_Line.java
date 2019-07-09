@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.resolved;
 
 import com.ray.io.Out;
 
@@ -39,19 +39,39 @@ import com.ray.io.Out;
  */
 public class L_0394_Coins_in_a_Line {
 
+    /**
+     * f[i] 表示从i开始拿，是否能够胜利
+     * 
+     * 则从i开始：
+     *      1. 拿 1 个
+     *          f[i] = !f[i+1]
+     * 
+     *      2. 拿 2 个
+     *          f[i] = !f[i+2]
+     * 
+     *  f[i] = !f[i+1] || !f[i+2]
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
     
         public boolean firstWillWin(int n) {
-            // write your code here
-            
-            return false;
+            if (n == 0) return false;
+            if (n <= 2) return true;
+            boolean fn1 = true, fn2 = true, f = false;
+            for (int i = n-3; i >= 0; i--) {
+                f = !fn1 || !fn2;
+                fn2 = fn1;
+                fn1 = f;
+            }
+            return f;
         }
     
     }
     
     public static void main(String[] args) {
-        
-        Out.p(new Solution());
+        Out.p(new Solution().firstWillWin(6));
         
     }
 

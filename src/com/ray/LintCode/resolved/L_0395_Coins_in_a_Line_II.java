@@ -36,7 +36,6 @@ public class L_0395_Coins_in_a_Line_II {
      *              V[i] + min {dp[i+2], dp[i+3]},
      *              V[i] + V[i+1] + min {dp[i+3], dp[i+4]}
      *          }
-     * @return
      */
     static class Solution {
         
@@ -59,7 +58,6 @@ public class L_0395_Coins_in_a_Line_II {
             return sum - dp[0] < dp[0];
         }
     }
-    
     
     /**
      * 定义 f[i] 为玩家从i开始拿取，最终能得到的比另一个玩家多的硬币价值

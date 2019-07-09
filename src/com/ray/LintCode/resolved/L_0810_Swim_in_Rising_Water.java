@@ -1,6 +1,5 @@
 package com.ray.LintCode.resolved;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 import com.ray.io.Out;

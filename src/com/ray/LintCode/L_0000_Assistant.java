@@ -120,7 +120,14 @@ public class L_0000_Assistant {
     private static Map<String, String> getQuestionInfoFromWeb(String url) throws Exception {
         Map<String, String> map = new HashMap<>();
         
+        url = url.trim();
         // 提取 url 中的 问题标题信息
+        if (url.indexOf("description") == -1) {
+            if (url.charAt(url.length()-1) != '/')
+                url = url + "/";
+            url = url + "description";
+        }
+        
         String title = url.substring(url.indexOf("problem") + "problem".length() + 1, url.indexOf("description") - 1);
         
         // 根据标题获取问题的唯一信息如 ID 等

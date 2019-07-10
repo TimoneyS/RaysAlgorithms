@@ -1,37 +1,40 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import com.ray.io.Out;
+
 /**
- * Given number n. Print number from 1 to n. But:
- * <li>when number is divided by 3, print "fizz".
- * <li>when number is divided by 5, print "buzz".
- * <li>when number is divided by both 3 and 5, print "fizz buzz".
- * <p>
- * Example
- * <p>
- * If n = 15, you should return:    <br>
- * [                        <br>
- *  "1", "2", "fizz",       <br>
- *  "4", "buzz", "fizz",    <br>
- *  "7", "8", "fizz",       <br>
- *  "buzz", "11", "fizz",   <br>
- *  "13", "14", "fizz buzz" <br>
- * ]                        <br>
- * Challenge
- * <p>
- * Can you do it with only one if statement?
- * @author rays1
+ * 描述：
+ *      给定一个数字 n，打印1到n的数字，注意：
+ *          如果数字可以被3整除，打印 fizz
+ *          如果数字可以被5整除，打印 buzz
+ *          如果数字可以同时被3和5整除，打印 fizz buzz
+ *          除此之外打印数字本身
+ * 用例：
+ *      如果 n = 15 返回
+ *      [
+ *        "1", "2", "fizz",
+ *        "4", "buzz", "fizz",
+ *        "7", "8", "fizz",
+ *        "buzz", "11", "fizz",
+ *        "13", "14", "fizz buzz"
+ *      ]
  *
+ * 挑战：
+ *      只用一个 if 语句
+ *
+ * 难度： Simple
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/fizz-buzz/description
+ * @date   2019-07-10 21:39:13
  */
 public class L_0009_Fizz_Buzz {
 
     static class Solution {
-        /**
-         * @param n: An integer
-         * @return: A list of strings.
-         */
+    
         public List<String> fizzBuzz(int n) {
             // write your code here
             
@@ -55,10 +58,13 @@ public class L_0009_Fizz_Buzz {
             
             return rs;
         }
+    
     }
     
     public static void main(String[] args) {
-        new Solution().fizzBuzz(10);
+        
+        Out.p(new Solution());
+        
     }
-    
+
 }

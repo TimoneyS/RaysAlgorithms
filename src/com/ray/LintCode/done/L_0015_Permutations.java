@@ -1,41 +1,45 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import com.ray.io.Out;
+
 /**
- * Given a list of numbers, return all possible permutations.
- * 
- * <p>
- * Example
- * <p>
- * For nums = [1,2,3], the permutations are:
- * <li>
- * <li>[
- * <li> [1,2,3],
- * <li> [1,3,2],
- * <li> [2,1,3],
- * <li> [2,3,1],
- * <li> [3,1,2],
- * <li> [3,2,1]
- * <li>]
- * <p>
- * Challenge:Do it without recursion.
- * @author rays1
+ * 描述：
+ *      给定一组数字，返回所有可能的排列组合。
  *
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input: [1,2,3]
+ *      Output:
+ *      [
+ *        [1,2,3],
+ *        [1,3,2],
+ *        [2,1,3],
+ *        [2,3,1],
+ *        [3,1,2],
+ *        [3,2,1]
+ *      ]
+ *      ```
+ *
+ * 挑战：
+ *      Do it without recursion.
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/permutations/description
+ * @date   2019-07-10 22:39:57
  */
 public class L_0015_Permutations {
+
     static class Solution {
-        /*
-         * @param nums: A list of integers.
-         * @return: A list of permutations.
-         */
+    
         public List<List<Integer>> permute(int[] nums) {
-            
             List<List<Integer>> rs = new LinkedList<List<Integer>>();
-            
             permute(rs, new LinkedList<>(), nums);
-            
             return rs;
         }
         
@@ -50,8 +54,9 @@ public class L_0015_Permutations {
                 int[] newNum = new int[nums.length - 1];
                 int index = 0;
                 for (int j : nums) {
-                    if (j != num)
+                    if (j != num) {
                         newNum[index++] = j;
+                    }
                 }
                 List<Integer> newBase = new LinkedList<Integer>(base);
                 newBase.add(num);
@@ -59,14 +64,13 @@ public class L_0015_Permutations {
             }
             
         }
-        
+    
     }
     
     public static void main(String[] args) {
-        int[] nums = {1,2,3,4};
         
-        new Solution().permute(nums);
+        Out.p(new Solution());
         
     }
-    
+
 }

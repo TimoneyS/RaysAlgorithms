@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -7,27 +7,48 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * Given a set of distinct integers, return all possible subsets.
- * <p>
- * <b>Example</b><br>
- * If S = [1,2,3], a solution is:
- * <li> [
- * <li>  [],
- * <li>  [1],[2],[3],
- * <li>  [1,2],[2,3],[1,3],
- * <li>  [1,2,3]
- * <li> ]
- * @author rays1
+ * 描述：
+ *      Given a set of distinct integers, return all possible subsets.
  *
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input: [0]
+ *      Output:
+ *      [
+ *        [],
+ *        [0]
+ *      ]
+ *      ```
+ *      **Example 2:**
+ *      ```
+ *      Input: [1,2,3]
+ *      Output:
+ *      [
+ *        [3],
+ *        [1],
+ *        [2],
+ *        [1,2,3],
+ *        [1,3],
+ *        [2,3],
+ *        [1,2],
+ *        []
+ *      ]
+ *      ```
+ *
+ * 挑战：
+ *      Can you do it in both recursively and iteratively?
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/subsets/description
+ * @date   2019-07-10 22:48:43
  */
 public class L_0017_Subsets {
 
     static class Solution {
-        
-        /**
-         * @param nums: A set of numbers
-         * @return: A list of lists
-         */
+    
         public List<List<Integer>> subsets(int[] nums) {
             // write your code here
             int n = nums.length;
@@ -63,17 +84,13 @@ public class L_0017_Subsets {
             }
             
         }
-        
+    
     }
     
     public static void main(String[] args) {
         
-        int[] nums = {1,2,3};
-        
-        for (List<Integer> l : new Solution().subsets(nums)) {
-            Out.p(l);
-        }
+        Out.p(new Solution());
         
     }
-    
+
 }

@@ -1,24 +1,51 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode;
 
 import com.ray.io.Out;
 
 /**
- * Given three strings: s1, s2, s3,
- * determine whether s3 is formed by the interleaving of s1 and s2.
- * <p>
- * 判断 s3 能不能由 s1 和 s2 交叉组成
- * <p>
- * Example
- * <p>
- * For s1 = "aabcc", s2 = "dbbca"
- * <li> When s3 = "aadbbcbcac", return true.
- * <li> When s3 = "aadbbbaccc", return false.
- * @author rays1
+ * 描述：
+ *      Given three strings: *s1*, *s2*, *s3*, determine whether *s3* is formed by the interleaving of *s1* and *s2*.
  *
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input:
+ *      "aabcc"
+ *      "dbbca"
+ *      "aadbbcbcac"
+ *      Output:
+ *      true
+ *      ```
+ *      **Example 2:**
+ *      ```
+ *      Input:
+ *      ""
+ *      ""
+ *      "1"
+ *      Output:
+ *      false
+ *      ```
+ *      **Example 3:**
+ *      ```
+ *      Input:
+ *      "aabcc"
+ *      "dbbca"
+ *      "aadbbbaccc"
+ *      Output:
+ *      false
+ *      ```
+ *
+ * 挑战：
+ *      O(n<sup>2</sup>) time or better
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/interleaving-string/description
+ * @date   2019-07-10 23:00:09
  */
 public class L_0029_Interleaving_String {
-    
-    
+
     static class Solution {
         
         int l1, l2;
@@ -99,5 +126,5 @@ public class L_0029_Interleaving_String {
         
         Out.p(new Solution2().isInterleave(s1, s2, s3));
     }
-    
+
 }

@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,23 +8,38 @@ import com.ray.LintCode.util.Interval;
 import com.ray.io.Out;
 
 /**
- * Given a non-overlapping interval list which is sorted by start point.
- * Insert a new interval into it,
- * make sure the list is still in order and non-overlapping (merge intervals if necessary).
- * 
- * 给定一系列的按照起点排序的彼此不重叠的区间。
- * 插入一个新的区间，保证插入后所有的区间依旧是不重叠的（可以合并区间）
- * 
- * <p>
- * Example
- * <p>
- * <li> Insert (2, 5) into [(1,2), (5,9)], we get [(1,9)].
- * <li> Insert (3, 4) into [(1,2), (5,9)], we get [(1,2), (3,4), (5,9)].
- * @author rays1
+ * 描述：
+ *      Given a non-overlapping interval list which is sorted by start point.
+ *      
+ *      Insert a new interval into it, make sure the list is still in order and `non-overlapping` (merge intervals if necessary).
  *
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input:
+ *      (2, 5) into [(1,2), (5,9)]
+ *      Output:
+ *      [(1,9)]
+ *      ```
+ *      **Example 2:**
+ *      ```
+ *      Input:
+ *      (3, 4) into [(1,2), (5,9)]
+ *      Output:
+ *      [(1,2), (3,4), (5,9)]
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/insert-interval/description
+ * @date   2019-07-10 23:01:16
  */
 public class L_0030_Insert_Interval {
-    
+
     /**
      * 一个显然的改进是，先用二分搜索找到区间开始的结束的位置，然后插入区间
      * @author rays1
@@ -75,5 +90,5 @@ public class L_0030_Insert_Interval {
        Out.p( new Solution().insert(intervals, new Interval(6, 6 )));
         
     }
-    
+
 }

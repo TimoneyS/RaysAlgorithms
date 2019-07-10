@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -7,27 +7,46 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * Given a collection of integers that might contain duplicates, nums,
- * return all possible subsets (the power set).
- * <b>Example</b><br>
- * Input: [1,2,2], a solution is:
- * <li> [
- * <li>  [],
- * <li>  [1],[2]
- * <li>  [1,2],[2,2],
- * <li>  [1,2,2]
- * <li> ]
- * @author rays1
+ * 描述：
+ *      Given a collection of integers that might contain duplicates, *nums*, return all possible subsets (the power set).
  *
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input: [0]
+ *      Output:
+ *      [
+ *        [],
+ *        [0]
+ *      ]
+ *      ```
+ *      **Example 2:**
+ *      ```
+ *      Input: [1,2,2]
+ *      Output:
+ *      [
+ *        [2],
+ *        [1],
+ *        [1,2,2],
+ *        [2,2],
+ *        [1,2],
+ *        []
+ *      ]
+ *      ```
+ *
+ * 挑战：
+ *      Can you do it in both recursively and iteratively?
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/subsets-ii/description
+ * @date   2019-07-10 22:49:09
  */
 public class L_0018_Subsets_II {
-    
+
     static class Solution {
-        
-        /**
-         * @param nums: A set of numbers.
-         * @return: A list of lists. All valid subsets.
-         */
+    
         public List<List<Integer>> subsetsWithDup(int[] nums) {
             // write your code here
             List<List<Integer>> rs = new LinkedList<List<Integer>>();
@@ -86,16 +105,13 @@ public class L_0018_Subsets_II {
                 marked[i] = 0;
             }
         }
-        
+    
     }
     
     public static void main(String[] args) {
         
-        int[] nums = {1,2,2};
+        Out.p(new Solution());
         
-        for (List<Integer> l : new Solution().subsetsWithDup(nums)) {
-            Out.p(l);
-        }
     }
-    
+
 }

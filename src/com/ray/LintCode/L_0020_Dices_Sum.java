@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -8,23 +8,38 @@ import java.util.Map;
 import com.ray.io.Out;
 
 /**
- * Throw n dices, the sum of the dices' faces is S.
- * Given n, find the all possible value of S along with its probability.
- * <p>
- * Example
- * <p>
- * Given n = 1, return [ [1, 0.17], [2, 0.17], [3, 0.17], [4, 0.17], [5, 0.17], [6, 0.17]].
- * 
- * @author rays1
+ * 描述：
+ *      Throw *n* dices, the sum of the dices' faces is *S*. Given *n*, find the all possible value of *S* along with its probability.
  *
+ * 用例：
+ *      **Example 1:**
+ *      
+ *      ```
+ *      Input: n = 1
+ *      Output: [[1, 0.17], [2, 0.17], [3, 0.17], [4, 0.17], [5, 0.17], [6, 0.17]]
+ *      Explanation: Throw a dice, the sum of the numbers facing up may be 1, 2, 3, 4, 5, 6, and the probability of each result is 0.17.
+ *      ```
+ *      **Example 2:**
+ *      
+ *      ```
+ *      Input: n = 2
+ *      Output: [[2,0.03],[3,0.06],[4,0.08],[5,0.11],[6,0.14],[7,0.17],[8,0.14],[9,0.11],[10,0.08],[11,0.06],[12,0.03]]
+ *      Explanation: Throw two dices, the sum of the numbers facing up may be in [2,12], and the probability of each result is different.
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Hard
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/dices-sum/description
+ * @date   2019-07-10 22:51:18
  */
-public class L_0019_Dices_Sum {
-    
+public class L_0020_Dices_Sum {
+
     static class Solution {
-        /**
-         * @param n an integer
-         * @return a list of Map.Entry<sum, probability>
-         */
+    
         public List<Map.Entry<Integer, Double>> dicesSum(int n) {
             // Write your code here
             // Ps. new AbstractMap.SimpleEntry<Integer, Double>(sum, pro)
@@ -54,15 +69,13 @@ public class L_0019_Dices_Sum {
             
             return new LinkedList<>(map.entrySet());
         }
+    
     }
     
     public static void main(String[] args) {
         
-        
-        for (Map.Entry<Integer, Double> e : new Solution().dicesSum(2)) {
-            Out.p(e);
-        }
+        Out.p(new Solution());
         
     }
-    
+
 }

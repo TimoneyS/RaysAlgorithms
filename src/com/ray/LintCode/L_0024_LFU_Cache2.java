@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,42 +6,50 @@ import java.util.Map;
 import com.ray.io.Out;
 
 /**
- * LFU (Least Frequently Used) is a famous cache eviction algorithm.
- * For a cache with capacity k, if the cache is full and need to evict a key in it,
- * the key with the lease frequently used will be kicked out.
- * <p>
- * 缓存淘汰算法（LFU）。
- * 当缓存满时，淘汰访问最不频繁的元素。
- * <p>
- * Implement set and get method for LFU cache.
- * <p>
- * <b>Example<b>
- * <p>
- * Given capacity=3
- * <li>set(2,2)
- * <li>set(1,1)
- * <li>get(2)
- * <li>>> 2
- * <li>get(1)
- * <li>>> 1
- * <li>get(2)
- * <li>>> 2
- * <li>set(3,3)
- * <li>set(4,4)
- * <li>get(3)
- * <li>>> -1
- * <li>get(2)
- * <li>>> 2
- * <li>get(1)
- * <li>>> 1
- * <li>get(4)
- * <li>>> 4
- * 
- * @author rays1
+ * 描述：
+ *      LFU (Least Frequently Used) is a famous cache eviction algorithm.
+ *      
+ *      For a cache with capacity *k*, if the cache is full and need to evict a key in it, the key with the lease frequently used will be kicked out.
+ *      
+ *      Implement `set` and `get` method for LFU cache.
  *
+ * 用例：
+ *      ```plain
+ *      Input:
+ *      LFUCache(3)
+ *      set(2,2)
+ *      set(1,1)
+ *      get(2)
+ *      get(1)
+ *      get(2)
+ *      set(3,3)
+ *      set(4,4)
+ *      get(3)
+ *      get(2)
+ *      get(1)
+ *      get(4)
+ *      
+ *      Output:
+ *      2
+ *      1
+ *      2
+ *      -1
+ *      2
+ *      1
+ *      4
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Hard
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/lfu-cache/description
+ * @date   2019-07-10 22:55:45
  */
 public class L_0024_LFU_Cache2 {
-    
+
     /**
      * 基本思想：所有的缓存元素存放在数组种，使用双向队列维护元素的索引。
      * 每个元素按照 访问次数排序，访问次数相同的则按照时间排序。
@@ -252,5 +260,5 @@ public class L_0024_LFU_Cache2 {
 //        Out.p(cache.get(5));
         
     }
-    
+
 }

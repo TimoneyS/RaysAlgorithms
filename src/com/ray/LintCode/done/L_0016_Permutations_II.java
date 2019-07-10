@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -7,46 +7,50 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * Given a list of numbers with duplicate number in it. Find all unique permutations.
- * 
- * <p>
- * Example
- * <p>
- * For numbers [1,2,2] the unique permutations are:
- * <li>
- * <li>[
- * <li> [1,2,2],
- * <li> [2,1,2],
- * <li> [2,2,1]
- * <li>]
- * <p>
- * Using recursion to do it is acceptable. If you can do it without recursion, that would be great!
- * @author rays1
+ * 描述：
+ *      给定一个列表的数字，可能包含重复数字，返回所有可能的不重复的排列组合。
  *
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input: [1,2,2]
+ *      Output:
+ *      [
+ *        [1,2,2],
+ *        [2,1,2],
+ *        [2,2,1]
+ *      ]
+ *      ```
+ *
+ * 挑战：
+ *      Using recursion to do it is acceptable. If you can do it without recursion, that would be great!
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/permutations-ii/description
+ * @date   2019-07-10 22:42:30
  */
 public class L_0016_Permutations_II {
-    
+
     /**
-     * <b>字典序全排列</b>
-     * <p>
+     * 字典序全排列
+     * 
      * 字典序是比较序列大小的一种方式: 两个序列的第一对不相等的元素的大小决定序列大小。
      * 例：序列 A = 1234 和 B = 1243 第一对不同元素为 3 < 4，则A < B
-     * <p>
-     * 字典序全排列算法，寻找最小的序列，然后依次输入第二小的序列...
-     * <p>
-     * <b>如何求序列的下一个序列</b>
-     * <p>
-     * <li> 1. 从右侧寻找满足 a[k] < a[k+1] 第一个 k，如果找不到，则说明当前排列是字典序最大者。 
-     * <li> 2. 在a[k+1..n]中，寻找 a[l] > a[k] 的最小的 a[l]。
-     * <li> 3. 交换a[l]与a[k].
-     * <li> 4. 对于a[k+1..n]，反转该区间内元素的顺序。这样就得到了a[1...n]在字典序中的下一个排列。
-     * <p>
-     *  例 : 对于 a = {1,2,3,4,5,6,7}
-     * <p>
-     *  1. 寻找 k = 5
-     *  2. 寻找a[l] = 7 l = 6
-     *  3. 交换 a[6] a[7]
-     *  4. 反转 a[7..7],得到新的序列 {1,2,3,4,5,7,6}
+     * 
+     * 字典序全排列算法，寻找最小的序列，然后依次输出第二小的序列...
+     * 
+     * 求取序列的下一个序列：
+     *      1. 从右侧寻找满足 a[k] < a[k+1] 第一个 k，如果找不到，则说明当前排列是字典序最大者。 
+     *      2. 在a[k+1..n]中，寻找 a[l] > a[k] 的最小的 a[l]。
+     *      3. 交换a[l]与a[k].
+     *      4. 对于a[k+1..n]，反转该区间内元素的顺序。这样就得到了a[1...n]在字典序中的下一个排列。
+     * 例 : 对于 a = {1,2,3,4,5,6,7}
+     *      1. 寻找 k = 5
+     *      2. 寻找a[l] = 7 l = 6
+     *      3. 交换 a[6] a[7]
+     *      4. 反转 a[7..7],得到新的序列 {1,2,3,4,5,7,6}
      * 
      * @author rays1
      *
@@ -127,10 +131,9 @@ public class L_0016_Permutations_II {
     }
     
     public static void main(String[] args) {
-        int[] nums = {1,2,3,4,5};
         
-        for (List<Integer> list : new Solution().permuteUnique(nums))
-            Out.p(list);
+        Out.p(new Solution());
+        
     }
-    
+
 }

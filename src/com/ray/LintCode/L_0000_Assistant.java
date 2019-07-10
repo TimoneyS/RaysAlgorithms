@@ -148,9 +148,9 @@ public class L_0000_Assistant {
         for (String field : new String[]{QI_TITLE, QI_DESC, QI_EXAMP, QI_CHAL, QI_DESC}) {
             StringBuilder sb = new StringBuilder();
             for (String line : json.getString(field).split("\n")) {
-                sb.append(" *     ").append(line).append("\n");
+                sb.append(" *      ").append(line).append("\n");
             }
-            String value = sb.substring(" *     ".length(), sb.length()-1).toString();
+            String value = sb.substring(" *      ".length(), sb.length()-1).toString();
             map.put(field, value);
         }
         

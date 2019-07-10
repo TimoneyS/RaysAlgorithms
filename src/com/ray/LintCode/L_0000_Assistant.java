@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.ray.io.Dir;
@@ -30,14 +29,26 @@ public class L_0000_Assistant {
     private static String QI_DESC           = "description";
     private static String QI_EXAMP          = "example";
     private static String QI_CHAL           = "challenge";
-
+    private static String QI_LEVEL          = "level";
+    
+    
     private static String PH_CLASS          = "%QUESTION_CLASS%";
     private static String PH_BASEURL        = "%BASE_URL%";
     private static String PH_DESC           = "%DESCRIPTION_STRING%";
     private static String PH_EXAMP          = "%EXAMPLE_STRING%";
     private static String PH_CHAL           = "%CHALLENGE_STRING%";
-    private static String PH_DATESTRING     = "%DATE_STRING%";
-   
+    private static String PH_DATE           = "%DATE_STRING%";
+    private static String PH_LEVEL          = "%LEVEL_STRING%";
+    
+    private static Map<String,String> levelMap  = new HashMap<>();
+    
+    static {
+        levelMap.put("0", "Native");
+        levelMap.put("1", "Simple");
+        levelMap.put("2", "Medium");
+        levelMap.put("3", "Hard");
+        levelMap.put("4", "Super");
+    }
     
     private static String replaceHoder(StringBuilder modelString, String className, Map<String, String> questionInfo) {
         
@@ -60,13 +71,19 @@ public class L_0000_Assistant {
         modelString.replace(start, start + PH_BASEURL.length(), questionInfo.get(QI_BASEURL));
         
         // 替换时间戳
-        start = modelString.indexOf(PH_DATESTRING);
-        modelString.replace(start, start + PH_DATESTRING.length(),
+        start = modelString.indexOf(PH_DATE);
+        modelString.replace(start, start + PH_DATE.length(),
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         
         // 替换类名
         start = modelString.indexOf(PH_CLASS);
         modelString.replace(start, start + PH_CLASS.length(), className);
+        
+        // 替换难度字符串
+        String level = questionInfo.get(QI_LEVEL);
+        level = levelMap.containsKey(level) ? levelMap.get(level) : "Unkown";
+        start = modelString.indexOf(PH_LEVEL);
+        modelString.replace(start, start + PH_LEVEL.length(), level);
         
         return modelString.toString();
     }
@@ -115,29 +132,29 @@ public class L_0000_Assistant {
         byte[] rs = HttpsUtil.doGet(uniqueUrl, head);
         int id = new JSONObject(new String(rs)).getInt("id");
         Out.p(new String(rs));
+        JSONObject json = new JSONObject(new String(rs));
         
         // 根据问题的ID获取问题的详细信息
-        String idUrl = "https://www.lintcode.cn/api/translations/?id="+id;
-        Out.p(idUrl);
-        head.put("accept", "application/json, text/plain, */*");
-        rs = HttpsUtil.doGet(idUrl, head);
-        Out.p(new String(rs));
-        JSONArray arr = new JSONArray(new String(rs));
+        // String idUrl = "https://www.lintcode.cn/api/translations/?id="+id;
+        // Out.p(idUrl);
+        // head.put("accept", "application/json, text/plain, */*");
+        // rs = HttpsUtil.doGet(idUrl, head);
+        // Out.p(new String(rs));
+        // JSONArray arr = new JSONArray(new String(rs));
         
         // 解析信息到 map
         map.put(QI_BASEURL, url);
         map.put(QI_ID, String.format("%04d", id));
-        for (int i = 0; i < arr.length(); i++) {
-            JSONObject json = arr.getJSONObject(i);
-            String key = json.getString("field");
+        for (String field : new String[]{QI_TITLE, QI_DESC, QI_EXAMP, QI_CHAL, QI_DESC}) {
             StringBuilder sb = new StringBuilder();
-            for (String line : json.getString("default").split("\r\n")) {
-                sb.append(" *   ").append(line).append("\r\n");
+            for (String line : json.getString(field).split("\n")) {
+                sb.append(" *   ").append(line).append("\n");
             }
-            
-            String value = sb.substring(" *   ".length(), sb.length()-2).toString();
-            map.put(key, value);
+            String value = sb.substring(" *   ".length(), sb.length()-1).toString();
+            map.put(field, value);
         }
+        
+        map.put(QI_LEVEL, String.valueOf(json.getInt(QI_LEVEL)));
         
         return map;
     }

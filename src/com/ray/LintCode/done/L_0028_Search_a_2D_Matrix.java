@@ -1,26 +1,15 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
 /**
  * 描述：
- *      Write an efficient algorithm that searches for a value in an _m_ x _n_ matrix.
- *      
- *      This matrix has the following properties:
- *      
- *      - Integers in each row are sorted from left to right.
- *      - The first integer of each row is greater than the last integer of the previous row.
+ *      在 m*n 的矩阵中搜索值，矩阵的属性如下：
+ *          每一行的整数时升序排列
+ *          每一行的第一个数字，大于上一行的前一个数字
  *
  * 用例：
- *      ```
  *      Example 1:
- *      	Input:  [[5]],2
- *      	Output: false
- *      	
- *      	Explanation: 
- *      	false if not included.
- *      	
- *      Example 2:
  *      	Input:  [
  *          [1, 3, 5, 7],
  *          [10, 11, 16, 20],
@@ -43,15 +32,14 @@ import com.ray.io.Out;
  */
 public class L_0028_Search_a_2D_Matrix {
 
+    /**
+     * 将二维坐标转换为一位坐标，然后使用二分搜索
+     * @author rays1
+     *
+     */
     static class Solution {
         
-        /**
-         * @param matrix: matrix, a list of lists of integers
-         * @param target: An integer
-         * @return: a boolean, indicate whether matrix contains target
-         */
         public boolean searchMatrix(int[][] matrix, int target) {
-            // write your code here
             int row = matrix.length;
             if (row == 0) return false;
             

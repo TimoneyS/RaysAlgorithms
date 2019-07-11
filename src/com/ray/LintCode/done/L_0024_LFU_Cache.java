@@ -1,46 +1,31 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.ray.io.Out;
+import com.ray.util.Assert;
 
 /**
  * 描述：
- *      LFU (Least Frequently Used) is a famous cache eviction algorithm.
- *      
- *      For a cache with capacity *k*, if the cache is full and need to evict a key in it, the key with the lease frequently used will be kicked out.
- *      
- *      Implement `set` and `get` method for LFU cache.
+ *      LFU(最低频率使用)是一个著名的缓存清理算法。
+ *      对于容量为 k 的缓存，当缓存满了需要清理元素时，LFU会选择使用频率最低的一个元素进行清理。
+ *      实现LFU的set和get方法
  *
  * 用例：
- *      ```plain
  *      Input:
- *      LFUCache(3)
- *      set(2,2)
- *      set(1,1)
- *      get(2)
- *      get(1)
- *      get(2)
- *      set(3,3)
- *      set(4,4)
- *      get(3)
- *      get(2)
- *      get(1)
- *      get(4)
- *      
- *      Output:
- *      2
- *      1
- *      2
- *      -1
- *      2
- *      1
- *      4
- *      ```
- *
- * 挑战：
- *      
+ *      LFUCache(3)     // 缓存空间为 3
+ *      set(2,2)        // 缓存： 2(0)->2
+ *      set(1,1)        // 缓存： 2(0)->2, 1(0) -> 1
+ *      get(2)          // 缓存： 2(1)->2, 1(0) -> 1           输出 2
+ *      get(1)          // 缓存： 2(1)->2, 1(1) -> 1           输出 1
+ *      get(2)          // 缓存： 2(2)->2, 1(1) -> 1           输出 2
+ *      set(3,3)        // 缓存： 2(2)->2, 1(1) -> 1, 3(0) -> 3
+ *      set(4,4)        // 缓存： 2(2)->2, 1(1) -> 1, 4(0) -> 4  因为3的使用频率最低，被清理
+ *      get(3)          // -1
+ *      get(2)          // 2
+ *      get(1)          // 1
+ *      get(4)          // 4
  *
  * 难度： Hard
  *   
@@ -48,8 +33,117 @@ import com.ray.io.Out;
  * @url    https://www.lintcode.cn/problem/lfu-cache/description
  * @date   2019-07-10 22:55:45
  */
-public class L_0024_LFU_Cache2 {
+public class L_0024_LFU_Cache {
 
+    /**
+     * LFU 需要记录每个key被访问的频率
+     * 
+     * set 和 get 时均要增加频率
+     * set时，如果缓存满则需要清理访问频率最低的元素
+     * 
+     * 键值对应用 map 即可
+     * 对于频率，要能够快速找到任意键的频率，同时还能快速找到最小频率
+     * 
+     * 这里得算法使用数组保存键值对，使用map保存键对应得索引。
+     * 当频率改变时，调整数组的顺序
+     * 
+     * 
+     * @author rays1
+     *
+     */
+    static class LFUCache {
+        
+        private Map<Integer, Integer> indexKeyMap;
+        private int[] innerK;
+        private int[] innerV;
+        private int[] freqOf;
+        private int cursor = 0;
+        private int capacity;
+        
+        public LFUCache(int capacity) {
+            // 初始化
+            this.capacity = capacity;
+            cursor = 0;
+            innerK = new int[capacity];
+            innerV = new int[capacity];
+            freqOf = new int[capacity];
+            indexKeyMap = new HashMap<Integer, Integer>();
+        }
+
+        public void set(int key, int value) {
+            int index;
+            
+            if (indexKeyMap.containsKey(key)) {
+                // 已经在缓存中
+                index = indexKeyMap.get(key);
+                innerV[index] = value;
+                addFreqOf(index);
+            } else {
+                // 添加新键值对
+                index = firstIndexOfFreqIs(1);
+                
+                if (cursor == capacity) {
+                    // 缓存满，需要淘汰
+                    if (index == cursor ) index -= 1;
+                    indexKeyMap.remove(innerK[cursor - 1]);
+                } else {
+                    // 缓存没满，直接添加
+                    cursor ++;
+                }
+                
+                // make space for new cache
+                insertToNew(cursor, index, key, value, 1);
+                
+            }
+        }
+        
+        // 给新缓存移出空间
+        private void insertToNew(int envictIndex, int newIndex, int k, int v, int freq) {
+
+            for (int i = envictIndex; i > newIndex; i--) {
+                if (i == capacity) {
+                    continue;
+                }
+                indexKeyMap.put(innerK[i - 1], i);
+                innerK[i] = innerK[i - 1];
+                innerV[i] = innerV[i - 1];
+                freqOf[i] = freqOf[i - 1];
+            }
+
+            indexKeyMap.put(k, newIndex);
+            innerK[newIndex] = k;
+            innerV[newIndex] = v;
+            freqOf[newIndex] = freq;
+
+        }
+        
+        public int get(int key) {
+            // write your code here
+            if (indexKeyMap.containsKey(key)) {
+                int index = indexKeyMap.get(key);
+                int v = innerV[index]; 
+                addFreqOf(index);
+                return v;
+            } else {
+                return -1;
+            }
+        }
+
+        // find first cache of freq, return curcor if no such cache
+        private int firstIndexOfFreqIs(int freq) {
+            // find first index whitch freq is 1
+            for (int i = 0; i < cursor; i++)
+                if (freqOf[i] <= freq) return i;
+            return cursor;
+        }
+        
+        private void addFreqOf(int index) {
+            freqOf[index] ++; 
+            insertToNew(index, firstIndexOfFreqIs(freqOf[index]), innerK[index], innerV[index], freqOf[index]);
+        }
+        
+    }
+    
     /**
      * 基本思想：所有的缓存元素存放在数组种，使用双向队列维护元素的索引。
      * 每个元素按照 访问次数排序，访问次数相同的则按照时间排序。
@@ -66,7 +160,7 @@ public class L_0024_LFU_Cache2 {
      * @author rays1
      *
      */
-    static class LFUCache {
+    static class LFUCache2 {
         
         private int size;
         private Map<Integer, Integer> keyIndexMap = new HashMap<>();
@@ -84,7 +178,7 @@ public class L_0024_LFU_Cache2 {
         /*
          * @param capacity: An integer
          */
-        public LFUCache(int capacity) {
+        public LFUCache2(int capacity) {
             // do intialization if necessary
             size = capacity;
             
@@ -216,48 +310,23 @@ public class L_0024_LFU_Cache2 {
             Out.sep();
         }
         
-        
-
     }
     
     public static void main(String[] args) {
         
         LFUCache cache = new LFUCache(3);
         
-        cache.set(1, 10);
-        cache.set(2, 20);
-        cache.set(3, 30);
-        Out.pt(cache.get(1)+",");
-        cache.set(4, 40);
-        Out.pt(cache.get(4)+",");
-        Out.pt(cache.get(3)+",");
-        Out.pt(cache.get(2)+",");
-        Out.pt(cache.get(1)+",");
-        cache.set(5, 50);
-        Out.pt(cache.get(1)+",");
-        Out.pt(cache.get(2)+",");
-        Out.pt(cache.get(3)+",");
-        Out.pt(cache.get(4)+",");
-        Out.pt(cache.get(5));
-        // [10,40,30,-1,10,10,-1,30,-1,50]
-        
-//        cache.set(1, 10);
-//        cache.set(2, 20);
-//        cache.set(3, 30);
-//        Out.p(cache.get(1));
-//        cache.set(4, 40);
-//        Out.p(cache.get(4));
-//        Out.p(cache.get(3));
-//        Out.p(cache.get(2));
-//        Out.p(cache.get(1));
-//        
-//        cache.set(5, 50);
-//        
-//        Out.p(cache.get(1));
-//        Out.p(cache.get(2));
-//        Out.p(cache.get(3));
-//        Out.p(cache.get(4));
-//        Out.p(cache.get(5));
+        cache.set(2, 2);
+        cache.set(1, 1);
+        Assert.assertEquals(cache.get(2), 2);
+        Assert.assertEquals(cache.get(1), 1);
+        Assert.assertEquals(cache.get(2), 2);
+        cache.set(3, 3);
+        cache.set(4, 4);
+        Assert.assertEquals(cache.get(3), -1);
+        Assert.assertEquals(cache.get(2), 2);
+        Assert.assertEquals(cache.get(1), 1);
+        Assert.assertEquals(cache.get(4), 4);
         
     }
 

@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -36,9 +36,19 @@ import com.ray.io.Out;
 public class L_0172_Remove_Element {
 
     static class Solution {
-    
-        
-    
+        public int removeElement(int[] A, int elem) {
+            int n = A.length;
+            
+            int i = 0;
+            for (int num : A) {
+                if (num != elem) {
+                    A[i++] = num;
+                } else {
+                    n --;
+                }
+            }
+            return n;
+        }
     }
     
     public static void main(String[] args) {

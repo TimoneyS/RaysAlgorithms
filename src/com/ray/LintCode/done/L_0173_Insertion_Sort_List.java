@@ -1,14 +1,36 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import com.ray.LintCode.util.ListNode;
 
 /**
- * 用插入排序的思想，排序链表
+ * 描述：
+ *      Sort a linked list using insertion sort.
  *
+ * 用例：
+ *      ```
+ *      Example 1:
+ *      	Input: 0->null
+ *      	Output: 0->null
+ *      
+ *      
+ *      Example 2:
+ *      	Input:  1->3->2->0->null
+ *      	Output :0->1->2->3->null
+ *      	
+ *      
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Simple
+ *   
  * @author rays1
- *
+ * @url    https://www.lintcode.cn/problem/insertion-sort-list/description
+ * @date   2019-07-11 18:31:33
  */
 public class L_0173_Insertion_Sort_List {
+
 
     /**
      * 插入排序将链表分为两部分，已排序和未排序部分

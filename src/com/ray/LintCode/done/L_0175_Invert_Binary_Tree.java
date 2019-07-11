@@ -1,6 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
-import com.ray.io.Out;
+import com.ray.LintCode.util.TreeNode;
 
 /**
  * 描述：
@@ -42,16 +42,33 @@ import com.ray.io.Out;
  */
 public class L_0175_Invert_Binary_Tree {
 
+
     static class Solution {
-    
-        
-    
+        public void invertBinaryTree(TreeNode root) {
+            
+            if (root == null) return;
+            
+            TreeNode l = root.left;
+            TreeNode r = root.right;
+            
+            invertBinaryTree(l);
+            invertBinaryTree(r);
+            
+            root.right = l;
+            root.left  = r;
+            
+        }
     }
+    
     
     public static void main(String[] args) {
         
-        Out.p(new Solution());
+        TreeNode root = TreeNode.parse("{1,2,3,4}");
+        TreeNode.show(root);
         
+        new Solution().invertBinaryTree(root);
+        
+        TreeNode.show(root);
     }
 
 }

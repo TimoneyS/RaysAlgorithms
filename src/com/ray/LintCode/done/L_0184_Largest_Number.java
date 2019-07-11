@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,13 +7,29 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * 正整数的列表，将其拼接成可能的最大的数字。
+ * 描述：
+ *      Given a list of non negative integers, arrange them such that they form the largest number.
  *
- * 如 [1, 20, 23, 4, 8], 结果为 8423201
- * 最好 O(nlogn) 时间复杂度
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input:[1, 20, 23, 4, 8]
+ *      Output:"8423201"
+ *      ```
+ *      **Example 2:**
+ *      ```
+ *      Input:[4, 6, 65]
+ *      Output:"6654"
+ *      ```
  *
+ * 挑战：
+ *      Do it in O(nlogn) time complexity.
+ *
+ * 难度： Medium
+ *   
  * @author rays1
- *
+ * @url    https://www.lintcode.cn/problem/largest-number/description
+ * @date   2019-07-11 18:31:42
  */
 public class L_0184_Largest_Number {
 

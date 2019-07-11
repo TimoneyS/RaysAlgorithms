@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,13 +12,29 @@ import com.ray.LintCode.util.Point;
 import com.ray.io.Out;
 
 /**
- * 给定2D平面上的n个点，找到位于同一直线上的最大点数。
- * 
- * Given 4 points: (1,2), (3,6), (0,0), (1,3).
- * The maximum number is 3.
+ * 描述：
+ *      Given *n* points on a 2D plane, find the maximum number of points that lie on the same straight line.
  *
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input:(1,2),(3,6),(0,0),(1,3).
+ *      Output:3
+ *      ```
+ *      **Example 2:**
+ *      ```
+ *      Input:(1,2),(2,3),(3,2).
+ *      Output:2
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Medium
+ *   
  * @author rays1
- *
+ * @url    https://www.lintcode.cn/problem/max-points-on-a-line/description
+ * @date   2019-07-11 18:31:44
  */
 public class L_0186_Max_Points_on_a_Line {
 

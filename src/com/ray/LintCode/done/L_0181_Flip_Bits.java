@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -38,14 +38,21 @@ import com.ray.io.Out;
 public class L_0181_Flip_Bits {
 
     static class Solution {
-    
-        
-    
+        public int bitSwapRequired(int a, int b) {
+            int c = 0;
+            String s = Integer.toBinaryString(a^b);
+            for (int i = 0; i < s.length(); i++)
+                if (s.charAt(i) == '1') c ++;
+            return c;
+        }
     }
-    
+
     public static void main(String[] args) {
         
-        Out.p(new Solution());
+        int a = 31;
+        int b = 14;
+        
+        Out.p(new Solution().bitSwapRequired(a, b));
         
     }
 

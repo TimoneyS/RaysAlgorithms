@@ -1,16 +1,36 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
 /**
- * 字符串 A 表示一个正整数，从中任意删除k个数字，剩下的数字可以构成一个新的数字。
- * 返回最小的删除数字后的最小的新数字
- * N <= 240 and k <= N,
+ * 描述：
+ *      Given string A representative a positive integer which has _N_ digits, remove any _k_ digits of the number, the remaining digits are arranged according to the original order to become a new positive integer.
+ *      
+ *      Find the **smallest** integer after remove *k* digits.
+ *      
+ *      _N_ <= 240 and _k_ <= _N_,
  *
- * 如 A = "178542", k = 4 返回 12 "12"
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input: A = "178542", k = 4
+ *      Output:"12"
+ *      ```
+ *      
+ *      **Example 2:**
+ *      ```
+ *      Input: A = "568431", k = 3
+ *      Output:"431"
+ *      ```
  *
+ * 挑战：
+ *      
+ *
+ * 难度： Medium
+ *   
  * @author rays1
- *
+ * @url    https://www.lintcode.cn/problem/delete-digits/description
+ * @date   2019-07-11 18:31:41
  */
 public class L_0182_Delete_Digits {
 

@@ -1,20 +1,36 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
 /**
- * 
- * 环路上有N的加油站，每个加油站的储量是 gas[i]。从加油站i到加油站i+1需要耗费汽油cost[i]。在其中的某个加油站开始，油箱为空。
- * 计算从哪个起点开始，可以绕环线一周。没有则返回-1
- * 
- * 如 4 个加油站 gas[i] = [1,1,3,1]
- * 消耗是 cost[i]=[2,2,1,1]
- * 则从 2 开始可以绕环线一周。
- * 
- * O(n) time and O(1) extra space
- * 
- * @author rays1
+ * 描述：
+ *      There are _N_ gas stations along a circular route, where the amount of gas at station _i_ is `gas[i]`.
+ *      
+ *      You have a car with an unlimited gas tank and it costs `cost[i]` of gas to travel from station i to its next station (_i_+1). You begin the journey with an empty tank at one of the gas stations.
+ *      
+ *      Return the starting gas station's index if you can travel around the circuit once, otherwise return -1.
  *
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input:gas[i]=[1,1,3,1],cost[i]=[2,2,1,1]
+ *      Output:2
+ *      ```
+ *      
+ *      **Example 2:**
+ *      ```
+ *      Input:gas[i]=[1,1,3,1],cost[i]=[2,2,10,1]
+ *      Output:-1
+ *      ```
+ *
+ * 挑战：
+ *      O(n) time and O(1) extra space
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/gas-station/description
+ * @date   2019-07-11 18:31:45
  */
 public class L_0187_Gas_Station {
 
@@ -51,5 +67,4 @@ public class L_0187_Gas_Station {
         Out.p(new Solution().canCompleteCircuit(gas, cost));
         
     }
-
 }

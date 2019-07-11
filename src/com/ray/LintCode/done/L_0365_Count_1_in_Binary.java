@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -35,7 +35,12 @@ public class L_0365_Count_1_in_Binary {
 
     static class Solution {
     
-        
+        public int countOnes(int num) {
+            byte[] arr = Integer.toBinaryString(num).getBytes();
+            int count = 0;
+            for (byte b : arr) if (b == 49) count ++;
+            return count;            
+        }
     
     }
     

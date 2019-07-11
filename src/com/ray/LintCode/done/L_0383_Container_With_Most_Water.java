@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -43,9 +43,26 @@ import com.ray.io.Out;
  */
 public class L_0383_Container_With_Most_Water {
 
+    /**
+     * 左右指针在两端，分别向中间移动，每次计算面积
+     * 移动时每次只移动短木板，因为移动长木板一定会使面积不便或变小（木桶效应）。
+     * 
+     * 利用木桶效应，包围解决，每次替换短的木板
+     * @author rays1
+     *
+     */
     static class Solution {
     
-        
+        public int maxArea(int[] heights) {
+            int l = 0, r = heights.length-1, max = 0;
+            while (l < r) {
+                max = Math.max(Math.min(heights[l], heights[r]) * ( r - l), max);
+                if (heights[l] < heights[r]) l ++;
+                else r --;
+            }
+            return max;
+            
+        }
     
     }
     

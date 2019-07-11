@@ -1,17 +1,44 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
 /**
- * 给定整数 n，生成以螺旋顺序填充  1 到 n ^ 2 到元素的二位数组。
+ * 描述：
+ *      Given an integer n, generate a square matrix filled with elements from 1 to $n^2$ in spiral order. 
+ *      
+ *      (The spiral rotates clockwise from the outside to the inside, referring to examples)
  *
- * 如 n = 3
- * 返回
- *  1  2  3
- *  8  9  4
- *  7  6  5
+ * 用例：
+ *      **Example 1:**
+ *      
+ *      ```
+ *      input: 2
+ *      output:
+ *      [
+ *        [1, 2],
+ *        [4, 3]
+ *      ]
+ *      ```
+ *      
+ *      **Example 2:**
+ *      ```
+ *      input: 3
+ *      output:
+ *      [
+ *        [ 1, 2, 3 ],
+ *        [ 8, 9, 4 ],
+ *        [ 7, 6, 5 ]
+ *      ]
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Medium
+ *   
  * @author rays1
- *
+ * @url    https://www.lintcode.cn/problem/spiral-matrix-ii/description
+ * @date   2019-07-11 18:32:21
  */
 public class L_0381_Spiral_Matrix_II {
 
@@ -47,11 +74,8 @@ public class L_0381_Spiral_Matrix_II {
     
     public static void main(String[] args) {
         
-        int n = 3;
+        Out.p(new Solution());
         
-        int[][] matrix = new Solution().generateMatrix(n);
-        
-        Out.p(matrix, "%s ");
     }
 
 }

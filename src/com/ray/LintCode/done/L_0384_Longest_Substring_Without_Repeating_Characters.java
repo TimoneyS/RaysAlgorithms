@@ -1,15 +1,39 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
 /**
- * 给定一个字符串，找到最长子字符串的长度而不重复字符。
- * "abcabcbb" 最长子字符串是 "abc", 长度为 3
- * "bbbbb" 最长子字符串是 "b", 长度为1
- * @author rays1
+ * 描述：
+ *      Given a string, find the length of the longest substring without repeating characters.
  *
+ * 用例：
+ *      **Example 1:**
+ *      
+ *      ```
+ *      Input: "abcabcbb"
+ *      Output: 3
+ *      Explanation: The longest substring is "abc".
+ *      ```
+ *      
+ *      **Example 2:**
+ *      
+ *      ```
+ *      Input: "bbbbb"
+ *      Output: 1
+ *      Explanation: The longest substring is "b".
+ *      ```
+ *
+ * 挑战：
+ *      time complexity O(n)
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/longest-substring-without-repeating-characters/description
+ * @date   2019-07-11 18:32:23
  */
 public class L_0384_Longest_Substring_Without_Repeating_Characters {
+
 
     /**
      * 不断的前行，并记录每个字符出现的次数
@@ -52,10 +76,8 @@ public class L_0384_Longest_Substring_Without_Repeating_Characters {
     
     public static void main(String[] args) {
         
-        String s = "dqirnnnchguccmkluloyzunslxhgxjyazitnxgreplhrzreuessdofxacgicpgcpqyengvrvjamitscxk";
+        Out.p(new Solution());
         
-        Solution sol = new Solution();
-        Out.p(sol.lengthOfLongestSubstring(s));
     }
 
 }

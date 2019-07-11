@@ -1,4 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
+
+import java.util.Arrays;
 
 import com.ray.io.Out;
 
@@ -39,9 +41,14 @@ import com.ray.io.Out;
 public class L_0143_Sort_Colors_II {
 
     static class Solution {
-    
-        
-    
+        /**
+         * @param colors: A list of integer
+         * @param k: An integer
+         * @return: nothing
+         */
+        public void sortColors2(int[] colors, int k) {
+            Arrays.sort(colors);
+        }
     }
     
     public static void main(String[] args) {

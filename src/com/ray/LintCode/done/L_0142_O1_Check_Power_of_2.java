@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -31,9 +31,16 @@ import com.ray.io.Out;
 public class L_0142_O1_Check_Power_of_2 {
 
     static class Solution {
-    
-        
-    
+        /*
+         * @param n: An integer
+         * @return: True or false
+         */
+        public boolean checkPowerOf2(int n) {
+            if (n <= 0) {
+                return false;
+            }
+            return (n & (n-1)) == 0;
+        }
     }
     
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -31,9 +31,13 @@ import com.ray.io.Out;
 public class L_0145_Lowercase_to_Uppercase {
 
     static class Solution {
-    
-        
-    
+        /**
+         * @param character: a character
+         * @return: a character
+         */
+        public char lowercaseToUppercase(char character) {
+            return (char) (character - 32);
+        }
     }
     
     public static void main(String[] args) {

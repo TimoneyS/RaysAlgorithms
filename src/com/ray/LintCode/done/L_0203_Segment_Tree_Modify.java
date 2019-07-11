@@ -1,6 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
-import com.ray.io.Out;
+import com.ray.LintCode.util.SegmentTreeNode;
 
 /**
  * 描述：
@@ -64,15 +64,36 @@ import com.ray.io.Out;
  */
 public class L_0203_Segment_Tree_Modify {
 
+
+    /**
+     * 向下寻找，修改了最终结点后，依次更新父结点的值
+     * @author rays1
+     *
+     */
     static class Solution {
-    
+        /**
+         * @param root: The root of segment tree.
+         * @param index: index.
+         * @param value: value
+         * @return: nothing
+         */
+        public void modify(SegmentTreeNode root, int index, int value) {
+            if (index == root.start && index == root.end) {
+                root.max = value;
+            } else if (index >= root.start && index <= root.end) {
+                int mid = (root.start + root.end)/2;
+                if (index <= mid) {
+                    modify(root.left, index, value);
+                } else {
+                    modify(root.right, index, value);
+                }
+                root.max = Math.max(max(root.right), max(root.left));
+            }
+        }
         
-    
-    }
-    
-    public static void main(String[] args) {
-        
-        Out.p(new Solution());
+        public int max(SegmentTreeNode node) {
+            return node == null ? 0 : node.max;
+        }
         
     }
 

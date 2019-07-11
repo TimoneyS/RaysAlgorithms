@@ -1,6 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
-import com.ray.io.Out;
+import com.ray.LintCode.util.SegmentTreeNode;
 
 /**
  * 描述：
@@ -53,14 +53,16 @@ import com.ray.io.Out;
 public class L_0201_Segment_Tree_Build {
 
     static class Solution {
-    
-        
-    
-    }
-    
-    public static void main(String[] args) {
-        
-        Out.p(new Solution());
+        public SegmentTreeNode build(int start, int end) {
+            if (start > end) return null; 
+            SegmentTreeNode root = new SegmentTreeNode(start, end);
+            if (start != end) {
+                int mid = (start + end) / 2;
+                root.left = build(start, mid);
+                root.right = build(mid+1, end);                
+            }
+            return root;
+        }
         
     }
 

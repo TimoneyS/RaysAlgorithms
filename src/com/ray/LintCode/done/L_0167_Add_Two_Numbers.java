@@ -1,5 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
+import com.ray.LintCode.util.ListNode;
 import com.ray.io.Out;
 
 /**
@@ -35,9 +36,28 @@ import com.ray.io.Out;
 public class L_0167_Add_Two_Numbers {
 
     static class Solution {
-    
-        
-    
+        public ListNode nthToLast(ListNode head, int n) {
+            
+            ListNode n1 = null, n2;
+            
+            int dist = 0;
+            n2 = head;
+            while (true) {
+                if (dist == n) {
+                    n1 = head;
+                    break;
+                }
+                n2 = n2.next;
+                dist++;
+            }
+            
+            while (n1 != null && n2 != null) {
+                n1 = n1.next;
+                n2 = n2.next;
+            }
+            
+            return n1;
+        }
     }
     
     public static void main(String[] args) {

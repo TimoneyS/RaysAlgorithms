@@ -1,18 +1,38 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
 /**
- * m x n 的矩阵，如果某个元素是0则将其所在的行列均设置为 0。需要原地实现。
- * 挑战
- *   1. O(m+n) 空间
- *   2. 常量级空间
- * @author rays1
+ * 描述：
+ *      Given a *m* x *n* matrix, if an element is 0, set its entire row and column to 0. Do it in place.
  *
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input:[[1,2],[0,3]]
+ *      Output:[[0,2],[0,0]]
+ *      ```
+ *      
+ *      **Example 2:**
+ *      ```
+ *      Input:[[1,2,3],[4,0,6],[7,8,9]]
+ *      Output:[[1,0,3],[0,0,0],[7,0,9]]
+ *      ```
+ *
+ * 挑战：
+ *      Did you use extra space?
+ *      A straight forward solution using O(*mn*) space is probably a bad idea.
+ *      A simple improvement uses O(*m* + *n*) space, but still not the best solution.
+ *      Could you devise a constant space solution?
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/set-matrix-zeroes/description
+ * @date   2019-07-11 18:31:24
  */
 public class L_0162_Set_Matrix_Zeroes {
-    
-    
+
     /**
      * 用两个变量分别记录当前行和上一行是否需要置0
      * 算法如下:

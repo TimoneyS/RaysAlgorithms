@@ -1,15 +1,36 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
 /**
- * n x n  的图像，顺时针旋转90°
+ * 描述：
+ *      You are given an _n_ x _n_ 2D matrix representing an image.
+ *      Rotate the image by `90` degrees (clockwise).
  *
+ * 用例：
+ *      **Example 1：**
+ *      ```
+ *      Input:[[1,2],[3,4]]
+ *      Output:[[3,1],[4,2]]
+ *      ```
+ *      
+ *      **Example 2:**
+ *      ```
+ *      Input:[[1,2,3],[4,5,6],[7,8,9]]
+ *      Output:[[7,4,1],[8,5,2],[9,6,3]]
+ *      ```
+ *
+ * 挑战：
+ *      Do it in-place.
+ *
+ * 难度： Medium
+ *   
  * @author rays1
- *
+ * @url    https://www.lintcode.cn/problem/rotate-image/description
+ * @date   2019-07-11 18:31:23
  */
 public class L_0161_Rotate_Image {
-    
+
     /**
      * 
      * 因为是n x n的图像，因此图像可以从外到内分为若干个环，对每个环进行旋转90°的操作即可。
@@ -58,5 +79,5 @@ public class L_0161_Rotate_Image {
         Out.p(matrix, "%2s ");
         
     }
-    
+
 }

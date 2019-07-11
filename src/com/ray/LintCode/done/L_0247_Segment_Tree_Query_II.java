@@ -1,5 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
+import com.ray.LintCode.util.SegmentTreeNode;
 import com.ray.io.Out;
 
 /**
@@ -66,9 +67,17 @@ import com.ray.io.Out;
 public class L_0247_Segment_Tree_Query_II {
 
     static class Solution {
-    
-        
-    
+        public int query(SegmentTreeNode root, int start, int end) {
+            start   = Math.max(root.start, start);
+            end     = Math.min(root.end, end);
+            if (start > end) return 0;
+            if (root.start == start && root.end == end) {
+                return root.count;
+            } else {
+                return query(root.left, start, end) + query(root.right, start, end);
+            }
+            
+        }
     }
     
     public static void main(String[] args) {

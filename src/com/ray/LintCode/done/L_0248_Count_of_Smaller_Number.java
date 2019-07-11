@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,21 +7,40 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * n个元素的数组和一个查询的列表，对于每个查询，返回数字在数组中的排名
- * 
- * 数组 [1,2,7,8,5], 
- * 输入： [1,8,5], 返回： [0,4,2]
+ * 描述：
+ *      Give you an integer array (index from 0 to n-1, where n is the size of this array, value from 0 to 10000) and an query list. For each query, give you an integer, return the number of element in the array that are smaller than the given integer.
  *
- * 三种方法：
- *  1. 循环
- *  2. 排序，二分搜索
- *  3. 段树
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input: array =[1,2,7,8,5] queries =[1,8,5]
+ *      Output:[0,4,2]
+ *      ```
+ *      
+ *      **Example 2:**
+ *      ```
+ *      Input: array =[3,4,5,8] queries =[2,4]
+ *      Output:[0,1]
+ *      ```
  *
+ * 挑战：
+ *      Could you use three ways to do it.
+ *      
+ *      1. Just loop
+ *      2. Sort and binary search
+ *      3. Build Segment Tree and Search.
+ *
+ * 难度： Medium
+ *   
  * @author rays1
- *
+ * @url    https://www.lintcode.cn/problem/count-of-smaller-number/description
+ * @date   2019-07-11 18:32:06
  */
 public class L_0248_Count_of_Smaller_Number {
 
+    /*
+     * 三种方法： 1. 循环 2. 排序，二分搜索 3. 段树
+     */
     static class Solution {
         
         public List<Integer> countOfSmallerNumber(int[] A, int[] queries) {
@@ -57,5 +76,4 @@ public class L_0248_Count_of_Smaller_Number {
         Out.p(new Solution().countOfSmallerNumber(A, queries));
         
     }
-
 }

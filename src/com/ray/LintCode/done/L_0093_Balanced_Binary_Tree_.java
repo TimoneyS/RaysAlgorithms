@@ -1,5 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
+import com.ray.LintCode.util.TreeNode;
 import com.ray.io.Out;
 
 /**
@@ -61,15 +62,36 @@ import com.ray.io.Out;
 public class L_0093_Balanced_Binary_Tree_ {
 
     static class Solution {
-    
         
-    
+        /**
+         * @param root: The root of binary tree.
+         * @return: True if this Binary tree is Balanced, or false.
+         */
+        public boolean isBalanced(TreeNode root) {
+            if (root == null) return true;
+            return maxDeep(root) != -1;
+        }
+        
+        public int maxDeep(TreeNode n) {
+            if (n == null) return 0;
+            int v1 = 0, v2 = 0;
+            if (n.left != null)
+                v1 = maxDeep(n.left);
+            if (n.right != null)
+                v2 = maxDeep(n.right);
+            
+            if (Math.abs(v2 - v1) > 1 || v1 == -1 || v2 == -1) return -1;
+            else return 1 + Math.max(v1, v2);
+        }
+        
     }
     
     public static void main(String[] args) {
         
-        Out.p(new Solution());
+        TreeNode root = TreeNode.parse("{1,#,3,4,#,5}");
+        
+        Out.p(new Solution().maxDeep(root));
+        
         
     }
-
 }

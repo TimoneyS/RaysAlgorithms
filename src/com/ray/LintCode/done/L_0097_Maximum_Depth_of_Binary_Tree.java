@@ -1,5 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
+import com.ray.LintCode.util.TreeNode;
 import com.ray.io.Out;
 
 /**
@@ -42,9 +43,14 @@ import com.ray.io.Out;
 public class L_0097_Maximum_Depth_of_Binary_Tree {
 
     static class Solution {
-    
-        
-    
+        /**
+         * @param root: The root of binary tree.
+         * @return: An integer
+         */
+        public int maxDepth(TreeNode root) {
+            if (root == null) return 0;
+            return Math.max(maxDepth(root.left) , maxDepth(root.right)) + 1;        
+        }
     }
     
     public static void main(String[] args) {

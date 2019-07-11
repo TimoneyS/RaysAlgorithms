@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,16 +6,31 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * Given an integer array, adjust each integers so that the difference of every
- * adjacent integers are not greater than a given number target.
- * 
- * If the array before adjustment is A, the array after adjustment is B, you
- * should minimize the sum of |A[i]-B[i]|
- * 
- * 给一个整数数组，调整每个数的大小，使得相邻的两个数的差不大于一个给定的整数target 调整每个数的代价为调整前后的差的绝对值，求调整代价之和最小是多少。
- * 
- * @author rays1
+ * 描述：
+ *      Given an integer array, adjust each integers so that the difference of every adjacent integers are not greater than a given number target.
+ *      
+ *      If the array before adjustment is **A**, the array after adjustment is **B**, you should minimize the sum of `|A[i]-B[i]|`
  *
+ * 用例：
+ *      ```
+ *      Example 1:
+ *      	Input:  [1,4,2,3], target=1
+ *      	Output:  2
+ *      
+ *      Example 2:
+ *      	Input:  [3,5,4,7], target=2
+ *      	Output:  1
+ *      	
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/minimum-adjustment-cost/description
+ * @date   2019-07-11 18:30:06
  */
 public class L_0091_Minimum_Adjustment_Cost {
 

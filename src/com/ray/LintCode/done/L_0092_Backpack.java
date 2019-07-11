@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -32,14 +32,25 @@ import com.ray.io.Out;
 public class L_0092_Backpack {
 
     static class Solution {
-    
         
-    
+        public int backPack(int m, int[] A) {
+            int[] mem = new int[m+1];    
+            for (int p : A) {
+                for (int i = m; i >= p; i--) {
+                    mem[i] = Math.max(mem[i], mem[i-p] + p);
+                }
+            }
+            return mem[m];
+        }
+        
     }
     
     public static void main(String[] args) {
         
-        Out.p(new Solution());
+        int[] A = {2,4,7,5};
+        int m = 10;
+        
+        Out.p(new Solution().backPack(m, A));
         
     }
 

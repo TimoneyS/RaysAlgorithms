@@ -1,17 +1,38 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import com.ray.LintCode.util.ListNode;
 
 /**
- * Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
- * 
- * You should preserve the original relative order of the nodes in each of the two partitions.
+ * 描述：
+ *      Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+ *      
+ *      You should preserve the original relative order of the nodes in each of the two partitions.
  *
- * 给定一个链表，和一个值 x
- * 将所有的 小于 x 的结点放到大于等于 x 的结点之前
- * 
+ * 用例：
+ *      **Example 1:**
+ *      
+ *      ```
+ *      Input:  list = null, x = 0
+ *      Output: null	
+ *      Explanation: The empty list Satisfy the conditions by itself.
+ *      ```
+ *      
+ *      **Example 2:**
+ *      
+ *      ```
+ *      Input:  list = 1->4->3->2->5->2->null, x = 3
+ *      Output: 1->2->2->4->3->5->null	
+ *      Explanation:  keep the original relative order of the nodes in each of the two partitions.
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Simple
+ *   
  * @author rays1
- *
+ * @url    https://www.lintcode.cn/problem/partition-list/description
+ * @date   2019-07-11 18:30:11
  */
 public class L_0096_Partition_List {
 

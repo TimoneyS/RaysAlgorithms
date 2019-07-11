@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,29 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * 通过递归将数字从1打印到最大数字，N位数。
+ * 描述：
+ *      Print numbers from 1 to the largest number with N digits by recursion.
  *
- * N = 1，返回 [1,2,3,4,5,6,7,8,9]
- * N = 2，返回 [1,2,3,4,5,6,7,8,9,10,11,12,...,99]
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input : N = 1 
+ *      Output :[1,2,3,4,5,6,7,8,9]
+ *      ```
+ *      **Example 2:**
+ *      ```
+ *      Input : N = 2 
+ *      Output :[[1,2,3,4,5,6,7,8,9,10,11,12,...,99]
+ *      ```
+ *
+ * 挑战：
+ *      Do it in recursion, not for-loop.
+ *
+ * 难度： Medium
+ *   
  * @author rays1
- *
+ * @url    https://www.lintcode.cn/problem/print-numbers-by-recursion/description
+ * @date   2019-07-11 18:32:15
  */
 public class L_0371_Print_Numbers_by_Recursion {
 
@@ -39,8 +56,9 @@ public class L_0371_Print_Numbers_by_Recursion {
     }
     
     public static void main(String[] args) {
-        int n = 0;
-        Out.p(new Solution().numbersByRecursion(n));
+        
+        Out.p(new Solution());
+        
     }
 
 }

@@ -1,5 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
+import com.ray.LintCode.util.TreeNode;
 import com.ray.io.Out;
 
 /**
@@ -45,9 +46,13 @@ import com.ray.io.Out;
 public class L_0375_Clone_Binary_Tree {
 
     static class Solution {
-    
-        
-    
+        public TreeNode cloneTree(TreeNode root) {
+            if (root == null) return null;
+            TreeNode copy = new TreeNode(root.val);
+            copy.left = cloneTree(root.left);
+            copy.right = cloneTree(root.left);            
+            return copy;
+        }
     }
     
     public static void main(String[] args) {

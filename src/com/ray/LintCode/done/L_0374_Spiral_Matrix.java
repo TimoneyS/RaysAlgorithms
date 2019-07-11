@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,16 +6,30 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * 给定m×n个元素的矩阵（m行，n列），以螺旋顺序返回矩阵的所有元素。
- * 
- * 
- * 如 ：
- *  [ 1, 2, 3 ],
- *  [ 4, 5, 6 ],
- *  [ 7, 8, 9 ]
- * 返回 1 2 3 6 9 8 7 4 5
- * @author rays1
+ * 描述：
+ *      Given a matrix of *m* x *n* elements (*m* rows, *n* columns), return all elements of the matrix in spiral order.
  *
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input:	[[ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ]]
+ *      Output: [1,2,3,6,9,8,7,4,5]
+ *      ```
+ *      
+ *      **Example 2**
+ *      ```
+ *      Input:	[[ 6,4,1 ], [ 7,8,9 ]]
+ *      Output: [6,4,1,9,8,7]
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/spiral-matrix/description
+ * @date   2019-07-11 18:32:17
  */
 public class L_0374_Spiral_Matrix {
 
@@ -56,16 +70,8 @@ public class L_0374_Spiral_Matrix {
     
     public static void main(String[] args) {
         
-        int[][] matrix = {
-                {1,2,3},
-                {4,5,6},
-                {7,8,9}
-        };
-        
-        List<Integer> rs = new Solution().spiralOrder(matrix);
-        
-        Out.p(rs);
+        Out.p(new Solution());
         
     }
-    
+
 }

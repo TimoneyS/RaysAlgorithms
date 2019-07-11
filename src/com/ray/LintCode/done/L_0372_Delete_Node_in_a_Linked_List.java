@@ -1,5 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
+import com.ray.LintCode.util.ListNode;
 import com.ray.io.Out;
 
 /**
@@ -35,10 +36,16 @@ import com.ray.io.Out;
  */
 public class L_0372_Delete_Node_in_a_Linked_List {
 
+    /**
+     * 用下个结点的值，覆盖当前结点，然后删除下个结点
+     * @author rays1
+     *
+     */
     static class Solution {
-    
-        
-    
+        public void deleteNode(ListNode node) {
+            node.val = node.next.val;
+            node.next = node.next.next;
+        }
     }
     
     public static void main(String[] args) {

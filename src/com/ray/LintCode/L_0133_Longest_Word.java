@@ -1,5 +1,7 @@
 package com.ray.LintCode;
 
+import java.util.ArrayList;
+
 import com.ray.io.Out;
 
 /**
@@ -43,9 +45,28 @@ import com.ray.io.Out;
 public class L_0133_Longest_Word {
 
     static class Solution {
-    
-        
-    
+        /**
+         * @param dictionary: an array of strings
+         * @return: an arraylist of strings
+         */
+        ArrayList<String> longestWords(String[] dictionary) {
+            // write your code here
+            
+            int wordsize=0;
+            ArrayList<String> result = new ArrayList<String>();
+            
+            for(String s : dictionary) {
+                if(s.length() > wordsize) {
+                    result = new ArrayList<String>();
+                    result.add(s);
+                    wordsize = s.length();
+                } else if(s.length() == wordsize) {
+                    result.add(s);
+                }
+            }
+            
+            return result;
+        }
     }
     
     public static void main(String[] args) {

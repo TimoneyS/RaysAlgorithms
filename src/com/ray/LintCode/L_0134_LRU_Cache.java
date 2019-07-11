@@ -48,15 +48,88 @@ import com.ray.io.Out;
  */
 public class L_0134_LRU_Cache {
 
-    static class Solution {
-    
+    static class LRUCache {
         
-    
+        private int capacity;
+        private int size;
+        private Node head;
+        private Node tail;
+        
+        class Node {
+            int key;
+            int val;
+            Node next;
+            Node prev;
+            public Node() {
+                key = -1;val = -1;
+            }
+        }
+        
+        void link(Node p, Node n) {
+            if (p == n) return;
+            if (p != null) p.next = n;
+            if (n != null) n.prev = p;
+        }
+        
+        public LRUCache(int capacity) {
+            this.capacity = capacity;
+            this.size = 0;
+            head = new Node();
+            tail = new Node();
+            
+            link(head, tail);
+        }
+
+        public int get(int key) {
+            for (Node n = head.next; n != tail; n = n.next) {
+                if (n.key == key) {
+                    link(n.prev, n.next);
+                    link(n, head.next);
+                    link(head, n);
+                    return n.val;
+                }
+            }
+            return -1;
+        }
+
+        public void set(int key, int value) {
+            Node prev = head;
+            for (Node n = head.next; n != tail; prev = n, n = n.next) {
+                if (n.key == key) break;
+            }
+            if (prev.next == tail) {
+                // add
+                if (size >= capacity)
+                    link(tail.prev.prev, tail);
+                else {
+                    size ++;
+                }
+                Node n = new Node();
+                n.key = key;
+                n.val = value;
+                link(n, head.next);
+                link(head, n);
+            } else {
+                // change
+                prev.next.val = value;
+                Node n = prev.next;
+                link(prev, prev.next.next);
+                link(n, head.next);
+                link(head, n);
+            }
+        }
+        
     }
     
     public static void main(String[] args) {
         
-        Out.p(new Solution());
+        LRUCache cache = new LRUCache(1);
+        
+        cache.set(2, 1);
+        Out.p(cache.get(2));
+        cache.set(3, 2);
+        Out.p(cache.get(2));
+        Out.p(cache.get(3));        
         
     }
 

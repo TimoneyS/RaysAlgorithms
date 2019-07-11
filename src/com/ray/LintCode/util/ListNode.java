@@ -68,6 +68,10 @@ public class ListNode {
         return pile.next;
     }
     
+    public void show() {
+        ListNode.show(this);
+    }
+    
     public static void main(String[] args) {
         ListNode head = ListNode.parse("{1,2,3,4,5,6}");
         

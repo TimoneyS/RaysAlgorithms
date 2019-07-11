@@ -31,7 +31,6 @@ public class L_0000_Assistant {
     private static String QI_CHAL           = "challenge";
     private static String QI_LEVEL          = "level";
     
-    
     private static String PH_CLASS          = "%QUESTION_CLASS%";
     private static String PH_BASEURL        = "%BASE_URL%";
     private static String PH_DESC           = "%DESCRIPTION_STRING%";
@@ -76,6 +75,9 @@ public class L_0000_Assistant {
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         
         // 替换类名
+        className = className.replaceAll("[\\(\\)]", "");
+        className = className.replaceAll("-", "_");
+        
         start = modelString.indexOf(PH_CLASS);
         modelString.replace(start, start + PH_CLASS.length(), className);
         

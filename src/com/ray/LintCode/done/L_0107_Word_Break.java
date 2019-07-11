@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -9,11 +9,29 @@ import com.ray.io.Out;
 import com.ray.util.Timer;
 
 /**
- * Given a string s and a dictionary of words dict,
- *  determine if s can be break into a space-separated sequence of one or more dictionary words.
+ * 描述：
+ *      Given a string s and a dictionary of words dict, determine if s can be break into a space-separated sequence of one or more dictionary words.
  *
+ * 用例：
+ *      ```
+ *      Example 1:
+ *      	Input:  "lintcode", ["lint", "code"]
+ *      	Output:  true
+ *      
+ *      Example 2:
+ *      	Input: "a", ["a"]
+ *      	Output:  true
+ *      	
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Medium
+ *   
  * @author rays1
- *
+ * @url    https://www.lintcode.cn/problem/word-break/description
+ * @date   2019-07-11 18:30:38
  */
 public class L_0107_Word_Break {
 
@@ -93,5 +111,4 @@ public class L_0107_Word_Break {
         Out.p(new Solution().wordBreak(s, dict));
         Timer.STOP();
     }
-
 }

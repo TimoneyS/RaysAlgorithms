@@ -1,14 +1,42 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import com.ray.LintCode.util.ListNode;
 import com.ray.LintCode.util.TreeNode;
 
 /**
- * Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
- * 
- * 已经排序的单链表,转换为高度平衡的二叉树
- * @author rays1
+ * 描述：
+ *      Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
  *
+ * 用例：
+ *      ```
+ *      Example 1:
+ *      	Input: array = [1,2,3]
+ *      	Output:
+ *      		 2  
+ *      		/ \
+ *      		1  3
+ *      		
+ *      Example 2:
+ *      	Input: [2,3,6,7]
+ *      	Output:
+ *      		 3
+ *      		/ \
+ *      	       2   6
+ *      		     \
+ *      		      7
+ *      
+ *      	Explanation:
+ *      	There may be multi answers, and you could return any of them.
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/convert-sorted-list-to-binary-search-tree/description
+ * @date   2019-07-11 18:30:37
  */
 public class L_0106_Convert_Sorted_List_to_Binary_Search_Tree {
 

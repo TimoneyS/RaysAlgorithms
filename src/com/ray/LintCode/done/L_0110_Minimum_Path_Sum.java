@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -37,14 +37,33 @@ import com.ray.io.Out;
 public class L_0110_Minimum_Path_Sum {
 
     static class Solution {
-    
-        
-    
+        /**
+         * @param grid: a list of lists of integers
+         * @return: An integer, minimizes the sum of all numbers along its path
+         */
+        public int minPathSum(int[][] grid) {
+            
+            int h = grid.length;
+            int w = grid[0].length;
+            
+            for (int i = 1; i < h; i++) grid[i][0] += grid[i-1][0];
+            for (int i = 1; i < w; i++) grid[0][i] += grid[0][i-1];
+            for (int i = 1; i < h; i++)
+                for (int j = 1; j < w; j++)
+                    grid[i][j] += Math.min(grid[i][j-1], grid[i-1][j]);
+            
+            return grid[h-1][w-1];
+        }
     }
     
     public static void main(String[] args) {
         
-        Out.p(new Solution());
+        int[][] grid = {
+                {1,2},
+                {3,4}
+        };
+        
+        Out.p(new Solution().minPathSum(grid));
         
     }
 

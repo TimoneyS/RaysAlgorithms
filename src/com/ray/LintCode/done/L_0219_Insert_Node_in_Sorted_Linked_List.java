@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import com.ray.LintCode.util.ListNode;
 import com.ray.io.Out;

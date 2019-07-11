@@ -1,6 +1,4 @@
-package com.ray.LintCode;
-
-import com.ray.io.Out;
+package com.ray.LintCode.done;
 
 /**
  * 描述：
@@ -36,16 +34,25 @@ import com.ray.io.Out;
  */
 public class L_0209_First_Unique_Character_in_a_String {
 
+    /**
+     * 无额外空间，平方级别算法
+     * @author rays1
+     *
+     */
     static class Solution {
-    
-        
-    
-    }
-    
-    public static void main(String[] args) {
-        
-        Out.p(new Solution());
-        
+        public char firstUniqChar(String str) {
+            for (int i = 0; i < str.length(); i++) {
+                boolean flag = false;
+                for (int j = 0; j < str.length(); j ++) {
+                    if (i!=j&&str.charAt(i) == str.charAt(j)) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag) return str.charAt(i);
+            }
+            return 'c';
+        }
     }
 
 }

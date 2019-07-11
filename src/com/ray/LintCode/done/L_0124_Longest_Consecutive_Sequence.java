@@ -1,6 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
-import com.ray.io.Out;
+import java.util.Arrays;
 
 /**
  * 描述：
@@ -27,14 +27,25 @@ import com.ray.io.Out;
 public class L_0124_Longest_Consecutive_Sequence {
 
     static class Solution {
-    
         
-    
-    }
-    
-    public static void main(String[] args) {
-        
-        Out.p(new Solution());
+        public int longestConsecutive(int[] num) {
+            Arrays.sort(num);
+            int max = 1;
+            int t = 1;
+            int prev = Integer.MIN_VALUE;
+            for (int i : num) {
+                if (prev + 1 == i) {
+                    t ++;
+                } else if (prev == i) {
+                    continue;
+                }else {
+                    t = 1;
+                }
+                max = Math.max(t, max);
+                prev = i;
+            }
+            return max;
+        }
         
     }
 

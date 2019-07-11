@@ -1,6 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
-import com.ray.io.Out;
+import com.ray.LintCode.util.ListNode;
 
 /**
  * 描述：
@@ -50,14 +50,39 @@ import com.ray.io.Out;
 public class L_0129_Rehashing {
 
     static class Solution {
-    
         
-    
-    }
-    
-    public static void main(String[] args) {
+        public ListNode[] rehashing(ListNode[] hashTable) {
+
+            ListNode[] newHash = new ListNode[hashTable.length*2];;
+            
+            for (int i = 0; i < hashTable.length; i++) {
+                ListNode n = hashTable[i];
+                while (n != null) {
+                    addToHash(n.val, newHash);
+                    n = n.next;
+                }
+            }
+            
+            return newHash;
+        }
         
-        Out.p(new Solution());
+        public void addToHash(int key, ListNode[] newHash) {
+            int index = key % newHash.length;
+            
+            if (index < 0) index +=  newHash.length;
+            
+            ListNode n = newHash[index];
+            
+            if (n == null) {
+                newHash[index] = new ListNode(key);
+            } else {
+                while (n.next != null) {
+                    n = n.next;
+                }
+                n.next = new ListNode(key);
+            }
+            
+        }
         
     }
 

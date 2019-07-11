@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -26,14 +26,31 @@ import com.ray.io.Out;
 public class L_0130_Heapify {
 
     static class Solution {
-    
+        public void heapify(int[] A) {
+            for (int i = 1; i < A.length; i++) {
+                up(A, i);
+            }
+        }
         
-    
+        public void up(int[] A, int i) {
+            int findex = (i-1)/2;
+            while (findex >= 0 && A[i] < A[findex]) {
+                int t = A[i];
+                A[i] = A[findex];
+                A[findex] = t;
+                i = findex;
+                findex = (findex-1)/2;
+            }
+        }
+        
     }
     
     public static void main(String[] args) {
         
-        Out.p(new Solution());
+        int[] A = {6,3,2,1,5,4};
+        
+        new Solution().heapify(A);
+        Out.p(A);
         
     }
 

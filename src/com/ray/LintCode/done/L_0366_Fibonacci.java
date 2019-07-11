@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -45,10 +45,22 @@ import com.ray.io.Out;
 public class L_0366_Fibonacci {
 
     static class Solution {
-    
         
-    
+        public int fibonacci(int n) {
+            int[] record = new int[n+1];
+            return fib(n, record);
+        }
+        
+        public int fib(int n, int[] record) {
+            if(n<=2) return n-1;
+                
+            if (record[n] == 0) record[n] = fib(n-1, record) + fib(n-2, record);
+                
+            return record[n];
+        }
+        
     }
+
     
     public static void main(String[] args) {
         

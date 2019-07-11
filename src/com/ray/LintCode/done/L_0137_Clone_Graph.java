@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -9,13 +9,35 @@ import com.ray.LintCode.util.UndirectedGraphNode;
 import com.ray.io.Out;
 
 /**
- * Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
- * How we serialize an undirected graph:
- *  Nodes are labeled uniquely.
- *  We use # as a separator for each node, and , as a separator for node label and each neighbor of the node.
- *  
- * @author rays1
+ * 描述：
+ *      Clone an undirected graph. Each node in the graph contains a `label` and a list of its `neighbors`. Nodes are labeled uniquely.
+ *      
+ *      You need to return a deep copied graph, which has the same structure as the original graph, and any changes to the new graph will not have any effect on the original graph.
  *
+ * 用例：
+ *      **Example1**
+ *      ```
+ *      Input:
+ *      {1,2,4#2,1,4#4,1,2}
+ *      Output: 
+ *      {1,2,4#2,1,4#4,1,2}
+ *      Explanation:
+ *      1------2  
+ *       \     |  
+ *        \    |  
+ *         \   |  
+ *          \  |  
+ *            4   
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Medium
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/clone-graph/description
+ * @date   2019-07-11 18:31:02
  */
 public class L_0137_Clone_Graph {
 

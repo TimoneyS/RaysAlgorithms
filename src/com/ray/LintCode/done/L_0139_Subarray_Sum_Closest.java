@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import java.util.Map.Entry;
 import java.util.TreeMap;

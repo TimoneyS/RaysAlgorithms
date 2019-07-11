@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.HashMap;

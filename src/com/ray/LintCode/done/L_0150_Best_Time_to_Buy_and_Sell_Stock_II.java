@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -41,16 +41,23 @@ import com.ray.io.Out;
  */
 public class L_0150_Best_Time_to_Buy_and_Sell_Stock_II {
 
+    /**
+     * 保存每一段上升的折线的 dy
+     */
     static class Solution {
-    
-        
-    
+        public int maxProfit(int[] prices) {
+            int sum = 0;
+            for (int i = 1; i < prices.length; i++) {
+                int dy = prices[i] - prices[i-1];
+                if (dy > 0) sum += dy;
+            }
+            return sum;
+        }
     }
     
     public static void main(String[] args) {
-        
-        Out.p(new Solution());
-        
+        int[] prices = {3,2,6,5,0,3};
+        Out.p(new Solution().maxProfit(prices));
     }
 
 }

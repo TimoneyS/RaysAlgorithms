@@ -1,4 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
+
+import java.util.Arrays;
 
 import com.ray.io.Out;
 
@@ -31,9 +33,14 @@ import com.ray.io.Out;
 public class L_0148_Sort_Colors {
 
     static class Solution {
-    
-        
-    
+        /**
+         * @param nums: A list of integer which is 0, 1 or 2 
+         * @return: nothing
+         */
+        public void sortColors(int[] nums) {
+            // write your code here
+            Arrays.sort(nums);
+        }
     }
     
     public static void main(String[] args) {

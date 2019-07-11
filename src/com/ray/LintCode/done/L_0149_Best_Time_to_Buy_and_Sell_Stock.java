@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -44,16 +44,28 @@ import com.ray.io.Out;
  */
 public class L_0149_Best_Time_to_Buy_and_Sell_Stock {
 
+    /**
+     * 计算当天之前的最小股票价格，不断的计算当天价格 - 最小价格
+     * 返回所有结果中的最大值
+     * @author rays1
+     *
+     */
     static class Solution {
-    
         
-    
+        public int maxProfit(int[] prices) {
+            int min = Integer.MAX_VALUE, max = 0;
+            for (int i = 0; i < prices.length; i++) {
+                min = Math.min(min, prices[i]);
+                max = Math.max(max, prices[i] - min);
+            }
+            return max;
+        }
     }
     
     public static void main(String[] args) {
         
-        Out.p(new Solution());
-        
+        int[] prices = {4,4,6,1,1,4,2,5};
+        Out.p(new Solution().maxProfit(prices));
     }
 
 }

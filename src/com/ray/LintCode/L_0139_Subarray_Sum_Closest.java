@@ -1,5 +1,8 @@
 package com.ray.LintCode;
 
+import java.util.Map.Entry;
+import java.util.TreeMap;
+
 import com.ray.io.Out;
 
 /**
@@ -29,15 +32,53 @@ import com.ray.io.Out;
 public class L_0139_Subarray_Sum_Closest {
 
     static class Solution {
-    
-        
-    
+        /*
+         * @param nums: A list of integers
+         * @return: A list of integers includes the index of the first number and the index of the last number
+         */
+        public int[] subarraySumClosest(int[] nums) {
+            
+            TreeMap<Integer, Integer> map = new TreeMap<>();
+            
+            int sum = 0;
+            for (int i = 0; i < nums.length; i++) {
+                sum += nums[i];
+                if (map.containsKey(sum)) {
+                    return new int[] {map.get(sum)+1, i};
+                } else {
+                    map.put(sum, i);
+                }
+            }
+            
+            int i = 0, j = 0;
+            Entry<Integer, Integer> prev = map.pollFirstEntry();
+
+            int closest = Math.abs(prev.getKey());
+            for (Entry<Integer, Integer> entry = map.pollFirstEntry(); entry != null; entry = map.pollFirstEntry()) {
+                
+                if (closest > Math.abs(entry.getKey())) {
+                    closest = Math.abs(entry.getKey());
+                    i = 0;
+                    j = entry.getValue();
+                }
+                
+                if (closest > Math.abs(entry.getKey() - prev.getKey())) {
+                    closest = Math.abs(entry.getKey() - prev.getKey());
+                    i = Math.min(prev.getValue(), entry.getValue()) + 1;
+                    j = Math.max(prev.getValue(), entry.getValue());
+                }
+                prev = entry;
+            }
+            
+            return new int[] {i, j};
+        }
     }
     
     public static void main(String[] args) {
         
-        Out.p(new Solution());
+        int[] nums = {2,0,0,1,-1,-1};
         
+        Out.p(new Solution().subarraySumClosest(nums));
     }
 
 }

@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,12 +7,31 @@ import com.ray.LintCode.util.ListNode;
 import com.ray.io.Out;
 
 /**
- * Merge k sorted linked lists and return it as one sorted list.
- * 
- * 合并 k 个已经排序的链表
+ * 描述：
+ *      Merge *k* sorted linked lists and return it as one sorted list.
+ *      
+ *      Analyze and describe its complexity.
  *
+ * 用例：
+ *      ```
+ *      Example 1:
+ *      	Input:   [2->4->null,null,-1->null]
+ *      	Output:  -1->2->4->null
+ *      
+ *      Example 2:
+ *      	Input: [2->6->null,5->null,7->null]
+ *      	Output:  2->5->6->7->null
+ *      	
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Medium
+ *   
  * @author rays1
- *
+ * @url    https://www.lintcode.cn/problem/merge-k-sorted-lists/description
+ * @date   2019-07-11 18:30:35
  */
 public class L_0104_Merge_K_Sorted_Lists {
 

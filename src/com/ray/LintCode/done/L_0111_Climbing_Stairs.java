@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -40,15 +40,25 @@ import com.ray.io.Out;
 public class L_0111_Climbing_Stairs {
 
     static class Solution {
-    
         
-    
+        int[] mem;
+        
+        /**
+         * @param n: An integer
+         * @return: An integer
+         */
+        public int climbStairs(int n) {
+            if (mem == null) mem = new int[n+1];
+            if (n==1 || n==2 || n == 0) return n;
+            if (mem[n] == 0)
+                mem[n] = climbStairs(n-2) + climbStairs(n-1);
+            return mem[n];
+        }
+        
     }
     
     public static void main(String[] args) {
-        
-        Out.p(new Solution());
-        
+        Out.p(new Solution().climbStairs(3));
     }
 
 }

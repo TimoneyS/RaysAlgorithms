@@ -1,14 +1,40 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
 /**
- * L_0114_Unique_Paths 的跟进问题：
- *      现在考虑在网格种加入一些障碍物，那么还有多少种可能的路径？
- *      在矩阵中 1 表示障碍物。
+ * 描述：
+ *      <p>Follow up for "Unique Paths":</p>
  *      
- * @author rays1
+ *      <p>Now consider if some obstacles are added to the grids. How many unique paths would there be?</p>
+ *      
+ *      <p>An obstacle and empty space is marked as <code>1</code> and <code>0</code> respectively in the grid.</p>
  *
+ * 用例：
+ *      ```
+ *      Example 1:
+ *      	Input: [[0]]
+ *      	Output: 1
+ *      
+ *      
+ *      Example 2:
+ *      	Input:  [[0,0,0],[0,1,0],[0,0,0]]
+ *      	Output: 2
+ *      	
+ *      	Explanation:
+ *      	Only 2 different path.
+ *      	
+ *      
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Simple
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/unique-paths-ii/description
+ * @date   2019-07-11 18:30:44
  */
 public class L_0115_Unique_Paths_II {
 
@@ -63,4 +89,3 @@ public class L_0115_Unique_Paths_II {
     }
 
 }
- 

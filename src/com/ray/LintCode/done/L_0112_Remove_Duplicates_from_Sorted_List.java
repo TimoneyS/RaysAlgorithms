@@ -1,6 +1,6 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
-import com.ray.io.Out;
+import com.ray.LintCode.util.ListNode;
 
 /**
  * 描述：
@@ -40,15 +40,31 @@ import com.ray.io.Out;
 public class L_0112_Remove_Duplicates_from_Sorted_List {
 
     static class Solution {
-    
-        
-    
+        /**
+         * @param head: head is the head of the linked list
+         * @return: head of linked list
+         */
+        public ListNode deleteDuplicates(ListNode head) {
+            ListNode pile = new ListNode(Integer.MIN_VALUE);
+            pile.next = head;
+            
+            head = pile;
+            while (head.next != null) {
+                if (head.val == head.next.val) {
+                    head.next = head.next.next;
+                } else {
+                    head = head.next;
+                }
+            }
+            return pile.next;
+        }
     }
     
     public static void main(String[] args) {
-        
-        Out.p(new Solution());
-        
+        ListNode head = ListNode.parse("{}");
+        ListNode.show(head);
+        head = new Solution().deleteDuplicates(head);
+        ListNode.show(head);
     }
 
 }

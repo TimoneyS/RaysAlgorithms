@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,14 +8,47 @@ import com.ray.LintCode.util.TreeNode;
 import com.ray.io.Out;
 
 /**
- * Given a binary tree, design an algorithm which creates a linked list of all the nodes at each depth 
- * (e.g., if you have a tree with depth D, you'll have D linked lists).
+ * 描述：
+ *      Given a binary tree, design an algorithm which creates a linked list of all the nodes at each depth (e.g., if you have a tree with depth D, you'll have D linked lists).
  *
+ * 用例：
+ *      **Example 1:**
+ *      
+ *      ```
+ *      Input: {1,2,3,4}
+ *      Output: [1->null,2->3->null,4->null]
+ *      Explanation: 
+ *              1
+ *             / \
+ *            2   3
+ *           /
+ *          4
+ *      ```
+ *      
+ *      **Example 2:**
+ *      
+ *      ```
+ *      Input: {1,#,2,3}
+ *      Output: [1->null,2->null,3->null]
+ *      Explanation: 
+ *          1
+ *           \
+ *            2
+ *           /
+ *          3
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Simple
+ *   
  * @author rays1
- * @url    
- * @date   2019-06-28 23:41:18
+ * @url    https://www.lintcode.cn/problem/convert-binary-tree-to-linked-lists-by-depth/description
+ * @date   2019-07-11 18:32:03
  */
 public class L_0242_Convert_Binary_Tree_to_Linked_Lists_by_Depth {
+
 
     static class Solution {
     

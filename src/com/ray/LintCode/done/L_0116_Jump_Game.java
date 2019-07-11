@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
@@ -39,15 +39,26 @@ import com.ray.io.Out;
 public class L_0116_Jump_Game {
 
     static class Solution {
-    
         
-    
+        public boolean canJump(int[] A) {
+            if (A.length <= 1) return true;
+            
+            int n = A.length;
+            int cursor = n-1;
+            for (int i = n-2; i >= 0; i--) {
+                if (A[i]+i >= cursor) {
+                    cursor = i;
+                }
+            }
+            return cursor == 0;
+        }
+        
     }
     
     public static void main(String[] args) {
         
-        Out.p(new Solution());
-        
+        int[] A = {3, 2, 1, 0, 4};
+        Out.p(new Solution().canJump(A));
     }
 
 }

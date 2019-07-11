@@ -1,4 +1,4 @@
-package com.ray.LintCode.resolved;
+package com.ray.LintCode.done;
 
 import java.util.ArrayDeque;
 import java.util.HashMap;
@@ -11,22 +11,39 @@ import java.util.Set;
 import com.ray.io.Out;
 
 /**
- * Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end,
- * such that:
- *      Only one letter can be changed at a time
- *      Each intermediate word must exist in the dictionary
+ * 描述：
+ *      Given two words (*start* and *end*), and a dictionary, find the shortest transformation sequence from *start* to *end*, output the length of the sequence.
+ *      Transformation rule such that:
  *      
- * 给定两个单词 起点和终点，和一个字典，找到起点到终点的最短转换序列
- *      每次只能转换一个字母
- *      每次的中继单词必须在字典中
- *      
- * dict = ["hot","dot","dog","lot","log"]
- * start = "hit"
- * end = "cog"
- * As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" -> "cog",
- * return 5
- * @author rays1
+ *      1. Only one letter can be changed at a time
+ *      2. Each intermediate word must exist in the dictionary. (Start and end words do not need to appear in the dictionary )
  *
+ * 用例：
+ *      **Example 1:**
+ *      ```
+ *      Input：start = "a"，end = "c"，dict =["a","b","c"]
+ *      Output：2
+ *      Explanation：
+ *      "a"->"c"
+ *      ```
+ *      
+ *      
+ *      **Example 2:**
+ *      ```
+ *      Input：start ="hit"，end = "cog"，dict =["hot","dot","dog","lot","log"]
+ *      Output：5
+ *      Explanation：
+ *      "hit"->"hot"->"dot"->"dog"->"cog"
+ *      ```
+ *
+ * 挑战：
+ *      
+ *
+ * 难度： Hard
+ *   
+ * @author rays1
+ * @url    https://www.lintcode.cn/problem/word-ladder/description
+ * @date   2019-07-11 18:30:49
  */
 public class L_0120_Word_Ladder {
 

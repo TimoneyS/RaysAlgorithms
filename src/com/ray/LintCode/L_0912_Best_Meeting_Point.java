@@ -1,5 +1,8 @@
 package com.ray.LintCode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ray.io.Out;
 
 /**
@@ -37,10 +40,49 @@ import com.ray.io.Out;
  */
 public class L_0912_Best_Meeting_Point {
 
+    /**
+     * 需要观察规律，因为距离是曼哈顿距离
+     * 所以结果是所有这个点到所有点的距离之和是到所有点的水平距离+所有点的垂直距离之和。
+     * 
+     * 水平距离和垂直距离的计算都可以作为一维的情况来讨论。
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
-    
         
-    
+        public int minTotalDistance(int[][] grid) {
+            
+            int m = grid == null ? 0 :    grid.length;
+            int n =    m == 0    ? 0 : grid[0].length;
+            
+            List<int[]> list = new ArrayList<>();
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (grid[i][j] == 1) {
+                        list.add(new int[] {i, j});
+                    }
+                }
+            }
+            
+            int rs = 0;
+            
+            list.sort((o1, o2) -> Integer.compare(o1[0], o2[0]));
+            int l = 0, r = list.size() - 1;
+            while (l < r) {
+                rs += list.get(r--)[0] - list.get(l++)[0];
+            }
+            
+            list.sort((o1, o2) -> Integer.compare(o1[1], o2[1]));
+            l = 0;
+            r = list.size() - 1;
+            while (l < r) {
+                rs += list.get(r--)[1] - list.get(l++)[1];
+            }
+            
+            return rs;
+        }
+        
     }
     
     public static void main(String[] args) {

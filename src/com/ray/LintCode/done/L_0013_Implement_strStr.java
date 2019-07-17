@@ -24,6 +24,13 @@ import com.ray.io.Out;
  */
 public class L_0013_Implement_strStr {
 
+    /**
+     * 暴力搜索的复杂度时 O(m*n)
+     * KMP构建了搜索数组后，时间复杂度为O(n)，但是KMP算法过于复杂，难于理解。
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
     
         public int strStr(String source, String target) {

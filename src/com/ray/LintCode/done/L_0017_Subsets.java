@@ -9,19 +9,10 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given a set of distinct integers, return all possible subsets.
+ *      给定一个没有重复数字的集合，返回所有可能的子集合。
  *
  * 用例：
  *      **Example 1:**
- *      ```
- *      Input: [0]
- *      Output:
- *      [
- *        [],
- *        [0]
- *      ]
- *      ```
- *      **Example 2:**
  *      ```
  *      Input: [1,2,3]
  *      Output:

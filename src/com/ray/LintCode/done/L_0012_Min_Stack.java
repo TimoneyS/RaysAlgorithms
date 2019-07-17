@@ -1,6 +1,6 @@
 package com.ray.LintCode.done;
 
-import com.ray.io.Out;
+import com.ray.util.Assert;
 
 /**
  * 描述：
@@ -10,20 +10,6 @@ import com.ray.io.Out;
  *          min()     返回当前栈中最小元素
  *          
  *      以上所有操作的复杂度为 O(1)
- * 用例：
- *      **Example 1:**
- *      Input:
- *        push(1)
- *        pop()
- *        push(2)
- *        push(3)
- *        min()
- *        push(1)
- *        min()
- *      Output:
- *        1
- *        2
- *        1
  *        
  * 难度： Medium
  *   
@@ -34,112 +20,103 @@ import com.ray.io.Out;
 public class L_0012_Min_Stack {
 
     /**
-     * 用一个数组保存栈元素，cursor表示栈指针
-     * 同时增加
-     *  minIndex 最小元素指针
-     *  righOf   数组，保存恰好大于该元素的下一个元素索引
-     *  leftOf   数组，保存恰好小于该元素的下一个元素索引
+     * 用一个数组保存栈元素：
+     *      cursor      表示栈指针
+     *      head        最小元素指针
+     *      next        数组，保存恰好大于该元素的下一个元素索引
+     *      prev        数组，保存恰好小于该元素的下一个元素索引
+     * 
+     * 数组顺序表示元素的插入顺序
+     * 链表记录值大小关系的顺序
+     * 
+     * 方法实现
+     * min
+     *      inner[head]
+     * 
+     * pop
+     *      删除栈顶元素，将栈指针回退即可
+     *      next prev 链表中删除栈指针对应的索引 
+     *      
+     * push
+     *      栈指针前进     
+     *      在链表中检索合适的位置插入指针。
+     * 
      * @author rays1
      *
      */
     static class MinStack {
     
         private int[] inner;
-        private int[] righOf;
-        private int[] leftOf;
+        private int[] next;
+        private int[] prev;
         private int cursor;
-        private int minIndex;
+        private int head;
         
         public MinStack() {
             inner = new int[16];
-            righOf = new int[16];
-            leftOf = new int[16];
-            minIndex = -1;
-            for (int i = 0; i < righOf.length; i++) {
-                righOf[i] = -1;
-                leftOf[i] = -1;
+            next = new int[16];
+            prev = new int[16];
+            head = -1;
+            for (int i = 0; i < next.length; i++) {
+                next[i] = -1;
+                prev[i] = -1;
             }
         }
 
         public void push(int number) {
-            
-            if (cursor >= inner.length) {
+            if (cursor == inner.length) {
                 expandInnerArray();
             }
             inner[cursor++] = number;
             
             int index = cursor - 1;
             
-            if (minIndex == -1) {
-                minIndex = 0;
+            if (head == -1) {
+                head = 0;
             } else {
                
                 int l = -1,r = -1;
                 
-                if (number > inner[minIndex]) {
+                if (number > inner[head]) {
                     // 在最小值右侧插入
-                    l = minIndex;
-                    for (int i = minIndex; i < cursor && i >= 0; i = righOf[i]) {
+                    l = head;
+                    for (int i = head; i < cursor && i >= 0; i = next[i]) {
                         if (number < inner[i]) break;
                         l = i;
                     }
-                    r = righOf[l];
+                    r = next[l];
                 } else {
                     // 在最小值左侧插入
-                    r = minIndex;
-                    l = leftOf[r];
-                    minIndex = index;
+                    r = head;
+                    l = prev[r];
+                    head = index;
                 }
                 
-                if (l != -1) righOf[l] = index;
-                if (r != -1) leftOf[r] = index;
-                righOf[index] = r;
-                leftOf[index] = l;
+                if (l != -1) next[l] = index;
+                if (r != -1) prev[r] = index;
+                next[index] = r;
+                prev[index] = l;
                 
             }
             
         }
-
-        private void expandInnerArray() {
-            // expand
-            int[] temp = new int[cursor * 2];
-            int[] ltemp = new int[cursor * 2];
-            int[] rtemp = new int[cursor * 2];
-            
-            // init
-            for (int i = cursor; i < temp.length; i++) {
-                ltemp[i] = -1;
-                rtemp[i] = -1;
-            }
-            
-            // copy
-            for (int i = 0; i < cursor; i++) {
-                temp[i] = inner[i];
-                ltemp[i] = leftOf[i];
-                rtemp[i] = righOf[i];
-            }
-            
-            inner = temp;
-            leftOf = ltemp;
-            righOf = rtemp;
-        }
-
-        public int pop() {
+        
+       public int pop() {
             
             int index = --cursor;
-            int r = righOf[index];
-            int l = leftOf[index];
+            int r = next[index];
+            int l = prev[index];
 
-            if (index == minIndex)
-                minIndex = r;
+            if (index == head)
+                head = r;
 
             if (l != -1)
-                righOf[l] = r;
+                next[l] = r;
             if (r != -1)
-                leftOf[r] = l;
+                prev[r] = l;
 
-            righOf[index] = -1;
-            leftOf[index] = -1;
+            next[index] = -1;
+            prev[index] = -1;
 
             return inner[index];
         }
@@ -148,7 +125,31 @@ public class L_0012_Min_Stack {
          * @return: An integer
          */
         public int min() {
-            return inner[minIndex];
+            return inner[head];
+        }
+
+        private void expandInnerArray() {
+            // expand
+            int[] temp1 = new int[cursor * 2];
+            int[] temp2 = new int[cursor * 2];
+            int[] temp3 = new int[cursor * 2];
+            
+            // init
+            for (int i = cursor; i < temp1.length; i++) {
+                temp2[i] = -1;
+                temp3[i] = -1;
+            }
+            
+            // copy
+            for (int i = 0; i < cursor; i++) {
+                temp1[i] = inner[i];
+                temp2[i] = prev[i];
+                temp3[i] = next[i];
+            }
+            
+            inner = temp1;
+            prev = temp2;
+            next = temp3;
         }
     
     }
@@ -159,18 +160,20 @@ public class L_0012_Min_Stack {
         stack.push(-100);
         stack.push(-101);
         stack.push(-99);
-        Out.p(stack.min());
+        Assert.assertEquals(stack.min(), -101);
         stack.push(100);
-        Out.p(stack.min());
+        Assert.assertEquals(stack.min(), -101);
         stack.push(50);
-        Out.p(stack.min());
-        Out.p(stack.pop());
-        Out.p(stack.pop());
-        Out.p(stack.pop());
-        Out.p(stack.pop());
-        Out.p(stack.pop());
+        Assert.assertEquals(stack.min(), -101);
+        
+        Assert.assertEquals(stack.pop(), 50);
+        Assert.assertEquals(stack.pop(), 100);
+        Assert.assertEquals(stack.pop(), -99);
+        Assert.assertEquals(stack.pop(), -101);
+        Assert.assertEquals(stack.pop(), -100);
+        
         stack.push(0);
-        Out.p(stack.min());
+        Assert.assertEquals(stack.min(), 0);
         
     }
 

@@ -4,39 +4,9 @@ import com.ray.io.Out;
 
 /**
  * 描述：
+ *      参考 L_0033_N_Queens
  *      N 皇后问题
- *      
- *      Now, instead outputting board configurations, return the total number of distinct solutions.
- *
- * 用例：
- *      Example 1:
- *      ```
- *      Input: n=1
- *      Output: 1
- *      Explanation:
- *      1:
- *      1
- *      ```
- *      
- *      Example 2:
- *      ```
- *      Input: n=4
- *      Output: 2
- *      Explanation:
- *      1:
- *      0 0 1 0
- *      1 0 0 0
- *      0 0 0 1
- *      0 1 0 0
- *      2:
- *      0 1 0 0 
- *      0 0 0 1
- *      1 0 0 0
- *      0 0 1 0
- *      ```
- *
- * 挑战：
- *      
+ *      替代输出棋盘，直接输出所有可能的解的数量。
  *
  * 难度： Medium
  *   
@@ -57,17 +27,18 @@ public class L_0034_N_Queens_II {
         public int totalNQueens(int n) {
             N = n;
             boolean[][] marked = new boolean[n][n];
-            int rs = 0;
-            
-            return totalNQueens(rs, 0, marked);
+            return totalNQueens(0, 0, marked);
         }
 
         private int totalNQueens(int rs, int row, boolean[][] marked) {
             for (int col = 0; col < N; col++) {
                 if (hasQueue(row, col, marked)) continue;
                 marked[row][col] = true;
-                if (row == N-1) rs += 1;
-                else            rs = totalNQueens(rs, row+1, marked);
+                if (row == N-1) {
+                    rs ++;
+                } else {
+                    rs = totalNQueens(rs, row+1, marked);
+                }
                 marked[row][col] = false;
             }
             return rs;

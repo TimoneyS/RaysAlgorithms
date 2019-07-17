@@ -4,32 +4,22 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Write an efficient algorithm that searches for a value in an m x n matrix, return the occurrence of it.
- *      
- *      This matrix has the following properties:
- *      
- *      * Integers in each row are sorted from left to right.
- *      * Integers in each column are sorted from up to bottom.
- *      * No duplicate integers in each row or column.
+ *      编写算法在一个m*n的矩阵中搜索，返回目标值出现的次数。
+ *      矩阵包含如下的属性：
+ *          每一行的数字是从左到右升序的
+ *          每一列的数字是从上到下升序的
+ *          同一行列中没有重复的数字
  *
  * 用例：
  *      Example 1:
- *      ```
- *      Input:
- *      	[[3,4]]
- *      	target=3
- *      Output:1
- *      ```
- *      Example 2:
- *      ```
- *      Input:
+ *      输入:
  *          [
  *            [1, 3, 5, 7],
  *            [2, 4, 7, 8],
  *            [3, 5, 9, 10]
  *          ]
  *          target = 3
- *      Output:2
+ *      输出:2
  *      ```
  *
  * 挑战：
@@ -116,7 +106,6 @@ public class L_0038_Search_a_2D_Matrix_II {
 
             }
             
-            // Out.pf("%sserch(%s, %s, %s, %s) rs = %s\n", StringUtil.multiString("    ", level), rows, cols, rowt, colt, rs);
             return rs;
         }
     }

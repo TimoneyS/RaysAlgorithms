@@ -4,28 +4,20 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given an array with integers.
- *      
- *      Find two *non-overlapping* subarrays *A* and *B*, which `|SUM(A) - SUM(B)|` is the largest.
- *      
- *      Return the largest difference.
+ *      给定一个整数数组。寻找不重叠的两个子数组 A 和 B，是的 SUB(A) 和 SUM(B) 的差距最大。
  *
  * 用例：
- *      Example 1:
- *      ```
- *      Input:[1, 2, -3, 1]
- *      Output:6
- *      Explanation:
+ *      用例 1:
+ *      输入:[1, 2, -3, 1]
+ *      输出:6
+ *      解释:
  *      The subarray are [1,2] and [-3].So the answer is 6.
- *      ```
  *      
- *      Example 2:
- *      ```
- *      Input:[0,-1]
- *      Output:1
- *      Explanation:
+ *      用例 2:
+ *      输入:[0,-1]
+ *      输出:1
+ *      解释:
  *      The subarray are [0] and [-1].So the answer is 1.
- *      ```
  *
  * 挑战：
  *      O(n) time and O(n) space.
@@ -37,13 +29,18 @@ import com.ray.io.Out;
  * @date   2019-07-11 17:58:10
  */
 public class L_0045_Maximum_Subarray_Difference {
-
+    
+    /**
+     * 分表计算从左右开始的最小值和最大值
+     * 
+     * 然后在每个点， 左侧最小值 - 右侧最小值  或 左侧最大值 - 右侧最小值 就是该点的最大差距
+     * 然后统计每个点的最大差距即可
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
         
-        /**
-         * @param nums: A list of integers
-         * @return: An integer indicate the value of maximum difference between two substrings
-         */
         public int maxDiffSubArrays(int[] nums) {
             
             int N = nums.length;
@@ -90,7 +87,6 @@ public class L_0045_Maximum_Subarray_Difference {
         int[] nums = {1, 2, -3, 1};
         
         Out.p(new Solution().maxDiffSubArrays(nums));
-        
     }
     
 }

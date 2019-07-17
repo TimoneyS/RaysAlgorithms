@@ -1,30 +1,19 @@
 package com.ray.LintCode.done;
 
-import com.ray.io.Out;
+import com.ray.util.Assert;
 
 /**
  * 描述：
- *      Given an array of integers, find a contiguous subarray which has the largest sum.
+ *      给定一个整数数组，寻找和最大的子数组（子数组是原数组中一段连续的数字）。
  *
  * 用例：
- *      **Example1:**
- *      
- *      ```
- *      Input: [−2,2,−3,4,−1,2,1,−5,3]
- *      Output: 6
- *      Explanation: the contiguous subarray [4,−1,2,1] has the largest sum = 6.
- *      ```
- *      
- *      **Example2:**
- *      
- *      ```
- *      Input: [1,2,3,4]
- *      Output: 10
- *      Explanation: the contiguous subarray [1,2,3,4] has the largest sum = 10.
- *      ```
+ *      **用例 1:**
+ *      输出: [−2,2,−3,4,−1,2,1,−5,3]
+ *      输出: 6
+ *      解释: the contiguous subarray [4,−1,2,1] has the largest sum = 6.
  *
  * 挑战：
- *      Can you do it in time complexity O(n)?
+ *      时间复杂度 O(n)
  *
  * 难度： Simple
  *   
@@ -35,8 +24,7 @@ import com.ray.io.Out;
 public class L_0041_Maximum_Subarray {
 
     /**
-     * 
-     * 设sum[i] 表示从 0 开始以 i 结束的和最大子数组之和
+     * 设 sum[i] 表示以 i 结束的和最大子数组之和
      * 
      * 则有
      *      sum[i+1] = max(sum[i], 0) + nums[i+1]
@@ -66,19 +54,17 @@ public class L_0041_Maximum_Subarray {
         
         public int maxSubArray(int[] nums) {
             int max = Integer.MIN_VALUE, sum = 0;
-            for (int i = 0; i < nums.length; i++)
+            for (int i = 0; i < nums.length; i++) {
                 max = Math.max((sum = Math.max(0, sum) + nums[i]), max);
+            }
             return max;
         }
         
     }
     
     public static void main(String[] args) {
-        
-        int[] nums = {-1, 2, -3};
-        
-        Out.p(new Solution().maxSubArray(nums));
-        
+        int[] nums = new int[] { -2, 2, -3, 4, -1, 2, 1, -5, 3 };
+        Assert.assertEquals(new Solution().maxSubArray(nums), 6);
     }
 
 }

@@ -4,35 +4,14 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given an array of integers and a number _k_, find k **non-overlapping** subarrays which have the largest sum.
- *      
- *      The number in each subarray should be **contiguous**.
- *      
- *      Return the largest sum.
- *
+ *      给定一个整数数组和一个数字 k，寻找 k 个不重叠的子数组，这些子数组拥有最大和。
  * 用例：
- *      **Example 1**
- *      
- *      ```plain
- *      Input: 
- *      List = [1,2,3]
- *      k = 1
- *      Output: 6
- *      Explanation: 1 + 2 + 3 = 6
- *      ```
- *      
- *      **Example 2**
- *      
- *      ```plain
- *      Input:
- *      List = [-1,4,-2,3,-2,3]
- *      k = 2
- *      Output: 8
- *      Explanation: 4 + (3 + -2 + 3) = 8
- *      ```
- *
- * 挑战：
- *      
+ *      **用例 1**
+ *      输入:
+ *          List = [-1,4,-2,3,-2,3]
+ *          k = 2
+ *      输出: 8
+ *      解释: 4 + (3 + -2 + 3) = 8
  *
  * 难度： Hard
  *   
@@ -43,56 +22,46 @@ import com.ray.io.Out;
 public class L_0043_Maximum_Subarray_III {
 
     /**
-     * 动态规划
      * 
-     * 结果是原数组的一个划分，则假设最优划分点可以设为  S = {s1, s2, ... sk }
+     * 设 f[i][k] 表示从 i 开始，数组划分为 k 个子数组的最大值
      * 
-     * 则
-     *  Sk-1 是 数组 arr[0..Sk-1] 的最优划分
-     * 
-     *  Sk = Sk-1 + maxSubArray(arr[Sk-1+1...N])
+     * f[i][k] = 
+     *      max {
+     *          maxSub(0, j),
+     *          f[j][k-1]
+     *      } (  0 < j < N - k)
      * 
      * @author rays1
      *
      */
     static class Solution {
         
-        private int[] nums;
         private int N;
-        private int[][] maxMemmorized;
+        private int[][] mem;
         
         public int maxSubArray(int[] nums, int k) {
-            this.nums = nums;
             N = nums.length;
             
-            maxMemmorized = new int[N][k+1];
+            mem = new int[nums.length][k+1];
             
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j <= k; j++) {
-                    maxMemmorized[i][j] = -1;
+                    mem[i][j] = Integer.MIN_VALUE;
                 }
             }
             
-            return maxSubArray(0, k);
+            return maxSubArray(nums, 0, k);
         }
 
-        private int maxSubArray(int start, int k) {
+        private int maxSubArray(int[] nums, int start, int k) {
             
-            if (maxMemmorized[start][k] != -1) return maxMemmorized[start][k];
+            if (k <= 0) return 0;
             
-            int max = Integer.MIN_VALUE;
-            int[] left = new int[N];
-            int sum = nums[start];
-            left[start] = nums[start];
-            
-            if (k == 1) {
-                for (int i = start + 1; i < N; i++) {
-                    sum += nums[i];
-                    sum = Math.max(sum, nums[i]);
-                    left[i] = Math.max(sum, left[i-1]);
-                }
-                max = left[N-1];
-            } else {
+            if (mem[start][k] == Integer.MIN_VALUE) {
+                
+                int[] left  = new int[N];
+                int sum     = nums[start];
+                left[start] = nums[start];
                 
                 for (int i = start + 1; i <= N - k; i++) {
                     sum += nums[i];
@@ -100,15 +69,12 @@ public class L_0043_Maximum_Subarray_III {
                     left[i] = Math.max(sum, left[i-1]);
                 }
                 
-                for (int i = start; i <= N - k; i++)
-                    max = Math.max(max, left[i] + maxSubArray(i+1, k - 1));
+                for (int i = start; i <= N - k; i++) {
+                    mem[start][k] = Math.max(mem[start][k], left[i] + maxSubArray(nums, i+1, k - 1));
+                }
+            
             }
-            
-            
-            maxMemmorized[start][k] = max;
-//            Out.pf("maxSubArray(%s, %s) max = %s\n", start, k, max);
-
-            return max;
+            return mem[start][k];
         }
     }
     

@@ -2,20 +2,14 @@ package com.ray.LintCode.done;
 
 import java.util.Stack;
 
-import com.ray.io.Out;
+import com.ray.util.Assert;
 
 /**
  * 描述：
- *      As the title described, you should only use two stacks to implement a queue's actions.
- *      
- *      The queue should support `push(element)`, `pop()` and `top()` where pop is pop the first(a.k.a front) element in the queue.
- *      
- *      Both pop and top methods should return the value of first element.
+ *      用两个栈实现队列操作。
+ *      队列支持 ： push, pop, top
  *
  * 用例：
- *      **Example 1:**
- *      
- *      ```
  *      Input:
  *          push(1)
  *          pop()    
@@ -27,24 +21,6 @@ import com.ray.io.Out;
  *          1
  *          2
  *          2
- *      ```
- *      
- *      **Example 2:**
- *      
- *      ```
- *      Input:
- *          push(1)
- *          push(2)
- *          push(2)
- *          push(3)
- *          push(4)
- *          push(5)
- *          push(6)
- *          push(7)
- *          push(1)
- *      Output:
- *      []
- *      ```
  *
  * 挑战：
  *      implement it by two stacks, do not use any other data structure and push, pop and top should be O(1) by *AVERAGE*.
@@ -57,47 +33,67 @@ import com.ray.io.Out;
  */
 public class L_0040_Implement_Queue_by_Two_Stacks {
 
+    /**
+     * 队列的特点是先进先出，栈则是后进先出。
+     * 如果用索引表示元素的出序，那么队列和栈的出序是完全相反的
+     * 
+     * 队列
+     *      a b c  ->  a(1) b(2) c(3)
+     * 栈
+     *      a b c  ->  a(3) b(2) c(1)
+     * 
+     * 如果用另一个栈保存原始栈中的所有元素，那么：
+     *      c b a  ->  c(3) b(2) a(1) 
+     * 
+     * 因此用两个栈模拟队列，具体如下：
+     *      1. 用 s1 保存所有元素
+     *      2. 弹出和查看顶部都用 s1 的 对应方法
+     *      3. 添加元素时，先将 s1 中的所有元素“倒入”到 s2 中，将新元素压入 s1 然后将元素从 s2 倒回
+     *      
+     * @author rays1
+     *
+     */
     static class MyQueue {
         
         Stack<Integer> s1;
         Stack<Integer> s2;
         
         public MyQueue() {
-            // do intialization if necessary
             s1 = new Stack<>();
             s2 = new Stack<>();
         }
 
-        /*
-         * @param element: An integer
-         * @return: nothing
-         */
         public void push(int element) {
-            // write your code here
-            while (!s1.empty()) s2.push(s1.pop());
+            while (!s1.empty()) {
+                s2.push(s1.pop());
+            }
             s1.push(element);
-            while (!s2.empty()) s1.push(s2.pop());
+            while (!s2.empty()) {
+                s1.push(s2.pop());
+            }
         }
 
-        /*
-         * @return: An integer
-         */
         public int pop() {
             return s1.pop();
         }
 
-        /*
-         * @return: An integer
-         */
         public int top() {
-            // write your code here
             return s1.peek();
         }
     }
     
     public static void main(String[] args) {
         
-        Out.p(new MyQueue());
+        MyQueue queue = new MyQueue();
+        
+        queue.push(1);
+        Assert.assertEquals(queue.pop(), 1);
+        
+        queue.push(2);
+        queue.push(3);
+        
+        Assert.assertEquals(queue.top(), 2);
+        Assert.assertEquals(queue.pop(), 2);
         
     }
 

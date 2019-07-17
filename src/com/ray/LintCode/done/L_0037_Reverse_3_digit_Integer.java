@@ -4,24 +4,12 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Reverse a 3-digit integer.
+ *      翻转一个三位数
  *
  * 用例：
  *      **Example 1:**
- *      
- *      ```
  *      Input: number = 123
  *      Output: 321
- *      ```
- *      **Example 2:**
- *      
- *      ```
- *      Input: number = 900
- *      Output: 9
- *      ```
- *
- * 挑战：
- *      
  *
  * 难度： Native
  *   

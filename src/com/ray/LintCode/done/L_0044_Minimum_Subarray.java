@@ -7,24 +7,16 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given an array of integers, find the continuous subarray with smallest sum.
- *      
- *      Return the sum of the subarray.
+ *      给定一个整数数组，寻找和最小的子数组。
  *
  * 用例：
- *      **Example 1**
- *      ```
- *      Input：[1, -1, -2, 1]
- *      Output：-3
- *      ```
- *      **Example 2**
- *      ```
- *      Input：[1, -1, -2, 1, -4]
- *      Output：-6
- *      ```
- *
- * 挑战：
+ *      **用例 1**
+ *      输入：[1, -1, -2, 1]
+ *      输出：-3
  *      
+ *      **用例 2**
+ *      输入：[1, -1, -2, 1, -4]
+ *      输出：-6
  *
  * 难度： Simple
  *   
@@ -34,57 +26,46 @@ import com.ray.io.Out;
  */
 public class L_0044_Minimum_Subarray {
 
+    /**
+     * 和 L_0041_Maximum_Subarray 类似，最大值改为最小值即可
+     * 
+     * 设 sum[i] 表示以 i 结束的和最大子数组之和
+     * 
+     * 则有
+     *      sum[i+1] = min(sum[i], 0) + nums[i+1]
+     * 最终的结果为
+     *      rs = min { sum[0], sum[1], ... , sum[n-1] }
+     * 
+     * 则算法如下
+     * 
+     * // 计算 sum 数组
+     * for (int i = 1; i < n; i++)
+     *      sum[i] = Math.min(sum[i-1], 0) + nums[i]
+     *
+     * // 再计算结果
+     * for (int s : sum)
+     *      rs = Math.min(rs, s);
+
+     * @author rays1
+     *
+     */
     static class Solution {
-        /*
-         * @param nums: a list of integers
-         * @return: A integer indicate the sum of minimum subarray
-         */
-        public int minSubArray(List<Integer> nums) {
-            return minSubArray(nums.toArray(new Integer[nums.size()]));
-        }
         
-        private int minSubArray(Integer[] nums) {
-            int N = nums.length;
-            int[] leftMin = new int[N];
-            
-            int minSum = nums[0];
-            leftMin[0] = nums[0];
-            for (int i = 1; i < N; i++) {
-                minSum = Math.min(nums[i], minSum + nums[i]);
-                leftMin[i] = Math.min(minSum, leftMin[i-1]);
+        public int minSubArray(List<Integer> nums) {
+            int sum = 0, min = Integer.MAX_VALUE; 
+            for (int i : nums) {
+                sum = Math.min(sum, 0) + i;
+                min = Math.min(min, sum);
             }
-            
-            return leftMin[N-1];
+            return min;
         }
         
     }
-    
-    static class Solution1 {
-        /*
-         * @param nums: a list of integers
-         * @return: A integer indicate the sum of minimum subarray
-         */
-        public int minSubArray(List<Integer> nums) {
-            if (nums == null || nums.size() == 0) return 0;
-            
-            int minSum = Integer.MAX_VALUE, maxSum = 0, sum = 0;
-            for (int i = 0; i < nums.size(); i++) {
-                sum += nums.get(i);
-                minSum = Math.min(minSum, sum - maxSum);
-                maxSum = Math.max(maxSum, sum);
-            }
-            return minSum;
-        }
-    }
-    
     
     public static void main(String[] args) {
         
         List<Integer> nums = Arrays.asList(new Integer[] {1, 2, 2, 2});
-        
         Out.p(new Solution().minSubArray(nums));
-        Out.sep();
-        Out.p(new Solution1().minSubArray(nums));
         
     }
 

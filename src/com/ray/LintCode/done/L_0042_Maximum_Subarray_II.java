@@ -4,36 +4,20 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.ray.io.Out;
+import com.ray.util.Assert;
 
 /**
  * 描述：
- *      Given an array of integers, find two non-overlapping subarrays which have the largest sum.
- *      The number in each subarray should be contiguous.
- *      Return the largest sum.
+ *      给定一个整数数组，寻找两个不互相覆盖的子数组，使得两个子数组的和最大。
  *
  * 用例：
- *      Example 1:
- *      ```
- *      Input:
- *      [1, 3, -1, 2, -1, 2]
- *      Output:
- *      7
- *      Explanation:
- *      the two subarrays are [1, 3] and [2, -1, 2] or [1, 3, -1, 2] and [2].
- *      ```
- *      
- *      Example 2:
- *      ```
- *      Input:
- *      [5,4]
- *      Output:
- *      9
- *      Explanation:
- *      the two subarrays are [5] and [4].
- *      ```
+ *      用例 1:
+ *      输入: [1, 3, -1, 2, -1, 2]
+ *      输出: 7
+ *      解释: 两个子数组为 [1, 3] 和 [2, -1, 2] 或 [1, 3, -1, 2] 和 [2] 
  *
  * 挑战：
- *      Can you do it in time complexity O(*n*) ?
+ *      时间复杂度 O(n)
  *
  * 难度： Medium
  *   
@@ -43,13 +27,26 @@ import com.ray.io.Out;
  */
 public class L_0042_Maximum_Subarray_II {
 
+    /**
+     * 设
+     *      left[i] 为从 0 到 i 之间的最大子数组和
+     *      right[i] 为从 i 到 n-1 之间的最大子数组和
+     *      
+     * 所以最优解为：
+     *      max {left[i] + right[i]}     
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
         
         public int maxTwoSubArrays(List<Integer> nums) {
             
             int N = nums.size();
             
-            if (N == 2) return nums.get(0) + nums.get(N-1);
+            if (N == 2) {
+                return nums.get(0) + nums.get(N-1);
+            }
             
             int[] left = new int[N];
             int[] right = new int[N];
@@ -72,8 +69,7 @@ public class L_0042_Maximum_Subarray_II {
             
             int max = Integer.MIN_VALUE;
             for (int i = 0; i < N-1; i++) {
-                if (max < left[i] + right[i+1])
-                    max = left[i] + right[i+1];
+                max = Math.max(max, left[i] + right[i+1]);
             }
 
             return max;
@@ -83,10 +79,12 @@ public class L_0042_Maximum_Subarray_II {
     
     public static void main(String[] args) {
         
-        Integer[] nums = {0,-1};
+        Integer[] nums = {1, 3, -1, 2, -1, 2};
         List<Integer> numsL = Arrays.asList(nums);
         
         int max = new Solution().maxTwoSubArrays(numsL);
+        
+        Assert.assertEquals(max, 7);
         
         Out.p(max);
     }

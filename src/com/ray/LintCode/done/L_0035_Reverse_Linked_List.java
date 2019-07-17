@@ -4,25 +4,15 @@ import com.ray.LintCode.util.ListNode;
 
 /**
  * 描述：
- *      Reverse a linked list.
+ *      翻转链表
  *
  * 用例：
- *      **Example 1:**
- *      
- *      ```
- *      Input: 1->2->3->null
- *      Output: 3->2->1->null
- *      ```
- *      
- *      **Example 2:**
- *      
- *      ```
- *      Input: 1->2->3->4->null
- *      Output: 4->3->2->1->null
- *      ```
+ *      **用例 1:**
+ *      输入: 1->2->3->null
+ *      输出: 3->2->1->null
  *
  * 挑战：
- *      Reverse it in-place and in one-pass
+ *      原地翻转
  *
  * 难度： Simple
  *   
@@ -32,19 +22,33 @@ import com.ray.LintCode.util.ListNode;
  */
 public class L_0035_Reverse_Linked_List {
 
+    /**
+     * 
+     *  prev -> node -> next
+     *  prev <- node <- next
+     *  
+     *  // 只需要翻转 node 和 prev 的链接，然后前进一格
+     *  node.next = prev;
+     *  
+     *  // 下一次循环会处理下一个链
+     *  prev = node
+     *  node = next
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
-        /**
-         * @param head: n
-         * @return: The new head of reversed linked list.
-         */
-        public ListNode reverse(ListNode head) {
+        
+        public ListNode reverse(ListNode node) {
             ListNode prev = null;
-            ListNode temp = null;
-            while (head != null) {
-                temp = head.next;
-                head.next = prev;
-                prev = head;
-                head = temp;
+            ListNode next = null;
+            while (node != null) {
+                next = node.next;
+                
+                node.next = prev;
+                prev = node;
+                node = next;
+                
             }
             return prev;
         }

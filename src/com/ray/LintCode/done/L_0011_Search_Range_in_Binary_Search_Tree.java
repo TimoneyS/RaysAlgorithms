@@ -1,5 +1,6 @@
 package com.ray.LintCode.done;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,27 +41,48 @@ import com.ray.io.Out;
  */
 public class L_0011_Search_Range_in_Binary_Search_Tree {
 
+    /**
+     * 二叉搜索树的特点是左子树的值都小于根节点，右子树的值都大于根节点。
+     * 
+     * 按照左 - 中 - 右 的遍历顺序得到的结点是有序的。
+     * 
+     * 遍历时：
+     *      如果根节点小于 区间最小值，则左子树可以忽略
+     *      如果根节点大于 区间最大值，则右子树可以忽略
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
     
-        public List<Integer> searchRange(TreeNode root, int k1, int k2) {
-            List<Integer> list = new LinkedList<Integer>();
-            searchRange(root, list, k1, k2);
-            return list;
+        public List<Integer> searchRange(TreeNode root, int l, int h) {
+            List<Integer> rs = new LinkedList<Integer>();
+            searchRange(root, rs, l, h);
+            return rs;
         }
         
         public void searchRange(TreeNode root, List<Integer> list, int l, int h) {
             if (root == null) return;
-            searchRange(root.left, list, l, h);
-            if (root.val >= l && root.val <= h) list.add(root.val);
-            searchRange(root.right, list, l, h);            
+            if (root.val >= l) {
+                searchRange(root.left, list, l, h);
+            }
+            if (root.val >= l && root.val <= h) {
+                list.add(root.val);
+            }
+            if (root.val <= h) {
+                searchRange(root.right, list, l, h);
+            }
         }
     
     }
     
     public static void main(String[] args) {
+        TreeNode root = TreeNode.parse("{20,8,22,4,12}");
         
-        Out.p(new Solution());
+        int l = 10;
+        int h = 22;
         
+        Out.p(new Solution().searchRange(root, l, h).equals(Arrays.asList(new Integer[]{12, 20,22})));
     }
 
 }

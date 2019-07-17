@@ -1,4 +1,4 @@
-package com.ray.LintCode.done;
+package com.ray.LintCode.tostudy;
 
 import java.util.LinkedList;
 import java.util.List;

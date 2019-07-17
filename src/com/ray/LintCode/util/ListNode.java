@@ -68,6 +68,23 @@ public class ListNode {
         return pile.next;
     }
     
+    @Override
+    public boolean equals(Object obj) {
+        if ( !(obj instanceof ListNode)) {
+            return false;
+        } 
+        ListNode o1 = this;
+        ListNode o2 = (ListNode)obj;
+        while (o1 != null && o2 != null) {
+            if (o1 == null && o2 != null || o1 != null && o2 == null || o1.val != o2.val) {
+                return false;
+            }
+            o1 = o1.next;
+            o2 = o2.next;
+        }
+        return true;
+    }
+    
     public void show() {
         ListNode.show(this);
     }

@@ -1,10 +1,12 @@
-package com.ray.LintCode.temp;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.ray.io.Out;
 
@@ -34,49 +36,63 @@ import com.ray.io.Out;
  */
 public class L_0057_3Sum {
 
+    /**
+     * 对于任意数字 S[i] , 若存在 S[j] S[k] 使得
+     *      S[i] + S[j] + S[k] = 0
+     * 则
+     *      S[i] =  - ( S[j] + S[k] )
+     * 
+     * 因此从 i 开始，要寻找包含 S[i] 的唯一组合，可以转变为在 S[i+1, n-1] 中寻找数字 S[j] + S[k] = -S[i]
+     * 
+     * 问题可以转化为若干个 Two_Sum 问题
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
         
         public List<List<Integer>> threeSum(int[] numbers) {
             
             List<List<Integer>> rs = new ArrayList<List<Integer>>();
-            Map<Integer, Boolean> hash = new HashMap<Integer, Boolean>();
+            Set<Integer> hash = new HashSet<>();
+            
+            Arrays.sort(numbers);
             
             for (int i = 0; i < numbers.length; i++) {
-                if (hash.containsKey(numbers[i])) {
+                if (hash.contains(numbers[i])) {
                     continue;
                 }
-                twoSum(numbers, i+1, 0-numbers[i], hash, rs);
-                hash.put(numbers[i], true);
+                twoSum(numbers, i, 0-numbers[i], hash, rs);
+                hash.add(numbers[i]);
             }
          
             return rs;
         }
         
-        private void twoSum(int[] numbers, int start, int target, Map<Integer, Boolean> basemarked, List<List<Integer>> rs) {
+        private void twoSum(int[] numbers, int i, int target, Set<Integer> basemarked, List<List<Integer>> rs) {
             
-            Map<Integer, Boolean> marked = new HashMap<Integer, Boolean>();
+            Set<Integer> marked = new HashSet<>();
             Map<Integer, Integer> remain = new HashMap<>();
             
-            for (int i = start; i < numbers.length; i++) {
-                int num = numbers[i];
+            for (int j = i+1; j < numbers.length; j++) {
                 
-                if (marked.containsKey(num) || basemarked.containsKey(num)) {
+                if (marked.contains(numbers[j]) || basemarked.contains(numbers[j])) {
                     continue;
                 }
-                if (remain.containsKey(num)) {
-                    int j = remain.get(num);
-                    List<Integer> l = new ArrayList<Integer>(3);
-                    l.add(numbers[start-1]);
+                if (remain.containsKey(numbers[j])) {
+                    int k = remain.get(numbers[j]);
+                    List<Integer> l = new ArrayList<>(3);
                     l.add(numbers[i]);
+                    l.add(numbers[k]);
                     l.add(numbers[j]);
-                    Collections.sort(l);
-                    marked.put(numbers[i], true);
-                    marked.put(numbers[j], true);
+
+                    marked.add(numbers[k]);
+                    marked.add(numbers[j]);
                     
                     rs.add(l);
                 }
                 
-                remain.put(target-num, i);
+                remain.put(target-numbers[j], j);
                 
             }
             

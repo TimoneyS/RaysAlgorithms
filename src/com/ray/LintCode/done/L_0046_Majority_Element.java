@@ -7,25 +7,19 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given an array of integers, the majority number is the number that occurs `more than half` of the size of the array. Find it.
+ *      给定一个整数数组，寻找数组的主元素。主元素指大小超过一半元素的元素。
  *
  * 用例：
- *      **Example 1:**
+ *      用例 1:
+ *          输入: [1, 1, 1, 1, 2, 2, 2]
+ *          输出: 1
  *      
- *      ```
- *      Input: [1, 1, 1, 1, 2, 2, 2]
- *      Output: 1
- *      ```
- *      
- *      **Example 2:**
- *      
- *      ```
- *      Input: [1, 1, 1, 2, 2, 2, 2]
- *      Output: 2
- *      ```
+ *      用例 2:
+ *          输入: [1, 1, 1, 2, 2, 2, 2]
+ *          输出: 2
  *
  * 挑战：
- *      O(_n_) time and O(_1_) extra space
+ *      O(n) 时间复杂度 和 O(1) 空间复杂度
  *
  * 难度： Simple
  *   
@@ -35,18 +29,30 @@ import com.ray.io.Out;
  */
 public class L_0046_Majority_Element {
 
+    /**
+     * 如果一个数字出现的次数超过数组大小的一半，那么连续出现的数字中一定有该数字。
+     * 否则该数字一定和其他数字交替出现。
+     * 
+     * 设计算法每次读取两个数字，如果这两个数字彼此不同，就将这两个数字都丢弃。
+     * 这样当两两不同的数字都丢弃之后，剩下的数字一定是出现次数超过数组一半的那个数字。
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
-        /*
-         * @param nums: a list of integers
-         * @return: find a  majority number
-         */
+        
         public int majorityNumber(List<Integer> nums) {
-            Integer num = null;
+            int num = 0;
             int ct = 0;
             for (Integer i : nums) {
-                if (ct == 0) num = i;
-                if (i.equals(num)) ct ++;
-                else ct --;
+                if (ct == 0) {
+                    num = i;
+                }
+                if (i.equals(num)) {
+                    ct ++;
+                } else {
+                    ct --;
+                }
             }
             return num;
         }
@@ -54,8 +60,8 @@ public class L_0046_Majority_Element {
     }
     
     public static void main(String[] args) {
-        
-        List<Integer> nums = Arrays.asList(new Integer[] {1,1,1,1,2,2,3});
+        Integer[] arr = {1, 2, 1, 2, 1, 3, 1, 3, 4, 4, 1, 1};
+        List<Integer> nums = Arrays.asList(arr);
         
         Out.p(new Solution().majorityNumber(nums));
     }

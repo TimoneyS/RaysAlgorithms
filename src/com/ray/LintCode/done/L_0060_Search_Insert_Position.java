@@ -1,13 +1,12 @@
-package com.ray.LintCode.temp;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
- *      
- *      You may assume **NO** duplicates in the array.
- *
+ *      给定一个有序数组和一个目标值，返回目标值在数组中的索引。
+ *      若不存在则返回一个可以插入目标值的索引，插入后数组还是有序的。
+ *      数组中不存在重复元素
  * 用例：
  *      `[1,3,5,6]`, 5 → 2
  *      
@@ -28,12 +27,13 @@ import com.ray.io.Out;
  */
 public class L_0060_Search_Insert_Position {
 
+    /**
+     * 二分搜索原理
+     * @author rays1
+     *
+     */
     static class Solution {
-        /**
-         * @param A: an integer sorted array
-         * @param target: an integer to be inserted
-         * @return: An integer
-         */
+        
         public int searchInsert(int[] A, int target) {
             int l = 0,r = A.length-1;
             if (r==-1) return 0;

@@ -10,24 +10,21 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given an array *S* of n integers, are there elements *a*, *b*, *c* in *S* such that `a + b + c = 0`? Find all unique triplets in the array which gives the sum of zero.
+ *      给定一个整数数组 S，大小为 n，寻找元素 a b c 使得  a + b + c = 0。
+ *      寻找所有可能的不重复的组合。
  *
  * 用例：
- *      **Example 1:**
- *      ```
- *      Input:[2,7,11,15]
- *      Output:[]
- *      ```
+ *      用例 1:
+ *      输入:[2,7,11,15]
+ *      输出:[]
  *      
- *      
- *      **Example 2:**
- *      ```
- *      Input:[-1,0,1,2,-1,-4]
- *      Output:	[[-1, 0, 1],[-1, -1, 2]]
- *      ```
- *
- * 挑战：
- *      
+ *      用例 2:
+ *      输入:[-1,0,1,2,-1,-4]
+ *      输出:	
+ *              [
+ *                  [-1, 0, 1],
+ *                  [-1, -1, 2]
+ *              ]
  *
  * 难度： Medium
  *   
@@ -39,21 +36,17 @@ public class L_0057_3Sum {
 
     static class Solution {
         
-        /**
-         * @param numbers: Give an array numbers of n integer
-         * @return: Find all unique triplets in the array which gives the sum of zero.
-         */
         public List<List<Integer>> threeSum(int[] numbers) {
             
-            List<List<Integer>>   rs = new ArrayList<List<Integer>>();
-            Map<Integer, Boolean> marked = new HashMap<Integer, Boolean>();
+            List<List<Integer>> rs = new ArrayList<List<Integer>>();
+            Map<Integer, Boolean> hash = new HashMap<Integer, Boolean>();
             
             for (int i = 0; i < numbers.length; i++) {
-                if (marked.containsKey(numbers[i])) continue;
-                
-                twoSum(numbers, i+1, 0-numbers[i], marked, rs);
-                
-                marked.put(numbers[i], true);
+                if (hash.containsKey(numbers[i])) {
+                    continue;
+                }
+                twoSum(numbers, i+1, 0-numbers[i], hash, rs);
+                hash.put(numbers[i], true);
             }
          
             return rs;
@@ -64,11 +57,12 @@ public class L_0057_3Sum {
             Map<Integer, Boolean> marked = new HashMap<Integer, Boolean>();
             Map<Integer, Integer> remain = new HashMap<>();
             
-            
             for (int i = start; i < numbers.length; i++) {
                 int num = numbers[i];
                 
-                if (marked.containsKey(num) || basemarked.containsKey(num)) continue;
+                if (marked.containsKey(num) || basemarked.containsKey(num)) {
+                    continue;
+                }
                 if (remain.containsKey(num)) {
                     int j = remain.get(num);
                     List<Integer> l = new ArrayList<Integer>(3);

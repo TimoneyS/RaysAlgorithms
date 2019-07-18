@@ -1,4 +1,4 @@
-package com.ray.LintCode.temp;
+package com.ray.LintCode.done;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,25 +9,20 @@ import com.ray.util.Timer;
 
 /**
  * 描述：
- *      Given an array of integers, find two numbers such that they add up to a specific target number.
+ *      给定一个整数数组，寻找两个数字，这两个数字的和正好是给定的值。
  *      
- *      The function `twoSum` should return *indices* of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are zero-based.
- *
  * 用例：
- *      ```
  *      Example1:
  *      numbers=[2, 7, 11, 15], target=9
  *      return [0, 1]
+ *      
  *      Example2:
  *      numbers=[15, 2, 7, 11], target=9
  *      return [1, 2]
- *      ```
  *
  * 挑战：
- *      Either of the following solutions are acceptable:
- *      
- *      - O(n) Space, O(nlogn) Time
- *      - O(n) Space, O(n) Time
+ *      - O(n) 空间复杂度, O(nlogn) 时间复杂度
+ *      - O(n) 空间复杂度, O(n) 时间复杂度
  *
  * 难度： Simple
  *   
@@ -37,23 +32,28 @@ import com.ray.util.Timer;
  */
 public class L_0056_Two_Sum {
 
+    /**
+     * 
+     * 如果 a + b = target
+     * 则    a = target - b
+     * 
+     * 如果知道了 a， 那么只要在数组中寻找 target - b 即可。
+     * 
+     * 可以构建一个数组值到坐标的映射，然后对于每个 a 寻找否存在 target - b 到坐标的映射
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
         
-        /**
-         * @param numbers: An array of Integer
-         * @param target: target = numbers[index1] + numbers[index2]
-         * @return: [index1, index2] (index1 < index2)
-         */
         public int[] twoSum(int[] numbers, int target) {
             Map<Integer, Integer> remain = new HashMap<>();
-            
             for (int i = 0; i < numbers.length; i++) {
-                int num = numbers[i];
-                if (remain.containsKey(num))
-                    return new int[]{remain.get(num), i};
-                remain.put(target-num, i);
+                if (remain.containsKey(numbers[i])) {
+                    return new int[]{remain.get(numbers[i]), i};
+                }
+                remain.put(target-numbers[i], i);
             }
-            
             return new int[]{-1, -1};
         }
         

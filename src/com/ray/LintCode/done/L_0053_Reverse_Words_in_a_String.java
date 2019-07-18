@@ -2,33 +2,24 @@ package com.ray.LintCode.done;
 
 import java.util.Random;
 
+import com.ray.io.Out;
 import com.ray.util.Timer;
 
 /**
  * 描述：
- *      <p style="box-sizing: border-box; margin: 0px 0px 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 30px;">Given an input string, reverse the string word by word.</p>
- *
+ *      给定一个字符串，以单词为单位翻转字符串。
+ *      用例给出的字符串首位的空格和单词之间的多个空格，需要过滤。
+ *      
+ *      
  * 用例：
- *      ```
- *      Example 1:
- *      	Input:  "the sky is blue"
- *      	Output:  "blue is sky the"
+ *      用例 1:
+ *      	输入:  "the sky is blue"
+ *      	输出:  "blue is sky the"
  *      	
- *      	Explanation: 
- *      	return a reverse the string word by word.
+ *      用例 2:
+ *      	输入:  "hello world"
+ *      	输出:  "world hello"
  *      
- *      Example 2:
- *      	Input:  "hello world"
- *      	Output:  "world hello"
- *      	
- *      	Explanation: 
- *      	return a reverse the string word by word.
- *      
- *      ```
- *
- * 挑战：
- *      
- *
  * 难度： Simple
  *   
  * @author rays1
@@ -36,98 +27,30 @@ import com.ray.util.Timer;
  * @date   2019-07-11 18:04:49
  */
 public class L_0053_Reverse_Words_in_a_String {
-
-    static class Solution1 {
+    
+    static class Solution {
         
-        /*
-         * @param s: A string
-         * 
-         * @return: A string
-         */
         public String reverseWords(String s) {
             char[] arr = new char[s.length()]; 
-            int index = 0;
-            int size  = 0;
+            int cursor = 0;
+            int r = s.length()-1;
             for (int i = s.length()-1; i >= -1; i--) {
                 char c = i >= 0 ? s.charAt(i) : ' ';
                 if (c == ' ') {
-                    if (size == 0) continue;
-                    if (index != 0) arr[index++] = ' '; // index = 0  说明还没有检测到 world
-                    for (int j = 1; j <= size; j++)
-                        arr[index++] = s.charAt(i+j);
-                    size = 0;
-                } else {
-                    size ++;
-                }
-            }
-            return new String(arr, 0, index);
-        }
-        
-    }
-    
-    static class Solution {
-        /*
-         * @param s: A string
-         * @return: A string
-         */
-        public String reverseWords(String s) {
-           
-            if (s.length() <= 1) return s;
-            char[] arr = s.toCharArray();
-            int[] newOrder = new int[arr.length];
-            
-            int index = findOrder(arr, newOrder);
-            
-            int  curr, prev;
-            char tc1, tc2;
-            for (int i = 0; i < newOrder.length; i++) {
-                curr = i;
-                tc1 = tc2 = arr[i];
-                while (newOrder[curr] != -1) {
-                    prev = curr;
-                    curr = newOrder[curr];
-                    newOrder[prev] = -1;
-                    
-                    tc2 = arr[curr];
-                    arr[curr] = tc1;
-                    tc1 = tc2;
-                }
-                
-            }
-            int i = arr.length-1;
-            while (i>=0) {
-                if (arr[i--] != ' ') break;
-            }
-            
-            return new String(arr, 0, index);
-        }
-
-        private int findOrder(char[] arr, int[] newOrder) {
-            int t = -1;
-            int index = 0;
-            for (int i = arr.length-1; i >=0; i--,index++) {
-                if (arr[i] == ' ') {
-                    if (t != -1) {
-                        newOrder[i] = index;
-                        for (int k = t; k > i; k--) {
-                            newOrder[k] = index+k-t-1;
-                        }
-                        t = -1;
-                    } else {
-                        newOrder[i] = -1;
-                        index --; // 重复的空格，将索引减一
+                    if (r == i) {
+                        r --;
+                        continue;
                     }
-                } else if (t == -1) {
-                    t = i;
+                    if (cursor != 0) {
+                        arr[cursor++] = ' '; // cursor = 0  说明还没有检测到 world
+                    }
+                    for (int j = i+1; j <= r; j++) {
+                        arr[cursor++] = s.charAt(j);
+                    }
+                    r = i-1;
                 }
             }
-            if (t != -1) {
-                for (int k = t; k >= 0; k--) {
-                    if (arr[k] != ' ')
-                        newOrder[k] = index+k-t-1;
-                }
-            }
-            return index;
+            return new String(arr, 0, cursor);
         }
         
     }
@@ -151,11 +74,10 @@ public class L_0053_Reverse_Words_in_a_String {
     
     public static void main(String[] args) {
 
-        int n = 10000000;
+        Out.p(new Solution().reverseWords("  Life  doesn't  always    give     us  the       joys we want."));
         
+        int n = 200000000;
         String s = createString(n);
-        Timer.CLICK();
-        new Solution1().reverseWords(s);
         Timer.CLICK();
         new Solution().reverseWords(s);
         Timer.STOP();

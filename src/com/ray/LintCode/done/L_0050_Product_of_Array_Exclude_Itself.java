@@ -7,22 +7,23 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given an integers array A.
- *      
- *      Define `B[i] = A[0] * ... * A[i-1] * A[i+1] * ... * A[n-1]`, calculate B **WITHOUT** divide operation.Out put B
+ *      给定一个整数数组 A
+ *      定义
+ *          B[i] = A[0] * A[2] * ... A[i-1] * A[i+1] * ... * A[n-1]
+ *      不使用除法计算 B[i]
  *
  * 用例：
- *      **Example 1**
- *      ```
- *      Input: A = [1, 2, 3]
- *      Output: [6, 3, 2]
- *      Explanation：B[0] = A[1] * A[2] = 6; B[1] = A[0] * A[2] = 3; B[2] = A[0] * A[1] = 2
- *      ```
- *      **Example 2**
- *      ```
- *      Input: A = [2, 4, 6]
+ *      **用例 1**
+ *      输入: A = [1, 2, 3]
+ *      输出: [6, 3, 2]
+ *      解释: 
+ *          B[0] = A[1] * A[2] = 6
+ *          B[1] = A[0] * A[2] = 3
+ *          B[2] = A[0] * A[1] = 2
+ *      
+ *      **用例 2**
+ *      输入: A = [2, 4, 6]
  *      Output: [24, 12, 8]
- *      ```
  *
  * 挑战：
  *      
@@ -35,35 +36,36 @@ import com.ray.io.Out;
  */
 public class L_0050_Product_of_Array_Exclude_Itself {
 
+    /**
+     * 从左侧计算从 0 到 i   的乘积 SL[i]
+     * 从右侧计算从 i 到 n-1 的乘积 SR[i]
+     * 
+     * B[i] = SL[i-1] * SR[i+1]
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
-        /*
-         * @param nums: Given an integers array A
-         * @return: A long long array B and B[i]= A[0] * ... * A[i-1] * A[i+1] * ... * A[n-1]
-         */
         public List<Long> productExcludeItself(List<Integer> nums) {
             if (nums.size() == 1) return Arrays.asList(new Long[] {1l});
             
-            
             int N = nums.size();
-            Long[] left = new Long[N];
-            Long[] right = new Long[N];
+            Long[] SL = new Long[N];
+            Long[] SR = new Long[N];
             
-            left[0] = Long.valueOf(nums.get(0));
+            SL[0]    = Long.valueOf(nums.get(0));
+            SR[N-1] = Long.valueOf(nums.get(N-1));
             for (int i = 1; i < N; i++) {
-                left[i] = left[i-1] * nums.get(i);
-            }
-            
-            right[N-1] = Long.valueOf(nums.get(N-1));
-            for (int i = N-2; i >= 0; i--) {
-                right[i] = right[i+1] * nums.get(i);
+                SL[i] = SL[i-1] * nums.get(i);
+                SR[N-1-i] = SR[N-i] * nums.get(N-1-i);
             }
             
             Long[] B = new Long[N];
             
-            B[0] = right[1];
-            B[N-1] = left[N-2];
+            B[0] = SR[1];
+            B[N-1] = SL[N-2];
             for (int i = 1; i < N-1; i++) {
-                B[i] = left[i-1] * right[i+1];
+                B[i] = SL[i-1] * SR[i+1];
             }
             
             return Arrays.asList(B);
@@ -72,7 +74,7 @@ public class L_0050_Product_of_Array_Exclude_Itself {
     
     public static void main(String[] args) {
         
-        Integer[] arr = {0};
+        Integer[] arr = {1, 2, 3};
         List<Integer> nums = Arrays.asList(arr);
         
         List<Long> B = new Solution().productExcludeItself(nums);

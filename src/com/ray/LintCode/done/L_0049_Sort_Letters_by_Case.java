@@ -4,7 +4,7 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given a string which contains only letters. Sort it by lower case first and upper case second.
+ *      给定一个只包含字母的字符串，将其排列为小写字母在前，大写字母在后的顺序。
  *
  * 用例：
  *      ```
@@ -19,7 +19,7 @@ import com.ray.io.Out;
  *      ```
  *
  * 挑战：
- *      Do it in one-pass and in-place.
+ *      一次遍历，原地排序
  *
  * 难度： Medium
  *   
@@ -29,20 +29,28 @@ import com.ray.io.Out;
  */
 public class L_0049_Sort_Letters_by_Case {
 
+    /**
+     * 从字符串左右开始遍历，将左侧遇到的大写字母和右侧遇到的小写字母交换。
+     * 直到左右指针相遇。
+     * @author rays1
+     *
+     */
     static class Solution {
         
-        /*
-         * @param chars: The letter array you should sort by Case
-         * @return: nothing
-         */
         public void sortLetters(char[] chars) {
             int N = chars.length;
             
             int l = 0, r = chars.length - 1;
             while (l < r) {
-                while (l < N && !isUpper(chars[l])) l++;
-                while (r > 0 &&  isUpper(chars[r])) r--;
-                if (l >= r) break;
+                while (l < N && !isUpper(chars[l])) {
+                    l++;
+                }
+                while (r > 0 &&  isUpper(chars[r])) {
+                    r--;
+                }
+                if (l >= r) {
+                    break;
+                }
                 
                 char t = chars[l];
                 chars[l] = chars[r];

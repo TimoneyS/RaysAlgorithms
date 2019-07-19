@@ -1,4 +1,4 @@
-package com.ray.LintCode.temp;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,14 +6,13 @@ import java.util.List;
 import com.ray.io.Out;
 
 /**
- * Description :
- *   You are playing the following Flip Game with your friend:
- *      Given a string that contains only these two characters: `+` and `-`,
- *      you and your friend take turns to flip two **consecutive** `"++"` into `"--"`. 
- *      
- *      The game ends when a person can no longer make a move and therefore the other person will be the winner.
- *   
- *   Write a function to compute all possible states of the string after one valid move.
+ * 描述 :
+ *      翻转游戏的规则如下：
+ *          给定一个字符串只包含 + 和 -
+ *          玩家可以将连续的 ++ 变成 --
+ *          当一个玩家无法进行翻转时，游戏结束，并且另一个玩家为胜利。
+ *          
+ *       编写方法来计算给定的字符串，所有可能的翻转结果。
  *
  * Example :
  *   **Example1**

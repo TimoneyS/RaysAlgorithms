@@ -1,52 +1,24 @@
-package com.ray.LintCode.temp;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given an Android `3x3` key lock screen and two integers `m` and `n`, where `1 ≤ m ≤ n ≤ 9`, count the total number of unlock patterns of the Android lock screen, which consist of minimum of `m` keys and maximum `n` keys.
- *      
- *      **Rules for a valid pattern:**
- *      1. Each pattern must connect at least `m` keys and at most `n` keys.
- *      2. All the keys must be distinct.
- *      3. If the line connecting two consecutive keys in the pattern passes through any other keys, the other keys must have previously selected in the pattern. No jumps through non selected key is allowed.
- *      4. The order of keys used matters.
- *      ![android unlock](https://lintcode-media.s3.amazonaws.com/problem/andriod-unlock.png "android unlock")
- *      **Explanation:**
- *      ```
- *      | 1 | 2 | 3 |
- *      | 4 | 5 | 6 |
- *      | 7 | 8 | 9 |
- *      ```
- *      **Invalid move:** `4 - 1 - 3 - 6`
- *      Line 1 - 3 passes through key 2 which had not been selected in the pattern.
- *      
- *      **Invalid move:** `4 - 1 - 9 - 2`
- *      Line 1 - 9 passes through key 5 which had not been selected in the pattern.
- *      
- *      **Valid move:** `2 - 4 - 1 - 3 - 6`
- *      Line 1 - 3 is valid because it passes through key 2, which had been selected in the pattern
- *      
- *      **Valid move:** `6 - 5 - 4 - 1 - 9 - 2`
- *      Line 1 - 9 is valid because it passes through key 5, which had been selected in the pattern.
+ *      给定一个安卓 3*3 的锁屏界面，和两个数字 m n（1 ≤ m ≤ n ≤ 9）。锁屏时最少包含 m 个键，最多 n 个键，统计所有可能的锁屏方式，
+ *      规则：
+ *          1. 每个锁屏模式必须链接 m 到 n 之间的键数。
+ *          2. 每个键只能使用一次
+ *          3. 不能越过一个键去链接一条线上的另一个键
+ *          4. 不同的键的顺序是有关的
  *
  * 用例：
  *      **Example1**
- *      
- *      ```
  *      Input: m = 1, n = 1
  *      Output: 9
- *      ```
  *      
  *      **Example2**
- *      
- *      ```
  *      Input: m = 1, n = 2
  *      Output: 65
- *      ```
- *
- * 挑战：
- *      
  *
  * 难度： Medium
  *   
@@ -58,9 +30,7 @@ public class L_0909_Android_Unlock_Patterns {
 
 
     /**
-     * 
      * DFS 搜索，确定下一个可达的定点的时候需要注意同一行或同一列的点，当上一个点未被标记时不能直接访问下一个点。
-     * 
      * 
      * @author rays1
      *

@@ -4,29 +4,26 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      There are two sorted arrays _A_ and _B_ of size _m_ and _n_ respectively. Find the **median** of the two sorted arrays.
+ *      两个有序的数组 A 和 B 和 大小分别为 m 和 n
+ *      寻找两个数组的中位数
+ *      
+ *      如果数组尺寸是奇数，中位数是中间数组，如果数组尺寸为偶数，中位数是中间两个数字的平均数。
  *
  * 用例：
  *      **Example 1**
- *      
- *      ```plain
  *      Input:
  *      A = [1,2,3,4,5,6]
  *      B = [2,3,4,5]
  *      Output: 3.5
- *      ```
  *      
  *      **Example 2**
- *      
- *      ```plain
  *      Input:
  *      A = [1,2,3]
  *      B = [4,5]
  *      Output: 3
- *      ```
  *
  * 挑战：
- *      The overall run time complexity should be `O(log (m+n))`.
+ *      时间复杂度 O(log (m +n))
  *
  * 难度： Hard
  *   
@@ -36,12 +33,19 @@ import com.ray.io.Out;
  */
 public class L_0065_Median_of_two_Sorted_Arrays {
 
+    /**
+     * 
+     * A B 大小为 m n
+     * 
+     * 取 i = m / 2
+     * 
+     * A[i] 在 B 中的排名 Ri。
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
-        /*
-         * @param A: An integer array
-         * @param B: An integer array
-         * @return: a double whose format is *.5 or *.0
-         */
+        
         public double findMedianSortedArrays(int[] A, int[] B) {
             
             int la = 0, ra = A.length - 1;

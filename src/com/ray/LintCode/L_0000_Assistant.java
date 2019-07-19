@@ -58,8 +58,15 @@ public class L_0000_Assistant {
         modelString.replace(start, start + PH_DESC.length(), questionInfo.get(QI_DESC));
         
         // 替换用例信息
+        String exampString = questionInfo.get(QI_EXAMP);
+        
+        exampString = exampString.replaceAll("Output", "输出");
+        exampString = exampString.replaceAll("Input", "输入");
+        exampString = exampString.replaceAll("Example", "用例");
+        exampString = exampString.replaceAll("Explanation", "解释");
+        
         start = modelString.indexOf(PH_EXAMP);
-        modelString.replace(start, start + PH_EXAMP.length(), questionInfo.get(QI_EXAMP));
+        modelString.replace(start, start + PH_EXAMP.length(), exampString);
         
         // 替换挑战信息
         start = modelString.indexOf(PH_CHAL);
@@ -77,7 +84,6 @@ public class L_0000_Assistant {
         // 替换类名
         className = className.replaceAll("[\\(\\)]", "");
         className = className.replaceAll("-", "_");
-        
         start = modelString.indexOf(PH_CLASS);
         modelString.replace(start, start + PH_CLASS.length(), className);
         
@@ -102,7 +108,6 @@ public class L_0000_Assistant {
     
     private static void writeToFile(String filename, String javaString) {
         File f = new File(BASE_DIR + filename + ".java");
-        if (f.exists()) return;
         try (FileWriter fw = new FileWriter(f)) {
             fw.write(javaString);
         } catch (IOException e) {
@@ -142,14 +147,6 @@ public class L_0000_Assistant {
         int id = new JSONObject(new String(rs)).getInt("id");
         Out.p(new String(rs));
         JSONObject json = new JSONObject(new String(rs));
-        
-        // 根据问题的ID获取问题的详细信息
-        // String idUrl = "https://www.lintcode.cn/api/translations/?id="+id;
-        // Out.p(idUrl);
-        // head.put("accept", "application/json, text/plain, */*");
-        // rs = HttpsUtil.doGet(idUrl, head);
-        // Out.p(new String(rs));
-        // JSONArray arr = new JSONArray(new String(rs));
         
         // 解析信息到 map
         map.put(QI_BASEURL, url);

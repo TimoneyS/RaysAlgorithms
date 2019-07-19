@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,9 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      A group of two or more people wants to meet and minimize the total travel distance. You are given a 2D grid of values `0` or `1`, where each `1` marks the home of someone in the group. The distance is calculated using [Manhattan Distance](https://en.wikipedia.org/wiki/Taxicab_geometry "manhattan distance"), where `distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|`.
+ *      一组人需要选择一个最优的位置会面，这个位置使得所有人的行程总和最小，
+ *      在一个2D的格子上，给定值 0 或 1，1表示某个人的位置。
+ *      每个人的行程距离使用曼哈顿距离计算。
  *
  * 用例：
  *      **Example 1:**

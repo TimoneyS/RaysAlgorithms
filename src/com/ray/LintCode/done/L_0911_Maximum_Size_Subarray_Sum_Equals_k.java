@@ -1,4 +1,4 @@
-package com.ray.LintCode;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,26 +9,20 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given an array `nums` and a target value `k`, find the maximum length of a subarray that sums to k. If there isn't one, return 0 instead.
+ *      给定一个数组 nums 和一个目标值 k，寻找最大的子数组，使其和为 k。如果不存在这样的子数组，返回0。
  *
  * 用例：
  *      **Example1**
- *      
- *      ```
  *      Input:  nums = [1, -1, 5, -2, 3], k = 3
  *      Output: 4
  *      Explanation:
  *      because the subarray [1, -1, 5, -2] sums to 3 and is the longest.
- *      ```
  *      
  *      **Example2**
- *      
- *      ```
  *      Input: nums = [-2, -1, 2, 1], k = 1
  *      Output: 2
  *      Explanation:
  *      because the subarray [-1, 2] sums to 1 and is the longest.
- *      ```
  *
  * 挑战：
  *      Can you do it in O(n) time?

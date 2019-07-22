@@ -138,7 +138,7 @@ public class L_0000_Assistant {
         String title = url.substring(url.indexOf("problem") + "problem".length() + 1, url.indexOf("description") - 1);
         
         // 根据标题获取问题的唯一信息如 ID 等
-        String uniqueUrl =  "https://www.lintcode.cn/api/problems/detail/?unique_name_or_alias=%title%&_format=detail";
+        String uniqueUrl =  "https://www.lintcode.com/api/problems/detail/?unique_name_or_alias=%title%&_format=detail";
         uniqueUrl = uniqueUrl.replace("%title%", title);
         Out.p(uniqueUrl);
         Map<String, String> head = new HashMap<String, String>();

@@ -166,7 +166,7 @@ public class RedBlackBinarySearchTree<Key extends Comparable<Key>, Value> implem
     
     /**
      * 获取最小结点
-     * @param right
+     * @param next
      * @return
      */
     private Node min(Node node) {

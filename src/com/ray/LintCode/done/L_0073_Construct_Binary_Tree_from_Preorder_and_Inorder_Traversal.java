@@ -1,4 +1,4 @@
-package com.ray.LintCode.temp;
+package com.ray.LintCode.done;
 
 import com.ray.LintCode.util.TreeNode;
 import com.ray.io.Out;
@@ -39,14 +39,15 @@ import com.ray.util.StringUtil;
  */
 public class L_0073_Construct_Binary_Tree_from_Preorder_and_Inorder_Traversal {
 
+    /**
+     * 参考 L_0072_Construct_Binary_Tree_from_Inorder_and_Postorder_Traversal
+     * 重点是找到分割点
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
-        /**
-         * @param inorder:
-         *            A list of integers that inorder traversal of a tree
-         * @param postorder:
-         *            A list of integers that postorder traversal of a tree
-         * @return: Root of a tree
-         */
+
         public TreeNode buildTree(int[] preorder, int[] inorder) {
             if (inorder.length == 0)
                 return null;

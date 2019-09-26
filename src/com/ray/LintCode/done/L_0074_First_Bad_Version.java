@@ -1,17 +1,17 @@
-package com.ray.LintCode.temp;
+package com.ray.LintCode.done;
 
 import com.ray.io.Out;
 
 /**
  * 描述：
- *      The code base version is an integer start from 1 to n. One day, someone committed a bad version in the code case, so it caused this version and the following versions are all failed in the unit tests. Find the first bad version.
+ *      代码是基础版本是从 1 到 n，有一天一个人提交了一个坏版本导致后序版本的单元测试失败。
+ *      找到第一个坏版本。
  *      
- *      You can call `isBadVersion` to help you determine which version is the first bad one. The details interface can be found in the code's annotation part.
+ *      可以调用 isBadVersion 来判断某个版本是否是坏版本。
  *
  * 用例：
  *      ```
  *      Given n = 5:
- *      
  *          isBadVersion(3) -> false
  *          isBadVersion(5) -> true
  *          isBadVersion(4) -> true
@@ -20,7 +20,7 @@ import com.ray.io.Out;
  *      ```
  *
  * 挑战：
- *      You should call *isBadVersion* as few as possible.
+ *      尽可能少的调用 isBadVersion
  *
  * 难度： Medium
  *   
@@ -30,11 +30,14 @@ import com.ray.io.Out;
  */
 public class L_0074_First_Bad_Version {
 
+    /**
+     * 二分搜索
+     * 
+     * @author rays1
+     *
+     */
     static class Solution {
-        /**
-         * @param n: An integer
-         * @return: An integer which is the first bad version.
-         */
+        
         public int findFirstBadVersion(int n) {
             
             long start = 1, end = n;
@@ -49,6 +52,7 @@ public class L_0074_First_Bad_Version {
             
             return (int)start;
         }
+        
     }
     
     static class SVNRepo {

@@ -43,11 +43,7 @@ import com.ray.io.Out;
 public class L_0075_Find_Peak_Element {
 
     static class Solution {
-        /**
-         * @param A:
-         *            An integers array.
-         * @return: return any of peek positions.
-         */
+        
         public int findPeak(int[] A) {
             // write your code here
             int start = 1, end = A.length - 2; // 1.答案在之间，2.不会出界

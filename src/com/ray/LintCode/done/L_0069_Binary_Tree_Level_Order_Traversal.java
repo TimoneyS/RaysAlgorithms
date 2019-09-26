@@ -1,4 +1,4 @@
-package com.ray.LintCode.temp;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.List;

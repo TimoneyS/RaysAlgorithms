@@ -1,4 +1,4 @@
-package com.ray.LintCode.temp;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given a binary tree, return the preorder traversal of its nodes' values.
+ *      给定一个二叉树，返回前序遍历的结点值。
  *
  * 用例：
  *      **Example 1:**
@@ -48,11 +48,12 @@ import com.ray.io.Out;
  */
 public class L_0066_Binary_Tree_Preorder_Traversal {
 
+    /**
+     * 前序遍历的顺序是 中 -> 左 -> 右
+     * @author rays1
+     *
+     */
     static class Solution {
-        /**
-         * @param root: A Tree
-         * @return: Preorder in ArrayList which contains node values.
-         */
         public List<Integer> preorderTraversal(TreeNode root) {
             
             List<Integer> rs = new ArrayList<>();

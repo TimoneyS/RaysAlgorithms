@@ -1,4 +1,4 @@
-package com.ray.LintCode.temp;
+package com.ray.LintCode.done;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,14 +47,12 @@ import com.ray.LintCode.util.TreeNode;
 public class L_0068_Binary_Tree_Postorder_Traversal {
 
     static class Solution {
-        /**
-         * @param root: A Tree
-         * @return: Postorder in ArrayList which contains node values.
-         */
+        
         public List<Integer> postorderTraversal(TreeNode root) {
             List<Integer> rs = new ArrayList<>();
-            if (root != null)
+            if (root != null) {
                 tree(root, rs);
+            }
             return rs;
         }
         

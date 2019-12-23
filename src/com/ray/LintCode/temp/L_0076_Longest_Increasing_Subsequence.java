@@ -6,12 +6,9 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      <p>Given a sequence of integers, find the longest increasing subsequence (LIS).</p>
- *      
- *      <p>You code should return the length of the LIS.</p>
+ *      给定一个整数序列，找到最长上升子序列（LIS），返回LIS的长度。
  *
  * 用例：
- *      ```
  *      Example 1:
  *      	Input:  [5,4,1,2,3]
  *      	Output:  3
@@ -40,31 +37,26 @@ import com.ray.io.Out;
 public class L_0076_Longest_Increasing_Subsequence {
 
     /**
-     * 算法过程中，用 top 记录，当前可以生成的长度为 i 的子序列的最小终点元素
+     * 用 top 记录到当前元素为止，能够生成的各种长度的序列中，最小的终点元素。
      * 
      * 如：数组  4,5,1,2,3
      * 
-     * 第一次：当前元素 4
-     *    len :  1 2 
+     * 第一次：[4],5,1,2,3
      *    top :  4 0
      *      
-     * 第二次：当前元素 5
-     *    len :  1 2 
+     * 第二次：4,[5],1,2,3
      *    top :  4 5
      * 
-     * 第三次：当前元素 1
-     *    len :  1 2 
+     * 第三次：4,5,[1],2,3
      *    top :  1 5
      *    
-     * 第四次：当前元素 2
-     *    len :  1 2 
+     * 第四次：4,5,1,[2],3
      *    top :  1 2
      *    
-     * 第五次：当前元素 3
-     *    len :  1 2 3 
+     * 第五次：4,5,1,2,[3]
      *    top :  1 2 3
      * 
-     * 算法复杂度 O(n Log n)
+     * 算法复杂度 O(n log n)
      *    
      */
     static class Solution {

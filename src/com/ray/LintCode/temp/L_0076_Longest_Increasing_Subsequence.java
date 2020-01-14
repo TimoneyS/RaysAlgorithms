@@ -7,23 +7,18 @@ import com.ray.io.Out;
 /**
  * 描述：
  *      给定一个整数序列，找到最长升序的子序列（LIS），返回LIS的长度。
- *
  * 用例：
  *      Example 1:
- *      	Input:  [5,4,1,2,3]
- *      	Output:  3
- *      	Explanation:
- *      	LIS is [1,2,3]
- *      Example 2:
  *      	Input: [4,2,4,5,3,7]
  *      	Output:  4
  *      	Explanation:
  *      	LIS is [2,4,5,7]
  * 挑战：
  *      <p>Time complexity O(n^2) or O(nlogn)</p>
+ * 链接： https://www.lintcode.cn/problem/longest-increasing-subsequence/description
  * 难度： Medium
+ *
  * @author rays1
- * @url    https://www.lintcode.cn/problem/longest-increasing-subsequence/description
  * @since   2019-07-11 18:29:53
  */
 public class L_0076_Longest_Increasing_Subsequence {

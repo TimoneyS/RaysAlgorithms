@@ -4,78 +4,60 @@ import com.ray.io.Out;
 
 /**
  * 描述：
- *      Given two strings, find the longest common subsequence (*LCS*).
- *      
- *      Your code should return the length of *LCS*.
- *
+ *      给定两个字符串，寻找最长的公共子序列。
  * 用例：
- *      ```
  *      Example 1:
  *      	Input:  "ABCD" and "EDCA"
  *      	Output:  1
- *      	
  *      	Explanation:
  *      	LCS is 'A' or  'D' or 'C'
- *      
- *      
+ *
  *      Example 2:
  *      	Input: "ABCD" and "EACB"
  *      	Output:  2
- *      	
- *      	Explanation: 
+ *      	Explanation:
  *      	LCS is "AC"
- *      ```
- *
- * 挑战：
- *      
- *
  * 难度： Medium
- *   
+ * 链接： https://www.lintcode.cn/problem/longest-common-subsequence/description
  * @author rays1
- * @url    https://www.lintcode.cn/problem/longest-common-subsequence/description
- * @date   2019-07-11 18:29:54
+ * @since   2019-07-11 18:29:54
  */
 public class L_0077_Longest_Common_Subsequence {
 
+    /**
+     * dp(i, j) 表示 字符串A从i开始，字符串B从j开始的最长公共子序列长度
+     *
+     * 如果 A[i] == B[j] 则 dp(i, j) = 1 + dp(i+1, j+1)
+     * 否则 dp(i, j) = max{
+     *          dp(i+1, j),
+     *          dp(i, j+1)
+     * }
+     *
+     */
     static class Solution {
-        
-        int[][] mem;
-        
-        /**
-         * @param A: A string
-         * @param B: A string
-         * @return: The length of longest common subsequence of A and B
-         */
         public int longestCommonSubsequence(String A, String B) {
             if (A.length() == 0 || B.length() == 0) return 0;
-            
-            mem = new int[A.length()][B.length()];
+            int[][] mem = new int[A.length()][B.length()];
             for (int i = 0; i < A.length(); i++) {
                 for (int j = 0; j < B.length(); j++) {
                     mem[i][j] = -1;
                 }
             }
-
-            return lcs(A,B,0,0);
+            return lcs(A,B,0,0, mem);
         }
         
-        public int lcs(String A, String B, int sa, int sb) {
-            if (sa >= A.length() || sb >= B.length()) return 0;
-            if (mem[sa][sb] >= 0) return mem[sa][sb];
-            if (A.charAt(sa) == B.charAt(sb))  mem[sa][sb] = 1 + lcs(A, B, sa + 1, sb + 1);
-            else                               mem[sa][sb] = Math.max(lcs(A, B, sa + 1, sb), lcs(A, B, sa, sb + 1));
-            return mem[sa][sb];
+        public int lcs(String A, String B, int i, int j, int[][] mem) {
+            if (i >= A.length() || j >= B.length()) return 0;
+            if (mem[i][j] >= 0) return mem[i][j];
+            if (A.charAt(i) == B.charAt(j))  mem[i][j] = 1 + lcs(A, B, i + 1, j + 1, mem);
+            else                             mem[i][j] = Math.max(lcs(A, B, i + 1, j, mem), lcs(A, B, i, j + 1, mem));
+            return mem[i][j];
         }
-        
     }
     
     public static void main(String[] args) {
-        
         String A = "ABCD";
         String B = "EACB";
-        
         Out.p(new Solution().longestCommonSubsequence(A, B));
-        
     }
-
 }

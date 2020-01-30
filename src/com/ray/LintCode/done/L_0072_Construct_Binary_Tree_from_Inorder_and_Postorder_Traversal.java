@@ -34,8 +34,8 @@ import com.ray.util.StringUtil;
  * 难度： Medium
  *   
  * @author rays1
- * @url    https://www.lintcode.cn/problem/construct-binary-tree-from-inorder-and-postorder-traversal/description
- * @date   2019-07-11 18:29:50
+ * @link   https://www.lintcode.cn/problem/construct-binary-tree-from-inorder-and-postorder-traversal/description
+ * @since   2019-07-11 18:29:50
  */
 public class L_0072_Construct_Binary_Tree_from_Inorder_and_Postorder_Traversal {
 

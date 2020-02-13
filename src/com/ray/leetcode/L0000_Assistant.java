@@ -38,7 +38,7 @@ public class L0000_Assistant {
         head.put("origin", "https://leetcode-cn.com");
         head.put("referer", String.format("https://leetcode-cn.com/problems/%s/", questionName));
 
-        String data = "{\"operationName\": \"questionData\",\n\"variables\": { \"titleSlug\": \"two-sum\" }," +
+        String data = "{\"operationName\": \"questionData\",\n\"variables\": { \"titleSlug\": \"%s\" }," +
                 "\"titleSlug\": \"%s\",\n\"query\": \"query questionData($titleSlug: String!) {  " +
                 "question(titleSlug: $titleSlug) {    questionId    questionFrontendId    boundTopicId    title" +
                 "    titleSlug    content    translatedTitle    translatedContent    isPaidOnly    difficulty  " +
@@ -52,7 +52,7 @@ public class L0000_Assistant {
                 "      productUrl      __typename    }    isSubscribed    __typename  }}\"}";
         String body = null;
         try {
-            byte[] rs = Https.doPost("https://leetcode-cn.com/graphql/", String.format(data, questionName), head);
+            byte[] rs = Https.doPost("https://leetcode-cn.com/graphql/", String.format(data, questionName, questionName), head);
             body = new String(rs);
         } catch (IOException e) {
             e.printStackTrace();
@@ -191,9 +191,8 @@ public class L0000_Assistant {
 
     public static void main(String[] args) throws Exception {
 
-        String url = "https://leetcode-cn.com/problems/two-sum/";
+        String url = "https://leetcode-cn.com/problems/add-two-numbers/";
         recordQuestionToFileFromWeb(url);
     }
-
 
 }

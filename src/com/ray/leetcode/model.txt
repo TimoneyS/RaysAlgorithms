@@ -17,7 +17,7 @@ import com.ray.io.Out;
  * @since   $DATE
  */
 public class $QUESTION_CLASS {
-    $JAVA_CODE
+    static $JAVA_CODE
     
     public static void main(String[] args) {
         Out.p(new Solution());

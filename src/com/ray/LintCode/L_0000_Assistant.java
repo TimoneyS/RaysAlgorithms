@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.ray.net.http.Https;
 import org.json.JSONObject;
 
 import com.ray.io.Dir;
 import com.ray.io.In;
 import com.ray.io.Out;
-import com.ray.net.http.HttpsUtil;
 
 public class L_0000_Assistant {
 
@@ -169,7 +169,7 @@ public class L_0000_Assistant {
         Out.p(uniqueUrl);
         Map<String, String> head = new HashMap<String, String>();
         head.put("accept", "application/json, text/plain, */*");
-        byte[] rs = HttpsUtil.doGet(uniqueUrl, head);
+        byte[] rs = Https.doGet(uniqueUrl, head);
         Out.p(new String(rs));
         return new JSONObject(new String(rs));
     }

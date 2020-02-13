@@ -1,5 +1,6 @@
 package com.ray.LintCode.util;
 
+import java.util.Random;
 import java.util.Scanner;
 
 import com.ray.io.Out;
@@ -57,7 +58,7 @@ public class ListNode {
     
     public static ListNode parse(String str) {
         Scanner sc = new Scanner(str);
-        sc.useDelimiter("[,\\{\\}]");
+        sc.useDelimiter("[,{}]");
         ListNode pile = new ListNode(-1);
         ListNode n = pile;
         while (sc.hasNextInt()) {
@@ -84,7 +85,25 @@ public class ListNode {
         }
         return true;
     }
-    
+
+    public static ListNode randomList(int size, int high) {
+        return randomList(size, 0, high);
+    }
+
+    public static ListNode randomList(int size, int low, int high) {
+        Random r = new Random(47);
+        StringBuilder sb = new StringBuilder();
+        sb.append('{');
+        for (int i = 0; i < size; i++) {
+            sb.append(r.nextInt(high-low) + low);
+            sb.append(',');
+        }
+        sb.deleteCharAt(sb.length()-1);
+        sb.append('}');
+
+        return parse(sb.toString());
+    }
+
     public void show() {
         ListNode.show(this);
     }

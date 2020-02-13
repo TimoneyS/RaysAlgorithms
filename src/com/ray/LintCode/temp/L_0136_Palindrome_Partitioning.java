@@ -5,57 +5,39 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.ray.io.Out;
 import com.ray.util.Timer;
 
 /**
  * 描述：
- *      Given a string `s`. Partition `s` such that every substring in the partition is a palindrome.
- *      
- *      Return all possible palindrome partitioning of `s`.
+ *      给定字符串 s, 需要将它分割成一些子串, 使得每个子串都是回文串.
+ *      返回所有可能的分割方案.
  *
  * 用例：
  *      **Example 1:**
- *      
- *      ```
- *      Input: "a"
- *      Output: [["a"]]
- *      Explanation: Only 1 char in the string, only 1 way to split it (itself).
- *      ```
- *      
- *      **Example 2:**
- *      
- *      ```
  *      Input: "aab"
  *      Output: [["aa", "b"], ["a", "a", "b"]]
  *      Explanation: There are 2 ways to split "aab".
  *          1. Split "aab" into "aa" and "b", both palindrome.
  *          2. Split "aab" into "a", "a", and "b", all palindrome.
- *      ```
- *
- * 挑战：
- *      
  *
  * 难度： Medium
  *   
  * @author rays1
- * @url    https://www.lintcode.cn/problem/palindrome-partitioning/description
- * @date   2019-07-11 18:31:01
+ * @link   https://www.lintcode.cn/problem/palindrome-partitioning/description
+ * @since  2019-07-11 18:31:01
  */
 public class L_0136_Palindrome_Partitioning {
 
     static class Solution {
         
-        Map<String, List<List<String>>> cache = new HashMap<String, List<List<String>>>();
+        Map<String, List<List<String>>> cache = new HashMap<>();
         
-        /*
-         * @param s: A string
-         * @return: A list of lists of string
-         */
         public List<List<String>> partition(String s) {
   
             if (cache.containsKey(s)) return cache.get(s);
             
-            List<List<String>> rs = new LinkedList<List<String>>();
+            List<List<String>> rs = new LinkedList<>();
             
             if (isPalindrom(s)) {
                 List<String> list = new LinkedList<>();
@@ -71,7 +53,7 @@ public class L_0136_Palindrome_Partitioning {
                 List<List<String>> rsR = partition(subR);      
                 
                 for (List<String> rList: rsR) {
-                    List<String> temp = new LinkedList<String>();
+                    List<String> temp = new LinkedList<>();
                     temp.add(subL);
                     temp.addAll(rList);
                     rs.add(temp);
@@ -93,17 +75,12 @@ public class L_0136_Palindrome_Partitioning {
     }
     
     public static void main(String[] args) {
-        
         String s = "aabbbccccdddddccccbbbaa";
-        
         Timer.CLICK();
-        new Solution().partition(s);
+        List<List<String>> rs = new Solution().partition(s);
         Timer.STOP();
-        
-//        for (List<String> l : new Solution().partition(s)) {
-//            Out.p(l);
-//        }
-        
+        for (List<String> l : rs) {
+            Out.p(l);
+        }
     }
-
 }

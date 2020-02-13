@@ -10,14 +10,14 @@ import com.ray.io.Out;
  * Example:
  *      $EXAMPLE
  *
- * level : $DIFFICULTY
+ * Level : $DIFFICULTY
  *
  * @author  ray
  * @link    $LINK
  * @since   $DATE
  */
 public class $QUESTION_CLASS {
-    static $JAVA_CODE
+    $JAVA_CODE
     
     public static void main(String[] args) {
         Out.p(new Solution());

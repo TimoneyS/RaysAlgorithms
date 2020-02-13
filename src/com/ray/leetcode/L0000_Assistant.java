@@ -2,6 +2,7 @@ package com.ray.leetcode;
 
 import com.ray.io.Dir;
 import com.ray.io.In;
+import com.ray.io.Out;
 import com.ray.net.http.Https;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -67,14 +68,25 @@ public class L0000_Assistant {
      * @return
      */
     private static Map<String, String> parseQuestionData(String questionData) {
+        // 去除空行
+        questionData = questionData.replace("\r\n\r\n|\n\n", "\r\n");
+        // 去除 html 标签
+        questionData = questionData.replaceAll("<.+?>", "");
+        questionData = questionData.replaceAll("&quot;", "");
+
+
         JSONObject json = new JSONObject(questionData);
 
         String title = json.getJSONObject("data").getJSONObject("question").getString("title");
         String content = json.getJSONObject("data").getJSONObject("question").getString("content");
-        content = content.replaceAll("<\\S+?>", "").replaceAll("\r\n", "\n").replaceAll("\n\n", "\n");
-        String[] arr = content.split("Example:");
+
+        String[] arr = content.split("Example \\d+:");
         String detail = arr[0];
-        String example = arr[1].trim();
+
+        StringBuilder example = new StringBuilder();
+        for (int i = 1; i < arr.length; i++) {
+            example.append("Example ").append(i).append("\r\n").append(arr[i]);
+        }
         String difficulty = json.getJSONObject("data").getJSONObject("question").getString("difficulty");
         JSONArray jsonArray = json.getJSONObject("data").getJSONObject("question").getJSONArray("codeSnippets");
 
@@ -95,10 +107,10 @@ public class L0000_Assistant {
         Map<String, String> questionInfo = new HashMap<>();
         questionInfo.put(TITLE, title);
         questionInfo.put(DETAIL, detail);
-        questionInfo.put(EXAMPLE, example);
+        questionInfo.put(EXAMPLE, example.toString());
         questionInfo.put(DIFFICULTY, difficulty);
         questionInfo.put(DATE, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        questionInfo.put(JAVA_CODE, javaCode);
+        questionInfo.put(JAVA_CODE, javaCode.replaceAll("class ", "static class "));
         questionInfo.put(QUESTION_CLASS, questionClass);
         return questionInfo;
     }
@@ -191,8 +203,12 @@ public class L0000_Assistant {
 
     public static void main(String[] args) throws Exception {
 
-        String url = "https://leetcode-cn.com/problems/add-two-numbers/";
+//        String url = "https://leetcode-cn.com/problems/add-two-numbers/";
+        Scanner sc = new Scanner(System.in);
+        String url = sc.nextLine().trim();
+
         recordQuestionToFileFromWeb(url);
+
     }
 
 }

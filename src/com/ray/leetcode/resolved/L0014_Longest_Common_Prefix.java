@@ -1,4 +1,4 @@
-package com.ray.LintCode.done;
+package com.ray.leetcode.resolved;
 
 import com.ray.io.Out;
 

@@ -1,8 +1,6 @@
 package com.ray.leetcode;
 
-import com.ray.io.Dir;
 import com.ray.io.In;
-import com.ray.io.Out;
 import com.ray.net.http.Https;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -73,6 +71,10 @@ public class L0000_Assistant {
         // 去除 html 标签
         questionData = questionData.replaceAll("<.+?>", "");
         questionData = questionData.replaceAll("&quot;", "");
+        // 去除 html 编码
+        questionData = questionData.replaceAll("&gt;", ">");
+        questionData = questionData.replaceAll("&nbsp;", " ");
+        questionData = questionData.replaceAll("&#39;", "'");
 
 
         JSONObject json = new JSONObject(questionData);
@@ -116,15 +118,15 @@ public class L0000_Assistant {
     }
 
     private static void adjustQuestionData(Map<String, String> map) {
-        adjustString(map, DETAIL, " * ");
-        adjustString(map, EXAMPLE, " *      ");
-        adjustString(map, JAVA_CODE, "    ");
+        adjustStrIndent(map, DETAIL, " * ");
+        adjustStrIndent(map, EXAMPLE, " *      ");
+        adjustStrIndent(map, JAVA_CODE, "    ");
     }
 
     /**
      * 调整字符串的缩进
      */
-    private static void adjustString(Map<String, String> map, String key, String prefix) {
+    private static void adjustStrIndent(Map<String, String> map, String key, String prefix) {
         String s = map.get(key);
         StringBuilder sb = new StringBuilder();
         String[] lines = s.split("\r\n|\n");

@@ -75,6 +75,8 @@ public class L0000_Assistant {
         questionData = questionData.replaceAll("&gt;", ">");
         questionData = questionData.replaceAll("&nbsp;", " ");
         questionData = questionData.replaceAll("&#39;", "'");
+        questionData = questionData.replaceAll("&le;", "≤");
+        questionData = questionData.replaceAll("&rarr;", "→");
 
 
         JSONObject json = new JSONObject(questionData);

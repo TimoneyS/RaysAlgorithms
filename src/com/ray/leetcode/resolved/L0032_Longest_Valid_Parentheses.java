@@ -1,32 +1,31 @@
-package com.ray.LintCode.done;
+package com.ray.leetcode.resolved;
 
 import com.ray.io.Out;
 
 import java.util.Stack;
-import java.util.stream.StreamSupport;
 
 /**
- * 描述：
- *     给定一个字符串，寻找最长的括号匹配的子串
- * 用例：
- * **用例 1:**
- * 输入: "(()"
- * 输出: 2
- * 解释: The longest valid parentheses substring is "()"
- * <p>
- * **用例 2:**
- * 输入: ")()())"
- * 输出: 4
- * 解释: The longest valid parentheses substring is "()()"
- * <p>
- * 难度： Simple
+ * Longest Valid Parentheses
  *
- * @author rays1
- * @url https://www.lintcode.com/problem/longest-valid-parentheses/description
- * @date 2019-12-24 00:23:20
+ * Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
+ *
+ * Example:
+ *      Example 1
+ *      Input: (()
+ *      Output: 2
+ *      Explanation: The longest valid parentheses substring is ()
+ *      Example 2
+ *      Input: )()())
+ *      Output: 4
+ *      Explanation: The longest valid parentheses substring is ()()
+ *
+ * Level : Hard
+ *
+ * @author  ray
+ * @link    https://leetcode-cn.com/problems/longest-valid-parentheses/
+ * @since   2020-02-26 19:21:08
  */
-public class L_0193_Longest_Valid_Parentheses {
-
+public class L0032_Longest_Valid_Parentheses {
     /**
      * 将字符串中连续的匹配的括号对去除后
      * 剩下的不能够匹配的单独的括号，他们之间的距离就是最长连续括号对
@@ -52,13 +51,8 @@ public class L_0193_Longest_Valid_Parentheses {
             return rs;
         }
     }
-
+    
     public static void main(String[] args) {
-
-        String s = "(()())))";
-//        String s = "(()";
-        Out.p(new Solution().longestValidParentheses(s));
-
+        Out.p(new Solution());
     }
-
 }

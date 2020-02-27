@@ -37,31 +37,35 @@ public class L0015_3Sum {
      */
     static class Solution {
         public List<List<Integer>> threeSum(int[] nums) {
+            Arrays.sort(nums);
             List<List<Integer>> rs = new ArrayList<>();
-            Set<Integer> cache = new HashSet<>();
             for (int i = 0; i < nums.length; i++) {
-                if (!cache.contains(nums[i])) {
-                    twoSum(nums, i, -nums[i], cache, rs);
-                    cache.add(nums[i]);
+                if (i == 0 || nums[i] != nums[i - 1]) {
+                    twoSum(nums, i, rs);
                 }
             }
             return rs;
         }
 
-        private void twoSum(int[] numbers, int start, int target, Set<Integer> cache, List<List<Integer>> rs) {
-            Set<Integer> marked = new HashSet<>();
-            Map<Integer, Integer> remain = new HashMap<>();
-            for (int j = start+1; j < numbers.length; j++) {
-                if (marked.contains(numbers[j]) || cache.contains(numbers[j])) {
-                    continue;
+        private void twoSum(int[] numbers, int start, List<List<Integer>> rs) {
+            int l = start + 1, r  = numbers.length - 1;
+            while (l < r) {
+                int sum = numbers[start] + numbers[l] + numbers[r];
+                if (sum == 0) {
+                    rs.add(Arrays.asList(numbers[start], numbers[l], numbers[r]));
+                    while(l<r && numbers[l]==numbers[l+1]){
+                        l++;
+                    }
+                    while(l<r && numbers[r]==numbers[r-1]){
+                        r--;
+                    }
+                    l++;
+                    r--;
+                } else if (sum < 0){
+                    l ++;
+                } else {
+                    r --;
                 }
-                if (remain.containsKey(numbers[j])) {
-                    int k = remain.get(numbers[j]);
-                    marked.add(numbers[k]);
-                    marked.add(numbers[j]);
-                    rs.add(Arrays.asList(numbers[start], numbers[k], numbers[j]));
-                }
-                remain.put(target-numbers[j], j);
             }
         }
     }

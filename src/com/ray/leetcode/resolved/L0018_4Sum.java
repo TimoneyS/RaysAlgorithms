@@ -32,70 +32,45 @@ public class L0018_4Sum {
     */
     static class Solution {
         public List<List<Integer>> fourSum(int[] numbers, int target) {
-            List<List<Integer>>   rs = new ArrayList<List<Integer>>();
+            List<List<Integer>> rs = new ArrayList<>();
             Arrays.sort(numbers);
-
-            Set<Integer> fourMarked = new HashSet<>();
             for (int i = 0; i < numbers.length; i++) {
-                if (fourMarked.contains(numbers[i])) continue;
-                threeSum(numbers, i, target-numbers[i], numbers[i], fourMarked, rs);
-                fourMarked.add(numbers[i]);
+                if (i == 0 || numbers[i] != numbers[i-1])
+                    threeSum(numbers, i, target, rs);
             }
             return rs;
         }
 
-        public List<List<Integer>> threeSum(int[] numbers, int i, int target, int fourBase, Set<Integer> fourMarked,
-                                            List<List<Integer>> rs) {
-
-            Set<Integer> threeMarked = new HashSet<>();
-
-            for (int j = i+1; j < numbers.length; j++) {
-                if (threeMarked.contains(numbers[j])) continue;
-                if (fourMarked.contains(numbers[j])) continue;
-
-                twoSum(numbers, i, j, target-numbers[j], fourMarked, threeMarked, rs);
-
-                threeMarked.add(numbers[j]);
-            }
-
-            return rs;
-        }
-
-        private List<List<Integer>> twoSum(int[] numbers, int i, int j, int target,
-                                           Set<Integer> fourMarked, Set<Integer> threeMarked, List<List<Integer>> rs) {
-
-            Set<Integer> marked = new HashSet<>();
-            Map<Integer, Integer> remain = new HashMap<>();
-
-            for (int k = j+1; k < numbers.length; k++) {
-
-                if (marked.contains(numbers[k])) continue;
-                if (fourMarked.contains(numbers[k])) continue;
-                if (threeMarked.contains(numbers[k])) continue;
-
-                if (remain.containsKey(numbers[k])) {
-                    int l = remain.get(numbers[k]);
-
-                    List<Integer> llist = new ArrayList<Integer>(4);
-                    llist.add(numbers[i]);
-                    llist.add(numbers[j]);
-                    llist.add(numbers[l]);
-                    llist.add(numbers[k]);
-
-                    marked.add(numbers[k]);
-                    marked.add(numbers[l]);
-
-                    rs.add(llist);
+        private void threeSum(int[] numbers, int s1, int target, List<List<Integer>> rs) {
+            for (int j = s1+1; j < numbers.length; j++) {
+                if (j == s1+1 || numbers[j] != numbers[j-1]) {
+                    twoSum(numbers, s1, j, target, rs);
                 }
-
-                remain.put(target-numbers[k], k);
-
             }
+        }
 
-            return rs;
+        private void twoSum(int[] numbers, int s1, int s2, int target, List<List<Integer>> rs) {
+            int l = s2 + 1, r  = numbers.length - 1;
+            while (l < r) {
+                int sum = numbers[s1] + numbers[s2] + numbers[l] + numbers[r];
+                if (sum == target) {
+                    rs.add(Arrays.asList(numbers[s1], numbers[s2], numbers[l], numbers[r]));
+                    while(l<r && numbers[l]==numbers[l+1]){
+                        l++;
+                    }
+                    while(l<r && numbers[r]==numbers[r-1]){
+                        r--;
+                    }
+                    l++;
+                    r--;
+                } else if (sum < target){
+                    l ++;
+                } else {
+                    r --;
+                }
+            }
         }
     }
-
 
     public static void main(String[] args) {
         Out.p(new Solution());

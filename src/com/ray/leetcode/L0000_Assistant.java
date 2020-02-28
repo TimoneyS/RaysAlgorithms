@@ -67,15 +67,6 @@ public class L0000_Assistant {
     private static Map<String, String> parseQuestionData(String questionData) {
         // 去除空行
         questionData = questionData.replace("\r\n\r\n|\n\n", "\r\n");
-        // 去除 html 标签
-        questionData = questionData.replaceAll("<.+?>", "");
-        questionData = questionData.replaceAll("&quot;", "");
-        // 去除 html 编码
-        questionData = questionData.replaceAll("&gt;", ">");
-        questionData = questionData.replaceAll("&nbsp;", " ");
-        questionData = questionData.replaceAll("&#39;", "'");
-        questionData = questionData.replaceAll("&le;", "≤");
-        questionData = questionData.replaceAll("&rarr;", "→");
 
         JSONObject json = new JSONObject(questionData);
         String title = json.getJSONObject("data").getJSONObject("question").getString("title");
@@ -83,6 +74,15 @@ public class L0000_Assistant {
 
         String[] arr = content.split("Example \\d+:");
         String detail = arr[0];
+        // 去除 html 标签
+        detail = detail.replaceAll("<.+?>", "");
+        detail = detail.replaceAll("&quot;", "");
+        // 去除 html 编码
+        detail = detail.replaceAll("&gt;", ">");
+        detail = detail.replaceAll("&nbsp;", " ");
+        detail = detail.replaceAll("&#39;", "'");
+        detail = detail.replaceAll("&le;", "≤");
+        detail = detail.replaceAll("&rarr;", "→");
 
         StringBuilder example = new StringBuilder();
         for (int i = 1; i < arr.length; i++) {

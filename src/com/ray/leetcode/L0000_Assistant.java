@@ -15,7 +15,6 @@ public class L0000_Assistant {
 
     private static final String MODEL_FILENAME    = "model.txt";
     private static final String BASE_DIR          = "D:\\workspace\\eclipse_se\\RaysAlgorithms\\src\\com\\ray\\leetcode\\";
-            //Dir.getSourcePath(L0000_Assistant.class);
     private static final String TITLE             = "$TITLE";
     private static final String DETAIL            = "$DETAIL";
     private static final String EXAMPLE           = "$EXAMPLE";
@@ -78,9 +77,7 @@ public class L0000_Assistant {
         questionData = questionData.replaceAll("&le;", "≤");
         questionData = questionData.replaceAll("&rarr;", "→");
 
-
         JSONObject json = new JSONObject(questionData);
-
         String title = json.getJSONObject("data").getJSONObject("question").getString("title");
         String content = json.getJSONObject("data").getJSONObject("question").getString("content");
 
@@ -106,7 +103,8 @@ public class L0000_Assistant {
         }
 
         String id = json.getJSONObject("data").getJSONObject("question").getString("questionId");
-        String questionClass = String.format("L%04d_%s", Integer.valueOf(id), title.replaceAll(" ", "_"));
+        String titleToClass = title.replaceAll("[ \\(\\)]", "_").replaceAll("[-]", "_");
+        String questionClass = String.format("L%04d_%s", Integer.valueOf(id), titleToClass);
 
         Map<String, String> questionInfo = new HashMap<>();
         questionInfo.put(TITLE, title);

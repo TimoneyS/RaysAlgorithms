@@ -26,9 +26,6 @@ public class L0000_Assistant {
 
     /**
      * 从网络获取题目的 json
-     *
-     * @param questionName
-     * @return
      */
     private static String getQuestionData(String questionName) {
         Map<String, String> head = new HashMap<>();
@@ -60,36 +57,25 @@ public class L0000_Assistant {
 
     /**
      * 解析信息的 json 字符串 保存到 map 中
-     *
-     * @param questionData
-     * @return
      */
     private static Map<String, String> parseQuestionData(String questionData) {
         // 去除空行
         questionData = questionData.replace("\r\n\r\n|\n\n", "\r\n");
 
         JSONObject json = new JSONObject(questionData);
-        String title = json.getJSONObject("data").getJSONObject("question").getString("title");
-        String content = json.getJSONObject("data").getJSONObject("question").getString("content");
+        JSONObject quesJson = json.getJSONObject("data").getJSONObject("question");
+        String title = quesJson.getString("title");
+        String content = stringRemoveHtml(quesJson.getString("content"));
 
         String[] arr = content.split("Example \\d+:");
         String detail = arr[0];
-        // 去除 html 标签
-        detail = detail.replaceAll("<.+?>", "");
-        detail = detail.replaceAll("&quot;", "");
-        // 去除 html 编码
-        detail = detail.replaceAll("&gt;", ">");
-        detail = detail.replaceAll("&nbsp;", " ");
-        detail = detail.replaceAll("&#39;", "'");
-        detail = detail.replaceAll("&le;", "≤");
-        detail = detail.replaceAll("&rarr;", "→");
 
         StringBuilder example = new StringBuilder();
         for (int i = 1; i < arr.length; i++) {
             example.append("Example ").append(i).append("\r\n").append(arr[i]);
         }
-        String difficulty = json.getJSONObject("data").getJSONObject("question").getString("difficulty");
-        JSONArray jsonArray = json.getJSONObject("data").getJSONObject("question").getJSONArray("codeSnippets");
+        String difficulty = quesJson.getString("difficulty");
+        JSONArray jsonArray = quesJson.getJSONArray("codeSnippets");
 
         String javaCode = "";
         for (Object o : jsonArray) {
@@ -102,8 +88,8 @@ public class L0000_Assistant {
             }
         }
 
-        String id = json.getJSONObject("data").getJSONObject("question").getString("questionId");
-        String titleToClass = title.replaceAll("[ \\(\\)]", "_").replaceAll("[-]", "_");
+        String id = quesJson.getString("questionId");
+        String titleToClass = title.replaceAll("[ ()]", "_").replaceAll("[-]", "_");
         String questionClass = String.format("L%04d_%s", Integer.valueOf(id), titleToClass);
 
         Map<String, String> questionInfo = new HashMap<>();
@@ -114,19 +100,18 @@ public class L0000_Assistant {
         questionInfo.put(DATE, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         questionInfo.put(JAVA_CODE, javaCode.replaceAll("class ", "static class "));
         questionInfo.put(QUESTION_CLASS, questionClass);
-        return questionInfo;
-    }
 
-    private static void adjustQuestionData(Map<String, String> map) {
-        adjustStrIndent(map, DETAIL, " * ");
-        adjustStrIndent(map, EXAMPLE, " *      ");
-        adjustStrIndent(map, JAVA_CODE, "    ");
+        stringAdjustIndent(questionInfo, DETAIL, " * ");
+        stringAdjustIndent(questionInfo, EXAMPLE, " *      ");
+        stringAdjustIndent(questionInfo, JAVA_CODE, "    ");
+
+        return questionInfo;
     }
 
     /**
      * 调整字符串的缩进
      */
-    private static void adjustStrIndent(Map<String, String> map, String key, String prefix) {
+    private static void stringAdjustIndent(Map<String, String> map, String key, String prefix) {
         String s = map.get(key);
         StringBuilder sb = new StringBuilder();
         String[] lines = s.split("\r\n|\n");
@@ -139,15 +124,24 @@ public class L0000_Assistant {
         map.put(key, sb.toString());
     }
 
+    private static String stringRemoveHtml(String str) {
+        // 去除 html 标签
+        str = str.replaceAll("<.+?>", "");
+        str = str.replaceAll("&quot;", "");
+        // 去除 html 编码
+        str = str.replaceAll("&gt;", ">");
+        str = str.replaceAll("&nbsp;", " ");
+        str = str.replaceAll("&#39;", "'");
+        str = str.replaceAll("&le;", "≤");
+        str = str.replaceAll("&rarr;", "→");
+        return str;
+    }
+
     /**
      * 生成文件内容
-     *
-     * @param map
-     * @return
      */
     private static String generateFileContent(Map<String, String> map) {
-        adjustQuestionData(map);
-        String model = readModel(MODEL_FILENAME);
+        String model = readModel();
         for (Map.Entry<String, String> entry : map.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
@@ -158,13 +152,10 @@ public class L0000_Assistant {
 
     /**
      * 读取模板
-     *
-     * @param filename
-     * @return
      */
-    private static String readModel(String filename) {
+    private static String readModel() {
         StringBuilder sb = new StringBuilder();
-        try (Scanner sc = In.getClassPathScanner(L0000_Assistant.class, filename)) {
+        try (Scanner sc = In.getClassPathScanner(L0000_Assistant.class, L0000_Assistant.MODEL_FILENAME)) {
             while (sc.hasNextLine()) {
                 sb.append(sc.nextLine()).append("\r\n");
             }
@@ -174,9 +165,6 @@ public class L0000_Assistant {
 
     /**
      * 创建文件
-     *
-     * @param filename
-     * @param javaString
      */
     private static void createFile(String filename, String javaString) {
         File f = new File(BASE_DIR + filename + ".java");
@@ -203,7 +191,7 @@ public class L0000_Assistant {
         return url.substring(url.lastIndexOf('/')+1);
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
 //        String url = "https://leetcode-cn.com/problems/add-two-numbers/";
         Scanner sc = new Scanner(System.in);

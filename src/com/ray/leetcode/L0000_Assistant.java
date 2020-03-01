@@ -67,7 +67,7 @@ public class L0000_Assistant {
         String title = quesJson.getString("title");
         String content = stringRemoveHtml(quesJson.getString("content"));
 
-        String[] arr = content.split("Example \\d+:");
+        String[] arr = content.split("Example\\s*\\d*:");
         String detail = arr[0];
 
         StringBuilder example = new StringBuilder();

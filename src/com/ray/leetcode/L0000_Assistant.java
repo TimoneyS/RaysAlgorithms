@@ -27,7 +27,7 @@ public class L0000_Assistant {
     /**
      * 从网络获取题目的 json
      */
-    private static String getQuestionData(String questionName) {
+    private static String getQuestionJson(String questionName) {
         Map<String, String> head = new HashMap<>();
         head.put("content-type", "application/json");
         head.put("origin", "https://leetcode-cn.com");
@@ -58,27 +58,30 @@ public class L0000_Assistant {
     /**
      * 解析信息的 json 字符串 保存到 map 中
      */
-    private static Map<String, String> parseQuestionData(String questionData) {
-        // 去除空行
-        questionData = questionData.replace("\r\n\r\n|\n\n", "\r\n");
+    private static Map<String, String> parseQuestionJson(String questionData) {
+        Map<String, String> questionInfo = new HashMap<>();
 
+        // 去除空行
         JSONObject json = new JSONObject(questionData);
         JSONObject quesJson = json.getJSONObject("data").getJSONObject("question");
-        String title = quesJson.getString("title");
         String content = stringRemoveHtml(quesJson.getString("content"));
 
         String[] arr = content.split("Example\\s*\\d*:");
-        String detail = arr[0];
-
+        // 问题的标题
+        questionInfo.put(TITLE, quesJson.getString("title"));
+        // 问题的描数信息
+        questionInfo.put(DETAIL, arr[0]);
         StringBuilder example = new StringBuilder();
         for (int i = 1; i < arr.length; i++) {
             example.append("Example ").append(i).append("\r\n").append(arr[i]);
         }
-        String difficulty = quesJson.getString("difficulty");
-        JSONArray jsonArray = quesJson.getJSONArray("codeSnippets");
-
+        // 问题的用例
+        questionInfo.put(EXAMPLE, example.toString());
+        // 问题难度
+        questionInfo.put(DIFFICULTY, quesJson.getString("difficulty"));
+        // 问题的样板代码
         String javaCode = "";
-        for (Object o : jsonArray) {
+        for (Object o : quesJson.getJSONArray("codeSnippets")) {
             if (o instanceof JSONObject) {
                 JSONObject jsonObject = (JSONObject)o;
                 if (jsonObject.getString("lang").equalsIgnoreCase("Java")) {
@@ -87,24 +90,18 @@ public class L0000_Assistant {
                 }
             }
         }
-
-        String id = quesJson.getString("questionId");
-        String titleToClass = title.replaceAll("[ ()]", "_").replaceAll("[-]", "_");
-        String questionClass = String.format("L%04d_%s", Integer.valueOf(id), titleToClass);
-
-        Map<String, String> questionInfo = new HashMap<>();
-        questionInfo.put(TITLE, title);
-        questionInfo.put(DETAIL, detail);
-        questionInfo.put(EXAMPLE, example.toString());
-        questionInfo.put(DIFFICULTY, difficulty);
+        javaCode = javaCode.replaceAll("class ", "static class ");
+        questionInfo.put(JAVA_CODE, javaCode);
+        // 问题建档时间，当前时间
         questionInfo.put(DATE, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        questionInfo.put(JAVA_CODE, javaCode.replaceAll("class ", "static class "));
+        // 问题的类名
+        String titleToClass = questionInfo.get(TITLE).replaceAll("[ ()]", "_").replaceAll("[-]", "_");
+        String questionClass = String.format("L%04d_%s", Integer.valueOf(quesJson.getString("questionId")), titleToClass);
         questionInfo.put(QUESTION_CLASS, questionClass);
 
         stringAdjustIndent(questionInfo, DETAIL, " * ");
         stringAdjustIndent(questionInfo, EXAMPLE, " *      ");
         stringAdjustIndent(questionInfo, JAVA_CODE, "    ");
-
         return questionInfo;
     }
 
@@ -177,8 +174,8 @@ public class L0000_Assistant {
 
     public static void recordQuestionToFileFromWeb(String url) {
         String questionName = getQuestionName(url);
-        String body = getQuestionData(questionName);
-        Map<String, String> map = parseQuestionData(body);
+        String body = getQuestionJson(questionName);
+        Map<String, String> map = parseQuestionJson(body);
         map.put(LINK, url);
         String fileContent = generateFileContent(map);
         createFile(map.get(QUESTION_CLASS), fileContent);

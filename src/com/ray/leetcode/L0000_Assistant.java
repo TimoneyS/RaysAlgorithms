@@ -5,6 +5,10 @@ import com.ray.net.http.Https;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -95,7 +99,7 @@ public class L0000_Assistant {
         // 问题建档时间，当前时间
         questionInfo.put(DATE, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         // 问题的类名
-        String titleToClass = questionInfo.get(TITLE).replaceAll("[ ()]", "_").replaceAll("[-]", "_");
+        String titleToClass = questionInfo.get(TITLE).replaceAll("[ -]", "_").replaceAll("[()']", "");
         String questionClass = String.format("L%04d_%s", Integer.valueOf(quesJson.getString("questionId")), titleToClass);
         questionInfo.put(QUESTION_CLASS, questionClass);
 
@@ -188,12 +192,40 @@ public class L0000_Assistant {
         return url.substring(url.lastIndexOf('/')+1);
     }
 
+    /**
+     *1. 从剪切板获得文字。
+     */
+    public static String getSysClipboardText() {
+        String ret = "";
+        Clipboard sysClip = Toolkit.getDefaultToolkit().getSystemClipboard();
+        // 获取剪切板中的内容
+        Transferable clipTf = sysClip.getContents(null);
+
+        if (clipTf != null) {
+            // 检查内容是否是文本类型
+            if (clipTf.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+                try {
+                    ret = (String) clipTf
+                            .getTransferData(DataFlavor.stringFlavor);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return ret;
+    }
+
     public static void main(String[] args) {
 
 //        String url = "https://leetcode-cn.com/problems/add-two-numbers/";
-        Scanner sc = new Scanner(System.in);
-        String url = sc.nextLine().trim();
 
+        String url = getSysClipboardText();
+
+        if (!url.contains("leetcode-cn.com")) {
+            Scanner sc = new Scanner(System.in);
+            url = sc.nextLine().trim();
+        }
         recordQuestionToFileFromWeb(url);
 
     }

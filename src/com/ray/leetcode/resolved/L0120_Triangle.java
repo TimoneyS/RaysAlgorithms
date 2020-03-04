@@ -2,6 +2,8 @@ package com.ray.leetcode.resolved;
 
 import com.ray.io.Out;
 
+import java.util.List;
+
 /**
  * Triangle
  * -----------------------------------------------------------------------------
@@ -29,6 +31,18 @@ import com.ray.io.Out;
 public class L0120_Triangle {
     static class Solution {
         public int minimumTotal(List<List<Integer>> triangle) {
+            int min = triangle.get(0).get(0);
+            for (int i = 1; i < triangle.size(); i++) {
+                int n = triangle.get(i).size();
+                triangle.get(i).set(0, triangle.get(i).get(0) + triangle.get(i-1).get(0));
+                triangle.get(i).set(n-1, triangle.get(i).get(n-1) + triangle.get(i-1).get(n-2));
+                min = Math.min(triangle.get(i).get(0), triangle.get(i).get(n-1));
+                for (int j = 1; j < n-1; j++) {
+                    triangle.get(i).set(j, triangle.get(i).get(j) + Math.min(triangle.get(i-1).get(j), triangle.get(i-1).get(j-1)));
+                    min = Math.min(min, triangle.get(i).get(j));
+                }
+            }
+            return min;
         }
     }
     

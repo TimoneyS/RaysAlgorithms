@@ -131,6 +131,7 @@ public class L0000_Assistant {
         str = str.replaceAll("&quot;", "");
         // 去除 html 编码
         str = str.replaceAll("&gt;", ">");
+        str = str.replaceAll("&lt;", "<");
         str = str.replaceAll("&nbsp;", " ");
         str = str.replaceAll("&#39;", "'");
         str = str.replaceAll("&le;", "≤");

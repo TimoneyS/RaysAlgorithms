@@ -60,21 +60,23 @@ public class L_0362_Sliding_Window_Maximum {
     static class Solution {
         
         public void inQueue(Deque<Integer> deque, int num) {
-            while (!deque.isEmpty() && deque.peekLast() < num) deque.pollLast();
+            while (!deque.isEmpty() && deque.peekLast() < num)
+                deque.pollLast();
             deque.add(num);
         }
         
         public void outQueue(Deque<Integer> deque, int num) {
-            if (deque.peekFirst() == num) deque.pollFirst();
+            if (deque.peekFirst() == num)
+                deque.pollFirst();
         }
         
         public ArrayList<Integer> maxSlidingWindow(int[] nums, int k) {
-            ArrayList<Integer> rs = new ArrayList<Integer>();
+            ArrayList<Integer> rs = new ArrayList<>();
             if (nums == null || nums.length < k || k == 0) {
                 return rs;
             }
             
-            Deque<Integer> deque = new ArrayDeque<Integer>();
+            Deque<Integer> deque = new ArrayDeque<>();
             for (int i = 0; i < k - 1; i++) {
                 inQueue(deque, nums[i]);
             }

@@ -25,9 +25,6 @@ public class L_0008_Rotate_String {
     /**
      * 封装数组区域交换的方法
      *      交换数组两个区域 = 交换等比区域 + 交换剩余区域
-     * 
-     * @author rays1
-     *
      */
     static class Solution {
     

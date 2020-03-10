@@ -1,4 +1,4 @@
-package com.ray.leetcode;
+package com.ray.leetcode.resolved;
 
 import com.ray.io.Out;
 
@@ -40,8 +40,56 @@ import com.ray.io.Out;
  * @since   2020-03-10 02:10:37
  */
 public class L0289_Game_of_Life {
+    /**
+     * 1 表示活， 0 表示 死，
+     * 那么临时用
+     *      2 -> 死到活
+     *      3 -> 活到死
+     * 等到所有的细胞标记后，再处理标记的细胞
+     */
     static class Solution {
+        int[][] DIR = {
+                {0, 1},
+                {1, 0},
+                {0, -1},
+                {-1, 0},
+                {1, 1},
+                {1, -1},
+                {-1, -1},
+                {-1, 1}
+        };
+
         public void gameOfLife(int[][] board) {
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[0].length; j++) {
+                    int c = count(board, i, j);
+                    if (c == 3) {
+                        if (board[i][j] == 0) board[i][j] += 2;
+                    }
+                    if (c != 3 && c != 2){
+                        if (board[i][j] == 1) board[i][j] += 2;
+                    }
+                }
+            }
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[0].length; j++) {
+                    if (board[i][j] == 2) board[i][j] = 1;
+                    if (board[i][j] == 3) board[i][j] = 0;
+                }
+            }
+        }
+
+        private int count(int[][] board, int i, int j) {
+            int c = 0;
+            for (int[] dir :DIR) {
+                int x = dir[0] + i;
+                int y = dir[1] + j;
+                if (x >= 0 && y >= 0 && x < board.length && y < board[0].length) {
+                    if ( board[x][y] == 1 ||  board[x][y] == 3)
+                        c ++;
+                }
+            }
+            return c;
         }
     }
     

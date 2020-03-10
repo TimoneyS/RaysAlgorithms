@@ -1,27 +1,31 @@
-package com.ray.LintCode.done;
-
-import java.util.Arrays;
+package com.ray.leetcode.resolved;
 
 import com.ray.io.Out;
 
+import java.util.Arrays;
+
 /**
- * 描述：
- *      给定一个整数序列，找到最长升序的子序列（LIS），返回LIS的长度。
- * 用例：
- *      Example 1:
- *      	Input: [4,2,4,5,3,7]
- *      	Output:  4
- *      	Explanation:
- *      	LIS is [2,4,5,7]
- * 挑战：
- *      <p>Time complexity O(n^2) or O(nlogn)</p>
- * 链接： https://www.lintcode.cn/problem/longest-increasing-subsequence/description
- * 难度： Medium
+ * Longest Increasing Subsequence
+ * -----------------------------------------------------------------------------
+ * Given an unsorted array of integers, find the length of longest increasing subsequence.
  *
- * @author rays1
- * @since   2019-07-11 18:29:53
+ * Example:
+ *      Example 1
+ *      Input: [10,9,2,5,3,7,101,18]
+ *      Output: 4 
+ *      Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4. 
+ *      Note: 
+ *      	There may be more than one LIS combination, it is only necessary for you to return the length.
+ *      	Your algorithm should run in O(n2) complexity.
+ *      Follow up: Could you improve it to O(n log n) time complexity?
+ *
+ * Level : Medium
+ *
+ * @author  ray
+ * @link    https://leetcode-cn.com/problems/longest-increasing-subsequence/
+ * @since   2020-03-11 00:08:09
  */
-public class L_0076_Longest_Increasing_Subsequence {
+public class L0300_Longest_Increasing_Subsequence {
     /**
      * top 记录当前能够生成的各种长度的序列的最小终点元素, top[0] 表示长度为 1 的序列中最小的终点元素
      *
@@ -32,7 +36,7 @@ public class L_0076_Longest_Increasing_Subsequence {
      * 则更新 top[j] = num
      */
     static class Solution {
-        public int longestIncreasingSubsequence(int[] nums) {
+        public int lengthOfLIS(int[] nums) {
             int len = 0;
             int[] top = new int[nums.length+1];
             for (int num : nums) {
@@ -44,11 +48,8 @@ public class L_0076_Longest_Increasing_Subsequence {
             return len;
         }
     }
-    
+
     public static void main(String[] args) {
-        
-        int[] nums = {9,3,6,2,7};
-        
-        Out.p(new Solution().longestIncreasingSubsequence(nums));
+        Out.p(new Solution());
     }
 }

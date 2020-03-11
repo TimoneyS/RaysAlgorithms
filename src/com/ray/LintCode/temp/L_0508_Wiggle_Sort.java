@@ -43,12 +43,12 @@ public class L_0508_Wiggle_Sort {
          * @return void
          */
         public void wiggleSort(int[] nums) {
-            
+
             for (int i = 0; i < nums.length; i++) {
                 if(i % 2 == 0) swap(nums, i, min(nums, i, nums.length));
                 if(i % 2 == 1) swap(nums, i, max(nums, i, nums.length));
             }
-            
+
         }
         
         public void swap(int[] arr, int i, int j) {
@@ -73,7 +73,7 @@ public class L_0508_Wiggle_Sort {
             }
             return max;
         }
-        
+
     }
     
     public static void main(String[] args) {

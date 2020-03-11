@@ -1,8 +1,8 @@
 package com.ray.leetcode.resolved;
 
 import com.ray.io.Out;
-import com.ray.leetcode.util.graph.Node;
 
+import com.ray.leetcode.util.GraphNode.Node;
 import java.util.*;
 
 /**

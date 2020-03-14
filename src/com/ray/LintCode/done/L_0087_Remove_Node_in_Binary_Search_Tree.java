@@ -1,6 +1,6 @@
 package com.ray.LintCode.done;
 
-import com.ray.LintCode.util.TreeNode;
+import com.ray.leetcode.util.TreeNode;
 
 /**
  * 描述：

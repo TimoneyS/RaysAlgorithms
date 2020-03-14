@@ -2,7 +2,7 @@ package com.ray.LintCode.temp;
 
 import java.util.HashSet;
 
-import com.ray.LintCode.util.TreeNode;
+import com.ray.leetcode.util.TreeNode;
 import com.ray.io.Out;
 
 /**

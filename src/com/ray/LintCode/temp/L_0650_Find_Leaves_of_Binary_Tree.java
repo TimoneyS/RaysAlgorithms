@@ -3,7 +3,7 @@ package com.ray.LintCode.temp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ray.LintCode.util.TreeNode;
+import com.ray.leetcode.util.TreeNode;
 import com.ray.io.Out;
 
 /**

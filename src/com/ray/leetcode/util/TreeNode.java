@@ -50,8 +50,7 @@ public class TreeNode {
     }
 
     public static TreeNode parse(String data) {
-        data = data.trim();
-        String[] dataArr = data.substring(1, data.length()- 1).split(",");
+        String[] dataArr = data.trim().substring(1, data.length()- 1).split(",");
         TreeNode pile = new TreeNode(0);
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(pile);
@@ -59,7 +58,7 @@ public class TreeNode {
         boolean isLeft = false;
         for (String val : dataArr) {
             if (!val.equals("#")) {
-                TreeNode node = new TreeNode(Integer.valueOf(val));
+                TreeNode node = new TreeNode(Integer.parseInt(val));
                 if (isLeft) {
                     node = queue.peek().left = node;
                 } else {

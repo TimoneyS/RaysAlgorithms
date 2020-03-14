@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.ray.LintCode.util.TreeNode;
+import com.ray.leetcode.util.TreeNode;
 import com.ray.io.Out;
 
 /**

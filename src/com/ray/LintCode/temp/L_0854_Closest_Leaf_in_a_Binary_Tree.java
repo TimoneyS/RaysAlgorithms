@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-import com.ray.LintCode.util.TreeNode;
+import com.ray.leetcode.util.TreeNode;
 import com.ray.io.Out;
 
 /**

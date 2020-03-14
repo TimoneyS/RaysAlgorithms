@@ -1,6 +1,6 @@
 package com.ray.LintCode.temp;
 
-import com.ray.LintCode.util.ListNode;
+import com.ray.leetcode.util.ListNode;
 import com.ray.io.Out;
 
 /**

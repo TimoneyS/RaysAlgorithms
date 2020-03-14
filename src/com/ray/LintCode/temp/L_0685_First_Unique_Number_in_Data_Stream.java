@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import com.ray.LintCode.util.ListNode;
+import com.ray.leetcode.util.ListNode;
 import com.ray.io.Out;
 
 /**

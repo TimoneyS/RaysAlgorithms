@@ -1,6 +1,6 @@
 package com.ray.leetcode.resolved;
 
-import com.ray.LintCode.util.TreeNode;
+import com.ray.leetcode.util.TreeNode;
 import com.ray.io.Out;
 
 import java.util.Stack;

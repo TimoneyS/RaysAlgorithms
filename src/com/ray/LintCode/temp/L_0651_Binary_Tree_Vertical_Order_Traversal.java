@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.TreeMap;
 
-import com.ray.LintCode.util.TreeNode;
+import com.ray.leetcode.util.TreeNode;
 import com.ray.io.Out;
 
 /**

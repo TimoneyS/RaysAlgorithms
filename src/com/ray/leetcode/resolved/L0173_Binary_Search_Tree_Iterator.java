@@ -1,7 +1,6 @@
 package com.ray.leetcode.resolved;
 
 import com.ray.leetcode.util.TreeNode;
-import com.ray.io.Out;
 
 import java.util.Stack;
 
@@ -36,13 +35,13 @@ import java.util.Stack;
 public class L0173_Binary_Search_Tree_Iterator {
     static class BSTIterator {
 
-        private Stack<com.ray.LintCode.util.TreeNode> stack = new Stack<>();
+        private Stack<TreeNode> stack = new Stack<>();
 
-        public BSTIterator(com.ray.LintCode.util.TreeNode root) {
+        public BSTIterator(TreeNode root) {
             pushToStack(root);
         }
 
-        private void pushToStack(com.ray.LintCode.util.TreeNode node) {
+        private void pushToStack(TreeNode node) {
             while (node != null) {
                 stack.push(node);
                 node = node.left;

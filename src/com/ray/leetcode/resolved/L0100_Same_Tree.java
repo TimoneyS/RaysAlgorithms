@@ -1,4 +1,3 @@
-package com.ray.leetcode.resolved;
 
 import com.ray.leetcode.util.TreeNode;
 import com.ray.io.Out;
@@ -42,7 +41,7 @@ public class L0100_Same_Tree {
      * 否则递归比较
      */
     static class Solution {
-        public boolean isSameTree(com.ray.LintCode.util.TreeNode a, TreeNode b) {
+        public boolean isSameTree(TreeNode a, TreeNode b) {
             if (a == b) return true;
             if (a == null || b == null || a.val != b.val) return false;
             return isSameTree(a.left, b.left) && isSameTree(a.right, b.right);

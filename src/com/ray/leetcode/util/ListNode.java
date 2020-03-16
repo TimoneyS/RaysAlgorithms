@@ -14,48 +14,8 @@ public class ListNode {
     public ListNode(int x) {
         id = ID_GEN ++;
         val = x;
-        next = null;
     }
-    
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        ListNode head = this;
-        while (head.next != null) {
-            sb.append(head.val + " -> ");
-            head = head.next;
-        }
-        sb.append(head.val);
-        return sb.toString();
-    }
-    
-    public static void show(ListNode head) {
-        if (head == null) {
-            Out.p("{}");
-            return;
-        }
-        Out.p(head.toString());
-    }
-    
-    public ListNode next(int step) {
-        ListNode n = this;
-        while (step > 0) {
-            n = n.next;
-            step --;
-            if (n == null) break;
-        }
-        return n;
-    }
-    
-    public ListNode nextVal(int val) {
-        ListNode n = this;
-        while (n != null) {
-            if (n.val == val) break;
-            n = n.next;
-        }
-        return n;
-    }
-    
+
     public static ListNode parse(String str) {
         Scanner sc = new Scanner(str);
         sc.useDelimiter("[,{}]");
@@ -67,23 +27,6 @@ public class ListNode {
         }
         sc.close();
         return pile.next;
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if ( !(obj instanceof ListNode)) {
-            return false;
-        } 
-        ListNode o1 = this;
-        ListNode o2 = (ListNode)obj;
-        while (o1 != null && o2 != null) {
-            if (o1 == null && o2 != null || o1 != null && o2 == null || o1.val != o2.val) {
-                return false;
-            }
-            o1 = o1.next;
-            o2 = o2.next;
-        }
-        return true;
     }
 
     public static ListNode randomList(int size, int high) {
@@ -104,14 +47,38 @@ public class ListNode {
         return parse(sb.toString());
     }
 
-    public void show() {
-        ListNode.show(this);
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof ListNode)) return false;
+        for (ListNode o1 = this, o2 = (ListNode)obj; o1 != null || o2 != null; o1 = o1.next, o2 = o2.next)
+            if (o1 == null || o2 == null || o1.val != o2.val)
+                return false;
+        return true;
     }
-    
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append('{');
+        for (ListNode node = this; node != null; node = node.next)
+            sb.append(node.val).append("->");
+        return sb.substring(0, sb.length()-2) + '}';
+    }
+
+    public void show() {
+        Out.p(toString());
+    }
+
+    public static void show(ListNode head) {
+        if (head == null) {
+            Out.p("{}");
+            return;
+        }
+        head.show();
+    }
+
     public static void main(String[] args) {
         ListNode head = ListNode.parse("{1,2,3,4,5,6}");
-        
         ListNode.show(head);
     }
-    
 }

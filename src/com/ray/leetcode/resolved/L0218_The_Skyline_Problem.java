@@ -28,64 +28,42 @@ import java.util.*;
  * @since   2020-03-09 21:22:15
  */
 public class L0218_The_Skyline_Problem {
+    /**
+     * 线性的扫描所有建筑物，维护最高值
+     * 如果最高值出现下降或上升，则表示出现了关键点。
+     */
     static class Solution {
         public List<List<Integer>> getSkyline(int[][] buildings) {
-
             List<List<Integer>> rs = new ArrayList<>();
-            List<int[]> events = new ArrayList<>();
 
-            for (int[] is : buildings) {
-                events.add(new int[] {is[0],  is[2]});
-                events.add(new int[] {is[1], -is[2]});
+            int[][] events = new int[buildings.length * 2][2];
+            for (int i = 0; i < buildings.length; i++) {
+                events[i*2][0] = buildings[i][0];
+                events[i*2+1][0] = buildings[i][1];
+                events[i*2][1] = buildings[i][2];
+                events[i*2+1][1] = -buildings[i][2];
             }
-            events.sort((o1, o2) -> o1[0] == o2[0] ? o2[1] - o1[1] : o1[0] - o2[0]);
-            buildResult(rs, events);
-            if (rs.size() != 0)
-                rs.get(rs.size() - 1).set(1, 0);
-            return rs;
-        }
+            Arrays.sort(events, (o1, o2) -> o1[0] == o2[0] ? o2[1] - o1[1] : o1[0] - o2[0]);
 
-        private void buildResult(List<List<Integer>> rs, List<int[]> events) {
-            Queue<Integer> pq = new PriorityQueue<>(10, (o1, o2) -> o2-o1);
-            pq.add(0);
-
-            int prev = 0;
+            TreeMap<Integer, Integer> map = new TreeMap<>();
+            map.put(0, 0);
+            int height = 0;
             for (int[]  event : events) {
-                int height = event[1];
-                int pos    = event[0];
-
-                if (height > 0) {
-                    if (height > pq.peek()) {
-                        // 添加轮廓
-                        addOutLine(rs, prev, pos, pq.peek());
-                        prev = pos;
+                if (event[1] < 0) {
+                    if (map.get(-event[1]) == 1) {
+                        map.remove(-event[1]);
+                    } else {
+                        map.put(-event[1], map.get(-event[1]) - 1);
                     }
-                    // 建筑物 入栈
-                    pq.add(height);
                 } else {
-                    // 建筑出栈
-                    pq.remove(-height);
-                    if (-height > pq.peek()) {
-                        addOutLine(rs, prev, pos, -height);
-                        prev = pos;
-                    }
+                    map.put(event[1], map.getOrDefault(event[1], 0) + 1);
                 }
-
-            }
-
-        }
-
-        private void addOutLine(List<List<Integer>> rs, int start, int pos, int height) {
-            if (height != 0 && start < pos) {
-                if (rs.size() != 0 && rs.get(rs.size() - 1).get(0) == start) {
-                    rs.get(rs.size() - 1).set(1, height);
-                } else {
-                    if (rs.size() != 0)
-                        rs.get(rs.size() - 1).set(1, 0);
-                    rs.add(Arrays.asList(start, height));
+                if (map.lastKey() != height) {
+                    height = map.lastKey();
+                    rs.add(Arrays.asList(event[0], height));
                 }
-                rs.add(Arrays.asList(pos, height));
             }
+            return rs;
         }
     }
     

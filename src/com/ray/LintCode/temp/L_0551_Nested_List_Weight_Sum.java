@@ -4,8 +4,8 @@ import java.util.ArrayDeque;
 import java.util.List;
 import java.util.Queue;
 
-import com.ray.LintCode.util.NestedInteger;
 import com.ray.io.Out;
+import com.ray.leetcode.util.NestedInteger;
 
 /**
  * 描述：

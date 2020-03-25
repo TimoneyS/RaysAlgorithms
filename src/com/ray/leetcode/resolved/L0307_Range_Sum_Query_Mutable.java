@@ -22,30 +22,44 @@ package com.ray.leetcode.resolved;
  * @link    https://leetcode-cn.com/problems/range-sum-query-mutable/
  * @since   2020-03-11 00:02:21
  */
-public class L0307_Range_Sum_Query___Mutable {
+public class L0307_Range_Sum_Query_Mutable {
+    // 树状数组
     static class NumArray {
-
-        int[] sumOf;
+        int[] inner, arr;
 
         public NumArray(int[] nums) {
-            if (nums.length > 0) {
-                sumOf = new int[nums.length];
-                sumOf[0] = nums.length <= 0 ? 0 : nums[0];
-                for (int i = 1; i < nums.length; i++)
-                    sumOf[i] = sumOf[i - 1] + nums[i];
-            }
+            arr = nums;
+            inner = new int[nums.length + 1];
+            for (int i = 0; i < nums.length; i++)
+                add(i, nums[i]);
+
         }
 
         public void update(int i, int val) {
-            if (sumOf == null) return;
-            int diff = val - sumRange(i, i);
-            for (int j = i; j < sumOf.length; j++ ) {
-                sumOf[j] += diff;
+            add(i, val - arr[i]);
+            arr[i] = val;
+        }
+
+        private void add(int i, int val) {
+            i += 1;
+            while (i < inner.length) {
+                inner[i] += val;
+                i += i & -i;
             }
         }
 
         public int sumRange(int i, int j) {
-            return sumOf == null ? 0 : sumOf[j] - (i > 0 ? sumOf[i-1] : 0);
+            return sum(j) - sum(i-1);
+        }
+
+        private int sum(int i) {
+            int sum = 0;
+            i ++;
+            while (i != 0) {
+                sum += inner[i];
+                i -= i & -i;
+            }
+            return sum;
         }
     }
     

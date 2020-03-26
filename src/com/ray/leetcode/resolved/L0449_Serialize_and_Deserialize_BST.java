@@ -7,30 +7,23 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * Serialize and Deserialize Binary Tree
+ * Serialize and Deserialize BST
  * -----------------------------------------------------------------------------
  * Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
- * Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
+ * Design an algorithm to serialize and deserialize a binary search tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary search tree can be serialized to a string and this string can be deserialized to the original tree structure.
+ * The encoded string should be as compact as possible.
+ * Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
  *
  * Example:
- *      Example 1
- *      You may serialize the following tree:
- *          1
- *         / \
- *        2   3
- *           / \
- *          4   5
- *      as [1,2,3,null,null,4,5]
- *      Clarification: The above format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
- *      Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
+ *      
  *
- * Level : Hard
+ * Level : Medium
  *
  * @author  ray
- * @link    https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/
- * @since   2020-03-11 00:01:01
+ * @link    https://leetcode-cn.com/problems/serialize-and-deserialize-bst/
+ * @since   2020-03-27 00:12:34
  */
-public class L0297_Serialize_and_Deserialize_Binary_Tree {
+public class L0449_Serialize_and_Deserialize_BST {
     /**
      * 序列化的顺序是对树的BFS搜索
      *      首先被序列化的是根结点
@@ -42,9 +35,7 @@ public class L0297_Serialize_and_Deserialize_Binary_Tree {
      *      然后是根结点的左结点，根节点的右结点
      *      按照层级，从左向右，从上到下依次将字符串生成结点即可。
      */
-    public static class Codec {
-
-        // Encodes a tree to a single string.
+    public class Codec {
         public String serialize(TreeNode root) {
             Queue<TreeNode> queue = new ArrayDeque<>();
             if (root != null) queue.add(root);
@@ -106,7 +97,7 @@ public class L0297_Serialize_and_Deserialize_Binary_Tree {
             return pile.right;
         }
     }
-
+    
     public static void main(String[] args) {
     }
 }

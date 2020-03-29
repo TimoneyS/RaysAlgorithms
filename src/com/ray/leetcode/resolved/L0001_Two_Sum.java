@@ -34,9 +34,7 @@ public class L0001_Two_Sum {
         public int[] twoSum(int[] numbers, int target) {
             Map<Integer, Integer> remain = new HashMap<>();
             for (int i = 0; i < numbers.length; i++) {
-                if (remain.containsKey(numbers[i])) {
-                    return new int[]{remain.get(numbers[i]), i};
-                }
+                if (remain.containsKey(numbers[i]))  return new int[]{remain.get(numbers[i]), i};
                 remain.put(target-numbers[i], i);
             }
             return new int[]{-1, -1};

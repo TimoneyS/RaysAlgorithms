@@ -28,10 +28,6 @@ import com.ray.io.Out;
 public class L_0051_Previous_Permutation {
 
     static class Solution {
-        /*
-         * @param nums: A list of integers
-         * @return: A list of integers that's previous permuation
-         */
         public List<Integer> previousPermuation(List<Integer> nums) {
             next(nums);
             return nums;
@@ -46,7 +42,7 @@ public class L_0051_Previous_Permutation {
          * 4. 交换 a[l] a[k]
          * @param nums
          */
-        public void next(List<Integer> nums) {
+        private void next(List<Integer> nums) {
             
             // 从右往左 找到第一个 a[k] > a[k+1]
             int k = -1;
@@ -72,21 +68,19 @@ public class L_0051_Previous_Permutation {
             }
             // 交换 a[l] a[k]
             swap(nums, k, l);
-            
         }
         
         // 交换
-        public void swap(List<Integer> nums, int i, int j) {
+        private void swap(List<Integer> nums, int i, int j) {
             if (i == j) return;
             int temp = nums.get(i);
             nums.set(i, nums.get(j));
             nums.set(j, temp);
         }
         
-        public void reverse(List<Integer> nums, int s, int t) {
+        private void reverse(List<Integer> nums, int s, int t) {
             for (int i = s; i <= (s + t)/2; i++) swap(nums, i, s+t-i);
         }
-        
     }
     
     public static void main(String[] args) {

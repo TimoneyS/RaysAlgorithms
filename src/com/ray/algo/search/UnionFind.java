@@ -2,18 +2,15 @@ package com.ray.algo.search;
 
 import com.ray.io.Out;
 
-/**
- * 
- * @author rays1
- *
- */
 public class UnionFind {
     
     private int[] parent;  // parent[i] = parent of i
     private int count;     // number of components
     
     public int count() { return count; }
-    public boolean isConnected(int p, int q) { return find(p) == find(q); }
+    public boolean isConnected(int p, int q) {
+        return find(p) == find(q);
+    }
 
     public UnionFind(int n) {
         count = n;

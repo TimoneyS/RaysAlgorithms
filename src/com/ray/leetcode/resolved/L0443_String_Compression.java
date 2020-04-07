@@ -1,16 +1,14 @@
-package com.ray.leetcode;
+package com.ray.leetcode.resolved;
 
 import com.ray.io.Out;
 
 /**
  * String Compression
  * -----------------------------------------------------------------------------
- * Given an array of characters, compress it in-place.
- * The length after compression must always be smaller than or equal to the original array.
- * Every element of the array should be a character (not int) of length 1.
- * After you are done modifying the input array in-place, return the new length of the array.
- * Follow up:
- * Could you solve it using only O(1) extra space?
+ * 给定一组字符，使用原地算法将其压缩。
+ * 压缩后的长度必须始终小于或等于原数组长度。
+ * 数组的每个元素应该是长度为1 的字符（不是 int 整数类型）。
+ * 在完成原地修改输入数组后，返回数组的新长度。
  *
  * Example:
  *      Example 1
@@ -49,47 +47,31 @@ public class L0443_String_Compression {
     static class Solution {
         public int compress(char[] chars) {
             if (chars == null || chars.length == 0) return 0;
-
-            StringBuilder sb = new StringBuilder();
-
-            char prev = chars[0];
-            int count = 1;
-            int prevCount = -1;
-            boolean flag = false;
-
-            for (int i = 1; i < chars.length; i++) {
-                if (chars[i] == prev) {
+            int l = 0;
+            int count = 0;
+            for (int i = 0; i <= chars.length; i++) {
+                if (i < chars.length && chars[i] == chars[l]) {
                     count ++;
                 } else {
-                    sb.append(prev);
-                    sb.append(count);
-                    if (prevCount != -1 && prevCount != count)
-                        flag = true;
-                    prev = chars[i];
-                    prevCount = count;
+                    l++;
+                    if (count > 1) {
+                        String s = String.valueOf(count);
+                        for (int j = 0; j < s.length(); j++) {
+                            chars[l++] = s.charAt(j);
+                        }
+                    }
+                    if (i < chars.length) chars[l] = chars[i];
                     count = 1;
                 }
             }
-            if (prevCount != -1 && prevCount != count)
-                flag = true;
-            sb.append(prev);
-            sb.append(count);
-
-            if (!flag) {
-                for (int i = sb.length()-1; i >= 0; i -= 2) {
-                    sb.deleteCharAt(i);
-                }
-            }
-
-            while (sb.charAt(sb.length()-1) != '#')
-                sb.deleteCharAt(sb.length()-1);
-            sb.deleteCharAt(sb.length()-1);
-
-            return Math.min(sb.length(), chars.length);
+            return l;
         }
     }
     
     public static void main(String[] args) {
-        Out.p(new Solution());
+        char[] chars = "aaaaabbbbbbcccc".toCharArray();
+        Solution sol = new Solution();
+        Out.p(sol.compress(chars));
+        Out.p(chars);
     }
 }

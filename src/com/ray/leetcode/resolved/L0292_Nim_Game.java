@@ -5,8 +5,12 @@ import com.ray.io.Out;
 /**
  * Nim Game
  * -----------------------------------------------------------------------------
- * You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones.
- * Both of you are very clever and have optimal strategies for the game. Write a function to determine whether you can win the game given the number of stones in the heap.
+ * You are playing the following Nim Game with your friend:
+ *      There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones.
+ *      The one who removes the last stone will be the winner.
+ *      You will take the first turn to remove the stones.
+ * Both of you are very clever and have optimal strategies for the game.
+ * Write a function to determine whether you can win the game given the number of stones in the heap.
  *
  * Example:
  *      Example 1
@@ -29,11 +33,9 @@ public class L0292_Nim_Game {
      * 那么如果从 i 开始， A 拿 k 个，那么 B 就从 i+k开始拿，如果 f[i+k] = true 那么 A 拿 k 个一定输
      *      因此 f[i] = !f[i+k]
      *      因为 A有 1-3种拿法，所以
-     *          f[i] = !f[i+1] || !f[i+2] || !f[i+3]
-     *      因为 f[n] f[n-1] f[n-2] 一定为true，所以倒叙计算即可
-     *      同时，每次计算最多只需要三个数组元素，则数组中保存三位即可
-     *      计算之后会发现，只有为 4 的整数倍时，A一定会输
-     *      但是上面的推导是有意义的
+     *          f[i] = !(f[i+1] && f[i+2] && f[i+3])
+     *      可以发现，如果连续三个数量会赢的话，下一个数量的游戏 A 一定会输。
+     *      所以如果 n % 4 == 0，则 A 一定输
      */
     static class Solution {
         public boolean canWinNim(int n) {
